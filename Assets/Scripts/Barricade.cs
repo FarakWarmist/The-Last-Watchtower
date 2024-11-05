@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Barricade : MonoBehaviour
 {
-    public GameObject window;
+    public BrokenWindow window;
     [SerializeField] PutPlank[] planks;
     public bool allPlace;
 

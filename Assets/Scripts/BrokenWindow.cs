@@ -13,9 +13,8 @@ public class BrokenWindow : MonoBehaviour, IInteractable
         isBroken = true;
 
         Instantiate(brokenWindow, transform.position, transform.rotation);
-        Instantiate(barricade[randomIndex], barricadeLocation.transform.position, barricadeLocation.transform.rotation);
-        var newBarricade = barricade[randomIndex].GetComponent<Barricade>();
-        newBarricade.window = this.gameObject;
+        
+        barricade[randomIndex].SetActive(true);
         gameObject.SetActive(false);
     }
 }
