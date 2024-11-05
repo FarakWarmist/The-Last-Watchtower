@@ -1,98 +1,113 @@
 using System;
 using System.Collections;
 using TMPro;
+using Unity.Cinemachine;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 public class Door : MonoBehaviour, IInteractable
 {
     public bool isOpen;
     public bool isInside;
     public bool isCheck;
-    float speedTransition = 10f;
 
     Animator animator;
 
-    public GameObject currentLookPoint;
-    public GameObject insideLookPoint;
-    public GameObject outsideLookPoint;
-    public GameObject initialCamPos;
+    public CinemachineCamera currentPoV;
+    public CinemachineCamera insidePoV;
+    public CinemachineCamera outsidePoV;
+    public CinemachineCamera initialPoV;
 
+    CinemachineBrain brain;
     MouseLook cam;
     Player player;
 
+    public KeyCode key;
+
     private void Start()
     {
-        cam = FindAnyObjectByType<MouseLook>();
-        player = FindAnyObjectByType<Player>();
-
         animator = GetComponent<Animator>();
 
         isInside = false;
-        currentLookPoint = outsideLookPoint;
+        currentPoV = outsidePoV;
+
+        cam = initialPoV.GetComponent<MouseLook>();
+        brain = FindAnyObjectByType<CinemachineBrain>();
+        player = FindAnyObjectByType<Player>();
     }
     public void Interact()
     {
         if (!isOpen)
         {
-            isCheck = !isCheck;
-            if (isCheck)
-            {
-                IsCheck(false, currentLookPoint);
-            }
-            else
-            {
-                IsCheck(true, initialCamPos);
-            }
-        }
-    }
-    private void Update()
-    {
-        if (isCheck && Input.GetKeyDown(KeyCode.E))
-        {
-            IsCheck(true, initialCamPos);
-        }
-    }
-
-    public void DoorState()
-    {
-        if (!isOpen)
-        {
-            animator.SetBool("IsOpen", true);
+            IsCheck(initialPoV, currentPoV, CheckDoor(false));
+            player.enabled = false;
+            isCheck = true;
         }
         else
         {
             animator.SetBool("IsOpen", false);
+            isOpen = false;
+        }
+    }
+    private void Update()
+    {
+        if (isCheck)
+        {
+            if(Input.GetKeyDown(KeyCode.E))
+            {
+                KeyPress(KeyCode.E);
+                key = KeyCode.E;
+            }
+            else if(Input.GetKeyDown(KeyCode.S))
+            { 
+                KeyPress(KeyCode.S);
+                key = KeyCode.S;
+            }
         }
     }
 
-    private void IsCheck(bool camMoving, GameObject target)
+    void KeyPress(KeyCode key)
+    {
+        switch (key)
+        {
+            case KeyCode.E:
+                IsCheck(currentPoV, initialPoV, UseDoor(true));
+                break;
+            case KeyCode.S:
+                IsCheck(currentPoV, initialPoV, UseDoor(false));
+                break;
+        }
+        isCheck = false;
+    }
+
+    private void IsCheck(CinemachineCamera camExit, CinemachineCamera camGo, IEnumerator action)
     {
         cam.enabled = false;
-        StartCoroutine(Check(camMoving, target));
+        camExit.enabled = false;
+        camGo.enabled = true;
+        StartCoroutine(action);
     }
 
-    public IEnumerator Check(bool state, GameObject target)
+    IEnumerator CheckDoor(bool state)
     {
-        while (Vector3.Distance(cam.transform.position, target.transform.position) > 0.1f ||
-               Quaternion.Angle(cam.transform.rotation, target.transform.rotation) > 0.1f)
+        while (brain.IsBlending)
         {
-            cam.transform.position = Vector3.MoveTowards(cam.transform.position, target.transform.position, speedTransition * Time.deltaTime);
-            cam.transform.rotation = Quaternion.Slerp(cam.transform.rotation, target.transform.rotation, speedTransition * 4 * Time.deltaTime);
             yield return null;
         }
+        yield return new WaitForSeconds(brain.DefaultBlend.Time + 0.1f);
         cam.enabled = state;
     }
 
-    public void OnAnimtionEnd()
+    IEnumerator UseDoor(bool open)
     {
-        if (!isOpen)
+        while (brain.IsBlending)
         {
-            isOpen = true;
+            yield return null;
         }
-        else
-        {
-            isOpen = false;
-        }
+        isOpen = open;
+        animator.SetBool("IsOpen", open);
+
+        yield return new WaitForSeconds(brain.DefaultBlend.Time + 0.1f);
+        cam.enabled = true;
+        player.enabled = true;
     }
 }

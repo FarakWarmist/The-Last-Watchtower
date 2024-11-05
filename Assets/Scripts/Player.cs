@@ -82,22 +82,6 @@ public class Player : MonoBehaviour
         {
             TryToInteract();
         }
-
-        if (Input.GetKey(KeyCode.E))
-        {
-            isHolding = true;
-            holdTime += Time.deltaTime;
-        }
-        else
-        {
-            isHolding = false;
-            holdTime = 0;
-        }
-
-        if(Input.GetKeyUp(KeyCode.E) || holdTime >= holdBotton)
-        {
-            TryToInteractDoor();
-        }
     }
 
     internal void TryToInteract()
@@ -107,49 +91,12 @@ public class Player : MonoBehaviour
         
         if (Physics.Raycast(camera.transform.position, camera.transform.forward, out hitInfo, InteractionDistance))
         {
-            var door = hitInfo.collider.GetComponent<Door>();
             var interactable = hitInfo.collider.GetComponent<IInteractable>();
             if (interactable != null)
             {
-                if(door != null)
-                {
-                    if(door.isOpen)
-                    {
-                        door.DoorState();
-                    }
-                    else
-                    {
-                        return;
-                    }
-                }
-                else
-                {
-                    interactable.Interact();
-                }
-            }
-        }
-    }
 
-    internal void TryToInteractDoor()
-    {
-        var camera = Camera.main;
-        RaycastHit hitInfo;
+                interactable.Interact();
 
-        if (Physics.Raycast(camera.transform.position, camera.transform.forward, out hitInfo, InteractionDistance))
-        {
-            var door = hitInfo.collider.GetComponent<Door>();
-            var interactable = hitInfo.collider.GetComponent<IInteractable>();
-            if (door != null && !door.isOpen)
-            {
-                if (holdTime < holdBotton)
-                {
-                    interactable.Interact();
-                }
-                else
-                {
-                    holdTime = 0f;
-                    door.DoorState();
-                }
             }
         }
     }
