@@ -10,24 +10,24 @@ public class PutPlank : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        Player player = FindAnyObjectByType<Player>();
+        ItemsManager itemsManager = FindAnyObjectByType<ItemsManager>();
         PileOfPlanks pileOfPlanks = FindAnyObjectByType<PileOfPlanks>();
         if (!isPlaced )
         {
-            if (player.hasPlank && player.hasHammer)
+            if (itemsManager.hasPlank && itemsManager.hasHammer)
             {
                 ChangeMaterial(woodMat);
                 CheckChild(true);
                 isPlaced = true;
-                player.hasPlank = false;
-                player.viewPlank.SetActive(false);
+                itemsManager.hasPlank = false;
+                itemsManager.viewPlank.SetActive(false);
                 pileOfPlanks.DestroyPlank();
             }
-            else if (player.hasHammer && !player.hasPlank)
+            else if (itemsManager.hasHammer && !itemsManager.hasPlank)
             {
                 Debug.Log("I need a plank");
             }
-            else if (!player.hasHammer &&  player.hasPlank)
+            else if (!itemsManager.hasHammer && itemsManager.hasPlank)
             {
                 Debug.Log("I need a hammer");
             }

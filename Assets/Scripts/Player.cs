@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -23,13 +24,10 @@ public class Player : MonoBehaviour
 
     public float InteractionDistance = 2f;
 
-    public bool hasPlank;
-    public GameObject viewPlank;
-
-    public bool hasSomething;
-    public GameObject currentItem;
-    public bool hasHammer;
-    public GameObject viewHammer;
+    //For Door
+    public float holdBotton = 0.8f;
+    public float holdTime = 0f;
+    public bool isHolding;
 
     private void Start()
     {
@@ -84,6 +82,22 @@ public class Player : MonoBehaviour
         {
             TryToInteract();
         }
+
+        if (Input.GetKey(KeyCode.E))
+        {
+            isHolding = true;
+            holdTime += Time.deltaTime;
+        }
+        else
+        {
+            isHolding = false;
+            holdTime = 0;
+        }
+
+        if(Input.GetKeyUp(KeyCode.E) || holdTime >= holdBotton)
+        {
+            TryToInteractDoor();
+        }
     }
 
     internal void TryToInteract()
@@ -93,28 +107,50 @@ public class Player : MonoBehaviour
         
         if (Physics.Raycast(camera.transform.position, camera.transform.forward, out hitInfo, InteractionDistance))
         {
-            Debug.Log(hitInfo.collider.gameObject);
+            var door = hitInfo.collider.GetComponent<Door>();
             var interactable = hitInfo.collider.GetComponent<IInteractable>();
             if (interactable != null)
             {
-                interactable.Interact();
+                if(door != null)
+                {
+                    if(door.isOpen)
+                    {
+                        door.DoorState();
+                    }
+                    else
+                    {
+                        return;
+                    }
+                }
+                else
+                {
+                    interactable.Interact();
+                }
             }
         }
     }
 
-    internal void PickUpItem(ref bool hasItem, GameObject item)
+    internal void TryToInteractDoor()
     {
-        hasItem = true;
-        hasSomething = true;
-        item.SetActive(true);
-        currentItem = item;
-    }
+        var camera = Camera.main;
+        RaycastHit hitInfo;
 
-    internal void PutDownItem(ref bool hasItem, GameObject item)
-    {
-        hasItem = false;
-        hasSomething = false;
-        item.SetActive(false);
-        currentItem = null;
+        if (Physics.Raycast(camera.transform.position, camera.transform.forward, out hitInfo, InteractionDistance))
+        {
+            var door = hitInfo.collider.GetComponent<Door>();
+            var interactable = hitInfo.collider.GetComponent<IInteractable>();
+            if (door != null && !door.isOpen)
+            {
+                if (holdTime < holdBotton)
+                {
+                    interactable.Interact();
+                }
+                else
+                {
+                    holdTime = 0f;
+                    door.DoorState();
+                }
+            }
+        }
     }
 }

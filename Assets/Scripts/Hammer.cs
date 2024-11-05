@@ -5,22 +5,22 @@ public class Hammer : MonoBehaviour, IInteractable
     public GameObject hammer;
     public void Interact()
     {
-        Player player = FindAnyObjectByType<Player>();
-        if (!player.hasSomething)
+        ItemsManager itemsManager = FindAnyObjectByType<ItemsManager>();
+        if (!itemsManager.hasSomething)
         {
-            player.PickUpItem(ref player.hasHammer, player.viewHammer);
-            hammer.SetActive(!player.hasHammer);
+            itemsManager.PickUpItem(ref itemsManager.hasHammer, itemsManager.viewHammer);
+            hammer.SetActive(!itemsManager.hasHammer);
         }
         else
         {
-            if (player.hasHammer)
+            if (itemsManager.hasHammer)
             {
-                player.PutDownItem(ref player.hasHammer, player.viewHammer);
-                hammer.SetActive(!player.hasHammer);
+                itemsManager.PutDownItem(ref itemsManager.hasHammer, itemsManager.viewHammer);
+                hammer.SetActive(!itemsManager.hasHammer);
             }
             else
             {
-                Debug.Log("I need to put down " + player.currentItem.name);
+                Debug.Log("I need to put down " + itemsManager.currentItem.name);
             }
         }
     }

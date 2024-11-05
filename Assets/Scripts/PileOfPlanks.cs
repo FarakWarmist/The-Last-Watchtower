@@ -3,16 +3,16 @@ using UnityEngine;
 public class PileOfPlanks : MonoBehaviour, IInteractable
 {
     public GameObject[] planksInPile;
-    Player player;
+    ItemsManager itemsManager;
 
     private void Start()
     {
-        player = FindAnyObjectByType<Player>();
+        itemsManager = FindAnyObjectByType<ItemsManager>();
     }
 
     public void Interact()
     {
-        if (!player.hasPlank)
+        if (!itemsManager.hasPlank)
         {
             Debug.Log("Has Plank now");
             PlankState(true);
@@ -26,8 +26,8 @@ public class PileOfPlanks : MonoBehaviour, IInteractable
 
     private void PlankState(bool state)
     {
-        player.hasPlank = state;
-        player.viewPlank.SetActive(state);
+        itemsManager.hasPlank = state;
+        itemsManager.viewPlank.SetActive(state);
         planksInPile[planksInPile.Length - 1].SetActive(!state);
     }
 
