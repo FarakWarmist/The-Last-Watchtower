@@ -20,8 +20,31 @@ public class Door : MonoBehaviour, IInteractable
     CinemachineBrain brain;
     MouseLook cam;
     Player player;
+    StrangeLock locker;
 
     public KeyCode key;
+
+    public void Interact()
+    {
+        if (!locker.isLocked)
+        {
+            if (!isOpen)
+            {
+                IsCheck(initialPoV, currentPoV, CheckDoor(false));
+                player.enabled = false;
+                isCheck = true;
+            }
+            else
+            {
+                animator.SetBool("IsOpen", false);
+                isOpen = false;
+            }
+        }
+        else
+        {
+            Debug.Log("Is Lock");
+        }
+    }
 
     private void Start()
     {
@@ -33,21 +56,9 @@ public class Door : MonoBehaviour, IInteractable
         cam = initialPoV.GetComponent<MouseLook>();
         brain = FindAnyObjectByType<CinemachineBrain>();
         player = FindAnyObjectByType<Player>();
+        locker = FindAnyObjectByType<StrangeLock>();
     }
-    public void Interact()
-    {
-        if (!isOpen)
-        {
-            IsCheck(initialPoV, currentPoV, CheckDoor(false));
-            player.enabled = false;
-            isCheck = true;
-        }
-        else
-        {
-            animator.SetBool("IsOpen", false);
-            isOpen = false;
-        }
-    }
+    
     private void Update()
     {
         if (isCheck)
@@ -55,12 +66,10 @@ public class Door : MonoBehaviour, IInteractable
             if(Input.GetKeyDown(KeyCode.E))
             {
                 KeyPress(KeyCode.E);
-                key = KeyCode.E;
             }
             else if(Input.GetKeyDown(KeyCode.S))
             { 
                 KeyPress(KeyCode.S);
-                key = KeyCode.S;
             }
         }
     }
