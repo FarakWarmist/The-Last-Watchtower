@@ -9,6 +9,7 @@ public class Door : MonoBehaviour, IInteractable
     public bool isOpen;
     public bool isInside;
     public bool isCheck;
+    public bool isLocked;
 
     Animator animator;
 
@@ -26,7 +27,7 @@ public class Door : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        if (!locker.isLocked)
+        if (!isLocked)
         {
             if (!isOpen)
             {

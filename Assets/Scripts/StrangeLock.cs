@@ -6,8 +6,8 @@ using UnityEngine;
 public class StrangeLock : MonoBehaviour, IInteractable
 {
     public bool isLooking;
-    public bool isLocked;
     public StrangeSymbol[] symbols;
+    public Door door;
     
     public CinemachineCamera camLock;
     public CinemachineCamera camPlayer;
@@ -30,7 +30,7 @@ public class StrangeLock : MonoBehaviour, IInteractable
         cam = FindAnyObjectByType<MouseLook>();
         player = FindAnyObjectByType<Player>();
 
-        isLocked = true;
+        door.isLocked = true;
         isLooking = false;
     }
 
@@ -65,11 +65,11 @@ public class StrangeLock : MonoBehaviour, IInteractable
                 symbols[3].currentSymbol == 0 &&
                 symbols[4].currentSymbol == 2)
             {
-                isLocked = false;
+                door.isLocked = false;
             }
             else
             {
-                isLocked = true;
+                door.isLocked = true;
             }
         }
         else
@@ -97,7 +97,7 @@ public class StrangeLock : MonoBehaviour, IInteractable
         GetComponent<BoxCollider>().enabled = state;
         cam.enabled = state;
         player.enabled = state;
-        if (!isLocked)
+        if (!door.isLocked)
         {
             gameObject.SetActive(false);
         }
