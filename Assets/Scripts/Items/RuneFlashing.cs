@@ -8,10 +8,7 @@ public class RuneFlashing : MonoBehaviour
 
     public Light runeLight;
 
-    private void Start()
-    {
-        
-    }
+    public LayerMask ignoreWindowLayer;
 
     private void Update()
     {
@@ -21,6 +18,16 @@ public class RuneFlashing : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.F) && !isFlashing)
             {
                 StartCoroutine(Flash());
+                RaycastHit hit;
+
+                if (Physics.Raycast(runeLight.transform.position, runeLight.transform.forward, out hit, 6f, ~ignoreWindowLayer))
+                {
+                    var hitMonster = hit.collider.GetComponent<Monster>();
+                    if (hitMonster != null )
+                    {
+                        hitMonster.isMonsterActive = false;
+                    }
+                }
             }
         }
     }
