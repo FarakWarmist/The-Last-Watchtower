@@ -100,4 +100,9 @@ public class Player : MonoBehaviour
             }
         }
     }
+
+    internal void GamerOver()
+    {
+        Debug.Log("Game Over");
+    }
 }
