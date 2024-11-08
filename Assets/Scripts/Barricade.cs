@@ -22,6 +22,10 @@ public class Barricade : MonoBehaviour
                     allPlace = false;
                     break;
                 }
+                else
+                {
+                    allPlace = true;
+                }
             }
 
             if(allPlace)

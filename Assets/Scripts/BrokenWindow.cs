@@ -7,7 +7,7 @@ public class BrokenWindow : MonoBehaviour, IInteractable
     [SerializeField] GameObject barricadeLocation;
     public bool isBroken = false;
 
-    public void Interact()
+    public void WindowIsBreaking()
     {
         int randomIndex = Random.Range(0, barricade.Length);
         isBroken = true;
@@ -16,5 +16,10 @@ public class BrokenWindow : MonoBehaviour, IInteractable
         
         barricade[randomIndex].SetActive(true);
         gameObject.SetActive(false);
+    }
+
+    public void Interact()
+    {
+        WindowIsBreaking();
     }
 }
