@@ -32,7 +32,6 @@ public class Player : MonoBehaviour
     private void Start()
     {
         sprintSpeed = speed * 2;
-        
     }
 
     void Update()
@@ -94,9 +93,7 @@ public class Player : MonoBehaviour
             var interactable = hitInfo.collider.GetComponent<IInteractable>();
             if (interactable != null)
             {
-
                 interactable.Interact();
-
             }
         }
     }
