@@ -8,6 +8,8 @@ public class ItemsManager : MonoBehaviour
 
     public bool hasSomething;
     public GameObject currentItem;
+    public bool hasShedKey;
+    public GameObject viewShedKey;
     public bool hasHammer;
     public GameObject viewHammer;
     public bool hasRune;
@@ -38,7 +40,7 @@ public class ItemsManager : MonoBehaviour
         }
         else
         {
-            if (!hasItem || currentItem == itemInHand)
+            if (currentItem == itemInHand)
             {
                 PutDownItem(ref hasItem, itemInHand);
                 itemPickup.SetActive(!hasItem);
