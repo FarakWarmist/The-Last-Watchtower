@@ -21,7 +21,6 @@ public class Door : MonoBehaviour, IInteractable
     CinemachineBrain brain;
     MouseLook cam;
     Player player;
-    StrangeLock locker;
 
     public KeyCode key;
 
@@ -57,7 +56,6 @@ public class Door : MonoBehaviour, IInteractable
         cam = initialPoV.GetComponent<MouseLook>();
         brain = FindAnyObjectByType<CinemachineBrain>();
         player = FindAnyObjectByType<Player>();
-        locker = FindAnyObjectByType<StrangeLock>();
     }
     
     private void Update()
