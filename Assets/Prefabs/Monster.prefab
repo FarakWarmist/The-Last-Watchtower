@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 133854492727114568}
   - component: {fileID: 1168082656844281746}
   - component: {fileID: 1876985613578856325}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Monster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -132,7 +132,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 4471186768934576257}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.14
+  m_Radius: 0.53
   m_Speed: 8
   m_Acceleration: 8
   avoidancePriority: 50
