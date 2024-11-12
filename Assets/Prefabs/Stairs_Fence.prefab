@@ -55,7 +55,7 @@ PrefabInstance:
     - target: {fileID: -663252923892814709, guid: 8726987893dbe534b9837c636cfd2bd0, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 3304a71a696e1f34a8f84b00ed8707aa, type: 2}
+      objectReference: {fileID: 2100000, guid: 4b1a12797ed05294faa80af067252362, type: 2}
     - target: {fileID: 919132149155446097, guid: 8726987893dbe534b9837c636cfd2bd0, type: 3}
       propertyPath: m_Name
       value: Stairs_Fence
@@ -63,7 +63,7 @@ PrefabInstance:
     - target: {fileID: 3934698711491782176, guid: 8726987893dbe534b9837c636cfd2bd0, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 3304a71a696e1f34a8f84b00ed8707aa, type: 2}
+      objectReference: {fileID: 2100000, guid: 4b1a12797ed05294faa80af067252362, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -38,7 +38,7 @@ public class RuneFlashing : MonoBehaviour
 
         float startLightIntensity = runeLight.intensity;
 
-        float intensity = 6f;
+        float intensity = 40f;
         float duration = 0.2f;
         float timer = 0f;
 

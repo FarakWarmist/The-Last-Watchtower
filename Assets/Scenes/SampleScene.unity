@@ -999,6 +999,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -5.564
       objectReference: {fileID: 0}
+    - target: {fileID: 1261412239365357416, guid: f9aa4820610433041b2875124eccc343, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2378590622396243362, guid: f9aa4820610433041b2875124eccc343, type: 3}
       propertyPath: m_Name
       value: RunePrefab
@@ -1062,6 +1066,14 @@ PrefabInstance:
     - target: {fileID: 6695602291598692618, guid: f9aa4820610433041b2875124eccc343, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7163012862991374789, guid: f9aa4820610433041b2875124eccc343, type: 3}
+      propertyPath: m_Intensity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7163012862991374789, guid: f9aa4820610433041b2875124eccc343, type: 3}
+      propertyPath: m_BounceIntensity
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7163012862991374789, guid: f9aa4820610433041b2875124eccc343, type: 3}
       propertyPath: m_CullingMask.m_Bits
@@ -1145,7 +1157,7 @@ Terrain:
   m_StaticShadowCaster: 0
   m_IgnoreQualitySettings: 0
   m_ReflectionProbeUsage: 1
-  m_MaterialTemplate: {fileID: 10652, guid: 0000000000000000f000000000000000, type: 0}
+  m_MaterialTemplate: {fileID: 2100000, guid: 594ea882c5a793440b60ff72d896021e, type: 2}
   m_BakeLightProbesForTrees: 1
   m_PreserveTreePrototypeLayers: 0
   m_DeringLightProbesForTrees: 1
@@ -1641,7 +1653,7 @@ PrefabInstance:
     - target: {fileID: -2549211664435634070, guid: 1f15f5178af346d478e4cf62f1cc02e2, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 3304a71a696e1f34a8f84b00ed8707aa, type: 2}
+      objectReference: {fileID: 2100000, guid: 4b1a12797ed05294faa80af067252362, type: 2}
     - target: {fileID: -1482215247280162182, guid: 1f15f5178af346d478e4cf62f1cc02e2, type: 3}
       propertyPath: m_Layer
       value: 0
@@ -1665,7 +1677,7 @@ PrefabInstance:
     - target: {fileID: 2422386653026292591, guid: 1f15f5178af346d478e4cf62f1cc02e2, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 3304a71a696e1f34a8f84b00ed8707aa, type: 2}
+      objectReference: {fileID: 2100000, guid: 4b1a12797ed05294faa80af067252362, type: 2}
     - target: {fileID: 5211845298650632204, guid: 1f15f5178af346d478e4cf62f1cc02e2, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -3951,6 +3963,7 @@ GameObject:
   m_Component:
   - component: {fileID: 705507995}
   - component: {fileID: 705507994}
+  - component: {fileID: 705507996}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -4038,6 +4051,29 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &705507996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 705507993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_RenderingLayers: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_ShadowRenderingLayers: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
 --- !u!4 &711476086 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 59555540824959599, guid: 9705e5d902dbd664c8ce71b51bae78b9, type: 3}
@@ -4839,6 +4875,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Stairs (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 1204379548614413723, guid: cfdd3e551b61f344b849b36825f8bba0, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4b1a12797ed05294faa80af067252362, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4925,6 +4965,7 @@ GameObject:
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
   - component: {fileID: 963194230}
+  - component: {fileID: 963194231}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -5039,6 +5080,50 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
   CustomBlends: {fileID: 0}
+--- !u!114 &963194231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_AllowHDROutput: 1
+  m_UseScreenCoordOverride: 0
+  m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
+  m_TaaSettings:
+    m_Quality: 3
+    m_FrameInfluence: 0.1
+    m_JitterScale: 1
+    m_MipBias: 0
+    m_VarianceClampScale: 0.9
+    m_ContrastAdaptiveSharpening: 0
 --- !u!4 &969588913 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2705687864543428061, guid: 8d97f4d369bf9434d95c0cce7bac849b, type: 3}
@@ -6535,6 +6620,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Inside_Floor (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 7229871866785448695, guid: 837744d6c690b7d489ead4b7cb201e97, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 3304a71a696e1f34a8f84b00ed8707aa, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6997,6 +7086,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Stairs (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1204379548614413723, guid: cfdd3e551b61f344b849b36825f8bba0, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4b1a12797ed05294faa80af067252362, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7466,7 +7559,7 @@ PrefabInstance:
     - target: {fileID: -1017334112165635394, guid: 15b51d4427bade5419d3d8dea66b4565, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 3304a71a696e1f34a8f84b00ed8707aa, type: 2}
+      objectReference: {fileID: 2100000, guid: 4b1a12797ed05294faa80af067252362, type: 2}
     - target: {fileID: 420303991319991031, guid: 15b51d4427bade5419d3d8dea66b4565, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
@@ -7502,7 +7595,7 @@ PrefabInstance:
     - target: {fileID: 5315825851408284948, guid: 15b51d4427bade5419d3d8dea66b4565, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 3304a71a696e1f34a8f84b00ed8707aa, type: 2}
+      objectReference: {fileID: 2100000, guid: 4b1a12797ed05294faa80af067252362, type: 2}
     - target: {fileID: 6019285262849186918, guid: 15b51d4427bade5419d3d8dea66b4565, type: 3}
       propertyPath: m_Layer
       value: 0
@@ -8205,6 +8298,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1562316535}
   - component: {fileID: 1562316534}
+  - component: {fileID: 1562316536}
   m_Layer: 0
   m_Name: Spot Light
   m_TagString: Untagged
@@ -8292,6 +8386,29 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1834735427}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!114 &1562316536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1562316533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_RenderingLayers: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_ShadowRenderingLayers: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
 --- !u!1001 &1565960126
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9020,11 +9137,11 @@ PrefabInstance:
     - target: {fileID: -8667968614975209996, guid: f92013ac40c5f694591b5b255d1aabdd, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 3304a71a696e1f34a8f84b00ed8707aa, type: 2}
+      objectReference: {fileID: 2100000, guid: 4b1a12797ed05294faa80af067252362, type: 2}
     - target: {fileID: -3373539047469046533, guid: f92013ac40c5f694591b5b255d1aabdd, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 3304a71a696e1f34a8f84b00ed8707aa, type: 2}
+      objectReference: {fileID: 2100000, guid: 4b1a12797ed05294faa80af067252362, type: 2}
     - target: {fileID: 919132149155446097, guid: f92013ac40c5f694591b5b255d1aabdd, type: 3}
       propertyPath: m_Name
       value: Support
@@ -9032,15 +9149,15 @@ PrefabInstance:
     - target: {fileID: 4844559652212818491, guid: f92013ac40c5f694591b5b255d1aabdd, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 3304a71a696e1f34a8f84b00ed8707aa, type: 2}
+      objectReference: {fileID: 2100000, guid: 4b1a12797ed05294faa80af067252362, type: 2}
     - target: {fileID: 6009789591064543478, guid: f92013ac40c5f694591b5b255d1aabdd, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 3304a71a696e1f34a8f84b00ed8707aa, type: 2}
+      objectReference: {fileID: 2100000, guid: 4b1a12797ed05294faa80af067252362, type: 2}
     - target: {fileID: 7935114175643394466, guid: f92013ac40c5f694591b5b255d1aabdd, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 3304a71a696e1f34a8f84b00ed8707aa, type: 2}
+      objectReference: {fileID: 2100000, guid: 4b1a12797ed05294faa80af067252362, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10086,6 +10203,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Stairs (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 1204379548614413723, guid: cfdd3e551b61f344b849b36825f8bba0, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4b1a12797ed05294faa80af067252362, type: 2}
+    - target: {fileID: 5829819054200637232, guid: cfdd3e551b61f344b849b36825f8bba0, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4b1a12797ed05294faa80af067252362, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10862,6 +10987,10 @@ PrefabInstance:
       propertyPath: m_Center.z
       value: -1.1287498
       objectReference: {fileID: 0}
+    - target: {fileID: 8815255894635908990, guid: 31643ce86a750f14ea14a4f91bf99905, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 3304a71a696e1f34a8f84b00ed8707aa, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
