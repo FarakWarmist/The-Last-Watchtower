@@ -6,7 +6,7 @@ public class Enigme : MonoBehaviour, IInteractable
     ItemsManager itemsManager;
     Player player;
     MouseLook camFollowPlayer;
-    Clue clue;
+    public Clue[] allClues;
     public GameObject rune;
     public GameObject viewNote;
     public GameObject noteOnTheDoor;
@@ -18,8 +18,6 @@ public class Enigme : MonoBehaviour, IInteractable
         itemsManager = FindAnyObjectByType<ItemsManager>();
         player = FindAnyObjectByType<Player>();
         camFollowPlayer = FindAnyObjectByType<MouseLook>();
-        clue = FindAnyObjectByType<Clue>();
-
     }
 
     private void Update()
@@ -41,7 +39,6 @@ public class Enigme : MonoBehaviour, IInteractable
     {
         itemsManager.PickUpItem(ref itemsManager.hasRune, itemsManager.viewRune);
         rune.SetActive(false);
-        clue.isActif = true;
         if (!hasNote)
         {
             hasNote = true;

@@ -26,24 +26,26 @@ public class Door : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        if (!isLocked)
+        
+        if (!isOpen)
         {
-            if (!isOpen)
+            if (!isLocked)
             {
                 IsCheck(initialPoV, currentPoV, CheckDoor(false));
-                player.enabled = false;
+                
                 isCheck = true;
             }
             else
             {
-                animator.SetBool("IsOpen", false);
-                isOpen = false;
+                Debug.Log("Is Lock");
             }
         }
         else
         {
-            Debug.Log("Is Lock");
+            animator.SetBool("IsOpen", false);
+            isOpen = false;
         }
+        
     }
 
     private void Start()
@@ -60,6 +62,7 @@ public class Door : MonoBehaviour, IInteractable
     
     private void Update()
     {
+        player.enabled = !isCheck;
         if (isCheck)
         {
             if(Input.GetKeyDown(KeyCode.E))

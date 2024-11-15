@@ -39,6 +39,7 @@ public class StrangeLock : MonoBehaviour, IInteractable
         if (isLooking)
         {
             Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.Confined;
             if (Input.GetMouseButtonDown(0))
             {
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);

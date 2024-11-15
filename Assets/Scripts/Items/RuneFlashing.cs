@@ -28,6 +28,12 @@ public class RuneFlashing : MonoBehaviour
                     {
                         hitMonster.isMonsterActive = false;
                     }
+
+                    var hitClue = hit.collider.GetComponent<Clue>();
+                    if (hitClue != null )
+                    {
+                        hitClue.isActif = true;
+                    }
                 }
             }
         }
