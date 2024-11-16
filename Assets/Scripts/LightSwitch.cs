@@ -2,24 +2,24 @@ using UnityEngine;
 
 public class LightSwitch : MonoBehaviour, IInteractable
 {
-    public bool lightIsActive;
+    public bool isActive;
     public Light roomLight;
     Animator animator;
 
     private void Start()
     {
         animator = GetComponent<Animator>();
-        lightIsActive = false;
+        isActive = false;
     }
 
     public void Interact()
     {
-        lightIsActive = !lightIsActive;
+        isActive = !isActive;
     }
 
     private void Update()
     {
-        roomLight.enabled = lightIsActive;
-        animator.SetBool("Switch", lightIsActive);
+        roomLight.enabled = isActive;
+        animator.SetBool("Switch", isActive);
     }
 }

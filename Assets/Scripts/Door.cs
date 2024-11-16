@@ -31,9 +31,16 @@ public class Door : MonoBehaviour, IInteractable
         {
             if (!isLocked)
             {
-                IsCheck(initialPoV, currentPoV, CheckDoor(false));
-                
-                isCheck = true;
+                if (isInside)
+                {
+                    IsCheck(initialPoV, currentPoV, CheckDoor(false));
+                    isCheck = true;
+                }
+                else
+                {
+                    animator.SetBool("IsOpen", true);
+                    isOpen = true;
+                }
             }
             else
             {

@@ -30,78 +30,10 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 651237580316918251}
-  - {fileID: 7669295067266251242}
   - {fileID: 3783701527231505901}
   - {fileID: 8936192051594004088}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &808792063054857460
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7669295067266251242}
-  - component: {fileID: 8711654908965543491}
-  - component: {fileID: 3271397780791580857}
-  m_Layer: 0
-  m_Name: Detector
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7669295067266251242
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 808792063054857460}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -0.763, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 4600673685225178641}
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!65 &8711654908965543491
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 808792063054857460}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 2.1070623, y: 0.23611331, z: 1.2451286}
-  m_Center: {x: 0, y: 0.12541425, z: -0.69262886}
---- !u!114 &3271397780791580857
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 808792063054857460}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e817ea10ff53424f812541458bf34e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  door: {fileID: 3295186745815934129}
 --- !u!1 &5008220744589724663
 GameObject:
   m_ObjectHideFlags: 0
@@ -401,10 +333,12 @@ MonoBehaviour:
   isOpen: 0
   isInside: 0
   isCheck: 0
+  isLocked: 0
   currentPoV: {fileID: 0}
   insidePoV: {fileID: 8983631723325759060}
   outsidePoV: {fileID: 7790291262679813671}
   initialPoV: {fileID: 0}
+  key: 0
 --- !u!4 &651237580316918251 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 17af6e885a39be24980faace5274f4ab, type: 3}
