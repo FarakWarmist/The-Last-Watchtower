@@ -13,7 +13,6 @@ public class InsideOrOutside : MonoBehaviour
         {
             isInside = true;
             door.isInside = true;
-            door.currentPoV = door.insidePoV;
         }
     }
 
@@ -24,7 +23,6 @@ public class InsideOrOutside : MonoBehaviour
         {
             isOutside = true;
             door.isInside = false;
-            door.currentPoV = door.outsidePoV;
         }
     }
 }

@@ -1,4 +1,4 @@
-using System;
+ using System;
 using System.Collections;
 using TMPro;
 using Unity.Cinemachine;
@@ -13,16 +13,25 @@ public class Door : MonoBehaviour, IInteractable
 
     Animator animator;
 
-    public CinemachineCamera currentPoV;
-    public CinemachineCamera insidePoV;
-    public CinemachineCamera outsidePoV;
-    public CinemachineCamera initialPoV;
+    public CinemachineCamera doorCheckCam;
+    public CinemachineCamera playerCam;
 
     CinemachineBrain brain;
     MouseLook cam;
     Player player;
 
     public KeyCode key;
+
+    private void Start()
+    {
+        animator = GetComponent<Animator>();
+
+        isInside = false;
+
+        cam = playerCam.GetComponent<MouseLook>();
+        GameObject playerObj = FindAnyObjectByType<Player>().gameObject;
+        player = playerObj.GetComponent<Player>();
+    }
 
     public void Interact()
     {
@@ -33,7 +42,7 @@ public class Door : MonoBehaviour, IInteractable
             {
                 if (isInside)
                 {
-                    IsCheck(initialPoV, currentPoV, CheckDoor(false));
+                    IsCheck(playerCam, doorCheckCam, CheckDoor(false));
                     isCheck = true;
                 }
                 else
@@ -55,21 +64,9 @@ public class Door : MonoBehaviour, IInteractable
         
     }
 
-    private void Start()
-    {
-        animator = GetComponent<Animator>();
-
-        isInside = false;
-        currentPoV = outsidePoV;
-
-        cam = initialPoV.GetComponent<MouseLook>();
-        brain = FindAnyObjectByType<CinemachineBrain>();
-        player = FindAnyObjectByType<Player>();
-    }
     
     private void Update()
     {
-        player.enabled = !isCheck;
         if (isCheck)
         {
             if(Input.GetKeyDown(KeyCode.E))
@@ -88,10 +85,10 @@ public class Door : MonoBehaviour, IInteractable
         switch (key)
         {
             case KeyCode.E:
-                IsCheck(currentPoV, initialPoV, UseDoor(true));
+                IsCheck(doorCheckCam, playerCam, UseDoor(true));
                 break;
             case KeyCode.S:
-                IsCheck(currentPoV, initialPoV, UseDoor(false));
+                IsCheck(doorCheckCam, playerCam, UseDoor(false));
                 break;
         }
         isCheck = false;
@@ -99,6 +96,7 @@ public class Door : MonoBehaviour, IInteractable
 
     private void IsCheck(CinemachineCamera camExit, CinemachineCamera camGo, IEnumerator action)
     {
+        player.enabled = false;
         cam.enabled = false;
         camExit.enabled = false;
         camGo.enabled = true;
@@ -113,6 +111,7 @@ public class Door : MonoBehaviour, IInteractable
         }
         yield return new WaitForSeconds(brain.DefaultBlend.Time + 0.1f);
         cam.enabled = state;
+        player.enabled = state;
     }
 
     IEnumerator UseDoor(bool open)

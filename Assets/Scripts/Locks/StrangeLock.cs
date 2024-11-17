@@ -21,6 +21,7 @@ public class StrangeLock : MonoBehaviour, IInteractable
         if (isLooking)
         {
             IsLooking(camPlayer, camLock, false);
+            Cursor.lockState = CursorLockMode.Confined;
         }
     }
 
@@ -38,8 +39,6 @@ public class StrangeLock : MonoBehaviour, IInteractable
     {
         if (isLooking)
         {
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.Confined;
             if (Input.GetMouseButtonDown(0))
             {
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -58,6 +57,7 @@ public class StrangeLock : MonoBehaviour, IInteractable
             {
                 isLooking = false;
                 IsLooking(camLock, camPlayer, true);
+                Cursor.lockState = CursorLockMode.Locked;
             }
 
             if (symbols[0].currentSymbol == 3 &&
@@ -98,6 +98,7 @@ public class StrangeLock : MonoBehaviour, IInteractable
         GetComponent<BoxCollider>().enabled = state;
         cam.enabled = state;
         player.enabled = state;
+        Cursor.visible = !state;
         if (!door.isLocked)
         {
             gameObject.SetActive(false);
