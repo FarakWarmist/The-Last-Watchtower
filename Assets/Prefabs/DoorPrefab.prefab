@@ -325,7 +325,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 162826180445903697}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 077c37d69cbeefc45a3c5836c352f9c5, type: 3}
   m_Name: 
@@ -334,10 +334,8 @@ MonoBehaviour:
   isInside: 0
   isCheck: 0
   isLocked: 0
-  currentPoV: {fileID: 0}
-  insidePoV: {fileID: 8983631723325759060}
-  outsidePoV: {fileID: 7790291262679813671}
-  initialPoV: {fileID: 0}
+  doorCheckCam: {fileID: 0}
+  playerCam: {fileID: 0}
   key: 0
 --- !u!4 &651237580316918251 stripped
 Transform:
