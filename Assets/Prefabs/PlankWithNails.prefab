@@ -414,7 +414,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c251bf3013494b94b9cfc395ef20da91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  woodMat: {fileID: 2100000, guid: 4b1a12797ed05294faa80af067252362, type: 2}
+  woodMat: {fileID: 2100000, guid: 230f8020b022aab46b9360e86ceb1260, type: 2}
   transparentWoodMat: {fileID: 2100000, guid: 637fcd24e437adc4c908a013a5008037, type: 2}
   isPlaced: 0
   InteractionDistance: 2
+  audioSource: {fileID: 0}
