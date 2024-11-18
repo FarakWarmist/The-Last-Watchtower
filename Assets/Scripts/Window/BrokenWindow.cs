@@ -5,6 +5,8 @@ public class BrokenWindow : MonoBehaviour, IInteractable
     [SerializeField] GameObject brokenWindow;
     [SerializeField] GameObject[] barricade;
     [SerializeField] GameObject barricadeLocation;
+
+    public WindowState windowState;
     public bool isBroken = false;
 
     public void WindowIsBreaking()
@@ -20,6 +22,6 @@ public class BrokenWindow : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        WindowIsBreaking();
+        windowState.BreakTheWindow();
     }
 }

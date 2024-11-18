@@ -4,20 +4,26 @@ using UnityEngine;
 public class RuneFlashing : MonoBehaviour
 {
     public bool isFlashing = false;
-    float waitTime = 5f;
+    public float waitTime = 5f;
 
     public Light runeLight;
     public Light runeFlash;
+    public AudioSource flashAudio;
+
+    public AudioClip[] flashSounds;
 
     public LayerMask ignoreWindowLayer;
 
     private void Update()
     {
+
         ItemsManager itemsManager = FindAnyObjectByType<ItemsManager>();
         if (itemsManager.hasRune)
         {
             if (Input.GetKeyDown(KeyCode.F) && !isFlashing)
             {
+                flashAudio.clip = flashSounds[Random.Range(0,flashSounds.Length)];
+                flashAudio.Play();
                 StartCoroutine(Flash());
                 RaycastHit hit;
 

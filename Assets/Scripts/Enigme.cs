@@ -7,6 +7,8 @@ public class Enigme : MonoBehaviour, IInteractable
     Player player;
     MouseLook cam;
     GameObject strangeLock;
+    public AudioClip[] audioClips;
+    AudioSource audioSource;
 
     public GameObject clues;
     public GameObject rune;
@@ -17,6 +19,8 @@ public class Enigme : MonoBehaviour, IInteractable
 
     private void Start()
     {
+        audioSource = GetComponent<AudioSource>();
+
         itemsManager = FindAnyObjectByType<ItemsManager>();
         GameObject playerObj = FindAnyObjectByType<Player>().gameObject;
         player = playerObj.GetComponent<Player>();
@@ -31,6 +35,8 @@ public class Enigme : MonoBehaviour, IInteractable
         rune.SetActive(false);
         if (!hasNote)
         {
+            audioSource.clip = audioClips[0];
+            audioSource.Play();
             hasNote = true;
             player.enabled = false;
             cam.enabled = false;
@@ -46,6 +52,8 @@ public class Enigme : MonoBehaviour, IInteractable
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
+                audioSource.clip = audioClips[1];
+                audioSource.Play();
                 hasNote = false;
                 player.enabled = true;
                 cam.enabled = true;
@@ -58,6 +66,7 @@ public class Enigme : MonoBehaviour, IInteractable
             rune.SetActive(false);
             itemsManager.PutDownItem(ref itemsManager.hasRune, itemsManager.viewRune);
             noteOnTheDoor.SetActive(false);
+            gameObject.SetActive(false);
         }
     }
 }

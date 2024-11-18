@@ -15,6 +15,8 @@ public class StrangeLock : MonoBehaviour, IInteractable
     CinemachineBrain brain;
     MouseLook cam;
     Player player;
+    AudioSource audioSource;
+
     public void Interact()
     {
         isLooking = !isLooking;
@@ -30,6 +32,7 @@ public class StrangeLock : MonoBehaviour, IInteractable
         brain = FindAnyObjectByType<CinemachineBrain>();
         cam = FindAnyObjectByType<MouseLook>();
         player = FindAnyObjectByType<Player>();
+        audioSource = GetComponent<AudioSource>();
 
         door.isLocked = true;
         isLooking = false;
@@ -48,6 +51,7 @@ public class StrangeLock : MonoBehaviour, IInteractable
                     var strangeSymbol = hit.collider.GetComponent<StrangeSymbol>();
                     if (strangeSymbol != null)
                     {
+                        audioSource.Play();
                         strangeSymbol.ChangeRotation();
                     }
                 }

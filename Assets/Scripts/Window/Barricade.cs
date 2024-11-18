@@ -3,6 +3,7 @@ using UnityEngine;
 public class Barricade : MonoBehaviour
 {
     public BrokenWindow window;
+    public WindowState windowState;
     [SerializeField] PutPlank[] planks;
     public bool allPlace;
 
@@ -30,7 +31,7 @@ public class Barricade : MonoBehaviour
 
             if(allPlace)
             {
-                window.GetComponent<BrokenWindow>().isBroken = false;
+                windowState.isBroken = false;
             }
         }
     }

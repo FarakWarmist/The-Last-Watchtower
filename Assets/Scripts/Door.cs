@@ -28,6 +28,7 @@ public class Door : MonoBehaviour, IInteractable
 
         isInside = false;
 
+        brain = FindAnyObjectByType<CinemachineBrain>();
         cam = playerCam.GetComponent<MouseLook>();
         GameObject playerObj = FindAnyObjectByType<Player>().gameObject;
         player = playerObj.GetComponent<Player>();

@@ -5,21 +5,27 @@ public class PileOfPlanks : MonoBehaviour, IInteractable
     public GameObject[] planksInPile;
     ItemsManager itemsManager;
 
+    public AudioClip[] audioClips;
+    AudioSource audioSource;
+
     private void Start()
     {
         itemsManager = FindAnyObjectByType<ItemsManager>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     public void Interact()
     {
         if (!itemsManager.hasPlank)
         {
-            Debug.Log("Has Plank now");
+            audioSource.clip = audioClips[0];
+            audioSource.Play();
             PlankState(true);
         }
         else
         {
-            Debug.Log("Doesn't have Plank now");
+            audioSource.clip = audioClips[1];
+            audioSource.Play();
             PlankState(false);
         }
     }

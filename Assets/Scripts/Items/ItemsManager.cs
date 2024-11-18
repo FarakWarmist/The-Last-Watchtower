@@ -15,8 +15,13 @@ public class ItemsManager : MonoBehaviour
     public bool hasRune;
     public GameObject viewRune;
 
+    public AudioSource audioSource;
+    public AudioClip[] audioClips;
+
     internal void PickUpItem(ref bool hasItem, GameObject itemInHand)
     {
+        audioSource.clip = audioClips[0];
+        audioSource.Play();
         hasItem = true;
         hasSomething = true;
         itemInHand.SetActive(true);
@@ -25,6 +30,8 @@ public class ItemsManager : MonoBehaviour
 
     internal void PutDownItem(ref bool hasItem, GameObject itemInHand)
     {
+        audioSource.clip = audioClips[1];
+        audioSource.Play();
         hasItem = false;
         hasSomething = false;
         itemInHand.SetActive(false);

@@ -8,6 +8,8 @@ public class PutPlank : MonoBehaviour, IInteractable
     public bool isPlaced;
     public int InteractionDistance = 2;
 
+    public AudioSource audioSource;
+
     public void Interact()
     {
         ItemsManager itemsManager = FindAnyObjectByType<ItemsManager>();
@@ -16,6 +18,7 @@ public class PutPlank : MonoBehaviour, IInteractable
         {
             if (itemsManager.hasPlank && itemsManager.hasHammer)
             {
+                audioSource.Play();
                 ChangeMaterial(woodMat);
                 CheckChild(true);
                 isPlaced = true;

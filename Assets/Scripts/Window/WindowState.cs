@@ -23,7 +23,7 @@ public class WindowState : MonoBehaviour
         {
             Debug.Log("La fenêtre a été barricadée");
         }
-        else if (!isBroken)
+        else if (!brokenWindow.isBroken && !isBroken)
         {
             isBroken = true;
             brokenWindow.WindowIsBreaking();
