@@ -483,7 +483,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &47312768
 Transform:
   m_ObjectHideFlags: 0
@@ -5553,6 +5553,7 @@ MonoBehaviour:
   cam: {fileID: 405462401}
   camPlayer: {fileID: 405462400}
   camRadio: {fileID: 1344013955}
+  boxCollider: {fileID: 537229756}
 --- !u!65 &537229756
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8182,7 +8183,7 @@ Transform:
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.664, y: 26.809, z: -13.458}
+  m_LocalPosition: {x: -1.664, y: 26.809, z: -16.012}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -9629,7 +9630,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1063057332
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9637,7 +9638,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1063057331}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f9dfa5b682dcd46bda6128250e975f58, type: 3}
   m_Name: 
@@ -10002,7 +10003,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isSleeping: 0
-  goSleep: 0
+  isDay: 1
   directionalLight: {fileID: 705507994}
   dayColor: {r: 1, g: 0.8745098, b: 0.5137255, a: 1}
   nightColor: {r: 0.2841981, g: 0.39831454, b: 0.482, a: 1}
@@ -10011,6 +10012,15 @@ MonoBehaviour:
   transition: {fileID: 1676463608}
   camPlayer: {fileID: 405462400}
   camTransition: {fileID: 1063057332}
+  items:
+  - {fileID: 880629216}
+  - {fileID: 537229753}
+  - {fileID: 1752097402}
+  - {fileID: 1558086805}
+  - {fileID: 242944360}
+  - {fileID: 1745962704}
+  - {fileID: 1432510953}
+  rune: {fileID: 218293621}
 --- !u!65 &1104504130
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13779,7 +13789,7 @@ Transform:
   m_GameObject: {fileID: 1541090786}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.664, y: 26.009, z: -13.458}
+  m_LocalPosition: {x: -1.664, y: 26.009, z: -16.012}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -18565,7 +18575,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2378590622396243362, guid: f9aa4820610433041b2875124eccc343, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3918796646927459839, guid: f9aa4820610433041b2875124eccc343, type: 3}
       propertyPath: LightsModule.light
@@ -19731,10 +19741,10 @@ PrefabInstance:
       addedObject: {fileID: 85973858}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 2635044205753557923, guid: a8dc9bb5cc94f274a9f4551b19c64fe9, type: 3}
-      insertIndex: -1
+      insertIndex: 1
       addedObject: {fileID: 537229755}
     - targetCorrespondingSourceObject: {fileID: 2635044205753557923, guid: a8dc9bb5cc94f274a9f4551b19c64fe9, type: 3}
-      insertIndex: -1
+      insertIndex: 2
       addedObject: {fileID: 537229756}
     - targetCorrespondingSourceObject: {fileID: 7772977281351540341, guid: a8dc9bb5cc94f274a9f4551b19c64fe9, type: 3}
       insertIndex: -1
