@@ -6,17 +6,19 @@ using UnityEngine.UI;
 
 public class RadioText : MonoBehaviour
 {
+    public bool writeText;
+
     public TMP_Text messageText;
     Color textColor;
     public GameObject frameWhite;
     Image panelWhite;
     public GameObject frameBlack;
     Image panelBlack;
-    public float alpha;
 
     public GameObject frameOrientation;
     RectTransform rtFrame;
 
+    public float alpha;
     string message;
     int textLineCount;
 
@@ -24,18 +26,15 @@ public class RadioText : MonoBehaviour
     Vector2 frameSize;
 
     Camera mainCam;
+    public MessageRadioManager radiomessage;
 
     private void Start()
     {
         mainCam = Camera.main;
         rtFrame = frameWhite.gameObject.GetComponent<RectTransform>();
 
-        message = 
-@"Test 
-Bonjour
-Allo";
-        messageText.text = message;
-        StartCoroutine(ShowText());
+        message = radiomessage.message;
+        
 
         framePos = rtFrame.anchoredPosition;
         frameSize = rtFrame.sizeDelta;
@@ -49,7 +48,13 @@ Allo";
 
     private void Update()
     {
-
+        if (messageText)
+        {
+            if (!writeText && messageText.text != message)
+            {
+                StartCoroutine(ShowText());
+            }
+        }
         frameOrientation.transform.LookAt(mainCam.transform.position);
         textLineCount =  messageText.textInfo.lineCount;
         if(textLineCount < -1 )
@@ -61,7 +66,6 @@ Allo";
         rtFrame.sizeDelta = new Vector2(frameSize.x, frameSize.y + (100 * textLineCount));
 
         float distance = Vector3.Distance(frameWhite.transform.position, mainCam.transform.position);
-        Debug.Log(distance);
 
         alpha = Mathf.InverseLerp(5f, 3f, distance);
         alpha = Mathf.Clamp01(alpha);
@@ -74,11 +78,14 @@ Allo";
 
     IEnumerator ShowText()
     {
+        writeText = true;
+
         messageText.text = "";
         foreach (char character in message)
         {
             messageText.text += character;
             yield return new WaitForSeconds(0.05f);
         }
+        writeText = false;
     }
 }
