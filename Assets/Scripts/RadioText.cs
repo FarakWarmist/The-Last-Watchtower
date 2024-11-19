@@ -3,28 +3,32 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
-using static System.Net.Mime.MediaTypeNames;
 
 public class RadioText : MonoBehaviour
 {
     public TMP_Text messageText;
-    public GameObject cadre;
-    public GameObject cadreOrientation;
-    RectTransform rtCadre;
+    Color textColor;
+    public GameObject frameWhite;
+    Image panelWhite;
+    public GameObject frameBlack;
+    Image panelBlack;
+    public float alpha;
 
+    public GameObject frameOrientation;
+    RectTransform rtFrame;
 
     string message;
     int textLineCount;
 
-    Vector2 cadrePos;
-    Vector2 cadreSize;
+    Vector2 framePos;
+    Vector2 frameSize;
 
     Camera mainCam;
 
     private void Start()
     {
         mainCam = Camera.main;
-        rtCadre = cadre.gameObject.GetComponent<RectTransform>();
+        rtFrame = frameWhite.gameObject.GetComponent<RectTransform>();
 
         message = 
 @"Test 
@@ -33,26 +37,38 @@ Allo";
         messageText.text = message;
         StartCoroutine(ShowText());
 
-        cadrePos = rtCadre.anchoredPosition;
-        cadreSize = rtCadre.sizeDelta;
+        framePos = rtFrame.anchoredPosition;
+        frameSize = rtFrame.sizeDelta;
 
         textLineCount = messageText.textInfo.lineCount;
+
+        textColor = messageText.color;
+        panelWhite = frameWhite.GetComponent<Image>();
+        panelBlack = frameBlack.GetComponent<Image>();
     }
 
     private void Update()
     {
 
-        cadreOrientation.transform.LookAt(mainCam.transform.position);
+        frameOrientation.transform.LookAt(mainCam.transform.position);
         textLineCount =  messageText.textInfo.lineCount;
         if(textLineCount < -1 )
         {
             textLineCount = -1;
         }
         
-        rtCadre.anchoredPosition = new Vector2(cadrePos.x, cadrePos.y + (50 * textLineCount));
-        rtCadre.sizeDelta = new Vector2(cadreSize.x, cadreSize.y + (100 * textLineCount));
+        rtFrame.anchoredPosition = new Vector2(framePos.x, framePos.y + (50 * textLineCount));
+        rtFrame.sizeDelta = new Vector2(frameSize.x, frameSize.y + (100 * textLineCount));
 
-        Debug.Log(textLineCount);
+        float distance = Vector3.Distance(frameWhite.transform.position, mainCam.transform.position);
+        Debug.Log(distance);
+
+        alpha = Mathf.InverseLerp(5f, 3f, distance);
+        alpha = Mathf.Clamp01(alpha);
+        panelWhite.material.SetFloat("_Alpha", alpha);
+        panelBlack.material.SetFloat("_Alpha", alpha);
+        textColor.a = alpha;
+        messageText.color = textColor;
     }
 
 
