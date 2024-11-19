@@ -5,7 +5,7 @@ using UnityEngine;
 public class Sleep : MonoBehaviour, IInteractable
 {
     public bool isSleeping = false;
-    public bool goSleep = false;
+    public bool isDay = true;
 
     public Light directionalLight;
     public Color dayColor;
@@ -18,15 +18,21 @@ public class Sleep : MonoBehaviour, IInteractable
 
     public Animator transition;
     Player player;
+    MouseLook camLook;
     LightSwitch lightSwitch;
 
     public CinemachineCamera camPlayer;
     public CinemachineCamera camTransition;
 
+    //Item Interactable
+    public GameObject[] items;
+    public GameObject rune;
+
     private void Start()
     {
         startRotation = directionalLight.transform.rotation;
         player = FindAnyObjectByType<Player>();
+        camLook = camPlayer.GetComponent<MouseLook>();
         lightSwitch = FindAnyObjectByType<LightSwitch>();
     }
 
@@ -47,14 +53,22 @@ public class Sleep : MonoBehaviour, IInteractable
                 transitionProgress = 1.0f;
             }
         }
+        if (isDay)
+        {
+            SetItemState(false);
+        }
+        else
+        {
+            SetItemState(true);
+        }
     }
+
 
     public void Interact()
     {
-        if (!goSleep)
+        if (isDay)
         {
             StartCoroutine(NightFall());
-            goSleep = true;
         }
         else
         {
@@ -70,6 +84,7 @@ public class Sleep : MonoBehaviour, IInteractable
 
         camPlayer.enabled = false;
         camTransition.enabled = true;
+        isDay = false;
 
         yield return new WaitForSeconds(0.4f);
 
@@ -101,5 +116,14 @@ public class Sleep : MonoBehaviour, IInteractable
     public void Transition (bool state)
     {
         transition.SetBool("Fade", state);
+    }
+
+    private void SetItemState(bool state)
+    {
+        foreach (GameObject item in items)
+        {
+            item.GetComponent<BoxCollider>().enabled = state;
+        }
+        rune.SetActive(state);
     }
 }
