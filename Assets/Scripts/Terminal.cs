@@ -9,6 +9,7 @@ public class Terminal : MonoBehaviour, IInteractable
     public TMP_InputField inputTerminal;
     public TMP_Text outputTerminal;
     private string history = "";
+    private string text;
 
     public bool isLooking;
 
@@ -22,7 +23,9 @@ public class Terminal : MonoBehaviour, IInteractable
     private void Start()
     {
         inputTerminal.text = "";
-        outputTerminal.text = "Ceci est un test !";
+        text = "Bienvenu dans W.A.T. v3.2 (Watchtower Anomalies Terminal)" +
+                   "\nQue voulez-vous savoir?";
+        StartCoroutine(ShowText());
         inputTerminal.onEndEdit.AddListener(HandleInput);
 
         brain = FindAnyObjectByType<CinemachineBrain>();
@@ -82,11 +85,11 @@ public class Terminal : MonoBehaviour, IInteractable
         switch (command.ToLower())
         {
             case "hello":
-                return "Bonjour, utilisateur!";
+                return text = "Bonjour, utilisateur!";
             case "help":
-                return "Commandes disponibles: hello, help, exit.";
+                return text = "Commandes disponibles: hello, help, exit.";
             default:
-                return "Commande non reconnue.";
+                return text = "Commande non reconnue.";
         }
     }
 
@@ -97,6 +100,16 @@ public class Terminal : MonoBehaviour, IInteractable
         camGo.enabled = true;
         camExit.enabled = false;
         StartCoroutine(CamBlending(state));
+    }
+
+    IEnumerator ShowText()
+    {
+        outputTerminal.text = "";
+        foreach (char character in text)
+        {
+            outputTerminal.text += character;
+            yield return new WaitForSeconds(0.000005f);
+        }
     }
 
     IEnumerator CamBlending(bool state)
