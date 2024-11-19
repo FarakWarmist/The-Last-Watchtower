@@ -44,6 +44,9 @@ public class RadioText : MonoBehaviour
         textColor = messageText.color;
         panelWhite = frameWhite.GetComponent<Image>();
         panelBlack = frameBlack.GetComponent<Image>();
+
+        panelWhite.material.SetVector("_ObjectShader", panelWhite.transform.position);
+        panelWhite.material.SetVector("_PlayerCam", mainCam.transform.position);
     }
 
     private void Update()

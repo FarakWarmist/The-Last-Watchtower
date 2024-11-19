@@ -30,11 +30,14 @@ public class Radio : MonoBehaviour, IInteractable
     public CinemachineCamera camPlayer;
     public CinemachineCamera camRadio;
 
+    public BoxCollider boxCollider;
+
     public void Interact()
     {
         isLooking = !isLooking;
         if (isLooking)
         {
+            boxCollider.enabled = false;
             IsLooking(camPlayer, camRadio, false);
             Cursor.lockState = CursorLockMode.Confined;
         }
@@ -42,6 +45,7 @@ public class Radio : MonoBehaviour, IInteractable
 
     private void Update()
     {
+
         if (isLooking)
         {
             if (Input.GetMouseButtonDown(0))
@@ -53,6 +57,7 @@ public class Radio : MonoBehaviour, IInteractable
                     if (hit.collider.gameObject == switchOnOff)
                     {
                         isOn = !isOn;
+                        gameObject.GetComponent<Animator>().SetBool("IsOn", isOn);
                         Debug.Log("On : " + isOn);
                     }
                 }
@@ -60,6 +65,7 @@ public class Radio : MonoBehaviour, IInteractable
 
             if (Input.GetKeyDown(KeyCode.S))
             {
+                boxCollider.enabled = true;
                 isLooking = false;
                 IsLooking(camRadio, camPlayer, true);
                 Cursor.lockState = CursorLockMode.Locked;
@@ -138,6 +144,7 @@ public class Radio : MonoBehaviour, IInteractable
         }
         yield return new WaitForSeconds(brain.DefaultBlend.Time + 0.05f);
         GetComponent<BoxCollider>().enabled = state;
+        Cursor.visible = !state;
         cam.enabled = state;
         player.enabled = state;
     }

@@ -34,6 +34,7 @@ public class Sleep : MonoBehaviour, IInteractable
         player = FindAnyObjectByType<Player>();
         camLook = camPlayer.GetComponent<MouseLook>();
         lightSwitch = FindAnyObjectByType<LightSwitch>();
+        SetItemState(false);
     }
 
     private void Update()
@@ -53,14 +54,6 @@ public class Sleep : MonoBehaviour, IInteractable
                 transitionProgress = 1.0f;
             }
         }
-        if (isDay)
-        {
-            SetItemState(false);
-        }
-        else
-        {
-            SetItemState(true);
-        }
     }
 
 
@@ -79,12 +72,14 @@ public class Sleep : MonoBehaviour, IInteractable
     IEnumerator NightFall()
     {
         Transition(true);
+        PlayerState(false);
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
 
         yield return new WaitForSeconds(0.8f);
-
-        camPlayer.enabled = false;
-        camTransition.enabled = true;
+        
         isDay = false;
+        SetItemState(true);
 
         yield return new WaitForSeconds(0.4f);
 
@@ -108,9 +103,15 @@ public class Sleep : MonoBehaviour, IInteractable
         camTransition.enabled = false;
 
         yield return new WaitForSeconds(0.4f);
-
+        PlayerState(true);
         Transition(false);
         isSleeping = false;
+    }
+
+    private void PlayerState(bool state)
+    {
+        player.enabled = state;
+        camLook.enabled = state;
     }
 
     public void Transition (bool state)
