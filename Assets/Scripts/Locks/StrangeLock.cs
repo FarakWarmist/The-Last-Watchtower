@@ -77,10 +77,6 @@ public class StrangeLock : MonoBehaviour, IInteractable
                 door.isLocked = true;
             }
         }
-        else
-        {
-            Cursor.visible = false;
-        }
     }
 
     private void IsLooking(CinemachineCamera camExit, CinemachineCamera camGo, bool state)
