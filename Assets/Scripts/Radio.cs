@@ -21,7 +21,7 @@ public class Radio : MonoBehaviour, IInteractable
     public GameObject answerObj;
 
     public bool hasMessage;
-    public bool isOn = false;
+    public bool isOn;
     public bool isLooking = false;
     public bool lightFlashing = false;
     public LightSwitch lightSwitch;
@@ -31,8 +31,6 @@ public class Radio : MonoBehaviour, IInteractable
     Player player;
     MouseLook cam;
     RadioLights radioLights;
-
-    public Answers[] answers;
 
     public CinemachineCamera camPlayer;
     public CinemachineCamera camRadio;
@@ -46,6 +44,7 @@ public class Radio : MonoBehaviour, IInteractable
         player = FindAnyObjectByType<Player>();
         cam = FindAnyObjectByType<MouseLook>();
         radioLights = GetComponent<RadioLights>();
+        isOn = false;
     }
     public void Interact()
     {
@@ -60,7 +59,6 @@ public class Radio : MonoBehaviour, IInteractable
 
     private void Update()
     {
-        isOn = radioMessage.needAnswer;
 
         if (!isLooking && radioMessage.newMessage)
         {
@@ -76,20 +74,6 @@ public class Radio : MonoBehaviour, IInteractable
             {
                 radioMessage.newMessage = false;
             }
-            /*if (Input.GetMouseButtonDown(0))
-            {
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                RaycastHit hit;
-                if (Physics.Raycast(ray, out hit))
-                {
-                    if (hit.collider.gameObject == switchOnOff)
-                    {
-                        isOn = !isOn;
-                        gameObject.GetComponent<Animator>().SetBool("IsOn", isOn);
-                        Debug.Log("On : " + isOn);
-                    }
-                }
-            }*/
 
             if (Input.GetKeyDown(KeyCode.S))
             {
@@ -109,11 +93,20 @@ public class Radio : MonoBehaviour, IInteractable
                     }
                     else
                     {
-                        ++radioMessage.messagePart;
+                        if (!radioMessage.needAnswer)
+                        {
+                            if (radioMessage.messagePart % 1 == 0)
+                            {
+                                ++radioMessage.messagePart;
+                            }
+                            else
+                            {
+                                radioMessage.messagePart = Mathf.Ceil(radioMessage.messagePart);
+                            }
+                        }
                     }
                 }
             }
-
         }
 
         if (lightSwitch.isActive)
@@ -155,6 +148,7 @@ public class Radio : MonoBehaviour, IInteractable
             else
             {
                 messageObj.SetActive(false);
+                answerObj.SetActive(false);
                 radioLights.RadioRedLightOFF();
             }
 
@@ -173,7 +167,6 @@ public class Radio : MonoBehaviour, IInteractable
         }
         else
         {
-            Debug.Log("Test");
             radioLights.RadioRedLightOFF();
             radioLights.MicroGreenLightOFF();
             radioLights.MicroRedLightOFF();
@@ -181,6 +174,14 @@ public class Radio : MonoBehaviour, IInteractable
             messageObj.SetActive(false);
         }
 
+        if (radioText.messageText.text == radioText.message && radioMessage.needAnswer && radioText.message != "")
+        {
+            isOn = true;
+        }
+        else
+        {
+            isOn = false;
+        }
     }
 
     private void IsLooking(CinemachineCamera camExit, CinemachineCamera camGo, bool state)
