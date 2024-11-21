@@ -20,6 +20,7 @@ public class Sleep : MonoBehaviour, IInteractable
     Player player;
     MouseLook camLook;
     LightSwitch lightSwitch;
+    MessageRadioManager radioMessage;
 
     public CinemachineCamera camPlayer;
     public CinemachineCamera camTransition;
@@ -34,6 +35,7 @@ public class Sleep : MonoBehaviour, IInteractable
         player = FindAnyObjectByType<Player>();
         camLook = camPlayer.GetComponent<MouseLook>();
         lightSwitch = FindAnyObjectByType<LightSwitch>();
+        radioMessage = FindAnyObjectByType<MessageRadioManager>();
         SetItemState(false);
     }
 
@@ -81,7 +83,7 @@ public class Sleep : MonoBehaviour, IInteractable
         isDay = false;
         SetItemState(true);
         MessageRadioManager radioMessage = FindAnyObjectByType<MessageRadioManager>();
-        radioMessage.part = 1;
+        radioMessage.messageNum = 1;
 
         yield return new WaitForSeconds(0.4f);
 
