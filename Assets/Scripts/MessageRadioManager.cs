@@ -39,7 +39,7 @@ public class MessageRadioManager : MonoBehaviour
 
         if (messageNum == 1)
         {
-            if (messagePart > 2)
+            if (messagePart > 1)
             {
                 StartCoroutine(NextPart(2, 2f));
             }
