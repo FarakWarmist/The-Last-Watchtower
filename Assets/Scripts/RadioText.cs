@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using TMPro;
 using Unity.VisualScripting;
@@ -7,59 +8,45 @@ using UnityEngine.UI;
 public class RadioText : MonoBehaviour
 {
     public bool writeText;
+    public bool stopText = false;
 
     public TMP_Text messageText;
-    Color textColor;
     public GameObject frameWhite;
-    Image panelWhite;
     public GameObject frameBlack;
-    Image panelBlack;
 
-    public GameObject frameOrientation;
     RectTransform rtFrame;
 
-    public float alpha;
     public string message;
     int textLineCount;
 
     Vector2 framePos;
     Vector2 frameSize;
 
-    Camera mainCam;
-    public MessageRadioManager radiomessage;
+    MessageRadioManager radioMessage;
 
     private void Start()
     {
-        mainCam = Camera.main;
-        rtFrame = frameWhite.gameObject.GetComponent<RectTransform>();
+        radioMessage = FindAnyObjectByType<MessageRadioManager>();
 
-        message = radiomessage.message;
-        
+        rtFrame = frameWhite.gameObject.GetComponent<RectTransform>();
 
         framePos = rtFrame.anchoredPosition;
         frameSize = rtFrame.sizeDelta;
 
         textLineCount = messageText.textInfo.lineCount;
-
-        textColor = messageText.color;
-        panelWhite = frameWhite.GetComponent<Image>();
-        panelBlack = frameBlack.GetComponent<Image>();
     }
 
     private void Update()
     {
-        message = radiomessage.message;
+        message = radioMessage.message;
         if (messageText)
         {
-            if (messageText.text != message)
+            if (messageText.text != message && !writeText)
             {
-                if (!writeText)
-                {
-                    StartCoroutine(ShowText());
-                } 
+                StartCoroutine(ShowText());
             }
         }
-        frameOrientation.transform.LookAt(mainCam.transform.position);
+
         textLineCount =  messageText.textInfo.lineCount;
         if(textLineCount < -1 )
         {
@@ -68,28 +55,58 @@ public class RadioText : MonoBehaviour
         
         rtFrame.anchoredPosition = new Vector2(framePos.x, framePos.y + (50 * textLineCount));
         rtFrame.sizeDelta = new Vector2(frameSize.x, frameSize.y + (100 * textLineCount));
-
-        float distance = Vector3.Distance(frameWhite.transform.position, mainCam.transform.position);
-
-        alpha = Mathf.InverseLerp(5f, 3f, distance);
-        alpha = Mathf.Clamp01(alpha);
-        panelWhite.material.SetFloat("_Alpha", alpha);
-        panelBlack.material.SetFloat("_Alpha", alpha);
-        textColor.a = alpha;
-        messageText.color = textColor;
     }
 
 
     public IEnumerator ShowText()
     {
+        messageText.text = "";
         writeText = true;
 
-        messageText.text = "";
         foreach (char character in message)
         {
+            if (!stopText)
+            {
                 messageText.text += character;
-                yield return new WaitForSeconds(0.05f); 
+                yield return new WaitForSeconds(0.05f);
+            }
+            else
+            {
+                break;
+            }
         }
+
         writeText = false;
+    }
+
+    internal void SkipText()
+    {
+        stopText = true;
+        StopCoroutine(ShowText());
+        messageText.text = message;
+        Invoke("CheckIfMessageFull", 0.1f);
+    }
+
+    public void CheckIfMessageFull()
+    {
+        if (messageText.text == message)
+        {
+            stopText = false;
+        }
+    }
+
+    internal void MessageState()
+    {
+        if (radioMessage.newMessage)
+        {
+            if (messageText.text != message)
+            {
+                SkipText();
+            }
+            else
+            {
+                ++radioMessage.messagePart;
+            }
+        }
     }
 }

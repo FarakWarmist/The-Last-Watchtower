@@ -45,22 +45,7 @@ public class MessageRadioManager : MonoBehaviour
 
         if (part == 1)
         {
-            if (messagePart == 0)
-            {
-                needAnswer = true;
-                switch (answerChoosed)
-                {
-                    case 1:
-                        messagePart = 1;
-                        needAnswer = false;
-                        answerChoosed = 0;
-                        break;
-                    case 2:
-                        messagePart = 0;
-                        break;
-                }
-            }
-            else if (messagePart > 1)
+            if (messagePart > 1)
             {
                 StartCoroutine(NextPart(2, 2f));
             }

@@ -1,5 +1,6 @@
 using System.Collections;
 using Unity.Cinemachine;
+using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
@@ -25,10 +26,11 @@ public class Radio : MonoBehaviour, IInteractable
     public bool lightFlashing = false;
     public LightSwitch lightSwitch;
 
-    public MessageRadioManager radioMessage;
-    public RadioText radioText;
-    public Player player;
-    public MouseLook cam;
+    MessageRadioManager radioMessage;
+    RadioText radioText;
+    Player player;
+    MouseLook cam;
+    RadioLights radioLights;
 
     public Answers[] answers;
 
@@ -37,6 +39,14 @@ public class Radio : MonoBehaviour, IInteractable
 
     public BoxCollider boxCollider;
 
+    private void Start()
+    {
+        radioMessage = FindAnyObjectByType<MessageRadioManager>();
+        radioText = FindAnyObjectByType<RadioText>();
+        player = FindAnyObjectByType<Player>();
+        cam = FindAnyObjectByType<MouseLook>();
+        radioLights = GetComponent<RadioLights>();
+    }
     public void Interact()
     {
         isLooking = !isLooking;
@@ -56,17 +66,8 @@ public class Radio : MonoBehaviour, IInteractable
         {
             if (!lightFlashing)
             {
-                StartCoroutine(RedLightFlashing());
+                StartCoroutine(radioLights.RedLightFlashing());
             }
-        }
-
-        if(radioMessage.needAnswer)
-        {
-            answerObj.SetActive(true);
-        }
-        else
-        {
-            answerObj.SetActive(false);
         }
 
         if (isLooking)
@@ -97,25 +98,22 @@ public class Radio : MonoBehaviour, IInteractable
                 IsLooking(camRadio, camPlayer, true);
                 Cursor.lockState = CursorLockMode.Locked;
             }
-            if (!radioMessage.needAnswer)
+            if (Input.GetKeyDown(KeyCode.E))
             {
-                if (Input.GetKeyDown(KeyCode.E))
+                radioText.MessageState();
+                if (!radioMessage.newMessage)
                 {
-                    if (!radioMessage.newMessage)
+                    if (radioText.messageText.text != radioText.message)
                     {
-                        if (radioText.messageText.text != radioText.message)
-                        {
-                            StopCoroutine(radioText.ShowText());
-                            radioText.messageText.text = "";
-                            radioText.messageText.text = radioText.message;
-                        }
-                        else
-                        {
-                            ++radioMessage.messagePart;
-                        }
+                        radioText.SkipText();
+                    }
+                    else
+                    {
+                        ++radioMessage.messagePart;
                     }
                 }
             }
+
         }
 
         if (lightSwitch.isActive)
@@ -125,9 +123,14 @@ public class Radio : MonoBehaviour, IInteractable
                 if(isLooking)
                 {
                     radioMessage.hasListen = true;
-                    radioRedBulb.material.EnableKeyword("_EMISSION");
-                    radioRedLight.enabled = true;
-                    
+                    radioLights.RadioRedLightON();
+                    if (radioText.messageText)
+                    {
+                        if (radioText.messageText.text != radioText.message && !radioText.writeText)
+                        {
+                            StartCoroutine(radioText.ShowText());
+                        }
+                    }
                 }
                 else
                 {
@@ -135,10 +138,11 @@ public class Radio : MonoBehaviour, IInteractable
                     {
                         if (!lightFlashing)
                         {
-                            StartCoroutine(RedLightFlashing());
+                            StartCoroutine(radioLights.RedLightFlashing());
                         }
                     }
                 }
+
                 if (radioMessage.hasListen)
                 {
                     messageObj.SetActive(true);
@@ -151,33 +155,29 @@ public class Radio : MonoBehaviour, IInteractable
             else
             {
                 messageObj.SetActive(false);
-                radioRedBulb.material.DisableKeyword("_EMISSION");
-                radioRedLight.enabled = false;
+                radioLights.RadioRedLightOFF();
             }
 
             if (isOn)
             {
-                microGreenBulb.material.EnableKeyword("_EMISSION");
-                microGreenLight.enabled = true;
-                microRedBulb.material.DisableKeyword("_EMISSION");
-                microRedLight.enabled = false;
+                radioLights.MicroGreenLightON();
+
+                radioLights.MicroRedLightOFF();
             }
             else
             {
-                microGreenBulb.material.DisableKeyword("_EMISSION");
-                microGreenLight.enabled = false;
-                microRedBulb.material.EnableKeyword("_EMISSION");
-                microRedLight.enabled = true;
+                radioLights.MicroGreenLightOFF();
+
+                radioLights.MicroRedLightON();
             }
         }
         else
         {
-            radioRedBulb.material.DisableKeyword("_EMISSION");
-            radioRedLight.enabled = false;
-            microGreenBulb.material.DisableKeyword("_EMISSION");
-            microGreenLight.enabled = false;
-            microRedBulb.material.DisableKeyword("_EMISSION");
-            microRedLight.enabled = false;
+            Debug.Log("Test");
+            radioLights.RadioRedLightOFF();
+            radioLights.MicroGreenLightOFF();
+            radioLights.MicroRedLightOFF();
+
             messageObj.SetActive(false);
         }
 
@@ -205,17 +205,5 @@ public class Radio : MonoBehaviour, IInteractable
         Cursor.visible = !state;
         cam.enabled = state;
         player.enabled = state;
-    }
-
-    IEnumerator RedLightFlashing()
-    {
-        lightFlashing = true;
-        radioRedBulb.material.EnableKeyword("_EMISSION");
-        radioRedLight.enabled = true;
-        yield return new WaitForSeconds(0.5f);
-        radioRedBulb.material.DisableKeyword("_EMISSION");
-        radioRedLight.enabled = false;
-        yield return new WaitForSeconds(0.5f);
-        lightFlashing = false;
     }
 }
