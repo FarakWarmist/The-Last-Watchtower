@@ -3759,8 +3759,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 16777215
+  m_fontColor: {r: 1, g: 1, b: 1, a: 0}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -5879,13 +5879,12 @@ MonoBehaviour:
   microGreenLight: {fileID: 0}
   switchOnOff: {fileID: 1909028645}
   messageObj: {fileID: 1057003831}
-  answerObj: {fileID: 0}
+  answerObj: {fileID: 1923327399}
   hasMessage: 0
   isOn: 0
   isLooking: 0
   lightFlashing: 0
   lightSwitch: {fileID: 1116980537}
-  answers: []
   camPlayer: {fileID: 405462400}
   camRadio: {fileID: 1344013955}
   boxCollider: {fileID: 537229756}
@@ -7183,7 +7182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: 892d0666b8c5ec44b93f6d4e6548d128, type: 2}
+  m_Material: {fileID: 2100000, guid: bf64dbbf05ef7034e9721860883f3826, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 0.6666667}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -8140,8 +8139,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 16777215
+  m_fontColor: {r: 1, g: 1, b: 1, a: 0}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -18086,6 +18085,9 @@ MonoBehaviour:
   answerBotton2: {fileID: 221057274}
   answerText1: {fileID: 264729570}
   answerText2: {fileID: 813049965}
+  materialBrightWhite: {fileID: 2100000, guid: bf64dbbf05ef7034e9721860883f3826, type: 2}
+  materialBrightBlack: {fileID: 2100000, guid: 7caacf79719cbd1428b9cbd2150e1ccc, type: 2}
+  alpha: 0
 --- !u!1001 &1928903683
 PrefabInstance:
   m_ObjectHideFlags: 0
