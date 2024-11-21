@@ -52,7 +52,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Alpha: 1
+    - _Alpha: -0.11729482
     - _AlphaClip: 1
     - _AlphaLevel: 0
     - _AlphaToMask: 0
