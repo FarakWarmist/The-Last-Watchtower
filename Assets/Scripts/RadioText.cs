@@ -47,12 +47,12 @@ public class RadioText : MonoBehaviour
             }
         }
 
-        textLineCount =  messageText.textInfo.lineCount;
-        if(textLineCount < -1 )
+        textLineCount = messageText.textInfo.lineCount;
+        if (textLineCount < -1)
         {
             textLineCount = -1;
         }
-        
+
         rtFrame.anchoredPosition = new Vector2(framePos.x, framePos.y + (50 * textLineCount));
         rtFrame.sizeDelta = new Vector2(frameSize.x, frameSize.y + (100 * textLineCount));
     }

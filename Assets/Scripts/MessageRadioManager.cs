@@ -1,105 +1,77 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class MessageRadioManager : MonoBehaviour
 {
     public string message;
+    public string answer1;
+    public string answer2;
+
     public bool hasListen;
     public bool newMessage;
     public bool needAnswer;
 
     public int answerChoosed;
     public int answerNum;
-    public int part = 0;
-    public int messagePart = 0;
+    public int messageNum = 0;
+    public float messagePart = 0;
 
-    public Answers[] answers;
+
 
     private void Start()
     {
         newMessage = true;
-        for (int i = 0; i < answers.Length; i++)
-        {
-            answers[i].numero = ++i;
-        }
     }
 
     private void Update()
     {
         StartMessage();
-
-        foreach (Answers answer in answers)
+        if (answer1 == "" || answer2 == "")
         {
-            if (answer.answerText == "")
-            {
-                answer.frameBlack.gameObject.SetActive(false);
-                answer.frameWhite.GetComponent<Image>().enabled = false;
-            }
-            else
-            {
-                answer.frameBlack.gameObject.SetActive(true);
-                answer.frameWhite.GetComponent<Image>().enabled = true;
-            }
+            needAnswer = false;
+        }
+        else
+        {
+            needAnswer = true;
         }
 
-        if (part == 1)
+        if (messageNum == 1)
         {
-            if (messagePart > 1)
+            if (messagePart > 2)
             {
                 StartCoroutine(NextPart(2, 2f));
             }
-        }
-
-        if (needAnswer)
-        {
-            Answers();
         }
     }
 
     public void StartMessage()
     {
-        if (part == 1)
+        if (messageNum == 1)
         {
             switch (messagePart)
             {
                 case 0:
                     message = @"Bonjour, ceci est un teste pour tester le systeme de message.";
+                    answer1 = @"Oui! Je suis là?";
+                    answer2 = @"Qui êtes-vous?";
+                    break;
+                case 0.1f:
+                    message = @"Answer 1";
+                    break;
+                case 0.2f:
+                    message = @"Answer 2";
                     break;
                 case 1:
-                    message = @"Fermer se texte devrait aller à la seconde partie.";
+                    message = @"Next Message";
                     break;
                 default:
                     message = "";
                     break;
             }
         }
-        else if (part == 2)
-        {
-            switch (messagePart)
-            {
-                case 0:
-                    message = @"Nous somme dans la seconde partie.";
-                    break;
-                case 1:
-                    message = @"E";
-                    break;
-                default:
-                    message = "";
-                    break;
-            }
-        }
-    }
-
-    public void Answers()
-    {
-        if (part == 1)
-        {
-            answers[0].answerText = @"Oui, allo?";
-            answers[1].answerText = @"...";
-            answers[0].answerText = "";
-        }
-        else if (part == 2)
+        else if (messageNum == 2)
         {
             switch (messagePart)
             {
@@ -119,7 +91,7 @@ public class MessageRadioManager : MonoBehaviour
     IEnumerator NextPart(int nextPart, float time)
     {
         yield return new WaitForSeconds(time);
-        part = nextPart;
+        messageNum = nextPart;
         messagePart = 0;
         newMessage = true;
         hasListen = false;

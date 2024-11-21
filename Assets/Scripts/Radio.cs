@@ -120,7 +120,7 @@ public class Radio : MonoBehaviour, IInteractable
         {
             if (radioMessage.message != "")
             {
-                if(isLooking)
+                if (isLooking)
                 {
                     radioMessage.hasListen = true;
                     radioLights.RadioRedLightON();
