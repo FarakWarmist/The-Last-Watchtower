@@ -17,15 +17,20 @@ public class Radio : MonoBehaviour, IInteractable
     public GameObject switchOnOff;
 
     public GameObject messageObj;
+    public GameObject answerObj;
 
     public bool hasMessage;
     public bool isOn = false;
     public bool isLooking = false;
+    public bool lightFlashing = false;
     public LightSwitch lightSwitch;
 
     public MessageRadioManager radioMessage;
+    public RadioText radioText;
     public Player player;
     public MouseLook cam;
+
+    public Answers[] answers;
 
     public CinemachineCamera camPlayer;
     public CinemachineCamera camRadio;
@@ -45,10 +50,32 @@ public class Radio : MonoBehaviour, IInteractable
 
     private void Update()
     {
+        isOn = radioMessage.needAnswer;
+
+        if (!isLooking && radioMessage.newMessage)
+        {
+            if (!lightFlashing)
+            {
+                StartCoroutine(RedLightFlashing());
+            }
+        }
+
+        if(radioMessage.needAnswer)
+        {
+            answerObj.SetActive(true);
+        }
+        else
+        {
+            answerObj.SetActive(false);
+        }
 
         if (isLooking)
         {
-            if (Input.GetMouseButtonDown(0))
+            if (radioMessage.newMessage)
+            {
+                radioMessage.newMessage = false;
+            }
+            /*if (Input.GetMouseButtonDown(0))
             {
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 RaycastHit hit;
@@ -61,7 +88,7 @@ public class Radio : MonoBehaviour, IInteractable
                         Debug.Log("On : " + isOn);
                     }
                 }
-            }
+            }*/
 
             if (Input.GetKeyDown(KeyCode.S))
             {
@@ -69,6 +96,25 @@ public class Radio : MonoBehaviour, IInteractable
                 isLooking = false;
                 IsLooking(camRadio, camPlayer, true);
                 Cursor.lockState = CursorLockMode.Locked;
+            }
+            if (!radioMessage.needAnswer)
+            {
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    if (!radioMessage.newMessage)
+                    {
+                        if (radioText.messageText.text != radioText.message)
+                        {
+                            StopCoroutine(radioText.ShowText());
+                            radioText.messageText.text = "";
+                            radioText.messageText.text = radioText.message;
+                        }
+                        else
+                        {
+                            ++radioMessage.messagePart;
+                        }
+                    }
+                }
             }
         }
 
@@ -79,6 +125,19 @@ public class Radio : MonoBehaviour, IInteractable
                 if(isLooking)
                 {
                     radioMessage.hasListen = true;
+                    radioRedBulb.material.EnableKeyword("_EMISSION");
+                    radioRedLight.enabled = true;
+                    
+                }
+                else
+                {
+                    if (radioMessage.newMessage)
+                    {
+                        if (!lightFlashing)
+                        {
+                            StartCoroutine(RedLightFlashing());
+                        }
+                    }
                 }
                 if (radioMessage.hasListen)
                 {
@@ -88,11 +147,10 @@ public class Radio : MonoBehaviour, IInteractable
                 {
                     messageObj.SetActive(false);
                 }
-                radioRedBulb.material.EnableKeyword("_EMISSION");
-                radioRedLight.enabled = true;
             }
             else
             {
+                messageObj.SetActive(false);
                 radioRedBulb.material.DisableKeyword("_EMISSION");
                 radioRedLight.enabled = false;
             }
@@ -147,5 +205,17 @@ public class Radio : MonoBehaviour, IInteractable
         Cursor.visible = !state;
         cam.enabled = state;
         player.enabled = state;
+    }
+
+    IEnumerator RedLightFlashing()
+    {
+        lightFlashing = true;
+        radioRedBulb.material.EnableKeyword("_EMISSION");
+        radioRedLight.enabled = true;
+        yield return new WaitForSeconds(0.5f);
+        radioRedBulb.material.DisableKeyword("_EMISSION");
+        radioRedLight.enabled = false;
+        yield return new WaitForSeconds(0.5f);
+        lightFlashing = false;
     }
 }

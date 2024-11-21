@@ -19,7 +19,7 @@ public class RadioText : MonoBehaviour
     RectTransform rtFrame;
 
     public float alpha;
-    string message;
+    public string message;
     int textLineCount;
 
     Vector2 framePos;
@@ -44,18 +44,19 @@ public class RadioText : MonoBehaviour
         textColor = messageText.color;
         panelWhite = frameWhite.GetComponent<Image>();
         panelBlack = frameBlack.GetComponent<Image>();
-
-        panelWhite.material.SetVector("_ObjectShader", panelWhite.transform.position);
-        panelWhite.material.SetVector("_PlayerCam", mainCam.transform.position);
     }
 
     private void Update()
     {
+        message = radiomessage.message;
         if (messageText)
         {
-            if (!writeText && messageText.text != message)
+            if (messageText.text != message)
             {
-                StartCoroutine(ShowText());
+                if (!writeText)
+                {
+                    StartCoroutine(ShowText());
+                } 
             }
         }
         frameOrientation.transform.LookAt(mainCam.transform.position);
@@ -79,15 +80,15 @@ public class RadioText : MonoBehaviour
     }
 
 
-    IEnumerator ShowText()
+    public IEnumerator ShowText()
     {
         writeText = true;
 
         messageText.text = "";
         foreach (char character in message)
         {
-            messageText.text += character;
-            yield return new WaitForSeconds(0.05f);
+                messageText.text += character;
+                yield return new WaitForSeconds(0.05f); 
         }
         writeText = false;
     }

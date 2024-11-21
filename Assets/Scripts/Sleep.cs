@@ -80,6 +80,8 @@ public class Sleep : MonoBehaviour, IInteractable
         
         isDay = false;
         SetItemState(true);
+        MessageRadioManager radioMessage = FindAnyObjectByType<MessageRadioManager>();
+        radioMessage.part = 1;
 
         yield return new WaitForSeconds(0.4f);
 
