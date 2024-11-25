@@ -17,10 +17,10 @@ public class Sleep : MonoBehaviour, IInteractable
     float transitionProgress;
 
     public Animator transition;
+    public Door door;
     Player player;
     MouseLook camLook;
     LightSwitch lightSwitch;
-    MessageRadioManager radioMessage;
 
     public CinemachineCamera camPlayer;
     public CinemachineCamera camTransition;
@@ -35,8 +35,7 @@ public class Sleep : MonoBehaviour, IInteractable
         player = FindAnyObjectByType<Player>();
         camLook = camPlayer.GetComponent<MouseLook>();
         lightSwitch = FindAnyObjectByType<LightSwitch>();
-        radioMessage = FindAnyObjectByType<MessageRadioManager>();
-        SetItemState(false);
+        //SetItemState(false);
     }
 
     private void Update()
@@ -75,12 +74,11 @@ public class Sleep : MonoBehaviour, IInteractable
     {
         Transition(true);
         PlayerState(false);
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
 
         yield return new WaitForSeconds(0.8f);
-        
+
         isDay = false;
+        door.isOpen = false;
         SetItemState(true);
         MessageRadioManager radioMessage = FindAnyObjectByType<MessageRadioManager>();
         radioMessage.messageNum = 1;

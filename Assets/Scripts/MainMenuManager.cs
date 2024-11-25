@@ -16,6 +16,7 @@ public class MainMenuManager : MonoBehaviour
     public Animator animator;
     public Canvas mainMenu;
     public GameObject introText;
+    public CheckCursor cursorState;
 
     private void Start()
     {
@@ -25,8 +26,8 @@ public class MainMenuManager : MonoBehaviour
         mainMenuCam.enabled = true;
         playerCam.enabled = false;
 
-        Cursor.lockState = CursorLockMode.Confined;
-        Cursor.visible = true;
+
+        cursorState.needCursor++;
 
         playButton.onClick.AddListener(OnPlayButtonClicked);
         optionsButton.onClick.AddListener(OnOptionsButtonClicked);
@@ -57,8 +58,7 @@ public class MainMenuManager : MonoBehaviour
 
     IEnumerator StartGame()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        cursorState.needCursor--;
         animator.gameObject.SetActive(true);
         animator.SetBool("Fade", false);
         yield return new WaitForSeconds(1f);

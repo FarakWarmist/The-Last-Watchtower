@@ -16,6 +16,7 @@ public class StrangeLock : MonoBehaviour, IInteractable
     MouseLook cam;
     Player player;
     AudioSource audioSource;
+    CheckCursor cursorState;
 
     public void Interact()
     {
@@ -23,7 +24,7 @@ public class StrangeLock : MonoBehaviour, IInteractable
         if (isLooking)
         {
             IsLooking(camPlayer, camLock, false);
-            Cursor.lockState = CursorLockMode.Confined;
+            cursorState.needCursor++;
         }
     }
 
@@ -33,6 +34,7 @@ public class StrangeLock : MonoBehaviour, IInteractable
         cam = FindAnyObjectByType<MouseLook>();
         player = FindAnyObjectByType<Player>();
         audioSource = GetComponent<AudioSource>();
+        cursorState = FindAnyObjectByType<CheckCursor>();
 
         door.isLocked = true;
         isLooking = false;
@@ -61,7 +63,7 @@ public class StrangeLock : MonoBehaviour, IInteractable
             {
                 isLooking = false;
                 IsLooking(camLock, camPlayer, true);
-                Cursor.lockState = CursorLockMode.Locked;
+                cursorState.needCursor--;
             }
 
             if (symbols[0].currentSymbol == 3 &&
@@ -98,7 +100,6 @@ public class StrangeLock : MonoBehaviour, IInteractable
         GetComponent<BoxCollider>().enabled = state;
         cam.enabled = state;
         player.enabled = state;
-        Cursor.visible = !state;
         if (!door.isLocked)
         {
             gameObject.SetActive(false);

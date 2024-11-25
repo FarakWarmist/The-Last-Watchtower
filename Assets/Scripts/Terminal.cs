@@ -18,6 +18,7 @@ public class Terminal : MonoBehaviour, IInteractable
     CinemachineBrain brain;
     Player player;
     MouseLook cam;
+    CheckCursor cursorState;
 
     private void Start()
     {
@@ -57,6 +58,7 @@ a";
         GameObject playerObj = FindAnyObjectByType<Player>().gameObject;
         player = playerObj.GetComponent<Player>();
         cam = camPlayer.GetComponent<MouseLook>();
+        cursorState = FindAnyObjectByType<CheckCursor>();
 
         isLooking = false;
     }
@@ -66,6 +68,7 @@ a";
         isLooking = !isLooking;
         if (isLooking)
         {
+            cursorState.needCursor++;
             inputTerminal.ActivateInputField();
             IsLooking(camPlayer, camTerminal, false);
             Cursor.lockState = CursorLockMode.Confined;
@@ -74,6 +77,7 @@ a";
 
     private void Update()
     {
+        
         if (isLooking)
         {
             inputTerminal.ActivateInputField();
@@ -94,6 +98,7 @@ a";
         if (input.Equals("exit") || Input.GetKeyDown(KeyCode.Escape))
         {
             outputTerminal.text += "\nTerminal fermé.";
+            cursorState.needCursor--;
             return;
         }
         else if (Input.GetMouseButtonDown(0) || Input.GetMouseButton(1) || Input.GetMouseButton(2) || Input.GetKeyDown(KeyCode.Escape))
@@ -249,6 +254,5 @@ CONSEILS -
         GetComponent<BoxCollider>().enabled = state;
         cam.enabled = state;
         player.enabled = state;
-        Cursor.visible = !state;
     }
 }
