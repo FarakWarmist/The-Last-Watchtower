@@ -27,6 +27,7 @@ public class Door : MonoBehaviour, IInteractable
         animator = GetComponent<Animator>();
 
         isInside = false;
+        isOpen = false;
 
         brain = FindAnyObjectByType<CinemachineBrain>();
         cam = playerCam.GetComponent<MouseLook>();
@@ -37,6 +38,7 @@ public class Door : MonoBehaviour, IInteractable
     public void Interact()
     {
         
+
         if (!isOpen)
         {
             if (!isLocked)
@@ -48,7 +50,6 @@ public class Door : MonoBehaviour, IInteractable
                 }
                 else
                 {
-                    animator.SetBool("IsOpen", true);
                     isOpen = true;
                 }
             }
@@ -59,15 +60,14 @@ public class Door : MonoBehaviour, IInteractable
         }
         else
         {
-            animator.SetBool("IsOpen", false);
             isOpen = false;
-        }
-        
+        }        
     }
 
     
     private void Update()
     {
+        animator.SetBool("IsOpen", isOpen);
         if (isCheck)
         {
             if(Input.GetKeyDown(KeyCode.E))
@@ -122,7 +122,6 @@ public class Door : MonoBehaviour, IInteractable
             yield return null;
         }
         isOpen = open;
-        animator.SetBool("IsOpen", open);
 
         yield return new WaitForSeconds(brain.DefaultBlend.Time + 0.1f);
         cam.enabled = true;
