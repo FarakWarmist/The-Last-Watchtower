@@ -1,17 +1,18 @@
 using System.Collections;
-using Unity.AI.Navigation.Editor;
-using UnityEditor.PackageManager.UI;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.Experimental.GlobalIllumination;
 
 public class Monster : MonoBehaviour
 {
     public bool isMonsterActive;
     public Transform[] windowsLocation;
+    public WindowState[] windowsState;
     MeshRenderer meshRenderer;
     NavMeshAgent monster;
     public Light runeLight;
+
+    LightSwitch lightSwitch;
+    InsideOrOutside playerLocationState;
 
     public bool isTakeAction;
 
@@ -19,20 +20,31 @@ public class Monster : MonoBehaviour
     public float timeToMakeAction;
     public int windowIndex;
     public int direction;
-    public int move;
+
+    public Transform player;
+    public float horizontalViewAngle = 90f;
+    public float verticalViewAngle = 30f;
+
+    Transform location;
 
     private void Start()
     {
         meshRenderer = GetComponent<MeshRenderer>();
         monster = GetComponent<NavMeshAgent>();
 
+        lightSwitch = FindAnyObjectByType<LightSwitch>();
+        playerLocationState = FindAnyObjectByType<InsideOrOutside>();
+        player = FindAnyObjectByType<Player>().gameObject.transform;
+
         timeToMakeAction = Random.Range(5, 10);
-        move = 0;
         windowIndex = Random.Range(0, windowsLocation.Length);
         isMonsterActive = false;
         isTakeAction = false;
 
-        monster.transform.position = windowsLocation[windowIndex].transform.position;
+        location = windowsLocation[windowIndex];
+        monster.transform.position = location.position;
+        location.gameObject.SetActive(false);
+        monster.SetDestination(location.position);
     }
 
 
@@ -48,37 +60,83 @@ public class Monster : MonoBehaviour
             meshRenderer.enabled = false;
         }
 
-        if (isMonsterActive &&
-            monster.remainingDistance <= monster.stoppingDistance &&
-            !isTakeAction)
+        if (playerLocationState.isInside)
         {
-            
-            StartCoroutine(TakeAction(10));
+
+            if (lightSwitch.isActive)
+            {
+                if (isMonsterActive &&
+                        monster.remainingDistance <= monster.stoppingDistance &&
+                        !isTakeAction)
+                {
+
+                    StartCoroutine(TakeAction(10));
+                }
+
+                if (!monster.SetDestination(location.position))
+                {
+                    monster.SetDestination(location.position);
+                }
+            }
+            else
+            {
+                monster.ResetPath();
+                monster.velocity = Vector3.zero;
+            }
         }
+        else
+        {
+            ChaseThePlayer();
+        }
+
+    }
+
+    private void ChaseThePlayer()
+    {
+        if (IsPlayerLookingAtMonster())
+        {
+            StopChasing();
+        }
+        else
+        {
+            monster.SetDestination(player.position);
+        }
+    }
+
+    private bool IsPlayerLookingAtMonster()
+    {
+        Vector3 toMonster = monster.transform.position - player.position;
+
+        float horizontalAngle = Vector3.Angle(player.forward, new Vector3(toMonster.x, 0, toMonster.z));
+
+        float verticalAngle = Mathf.Abs(toMonster.y);
+
+        bool isInVerticalFieldOfView = verticalAngle < verticalViewAngle;
+
+        return horizontalAngle < horizontalViewAngle / 2f && isInVerticalFieldOfView;
+    }
+
+    private void StopChasing()
+    {
+        monster.ResetPath();
+        monster.velocity = Vector3.zero;
     }
 
     void MoveToNextWindow()
     {
-        windowsLocation[windowIndex].GetComponent<WindowState>().isFree = true;
         windowIndex = Random.Range(0, windowsLocation.Length);
-        if (!windowsLocation[windowIndex].GetComponent<WindowState>().isFree)
-        {
-            do
-            {
-                windowIndex = Random.Range(0, windowsLocation.Length);
-            } while (windowsLocation[windowIndex].GetComponent<WindowState>().isFree);
-        }
-        windowsLocation[windowIndex].GetComponent<WindowState>().isFree = false;
+        location.gameObject.SetActive(true);
+        location = windowsLocation[windowIndex];
+        location.gameObject.SetActive(false);
 
-        monster.SetDestination(windowsLocation[windowIndex].position);
-        move += 1;
+        monster.SetDestination(location.position);
     }
 
     void BreakTheWindow()
     {
         if (monster.remainingDistance <= monster.stoppingDistance)
         {
-            windowsLocation[windowIndex].GetComponent<WindowState>().BreakTheWindow();
+            windowsState[windowIndex].BreakTheWindow();
         }
     }
 
