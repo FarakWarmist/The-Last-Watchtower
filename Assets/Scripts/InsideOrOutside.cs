@@ -4,15 +4,14 @@ public class InsideOrOutside : MonoBehaviour
 {
     public Door door;
     public bool isInside;
-    public bool isOutside;
 
     private void OnTriggerEnter(Collider other)
     {
         var player = other.GetComponent<Player>();
         if (player != null)
         {
-            isInside = true;
             door.isInside = true;
+            isInside = door.isInside;
         }
     }
 
@@ -21,8 +20,8 @@ public class InsideOrOutside : MonoBehaviour
         var player = other.GetComponent<Player>();
         if (player != null)
         {
-            isOutside = true;
             door.isInside = false;
+            isInside = door.isInside;
         }
     }
 }
