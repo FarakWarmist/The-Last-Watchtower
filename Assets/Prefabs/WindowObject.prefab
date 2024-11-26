@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5614370857998388923}
-  - component: {fileID: 3387162189009250326}
   m_Layer: 0
   m_Name: WindowLocation
   m_TagString: Untagged
@@ -32,21 +31,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 9199794016587285013}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3387162189009250326
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 28316176387949937}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8526289d9b9328846a550ea33b7b62db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isFree: 0
-  isBroken: 0
-  brokenWindow: {fileID: 45170199597093104}
 --- !u!1 &5962893002765506649
 GameObject:
   m_ObjectHideFlags: 0
@@ -176,10 +160,6 @@ PrefabInstance:
       propertyPath: window
       value: 
       objectReference: {fileID: 45170199597093104}
-    - target: {fileID: 7761901427721796517, guid: 25fdd5e58f1b3b9438376d610782b7c7, type: 3}
-      propertyPath: windowState
-      value: 
-      objectReference: {fileID: 3387162189009250326}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -294,7 +274,7 @@ MonoBehaviour:
   - {fileID: 2734054402534598891}
   - {fileID: 6204023129855759862}
   barricadeLocation: {fileID: 5962893002765506649}
-  windowState: {fileID: 3387162189009250326}
+  windowState: {fileID: 0}
   isBroken: 0
 --- !u!65 &3554435142582654330
 BoxCollider:
@@ -377,10 +357,6 @@ PrefabInstance:
       propertyPath: window
       value: 
       objectReference: {fileID: 45170199597093104}
-    - target: {fileID: 6897482989297250889, guid: d92b725d83045df4a93e139619a9a6ea, type: 3}
-      propertyPath: windowState
-      value: 
-      objectReference: {fileID: 3387162189009250326}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -455,13 +431,36 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 5485d0d2bec07b14ea8b977880f3c0f1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1649384239889862218}
   m_SourcePrefab: {fileID: 100100000, guid: 5485d0d2bec07b14ea8b977880f3c0f1, type: 3}
 --- !u!4 &4943131580732583301 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5485d0d2bec07b14ea8b977880f3c0f1, type: 3}
   m_PrefabInstance: {fileID: 4833275574189935214}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &5751755705298515775 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 5485d0d2bec07b14ea8b977880f3c0f1, type: 3}
+  m_PrefabInstance: {fileID: 4833275574189935214}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1649384239889862218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5751755705298515775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8526289d9b9328846a550ea33b7b62db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isFree: 0
+  isBroken: 0
+  brokenWindow: {fileID: 45170199597093104}
 --- !u!1001 &7505499846497624368
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -522,10 +521,6 @@ PrefabInstance:
       propertyPath: window
       value: 
       objectReference: {fileID: 45170199597093104}
-    - target: {fileID: 7032966480100561512, guid: f892209384f838b4b962a8753b3d6b89, type: 3}
-      propertyPath: windowState
-      value: 
-      objectReference: {fileID: 3387162189009250326}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

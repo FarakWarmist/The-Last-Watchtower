@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class WindowState : MonoBehaviour
 {
-    public bool isFree;
     public bool isBroken = false;
     public BrokenWindow brokenWindow;
     Player player;
@@ -10,7 +9,6 @@ public class WindowState : MonoBehaviour
     private void Start()
     {
         player = FindAnyObjectByType<Player>();
-        isFree = true;
     }
 
     public void BreakTheWindow()

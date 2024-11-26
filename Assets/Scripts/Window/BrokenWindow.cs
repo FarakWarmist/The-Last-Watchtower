@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BrokenWindow : MonoBehaviour, IInteractable
+public class BrokenWindow : MonoBehaviour
 {
     [SerializeField] GameObject brokenWindow;
     [SerializeField] GameObject[] barricade;
@@ -18,10 +18,5 @@ public class BrokenWindow : MonoBehaviour, IInteractable
         
         barricade[randomIndex].SetActive(true);
         gameObject.SetActive(false);
-    }
-
-    public void Interact()
-    {
-        windowState.BreakTheWindow();
     }
 }
