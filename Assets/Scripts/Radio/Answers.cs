@@ -63,8 +63,18 @@ public class Answers : MonoBehaviour
         {
             switch (radioMessage.messagePart)
             {
-                case 0:
-                    radioMessage.messagePart += 0.1f;
+                case 2:
+                    radioMessage.messagePart += 1;
+                    break;
+                case 4:
+                    radioMessage.messagePart += 1;
+                    break;
+                case 12:
+                    radioMessage.messagePart += 1;
+                    break;
+                case 21f:
+                    radioMessage.messagePart += 1f;
+                    radioMessage.nextPath = 2;
                     break;
             }
         }
@@ -78,8 +88,18 @@ public class Answers : MonoBehaviour
         {
             switch (radioMessage.messagePart)
             {
-                case 0:
-                    radioMessage.messagePart += 0.2f;
+                case 2f:
+                    radioMessage.messagePart += 1;
+                    break;
+                case 4f:
+                    radioMessage.messagePart += 4;
+                    break;
+                case 12f:
+                    radioMessage.messagePart += 6.1f;
+                    break;
+                case 21f:
+                    radioMessage.messagePart += 1f;
+                    radioMessage.nextPath = 666;
                     break;
             }
         }
