@@ -4,25 +4,14 @@ using TMPro;
 using Unity.Cinemachine;
 using UnityEngine;
 
-public class Terminal : MonoBehaviour, IInteractable
+public class Terminal : MonoBehaviour
 {
     public TMP_InputField inputTerminal;
     public TMP_Text outputTerminal;
     private string text;
 
-    public bool isLooking;
-
-    public CinemachineCamera camTerminal;
-    public CinemachineCamera camPlayer;
-
-    CinemachineBrain brain;
-    Player player;
-    MouseLook cam;
-    CheckCursor cursorState;
-
-    private void Start()
+    private void OnEnable()
     {
-        inputTerminal.text = "";
         text =
 @"Bienvenu dans W.A.T. v3.2 (Watchtower Anomalies Terminal) Que voulez-vous savoir?
 a
@@ -52,67 +41,57 @@ a
 a";
         StartCoroutine(ShowText());
         inputTerminal.onEndEdit.AddListener(HandleInput);
-
-        brain = FindAnyObjectByType<CinemachineBrain>();
-
-        GameObject playerObj = FindAnyObjectByType<Player>().gameObject;
-        player = playerObj.GetComponent<Player>();
-        cam = camPlayer.GetComponent<MouseLook>();
-        cursorState = FindAnyObjectByType<CheckCursor>();
-
-        isLooking = false;
-    }
-
-    public void Interact()
-    {
-        isLooking = !isLooking;
-        if (isLooking)
-        {
-            cursorState.needCursor++;
-            inputTerminal.ActivateInputField();
-            IsLooking(camPlayer, camTerminal, false);
-            Cursor.lockState = CursorLockMode.Confined;
-        }
     }
 
     private void Update()
     {
-        
-        if (isLooking)
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            inputTerminal.ActivateInputField();
-            if (Input.GetKeyUp(KeyCode.Escape))
-            {
-                IsLooking(camTerminal, camPlayer, true);
-                Cursor.lockState = CursorLockMode.Locked;
-                isLooking = false;
-            }
-        }
-        else
-        {
-            inputTerminal.DeactivateInputField();
+            outputTerminal.text = "Exit command activated.";
+            text = @"Bienvenu dans W.A.T. v3.2 (Watchtower Anomalies Terminal) Que voulez-vous savoir?
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a";
+            StartCoroutine(ShowText());
+            inputTerminal.text = "";
         }
     }
+
     private void HandleInput(string input)
     {
-        if (input.Equals("exit") || Input.GetKeyDown(KeyCode.Escape))
-        {
-            outputTerminal.text += "\nTerminal fermé.";
-            cursorState.needCursor--;
-            return;
-        }
-        else if (Input.GetMouseButtonDown(0) || Input.GetMouseButton(1) || Input.GetMouseButton(2) || Input.GetKeyDown(KeyCode.Escape))
+        if (string.IsNullOrEmpty(input))
         {
             return;
         }
-
 
         string reponse = ProcessCommand(input);
 
         outputTerminal.text = "";
         StartCoroutine(ShowText());
 
-        inputTerminal.text = "";
+        inputTerminal.text = ""; 
+        
     }
 
     private string ProcessCommand(string command)
@@ -217,18 +196,37 @@ CONSEILS -
 
 *Il est également recommandé d’éviter de rester à découvert lorsqu’un False Tree vous traque. Cherchez un abri, comme une cabane, une grotte ou tout autre refuge en attendant que le False Tree perde patience et passe à autre chose.";
 
+            case "exit":
+                return text =
+@"Bienvenu dans W.A.T. v3.2 (Watchtower Anomalies Terminal) Que voulez-vous savoir?
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a";
             default:
                 return text ="Commande [" + command.ToUpper() + "] non reconnue";
         }
-    }
-
-    private void IsLooking(CinemachineCamera camExit, CinemachineCamera camGo, bool state)
-    {
-        player.enabled = false;
-        cam.enabled = false;
-        camGo.enabled = true;
-        camExit.enabled = false;
-        StartCoroutine(CamBlending(state));
     }
 
     IEnumerator ShowText()
@@ -242,17 +240,5 @@ CONSEILS -
         outputTerminal.text += " .";
         yield return new WaitForSeconds(0.5f);
         outputTerminal.text = text;
-    }
-
-    IEnumerator CamBlending(bool state)
-    {
-        while (brain.IsBlending)
-        {
-            yield return null;
-        }
-        yield return new WaitForSeconds(brain.DefaultBlend.Time + 0.05f);
-        GetComponent<BoxCollider>().enabled = state;
-        cam.enabled = state;
-        player.enabled = state;
     }
 }
