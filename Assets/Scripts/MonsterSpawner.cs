@@ -4,36 +4,44 @@ using UnityEngine;
 public class MonsterSpawner : MonoBehaviour
 {
     public float timeMonsterAppear;
-    public Monster[] monstersList;
+    public GameObject[] monstersList;
     public bool isAppear;
+    public bool startHunt = false;
+    [SerializeField] MessageRadioManager radioMessage;
 
-    private void Start()
-    {
-        isAppear = false;
-    }
     private void Update()
     {
+        if (!startHunt)
+        {
+            monstersList[0].SetActive(true);
+            monstersList[0].GetComponent<AudioSource>().Play();
+            startHunt = true;
+        }
+
         if (!isAppear)
         {
-            for (int i = 0; i < monstersList.Length; i++)
-            {
-                if (!monstersList[i].isMonsterActive)
-                {
+            SpawnMonster();
+        }
+    }
 
-                    StartCoroutine(MonsterSpawn(i));
-                    break;
-                }
+    private void SpawnMonster()
+    {
+        for (int i = 0; i < monstersList.Length; i++)
+        {
+            if (!monstersList[i].activeSelf)
+            {
+                StartCoroutine(WaitForTheNextMonster(i));
+                break;
             }
         }
     }
 
-    IEnumerator MonsterSpawn(int index)
+    IEnumerator WaitForTheNextMonster(int index)
     {
         isAppear = true;
         timeMonsterAppear = Random.Range(5, 8);
-        yield return new WaitForSeconds(10);
-        monstersList[index].isMonsterActive = true;
+        yield return new WaitForSeconds(timeMonsterAppear);
+        monstersList[index].SetActive(true);
         isAppear = false;
-        
     }
 }

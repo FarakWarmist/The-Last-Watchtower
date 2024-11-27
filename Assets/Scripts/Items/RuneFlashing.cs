@@ -32,7 +32,7 @@ public class RuneFlashing : MonoBehaviour
                     var hitMonster = hit.collider.GetComponent<Monster>();
                     if (hitMonster != null )
                     {
-                        hitMonster.isMonsterActive = false;
+                        hitMonster.gameObject.SetActive(false);
                     }
 
                     var hitClue = hit.collider.GetComponent<Clue>();

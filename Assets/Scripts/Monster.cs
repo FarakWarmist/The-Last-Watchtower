@@ -4,10 +4,8 @@ using UnityEngine.AI;
 
 public class Monster : MonoBehaviour
 {
-    public bool isMonsterActive;
     public Transform[] windowsLocation;
     public WindowState[] windowsState;
-    MeshRenderer meshRenderer;
     NavMeshAgent monster;
     public Light runeLight;
 
@@ -27,9 +25,8 @@ public class Monster : MonoBehaviour
 
     Transform location;
 
-    private void Start()
+    private void OnEnable()
     {
-        meshRenderer = GetComponent<MeshRenderer>();
         monster = GetComponent<NavMeshAgent>();
 
         lightSwitch = FindAnyObjectByType<LightSwitch>();
@@ -38,7 +35,6 @@ public class Monster : MonoBehaviour
 
         timeToMakeAction = Random.Range(5, 10);
         windowIndex = Random.Range(0, windowsLocation.Length);
-        isMonsterActive = false;
         isTakeAction = false;
 
         location = windowsLocation[windowIndex];
@@ -51,23 +47,12 @@ public class Monster : MonoBehaviour
 
     private void Update()
     {
-        if (isMonsterActive)
-        {
-            meshRenderer.enabled = true;
-        }
-        else
-        {
-            meshRenderer.enabled = false;
-        }
-
         if (playerLocationState.isInside)
         {
 
-            if (lightSwitch.isActive)
+            if (lightSwitch.switchOn)
             {
-                if (isMonsterActive &&
-                        monster.remainingDistance <= monster.stoppingDistance &&
-                        !isTakeAction)
+                if (monster.remainingDistance <= monster.stoppingDistance && !isTakeAction)
                 {
 
                     StartCoroutine(TakeAction(10));
