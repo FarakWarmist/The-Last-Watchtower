@@ -112,7 +112,7 @@ public class Radio : MonoBehaviour, IInteractable
             }
         }
 
-        if (lightSwitch.isActive)
+        if (lightSwitch.switchOn)
         {
             if (radioMessage.message != "")
             {

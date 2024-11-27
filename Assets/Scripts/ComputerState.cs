@@ -71,7 +71,7 @@ public class ComputerState : MonoBehaviour, IInteractable
 
     private void Update()
     {
-        if (lightSwitch.isActive == false)
+        if (lightSwitch.switchOn == false)
         {
             if (isOn)
             {

@@ -93,7 +93,7 @@ public class Sleep : MonoBehaviour, IInteractable
 
         yield return new WaitForSeconds(1.2f);
 
-        lightSwitch.isActive = true;
+        lightSwitch.switchOn = true;
 
         yield return new WaitForSeconds(2.5f);
 

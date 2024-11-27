@@ -2,24 +2,28 @@ using UnityEngine;
 
 public class LightSwitch : MonoBehaviour, IInteractable
 {
-    public bool isActive;
+    public bool switchOn;
     public Light roomLight;
     Animator animator;
+    AudioSource audioSource;
 
     private void Start()
     {
         animator = GetComponent<Animator>();
-        isActive = false;
+        audioSource = GetComponent<AudioSource>();
+        switchOn = false;
     }
 
     public void Interact()
     {
-        isActive = !isActive;
+        switchOn = !switchOn;
+        audioSource.Play();
+
     }
 
     private void Update()
     {
-        roomLight.enabled = isActive;
-        animator.SetBool("Switch", isActive);
+        roomLight.enabled = switchOn;
+        animator.SetBool("Switch", switchOn);
     }
 }
