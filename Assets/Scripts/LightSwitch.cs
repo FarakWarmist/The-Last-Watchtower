@@ -6,6 +6,7 @@ public class LightSwitch : MonoBehaviour, IInteractable
     public Light roomLight;
     Animator animator;
     AudioSource audioSource;
+    [SerializeField] Generator generator;
 
     private void Start()
     {
@@ -16,9 +17,27 @@ public class LightSwitch : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        switchOn = !switchOn;
-        audioSource.Play();
+        Overheated();
 
+        if (generator.energyLevel == 3)
+        {
+            switchOn = !switchOn;
+        }
+        else
+        {
+            switchOn = false;
+        }
+
+        audioSource.Play();
+    }
+
+    private void Overheated()
+    {
+        bool overheated = Random.Range(0f, 1f) <= 0.2f;
+        if (overheated)
+        {
+            generator.energyLevel = 0;
+        }
     }
 
     private void Update()
