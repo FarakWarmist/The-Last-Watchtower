@@ -81,7 +81,6 @@ public class Sleep : MonoBehaviour, IInteractable
         door.isOpen = false;
         SetItemState(true);
         MessageRadioManager radioMessage = FindAnyObjectByType<MessageRadioManager>();
-        radioMessage.messageNum = 1;
 
         yield return new WaitForSeconds(0.4f);
 
@@ -101,6 +100,7 @@ public class Sleep : MonoBehaviour, IInteractable
 
         yield return new WaitForSeconds(0.8f);
 
+        radioMessage.messagePart++;
         camPlayer.enabled = true;
         camTransition.enabled = false;
 

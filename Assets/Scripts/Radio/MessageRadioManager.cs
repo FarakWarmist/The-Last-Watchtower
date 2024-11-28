@@ -21,11 +21,6 @@ public class MessageRadioManager : MonoBehaviour
 
     [SerializeField] GameObject monsters;
 
-    private void Start()
-    {
-        newMessage = true;
-    }
-
     private void Update()
     {
         StartMessage();
@@ -38,7 +33,14 @@ public class MessageRadioManager : MonoBehaviour
             needAnswer = true;
         }
 
-        if (messageNum == 1)
+        if (messageNum == 0)
+        {
+            if (messagePart > 0)
+            {
+                StartCoroutine(NextPart(1, 0));
+            }
+        }
+        else if (messageNum == 1)
         {
             if (messagePart > 24)
             {

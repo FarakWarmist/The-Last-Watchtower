@@ -10,7 +10,6 @@ public class Radio : MonoBehaviour, IInteractable
     public GameObject switchOnOff;
 
     public GameObject messageObj;
-    public GameObject answerObj;
 
     public bool hasMessage;
     public bool isOn;
@@ -24,6 +23,7 @@ public class Radio : MonoBehaviour, IInteractable
     [SerializeField] MouseLook camlook;
     RadioLights radioLights;
     CheckCursor cursorState;
+
 
     public CinemachineCamera camPlayer;
     public CinemachineCamera camRadio;
@@ -53,8 +53,7 @@ public class Radio : MonoBehaviour, IInteractable
 
     private void Update()
     {
-
-        if (!isLooking && radioMessage.newMessage)
+        if (radioMessage.newMessage)
         {
             if (!lightFlashing)
             {
@@ -142,7 +141,6 @@ public class Radio : MonoBehaviour, IInteractable
             else
             {
                 messageObj.SetActive(false);
-                answerObj.SetActive(false);
                 radioLights.RadioRedLightOFF();
             }
 
@@ -170,7 +168,7 @@ public class Radio : MonoBehaviour, IInteractable
 
         if (radioText.messageText.text == radioText.message && radioMessage.needAnswer && radioText.message != "")
         {
-            isOn = true;
+            StartCoroutine(MicroState(true));
         }
         else
         {
@@ -199,5 +197,14 @@ public class Radio : MonoBehaviour, IInteractable
         GetComponent<BoxCollider>().enabled = state;
         camlook.enabled = state;
         player.enabled = state;
+    }
+
+    IEnumerator MicroState(bool microState)
+    {
+        yield return new WaitForSeconds(0.1f);
+        if (radioText.messageText.text == radioText.message)
+        {
+            isOn = microState;
+        }
     }
 }

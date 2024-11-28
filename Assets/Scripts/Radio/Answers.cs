@@ -19,6 +19,8 @@ public class Answers : MonoBehaviour
     public Material materialBrightBlack;
     public float alpha = 0;
 
+    public GameObject canvas;
+
     MessageRadioManager radioMessage;
     Radio radio;
 
@@ -30,7 +32,15 @@ public class Answers : MonoBehaviour
         answerButton1.onClick.AddListener(ChooseAnswerNum1);
         answerBotton2.onClick.AddListener(ChooseAnswerNum2);
 
+        canvas.SetActive(false);
+
         textColor = answerText1.color;
+        textColor.a = 0;
+        answerText1.color = textColor;
+        answerText2.color = textColor;
+
+        materialBrightWhite.SetFloat("_Alpha", 0);
+        materialBrightBlack.SetFloat("_Alpha", 0);
     }
 
     private void Update()
@@ -40,8 +50,6 @@ public class Answers : MonoBehaviour
 
         if (radio.isOn)
         {
-            answerBotton2.enabled = true;
-            answerButton1.enabled = true;
             if (alpha < 1)
             {
                 StartCoroutine(ShowAnswers());
@@ -49,8 +57,6 @@ public class Answers : MonoBehaviour
         }
         else
         {
-            answerBotton2.enabled = false;
-            answerButton1.enabled = false;
             if (alpha > 0)
             {
                 StartCoroutine(HideAnswers());
@@ -115,22 +121,36 @@ public class Answers : MonoBehaviour
 
     public IEnumerator ShowAnswers()
     {
+        canvas.SetActive(true);
+        yield return new WaitForSeconds(0.1f);
+
         while (alpha < 1.1f)
         {
             alpha += Time.deltaTime;
             UpdateAlpha(alpha);
             yield return null;
         }
+        UpdateAlpha(alpha);
+
+        answerBotton2.enabled = true;
+        answerButton1.enabled = true;
     }
 
     public IEnumerator HideAnswers()
     {
+        answerBotton2.enabled = false;
+        answerButton1.enabled = false;
+
         while (alpha > -0.1f)
         {
             alpha -= Time.deltaTime;
             UpdateAlpha(alpha);
             yield return null;
         }
+        UpdateAlpha(alpha);
+
+        yield return new WaitForSeconds(0.1f);
+        canvas.SetActive(false);
     }
 
     private void UpdateAlpha(float newAlpha)
