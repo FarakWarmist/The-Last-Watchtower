@@ -16,15 +16,12 @@ public class Icons : MonoBehaviour
         var camera = Camera.main;
         RaycastHit hitInfo;
 
-        if (Physics.Raycast(camera.transform.position, camera.transform.forward, out hitInfo, 6))
+        if (Physics.Raycast(camera.transform.position, camera.transform.forward, out hitInfo, player.InteractionDistance))
         {
             var hit = hitInfo.collider;
             if (hit.GetComponent<IInteractable>() == null)
             {
-                if (hit.GetComponent<Clue>() != null)
-                { iconIndex = 7; }
-                else
-                { iconIndex = 0; }
+                iconIndex = 0;
             }
             else
             {
@@ -43,9 +40,13 @@ public class Icons : MonoBehaviour
                 else if (hit.GetComponent<LightSwitch>() != null) 
                 { iconIndex = 5; }
 
-                else if (hit.GetComponent<Barricade>() != null)
+                else if (hit.GetComponent<PutPlank>() != null)
                 { iconIndex = 6; }
             }
+        }
+        else
+        {
+            iconIndex = 0;
         }
     }
 }
