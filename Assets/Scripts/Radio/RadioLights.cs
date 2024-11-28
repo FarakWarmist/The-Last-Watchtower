@@ -12,6 +12,8 @@ public class RadioLights : MonoBehaviour
     public Light microRedLight;
     public Light microGreenLight;
 
+    public AudioSource newMessageSound;
+
     internal void RadioRedLightON()
     {
         radioRedBulb.material.EnableKeyword("_EMISSION");
@@ -51,6 +53,7 @@ public class RadioLights : MonoBehaviour
     public IEnumerator RedLightFlashing()
     {
         Radio radio = GetComponent<Radio>();
+        newMessageSound.Play();
         radio.lightFlashing = true;
         radioRedBulb.material.EnableKeyword("_EMISSION");
         radioRedLight.enabled = true;
