@@ -8,15 +8,7 @@ public class DeskDrawer : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        if (!isOpen)
-        {
-            isOpen = true;
-            animator.SetBool(animationBool, isOpen);
-        }
-        else
-        {
-            isOpen = false;
-            animator.SetBool(animationBool, isOpen);
-        }
+        isOpen = !isOpen;
+        animator.SetBool(animationBool, isOpen);
     }
 }
