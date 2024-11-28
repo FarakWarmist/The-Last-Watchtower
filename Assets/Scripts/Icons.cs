@@ -25,7 +25,7 @@ public class Icons : MonoBehaviour
             }
             else
             {
-                if (hit.GetComponent<PickableItem>() != null || hit.GetComponent<PileOfPlanks>() != null)
+                if (hit.GetComponent<PickableItem>() != null || hit.GetComponent<PileOfPlanks>() != null || hit.GetComponent<DeskDrawer>() != null)
                 { iconIndex = 1; }
 
                 else if (hit.GetComponent<Door>() != null || hit.GetComponent<ShedDoor>() != null)
