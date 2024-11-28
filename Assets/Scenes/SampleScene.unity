@@ -982,7 +982,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4471186768934576257, guid: c36822924fa434a4880543dd4d7a24cf, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4726888865489247902, guid: c36822924fa434a4880543dd4d7a24cf, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7052,7 +7052,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   switchOnOff: {fileID: 1909028645}
   messageObj: {fileID: 1057003831}
-  answerObj: {fileID: 1923327399}
   hasMessage: 0
   isOn: 0
   isLooking: 0
@@ -11233,7 +11232,7 @@ Transform:
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.664, y: 26.809, z: -13.66}
+  m_LocalPosition: {x: -1.664, y: 26.809, z: -18.48}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -14763,7 +14762,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4471186768934576257, guid: c36822924fa434a4880543dd4d7a24cf, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4726888865489247902, guid: c36822924fa434a4880543dd4d7a24cf, type: 3}
       propertyPath: m_LocalPosition.x
@@ -18062,7 +18061,7 @@ Transform:
   m_GameObject: {fileID: 1541090786}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.664, y: 26.009, z: -13.66}
+  m_LocalPosition: {x: -1.664, y: 26.009, z: -18.48}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -22528,6 +22527,7 @@ MonoBehaviour:
   materialBrightWhite: {fileID: 2100000, guid: bf64dbbf05ef7034e9721860883f3826, type: 2}
   materialBrightBlack: {fileID: 2100000, guid: 7caacf79719cbd1428b9cbd2150e1ccc, type: 2}
   alpha: 0
+  canvas: {fileID: 641868092}
 --- !u!1001 &1928903683
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25354,6 +25354,10 @@ PrefabInstance:
     - target: {fileID: 4471186768934576257, guid: c36822924fa434a4880543dd4d7a24cf, type: 3}
       propertyPath: m_Name
       value: Monster
+      objectReference: {fileID: 0}
+    - target: {fileID: 4471186768934576257, guid: c36822924fa434a4880543dd4d7a24cf, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4726888865489247902, guid: c36822924fa434a4880543dd4d7a24cf, type: 3}
       propertyPath: m_LocalPosition.x
