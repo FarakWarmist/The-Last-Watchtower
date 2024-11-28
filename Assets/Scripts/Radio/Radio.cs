@@ -7,14 +7,6 @@ using UnityEngine.UI;
 
 public class Radio : MonoBehaviour, IInteractable
 {
-    public MeshRenderer radioRedBulb;
-    public Light radioRedLight;
-
-    public MeshRenderer microRedBulb;
-    public MeshRenderer microGreenBulb;
-    public Light microRedLight;
-    public Light microGreenLight;
-
     public GameObject switchOnOff;
 
     public GameObject messageObj;
@@ -29,7 +21,7 @@ public class Radio : MonoBehaviour, IInteractable
     MessageRadioManager radioMessage;
     RadioText radioText;
     Player player;
-    MouseLook cam;
+    [SerializeField] MouseLook camlook;
     RadioLights radioLights;
     CheckCursor cursorState;
 
@@ -43,7 +35,6 @@ public class Radio : MonoBehaviour, IInteractable
         radioMessage = FindAnyObjectByType<MessageRadioManager>();
         radioText = FindAnyObjectByType<RadioText>();
         player = FindAnyObjectByType<Player>();
-        cam = FindAnyObjectByType<MouseLook>();
         radioLights = GetComponent<RadioLights>();
         cursorState = FindAnyObjectByType<CheckCursor>();
 
@@ -191,7 +182,7 @@ public class Radio : MonoBehaviour, IInteractable
     {
 
         player.enabled = false;
-        cam.enabled = false;
+        camlook.enabled = false;
         camExit.enabled = false;
         camGo.enabled = true;
         StartCoroutine(CamBlending(state));
@@ -206,7 +197,7 @@ public class Radio : MonoBehaviour, IInteractable
         }
         yield return new WaitForSeconds(brain.DefaultBlend.Time + 0.05f);
         GetComponent<BoxCollider>().enabled = state;
-        cam.enabled = state;
+        camlook.enabled = state;
         player.enabled = state;
     }
 }

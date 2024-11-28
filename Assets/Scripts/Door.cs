@@ -17,7 +17,7 @@ public class Door : MonoBehaviour, IInteractable
     public CinemachineCamera playerCam;
 
     CinemachineBrain brain;
-    MouseLook cam;
+    MouseLook camLook;
     Player player;
 
     public KeyCode key;
@@ -30,7 +30,7 @@ public class Door : MonoBehaviour, IInteractable
         isOpen = false;
 
         brain = FindAnyObjectByType<CinemachineBrain>();
-        cam = playerCam.GetComponent<MouseLook>();
+        camLook = FindAnyObjectByType<MouseLook>();
         GameObject playerObj = FindAnyObjectByType<Player>().gameObject;
         player = playerObj.GetComponent<Player>();
     }
@@ -98,7 +98,7 @@ public class Door : MonoBehaviour, IInteractable
     private void IsCheck(CinemachineCamera camExit, CinemachineCamera camGo, IEnumerator action)
     {
         player.enabled = false;
-        cam.enabled = false;
+        camLook.enabled = false;
         camExit.enabled = false;
         camGo.enabled = true;
         StartCoroutine(action);
@@ -111,7 +111,7 @@ public class Door : MonoBehaviour, IInteractable
             yield return null;
         }
         yield return new WaitForSeconds(brain.DefaultBlend.Time + 0.1f);
-        cam.enabled = state;
+        camLook.enabled = state;
         player.enabled = state;
     }
 
@@ -124,7 +124,7 @@ public class Door : MonoBehaviour, IInteractable
         isOpen = open;
 
         yield return new WaitForSeconds(brain.DefaultBlend.Time + 0.1f);
-        cam.enabled = true;
+        camLook.enabled = true;
         player.enabled = true;
     }
 }

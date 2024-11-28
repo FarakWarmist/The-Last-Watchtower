@@ -9,6 +9,7 @@ public class RuneFlashing : MonoBehaviour
     public Light runeLight;
     public Light runeFlash;
     public AudioSource flashAudio;
+    Camera cam;
 
     public AudioClip[] flashSounds;
 
@@ -16,6 +17,7 @@ public class RuneFlashing : MonoBehaviour
 
     private void Update()
     {
+        cam = Camera.main;
 
         ItemsManager itemsManager = FindAnyObjectByType<ItemsManager>();
         if (itemsManager.hasRune)
@@ -27,7 +29,7 @@ public class RuneFlashing : MonoBehaviour
                 StartCoroutine(Flash());
                 RaycastHit hit;
 
-                if (Physics.Raycast(runeLight.transform.position, runeLight.transform.forward, out hit, 6f, ~ignoreWindowLayer))
+                if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, 6f, ~ignoreWindowLayer))
                 {
                     var hitMonster = hit.collider.GetComponent<Monster>();
                     if (hitMonster != null )

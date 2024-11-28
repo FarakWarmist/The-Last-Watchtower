@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
     public CharacterController controller;
+    [SerializeField] Icons icon;
 
     public float speed = 8f;
     float sprintSpeed;
@@ -23,11 +24,6 @@ public class Player : MonoBehaviour
     public bool canMove = true;
 
     public float InteractionDistance = 2f;
-
-    //For Door
-    public float holdBotton = 0.8f;
-    public float holdTime = 0f;
-    public bool isHolding;
 
     private void Start()
     {

@@ -19,7 +19,7 @@ public class Sleep : MonoBehaviour, IInteractable
     public Animator transition;
     public Door door;
     Player player;
-    MouseLook camLook;
+    [SerializeField] MouseLook camLook;
     LightSwitch lightSwitch;
 
     public CinemachineCamera camPlayer;
@@ -33,7 +33,7 @@ public class Sleep : MonoBehaviour, IInteractable
     {
         startRotation = directionalLight.transform.rotation;
         player = FindAnyObjectByType<Player>();
-        camLook = camPlayer.GetComponent<MouseLook>();
+        camLook = FindAnyObjectByType<MouseLook>();
         lightSwitch = FindAnyObjectByType<LightSwitch>();
         //SetItemState(false);
     }

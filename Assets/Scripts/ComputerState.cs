@@ -30,7 +30,7 @@ public class ComputerState : MonoBehaviour, IInteractable
     MenuPause menuPause;
     CinemachineBrain brain;
     Player player;
-    MouseLook cam;
+    MouseLook camLook;
     public CheckCursor cursorState;
 
     public bool isOn;
@@ -51,7 +51,7 @@ public class ComputerState : MonoBehaviour, IInteractable
 
         GameObject playerObj = FindAnyObjectByType<Player>().gameObject;
         player = playerObj.GetComponent<Player>();
-        cam = camPlayer.GetComponent<MouseLook>();
+        camLook = FindAnyObjectByType<MouseLook>();
         cursorState = FindAnyObjectByType<CheckCursor>();
         menuPause = FindAnyObjectByType<MenuPause>();
 
@@ -136,7 +136,7 @@ public class ComputerState : MonoBehaviour, IInteractable
     public void IsLooking(CinemachineCamera camExit, CinemachineCamera camGo, bool state)
     {
         player.enabled = false;
-        cam.enabled = false;
+        camLook.enabled = false;
         camGo.enabled = true;
         camExit.enabled = false;
         StartCoroutine(CamBlending(state));
@@ -150,7 +150,7 @@ public class ComputerState : MonoBehaviour, IInteractable
         }
         yield return new WaitForSeconds(brain.DefaultBlend.Time + 0.05f);
         GetComponent<BoxCollider>().enabled = state;
-        cam.enabled = state;
+        camLook.enabled = state;
         player.enabled = state;
     }
 
