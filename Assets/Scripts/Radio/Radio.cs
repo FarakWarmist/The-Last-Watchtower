@@ -163,6 +163,8 @@ public class Radio : MonoBehaviour, IInteractable
             radioLights.MicroGreenLightOFF();
             radioLights.MicroRedLightOFF();
 
+            radioLights.newMessageSound.Stop();
+
             messageObj.SetActive(false);
         }
 

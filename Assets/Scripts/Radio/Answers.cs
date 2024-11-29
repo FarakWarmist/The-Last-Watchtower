@@ -48,7 +48,7 @@ public class Answers : MonoBehaviour
         answerText1.text = radioMessage.answer1;
         answerText2.text = radioMessage.answer2;
 
-        if (radio.isOn)
+        if (radio.isOn && radio.isLooking)
         {
             if (alpha < 1)
             {
