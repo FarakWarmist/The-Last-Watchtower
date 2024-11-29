@@ -18,14 +18,9 @@ public class MainMenuManager : MonoBehaviour
     public GameObject introText;
     public CheckCursor cursorState;
 
-    private void Start()
+    private void OnEnable()
     {
-        mainMenu.enabled = true;
-        animator.SetBool("Fade", true);
-        Invoke("BlackScreenDisabled", 1f);
-        mainMenuCam.enabled = true;
-        playerCam.enabled = false;
-
+        StartCoroutine(StartMainMenu());
 
         cursorState.needCursor++;
 
@@ -33,6 +28,7 @@ public class MainMenuManager : MonoBehaviour
         optionsButton.onClick.AddListener(OnOptionsButtonClicked);
         quitButton.onClick.AddListener(OnQuitButtonClicked);
     }
+
 
     private void OnPlayButtonClicked()
     {
@@ -55,17 +51,27 @@ public class MainMenuManager : MonoBehaviour
     {
         animator.gameObject.SetActive(false);
     }
+    IEnumerator StartMainMenu()
+    {
+        mainMenuCam.enabled = true;
+        playerCam.enabled = false;
+        yield return new WaitForSeconds(1.3f);
+        mainMenu.enabled = true;
+        animator.SetBool("Fade", false);
+        Invoke("BlackScreenDisabled", 0.3f);
+    }
 
     IEnumerator StartGame()
     {
         cursorState.needCursor--;
         animator.gameObject.SetActive(true);
-        animator.SetBool("Fade", false);
+        animator.SetBool("Fade", true);
         yield return new WaitForSeconds(1f);
         mainMenuCam.enabled = false;
         playerCam.enabled = true;
         mainMenu.enabled = false;
         yield return new WaitForSeconds(2f);
+        animator.SetBool("Fade", false);
         animator.gameObject.SetActive(false);
         introText.SetActive(true);
     }
