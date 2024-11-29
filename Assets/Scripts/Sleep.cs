@@ -28,6 +28,7 @@ public class Sleep : MonoBehaviour, IInteractable
     //Item Interactable
     public GameObject[] items;
     public GameObject rune;
+    [SerializeField] GameObject flashlight;
 
     private void Start()
     {
@@ -36,6 +37,7 @@ public class Sleep : MonoBehaviour, IInteractable
         camLook = FindAnyObjectByType<MouseLook>();
         lightSwitch = FindAnyObjectByType<LightSwitch>();
         //SetItemState(false);
+        flashlight.SetActive(false);
     }
 
     private void Update()
@@ -103,6 +105,7 @@ public class Sleep : MonoBehaviour, IInteractable
         radioMessage.messagePart++;
         camPlayer.enabled = true;
         camTransition.enabled = false;
+        flashlight.SetActive(true);
 
         yield return new WaitForSeconds(0.4f);
         PlayerState(true);
