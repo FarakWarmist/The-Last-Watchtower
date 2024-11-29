@@ -6,8 +6,10 @@ public class Monster : MonoBehaviour
 {
     public Transform[] windowsLocation;
     public WindowState[] windowsState;
-    NavMeshAgent monster;
+    public NavMeshAgent monster;
     public Light runeLight;
+
+    Collider hitBox;
 
     LightSwitch lightSwitch;
     InsideOrOutside playerLocationState;
@@ -28,7 +30,7 @@ public class Monster : MonoBehaviour
     private void OnEnable()
     {
         monster = GetComponent<NavMeshAgent>();
-
+        hitBox = GetComponent<Collider>();
         lightSwitch = FindAnyObjectByType<LightSwitch>();
         playerLocationState = FindAnyObjectByType<InsideOrOutside>();
         player = FindAnyObjectByType<Player>().gameObject.transform;
@@ -49,13 +51,13 @@ public class Monster : MonoBehaviour
     {
         if (playerLocationState.isInside)
         {
-
+            hitBox.isTrigger = true;
             if (lightSwitch.switchOn)
             {
                 if (monster.remainingDistance <= monster.stoppingDistance && !isTakeAction)
                 {
 
-                    StartCoroutine(TakeAction(10));
+                    StartCoroutine(TakeAction(5));
                 }
 
                 if (!monster.SetDestination(location.position))
@@ -71,6 +73,7 @@ public class Monster : MonoBehaviour
         }
         else
         {
+            hitBox.isTrigger =false;
             ChaseThePlayer();
         }
 
@@ -129,7 +132,7 @@ public class Monster : MonoBehaviour
     {
         isTakeAction = true;
         yield return new WaitForSeconds(delay);
-        bool breakTheWindow = Random.Range(0f, 1f) < 0.1f;
+        bool breakTheWindow = Random.Range(0f, 1f) < 0.25f;
         if (breakTheWindow)
         {
             BreakTheWindow();

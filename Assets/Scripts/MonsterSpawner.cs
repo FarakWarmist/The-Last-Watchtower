@@ -39,7 +39,7 @@ public class MonsterSpawner : MonoBehaviour
     IEnumerator WaitForTheNextMonster(int index)
     {
         isAppear = true;
-        timeMonsterAppear = Random.Range(5, 8);
+        timeMonsterAppear = Random.Range(30, 120);
         yield return new WaitForSeconds(timeMonsterAppear);
         monstersList[index].SetActive(true);
         isAppear = false;
