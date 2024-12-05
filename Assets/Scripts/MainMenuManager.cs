@@ -1,7 +1,5 @@
-using System;
 using System.Collections;
 using Unity.Cinemachine;
-using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -17,12 +15,16 @@ public class MainMenuManager : MonoBehaviour
     public Canvas mainMenu;
     public GameObject introText;
     public CheckCursor cursorState;
+    Player player;
 
     private void OnEnable()
     {
+        player = FindAnyObjectByType<Player>();
+        player.enabled = false;
+
         StartCoroutine(StartMainMenu());
 
-        cursorState.needCursor++;
+        
 
         playButton.onClick.AddListener(OnPlayButtonClicked);
         optionsButton.onClick.AddListener(OnOptionsButtonClicked);
@@ -47,10 +49,6 @@ public class MainMenuManager : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(null);
     }
 
-    void BlackScreenDisabled()
-    {
-        animator.gameObject.SetActive(false);
-    }
     IEnumerator StartMainMenu()
     {
         mainMenuCam.enabled = true;
@@ -58,21 +56,20 @@ public class MainMenuManager : MonoBehaviour
         yield return new WaitForSeconds(1.3f);
         mainMenu.enabled = true;
         animator.SetBool("Fade", false);
-        Invoke("BlackScreenDisabled", 0.3f);
+        yield return new WaitForSeconds(0.01f);
+        cursorState.needCursor++;
     }
 
     IEnumerator StartGame()
     {
-        cursorState.needCursor--;
-        animator.gameObject.SetActive(true);
         animator.SetBool("Fade", true);
         yield return new WaitForSeconds(1f);
+        cursorState.needCursor--;
         mainMenuCam.enabled = false;
         playerCam.enabled = true;
         mainMenu.enabled = false;
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
         animator.SetBool("Fade", false);
-        animator.gameObject.SetActive(false);
         introText.SetActive(true);
     }
 }
