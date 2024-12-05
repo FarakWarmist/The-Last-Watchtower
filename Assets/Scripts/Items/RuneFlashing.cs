@@ -1,5 +1,7 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
+using static UnityEngine.Rendering.DebugUI;
 
 public class RuneFlashing : MonoBehaviour
 {
@@ -15,18 +17,35 @@ public class RuneFlashing : MonoBehaviour
 
     public LayerMask ignoreWindowLayer;
 
+    [SerializeField] Image runeIcon;
+    public Sprite[] sprites;
+    public int runeLevel = 5;
+    float timerCount = 0f;
+
     private void Update()
     {
         cam = Camera.main;
+        runeIcon.sprite = sprites[runeLevel];
+        if (runeLevel < 5)
+        {
+            timerCount += Time.deltaTime;
+            runeLevel = Mathf.FloorToInt(timerCount);
+        }
+        else
+        {
+            timerCount = 0f;
+        }
 
         ItemsManager itemsManager = FindAnyObjectByType<ItemsManager>();
         if (itemsManager.hasRune)
         {
             if (Input.GetKeyDown(KeyCode.F) && !isFlashing)
             {
+                runeLevel = 0;
                 flashAudio.clip = flashSounds[Random.Range(0,flashSounds.Length)];
                 flashAudio.Play();
                 StartCoroutine(Flash());
+                
                 RaycastHit hit;
 
                 if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, 6f, ~ignoreWindowLayer))
@@ -44,6 +63,14 @@ public class RuneFlashing : MonoBehaviour
                     }
                 }
             }
+        }
+    }
+
+    private void Recharge()
+    {
+        if (runeLevel < 5)
+        {
+            runeLevel = Mathf.FloorToInt(Time.deltaTime);
         }
     }
 
@@ -91,4 +118,5 @@ public class RuneFlashing : MonoBehaviour
 
         isFlashing = false;
     }
+
 }
