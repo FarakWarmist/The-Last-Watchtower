@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Animations.Rigging;
 
 public class Monster : MonoBehaviour
 {
@@ -9,10 +10,12 @@ public class Monster : MonoBehaviour
     public NavMeshAgent monster;
     public Light runeLight;
 
+
     Collider hitBox;
 
     LightSwitch lightSwitch;
     InsideOrOutside playerLocationState;
+    AimTarget aimTarget;
 
     public bool isTakeAction;
 
@@ -34,6 +37,7 @@ public class Monster : MonoBehaviour
         lightSwitch = FindAnyObjectByType<LightSwitch>();
         playerLocationState = FindAnyObjectByType<InsideOrOutside>();
         player = FindAnyObjectByType<Player>().gameObject.transform;
+        aimTarget = FindAnyObjectByType<AimTarget>();
 
         timeToMakeAction = Random.Range(5, 10);
         windowIndex = Random.Range(0, windowsLocation.Length);
@@ -43,6 +47,7 @@ public class Monster : MonoBehaviour
         monster.transform.position = location.position;
         location.gameObject.SetActive(false);
         monster.SetDestination(location.position);
+
     }
 
 
@@ -55,9 +60,10 @@ public class Monster : MonoBehaviour
             hitBox.isTrigger = true;
             if (lightSwitch.switchOn)
             {
+                aimTarget.isStop = false;
                 if (monster.remainingDistance <= monster.stoppingDistance && !isTakeAction)
                 {
-
+                    gameObject.transform.rotation = location.transform.rotation;
                     StartCoroutine(TakeAction(5));
                 }
 
@@ -87,6 +93,7 @@ public class Monster : MonoBehaviour
         }
         else
         {
+            aimTarget.isStop = false;
             monster.SetDestination(location.position); ;
         }
     }
@@ -99,6 +106,7 @@ public class Monster : MonoBehaviour
         }
         else
         {
+            aimTarget.isStop = false;
             monster.SetDestination(player.position);
         }
     }
@@ -120,6 +128,7 @@ public class Monster : MonoBehaviour
     {
         monster.ResetPath();
         monster.velocity = Vector3.zero;
+        aimTarget.isStop = true;
     }
 
     void MoveToNextWindow()
