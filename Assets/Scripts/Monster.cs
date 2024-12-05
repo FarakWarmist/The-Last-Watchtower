@@ -49,6 +49,7 @@ public class Monster : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log(location.gameObject.name);
         if (playerLocationState.isInside)
         {
             hitBox.isTrigger = true;
@@ -67,8 +68,7 @@ public class Monster : MonoBehaviour
             }
             else
             {
-                monster.ResetPath();
-                monster.velocity = Vector3.zero;
+                MoveWhenNoBeSeen();
             }
         }
         else
@@ -77,6 +77,18 @@ public class Monster : MonoBehaviour
             ChaseThePlayer();
         }
 
+    }
+
+    private void MoveWhenNoBeSeen()
+    {
+        if (IsPlayerLookingAtMonster())
+        {
+            StopChasing();
+        }
+        else
+        {
+            monster.SetDestination(location.position); ;
+        }
     }
 
     private void ChaseThePlayer()
