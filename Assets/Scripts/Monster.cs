@@ -6,10 +6,11 @@ using UnityEngine.Animations.Rigging;
 public class Monster : MonoBehaviour
 {
     public Transform[] windowsLocation;
-    public WindowState[] windowsState;
+    public GameObject[] windowsTarget;
     public NavMeshAgent monster;
     public Light runeLight;
 
+    Animator animator;
 
     Collider hitBox;
 
@@ -29,6 +30,7 @@ public class Monster : MonoBehaviour
     public float verticalViewAngle = 30f;
 
     Transform location;
+    Transform target;
 
     private void OnEnable()
     {
@@ -39,6 +41,8 @@ public class Monster : MonoBehaviour
         player = FindAnyObjectByType<Player>().gameObject.transform;
         aimTarget = FindAnyObjectByType<AimTarget>();
 
+        animator = GetComponent<Animator>();
+
         timeToMakeAction = Random.Range(5, 10);
         windowIndex = Random.Range(0, windowsLocation.Length);
         isTakeAction = false;
@@ -48,37 +52,52 @@ public class Monster : MonoBehaviour
         location.gameObject.SetActive(false);
         monster.SetDestination(location.position);
 
+        StartCoroutine(TakeAction(2));
     }
-
-
 
     private void Update()
     {
+        target = windowsTarget[windowIndex].gameObject.transform;
         Debug.Log(location.gameObject.name);
         if (playerLocationState.isInside)
         {
+            if (monster.remainingDistance <= monster.stoppingDistance)
+            {
+                animator.SetBool("Walk", false);
+                RotateTowardsWindow(target);
+
+                if (!isTakeAction)
+                {
+                    StartCoroutine(TakeAction(5));
+                }
+            }
+            else
+            {
+                animator.SetBool("Walk", true);
+            }
+
             hitBox.isTrigger = true;
             if (lightSwitch.switchOn)
             {
+                animator.speed = 1;
                 aimTarget.isStop = false;
-                if (monster.remainingDistance <= monster.stoppingDistance && !isTakeAction)
-                {
-                    gameObject.transform.rotation = location.transform.rotation;
-                    StartCoroutine(TakeAction(5));
-                }
+
 
                 if (!monster.SetDestination(location.position))
                 {
                     monster.SetDestination(location.position);
                 }
+                
             }
             else
             {
                 MoveWhenNoBeSeen();
             }
+            animator.SetBool("FollowPlayer", false);
         }
         else
         {
+            animator.SetBool("FollowPlayer", true);
             hitBox.isTrigger =false;
             ChaseThePlayer();
         }
@@ -93,8 +112,7 @@ public class Monster : MonoBehaviour
         }
         else
         {
-            aimTarget.isStop = false;
-            monster.SetDestination(location.position); ;
+            StartChasing(location.position);
         }
     }
 
@@ -106,8 +124,7 @@ public class Monster : MonoBehaviour
         }
         else
         {
-            aimTarget.isStop = false;
-            monster.SetDestination(player.position);
+            StartChasing(player.position);
         }
     }
 
@@ -124,11 +141,19 @@ public class Monster : MonoBehaviour
         return horizontalAngle < horizontalViewAngle / 2f && isInVerticalFieldOfView;
     }
 
+    private void StartChasing(Vector3 destination)
+    {
+        aimTarget.isStop = false;
+        monster.SetDestination(destination);
+        animator.speed = 1;
+    }
+
     private void StopChasing()
     {
         monster.ResetPath();
         monster.velocity = Vector3.zero;
         aimTarget.isStop = true;
+        animator.speed = 0;
     }
 
     void MoveToNextWindow()
@@ -137,6 +162,7 @@ public class Monster : MonoBehaviour
         location.gameObject.SetActive(true);
         location = windowsLocation[windowIndex];
         location.gameObject.SetActive(false);
+        animator.SetBool("Walk", true);
 
         monster.SetDestination(location.position);
     }
@@ -145,8 +171,15 @@ public class Monster : MonoBehaviour
     {
         if (monster.remainingDistance <= monster.stoppingDistance)
         {
-            windowsState[windowIndex].BreakTheWindow();
+            windowsTarget[windowIndex].GetComponent<WindowState>().BreakTheWindow();
         }
+    }
+
+    void RotateTowardsWindow(Transform target)
+    {
+        Vector3 lookDirection = new Vector3(target.position.x - transform.position.x, 0, target.position.z - transform.position.z);
+        Quaternion lookRotation = Quaternion.LookRotation(lookDirection);
+        transform.rotation = Quaternion.Euler(0, lookRotation.eulerAngles.y, 0);
     }
 
     public IEnumerator TakeAction(float delay)
