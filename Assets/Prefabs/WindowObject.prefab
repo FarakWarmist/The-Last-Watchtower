@@ -31,6 +31,52 @@ Transform:
   m_Children: []
   m_Father: {fileID: 9199794016587285013}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4464720723122601346
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3587716628867008148}
+  - component: {fileID: 1842272050193693248}
+  m_Layer: 7
+  m_Name: WindowTarget
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3587716628867008148
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4464720723122601346}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1, y: 2.144, z: 0.096}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 9199794016587285013}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1842272050193693248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4464720723122601346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8526289d9b9328846a550ea33b7b62db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isBroken: 0
+  brokenWindow: {fileID: 45170199597093104}
 --- !u!1 &5962893002765506649
 GameObject:
   m_ObjectHideFlags: 0
@@ -94,6 +140,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 3587716628867008148}
   - {fileID: 4943131580732583301}
   - {fileID: 2794524022357940054}
   - {fileID: 876775166585544283}
@@ -284,10 +331,6 @@ PrefabInstance:
       propertyPath: window
       value: 
       objectReference: {fileID: 45170199597093104}
-    - target: {fileID: 7761901427721796517, guid: 25fdd5e58f1b3b9438376d610782b7c7, type: 3}
-      propertyPath: windowState
-      value: 
-      objectReference: {fileID: 1649384239889862218}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -541,10 +584,6 @@ PrefabInstance:
       propertyPath: window
       value: 
       objectReference: {fileID: 45170199597093104}
-    - target: {fileID: 6897482989297250889, guid: d92b725d83045df4a93e139619a9a6ea, type: 3}
-      propertyPath: windowState
-      value: 
-      objectReference: {fileID: 1649384239889862218}
     - target: {fileID: 7090028960404225653, guid: d92b725d83045df4a93e139619a9a6ea, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -691,35 +730,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 5485d0d2bec07b14ea8b977880f3c0f1, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1649384239889862218}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5485d0d2bec07b14ea8b977880f3c0f1, type: 3}
 --- !u!4 &4943131580732583301 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5485d0d2bec07b14ea8b977880f3c0f1, type: 3}
   m_PrefabInstance: {fileID: 4833275574189935214}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &5751755705298515775 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 5485d0d2bec07b14ea8b977880f3c0f1, type: 3}
-  m_PrefabInstance: {fileID: 4833275574189935214}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1649384239889862218
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5751755705298515775}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8526289d9b9328846a550ea33b7b62db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isBroken: 0
-  brokenWindow: {fileID: 45170199597093104}
 --- !u!1001 &7505499846497624368
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -904,10 +921,6 @@ PrefabInstance:
       propertyPath: window
       value: 
       objectReference: {fileID: 45170199597093104}
-    - target: {fileID: 7032966480100561512, guid: f892209384f838b4b962a8753b3d6b89, type: 3}
-      propertyPath: windowState
-      value: 
-      objectReference: {fileID: 1649384239889862218}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
