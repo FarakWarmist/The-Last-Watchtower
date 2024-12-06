@@ -4,7 +4,7 @@ using UnityEngine;
 public class Generator : MonoBehaviour, IInteractable
 {
     [SerializeField] LightSwitch lightSwitch;
-    public int energyLevel = 3;
+    public int energyLevel = 0;
 
     [SerializeField] AudioSource startingGenerator;
     public AudioClip tryStart;

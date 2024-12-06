@@ -23,7 +23,7 @@ public class Radio : MonoBehaviour, IInteractable
     [SerializeField] MouseLook camlook;
     RadioLights radioLights;
     CheckCursor cursorState;
-
+    Sleep sleep;
 
     public CinemachineCamera camPlayer;
     public CinemachineCamera camRadio;
@@ -37,17 +37,25 @@ public class Radio : MonoBehaviour, IInteractable
         player = FindAnyObjectByType<Player>();
         radioLights = GetComponent<RadioLights>();
         cursorState = FindAnyObjectByType<CheckCursor>();
+        sleep = FindAnyObjectByType<Sleep>();
 
         isOn = false;
     }
     public void Interact()
     {
-        isLooking = !isLooking;
-        if (isLooking)
+        if (!sleep.isDay)
         {
-            boxCollider.enabled = false;
-            IsLooking(camPlayer, camRadio, false);
-            cursorState.needCursor++;
+            isLooking = !isLooking;
+            if (isLooking)
+            {
+                boxCollider.enabled = false;
+                IsLooking(camPlayer, camRadio, false);
+                cursorState.needCursor++;
+            } 
+        }
+        else
+        {
+            sleep.CanNotUseItem();
         }
     }
 

@@ -20,12 +20,12 @@ public class Sleep : MonoBehaviour, IInteractable
     public Door door;
     Player player;
     [SerializeField] MouseLook camLook;
-    LightSwitch lightSwitch;
+
+    CharacterText characterText;
 
     public CinemachineCamera camPlayer;
     public CinemachineCamera camTransition;
 
-    //Item Interactable
     public GameObject[] items;
     public GameObject rune;
     [SerializeField] GameObject flashlight;
@@ -35,8 +35,7 @@ public class Sleep : MonoBehaviour, IInteractable
         startRotation = directionalLight.transform.rotation;
         player = FindAnyObjectByType<Player>();
         camLook = FindAnyObjectByType<MouseLook>();
-        lightSwitch = FindAnyObjectByType<LightSwitch>();
-        //SetItemState(false);
+        characterText = FindAnyObjectByType<CharacterText>();
         flashlight.SetActive(false);
     }
 
@@ -81,7 +80,6 @@ public class Sleep : MonoBehaviour, IInteractable
 
         isDay = false;
         door.isOpen = false;
-        SetItemState(true);
         MessageRadioManager radioMessage = FindAnyObjectByType<MessageRadioManager>();
 
         yield return new WaitForSeconds(0.4f);
@@ -92,11 +90,7 @@ public class Sleep : MonoBehaviour, IInteractable
 
         isSleeping = true;
 
-        yield return new WaitForSeconds(1.2f);
-
-        lightSwitch.switchOn = true;
-
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(3.7f);
 
         Transition(true);
 
@@ -105,12 +99,18 @@ public class Sleep : MonoBehaviour, IInteractable
         radioMessage.messagePart++;
         camPlayer.enabled = true;
         camTransition.enabled = false;
-        flashlight.SetActive(true);
 
         yield return new WaitForSeconds(0.4f);
         PlayerState(true);
         Transition(false);
+        flashlight.SetActive(true);
         isSleeping = false;
+
+        yield return new WaitForSeconds(1f);
+        characterText.enabled = true;
+        characterText.newText =
+@"On dirait qu'il n'y a pas d'électricité.
+Peut-être il y a une génératrice dans le cabanon.";
     }
 
     private void PlayerState(bool state)
@@ -124,12 +124,10 @@ public class Sleep : MonoBehaviour, IInteractable
         transition.SetBool("Fade", state);
     }
 
-    private void SetItemState(bool state)
+    public void CanNotUseItem()
     {
-        foreach (GameObject item in items)
-        {
-            item.GetComponent<BoxCollider>().enabled = state;
-        }
-        rune.SetActive(state);
+        characterText.enabled = true;
+        characterText.newText =
+@"J'ai vraiment besoin de dormir maintenant.";
     }
 }

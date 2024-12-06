@@ -32,6 +32,7 @@ public class ComputerState : MonoBehaviour, IInteractable
     Player player;
     MouseLook camLook;
     public CheckCursor cursorState;
+    Sleep sleep;
 
     public bool isOn;
     bool buttonPressed;
@@ -54,18 +55,26 @@ public class ComputerState : MonoBehaviour, IInteractable
         camLook = FindAnyObjectByType<MouseLook>();
         cursorState = FindAnyObjectByType<CheckCursor>();
         menuPause = FindAnyObjectByType<MenuPause>();
+        sleep = FindAnyObjectByType<Sleep>();
 
         isLooking = false;
     }
 
     public void Interact()
     {
-        isLooking = !isLooking;
-        if (isLooking)
+        if (!sleep.isDay)
         {
+            isLooking = !isLooking;
+            if (isLooking)
+            {
 
-            IsLooking(camPlayer, camTerminal, false);
-            cursorState.needCursor++;
+                IsLooking(camPlayer, camTerminal, false);
+                cursorState.needCursor++;
+            } 
+        }
+        else
+        {
+            sleep.CanNotUseItem();
         }
     }
 

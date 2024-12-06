@@ -19,6 +19,7 @@ public class Door : MonoBehaviour, IInteractable
     CinemachineBrain brain;
     MouseLook camLook;
     Player player;
+    CharacterText characterText;
 
     public KeyCode key;
 
@@ -33,12 +34,11 @@ public class Door : MonoBehaviour, IInteractable
         camLook = FindAnyObjectByType<MouseLook>();
         GameObject playerObj = FindAnyObjectByType<Player>().gameObject;
         player = playerObj.GetComponent<Player>();
+        characterText = FindAnyObjectByType<CharacterText>();
     }
 
     public void Interact()
     {
-        
-
         if (!isOpen)
         {
             if (!isLocked)
@@ -55,7 +55,10 @@ public class Door : MonoBehaviour, IInteractable
             }
             else
             {
-                Debug.Log("Is Lock");
+                characterText.enabled = true;
+                characterText.newText =
+@"Je dois trouver les symboles pour débarrer ce verrou.
+Peut-être que la lettre peut m'aider à les trouver.";
             }
         }
         else

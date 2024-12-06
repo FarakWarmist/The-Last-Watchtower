@@ -7,12 +7,17 @@ public class LightSwitch : MonoBehaviour, IInteractable
     Animator animator;
     AudioSource audioSource;
     [SerializeField] Generator generator;
+    Sleep sleep;
+    CharacterText characterText;
 
     private void Start()
     {
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
         switchOn = false;
+
+        sleep = FindAnyObjectByType<Sleep>();
+        characterText = GetComponent<CharacterText>();
     }
 
     public void Interact()
@@ -26,6 +31,13 @@ public class LightSwitch : MonoBehaviour, IInteractable
         else
         {
             switchOn = false;
+            if (!sleep.isDay)
+            {
+                characterText.enabled = true;
+                characterText.newText =
+@"Il n'y a plus d'énergie.
+J'ai besoin de repartir la génératrice.";
+            }
         }
 
         audioSource.Play();

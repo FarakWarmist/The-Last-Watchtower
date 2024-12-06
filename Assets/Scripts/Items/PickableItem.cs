@@ -7,21 +7,29 @@ public class PickableItem : MonoBehaviour, IInteractable
     public void Interact()
     {
         ItemsManager itemsManager = FindAnyObjectByType<ItemsManager>();
+        Sleep sleep = FindAnyObjectByType<Sleep>();
 
-        switch (item.name)
+        if (!sleep.isDay)
         {
-            case "Hammer":
-                itemsManager.InteractWithItem(ref itemsManager.hasHammer, itemsManager.viewHammer, item);
-                break;
-            case "Rune":
-                itemsManager.InteractWithItem(ref itemsManager.hasRune, itemsManager.viewRune, item);
-                break;
-            case "ShedKey":
-                itemsManager.InteractWithItem(ref itemsManager.hasShedKey, itemsManager.viewShedKey, item);
-                break;
-            default:
-                Debug.Log("ERROR");
-                break;
+            switch (item.name)
+            {
+                case "Hammer":
+                    itemsManager.InteractWithItem(ref itemsManager.hasHammer, itemsManager.viewHammer, item);
+                    break;
+                case "Rune":
+                    itemsManager.InteractWithItem(ref itemsManager.hasRune, itemsManager.viewRune, item);
+                    break;
+                case "ShedKey":
+                    itemsManager.InteractWithItem(ref itemsManager.hasShedKey, itemsManager.viewShedKey, item);
+                    break;
+                default:
+                    Debug.Log("ERROR");
+                    break;
+            } 
+        }
+        else
+        {
+            sleep.CanNotUseItem();
         }
     }
 }

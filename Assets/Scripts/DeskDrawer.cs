@@ -8,7 +8,16 @@ public class DeskDrawer : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        isOpen = !isOpen;
-        animator.SetBool(animationBool, isOpen);
+        Sleep sleep = FindAnyObjectByType<Sleep>();
+
+        if (!sleep.isDay)
+        {
+            isOpen = !isOpen;
+            animator.SetBool(animationBool, isOpen); 
+        }
+        else
+        {
+            sleep.CanNotUseItem();
+        }
     }
 }

@@ -22,6 +22,8 @@ public class IntroTexte : MonoBehaviour
     [SerializeField] TMP_Text morganDialogue;
     [SerializeField] TMP_Text eronDialogue;
 
+    [SerializeField] CharacterText characterText;
+
     Color color = Color.black;
     Color textColor = Color.white;
     public float timeToFade = 1.3f;
@@ -160,6 +162,11 @@ public class IntroTexte : MonoBehaviour
             yield return null;
         }
         part2.SetActive(false);
+        yield return new WaitForSeconds(2f);
+        characterText.enabled = true;
+        characterText.newText =
+@"Enfin arrivé !
+Il n'y a pas de retour possible maintenant.";
         yield return new WaitForSeconds(0.1f);
         gameObject.SetActive(false);
     }

@@ -8,25 +8,35 @@ public class PileOfPlanks : MonoBehaviour, IInteractable
     public AudioClip[] audioClips;
     AudioSource audioSource;
 
+    Sleep sleep;
+
     private void Start()
     {
         itemsManager = FindAnyObjectByType<ItemsManager>();
         audioSource = GetComponent<AudioSource>();
+        sleep = FindAnyObjectByType<Sleep>();
     }
 
     public void Interact()
     {
-        if (!itemsManager.hasPlank)
+        if (!sleep.isDay)
         {
-            audioSource.clip = audioClips[0];
-            audioSource.Play();
-            PlankState(true);
+            if (!itemsManager.hasPlank)
+            {
+                audioSource.clip = audioClips[0];
+                audioSource.Play();
+                PlankState(true);
+            }
+            else
+            {
+                audioSource.clip = audioClips[1];
+                audioSource.Play();
+                PlankState(false);
+            } 
         }
         else
         {
-            audioSource.clip = audioClips[1];
-            audioSource.Play();
-            PlankState(false);
+            sleep.CanNotUseItem();
         }
     }
 
