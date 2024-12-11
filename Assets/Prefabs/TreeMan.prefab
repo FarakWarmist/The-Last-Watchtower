@@ -53,6 +53,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 2500478ee79d70b4dad3c78c093b5409, type: 3}
   - {fileID: 8300000, guid: b925b686adf98a94fa8588242f74f466, type: 3}
   thisMonster: {fileID: 48195931268189758}
+  wait: 0.15
 --- !u!82 &3628974397580388077
 AudioSource:
   m_ObjectHideFlags: 0
@@ -75,7 +76,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 6
+  MaxDistance: 15
   Pan2D: 0
   rolloffMode: 2
   BypassEffects: 0
@@ -85,8 +86,8 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0
-      value: 1
+      time: 0.33333015
+      value: 1.0980606
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -1656,18 +1657,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  windowsState:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  windowsTarget: []
   monster: {fileID: 0}
   runeLight: {fileID: 0}
   isTakeAction: 0
