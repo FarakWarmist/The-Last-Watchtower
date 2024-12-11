@@ -1961,7 +1961,7 @@ MonoBehaviour:
   answerNum: 0
   messageNum: 0
   messagePart: 0
-  nextPath: 0
+  nextPath: 1
   monsters: {fileID: 474222674}
 --- !u!1 &89954155
 GameObject:
@@ -8185,6 +8185,10 @@ PrefabInstance:
       propertyPath: m_Data.m_SourceObjects.m_Item0.transform
       value: 
       objectReference: {fileID: 736818034}
+    - target: {fileID: 3628974397580388077, guid: 834c36d623f5de640987f33a969bdf55, type: 3}
+      propertyPath: rolloffCustomCurve.m_Curve.Array.data[0].time
+      value: 0.33333015
+      objectReference: {fileID: 0}
     - target: {fileID: 4741673435058504209, guid: 834c36d623f5de640987f33a969bdf55, type: 3}
       propertyPath: m_Name
       value: TreeMan (2)
@@ -8481,6 +8485,14 @@ PrefabInstance:
       propertyPath: m_Data.m_SourceObjects.m_Item0.transform
       value: 
       objectReference: {fileID: 736818034}
+    - target: {fileID: 3628974397580388077, guid: 834c36d623f5de640987f33a969bdf55, type: 3}
+      propertyPath: rolloffCustomCurve.m_Curve.Array.data[0].time
+      value: 0.33333015
+      objectReference: {fileID: 0}
+    - target: {fileID: 3628974397580388077, guid: 834c36d623f5de640987f33a969bdf55, type: 3}
+      propertyPath: rolloffCustomCurve.m_Curve.Array.data[0].value
+      value: 1.0980606
+      objectReference: {fileID: 0}
     - target: {fileID: 4741673435058504209, guid: 834c36d623f5de640987f33a969bdf55, type: 3}
       propertyPath: m_Name
       value: TreeMan (1)
@@ -14372,7 +14384,7 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 375
   m_RenderingLayerMask: 1
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
@@ -17382,6 +17394,7 @@ MonoBehaviour:
   switchOn: 0
   roomLight: {fileID: 1562316534}
   generator: {fileID: 1765247422}
+  characterText: {fileID: 49397958}
 --- !u!65 &1116980538
 BoxCollider:
   m_ObjectHideFlags: 0
