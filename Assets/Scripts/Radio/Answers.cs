@@ -69,19 +69,39 @@ public class Answers : MonoBehaviour
         {
             switch (radioMessage.messagePart)
             {
-                case 2:
+                case 2: // A
                     radioMessage.messagePart += 1;
                     break;
-                case 4:
+                case 4: // B
                     radioMessage.messagePart += 1;
                     break;
-                case 12:
+                case 12: // C
                     radioMessage.messagePart += 1;
                     break;
-                case 21f:
+                case 21f: // D
                     radioMessage.messagePart += 1f;
                     radioMessage.nextPath = 2;
                     break;
+            }
+        }
+        else if (radioMessage.messageNum == 2)
+        {
+            switch (radioMessage.messagePart)
+            {
+                case 1f: // A
+                    radioMessage.messagePart += 1;
+                    break;
+                case 10: // B
+                    radioMessage.messagePart += 1;
+                    break;
+                case 11: // C
+                    radioMessage.messagePart += 5;
+                    break;
+                case 18: // D
+                    radioMessage.messagePart += 1;
+                    radioMessage.nextPath = 3;
+                    break;
+
             }
         }
         ResetAnswers();
@@ -94,18 +114,37 @@ public class Answers : MonoBehaviour
         {
             switch (radioMessage.messagePart)
             {
-                case 2f:
+                case 2f: // A
                     radioMessage.messagePart += 1;
                     break;
-                case 4f:
+                case 4f: // B
                     radioMessage.messagePart += 4;
                     break;
-                case 12f:
+                case 12f: // C
                     radioMessage.messagePart += 6.1f;
                     break;
-                case 21f:
+                case 21f: // D
                     radioMessage.messagePart += 1f;
                     radioMessage.nextPath = 666;
+                    break;
+            }
+        }
+        else if (radioMessage.messageNum == 2)
+        {
+            switch (radioMessage.messagePart)
+            {
+                case 1f: // A
+                    radioMessage.messagePart += 1;
+                    break;
+                case 10: // B
+                    radioMessage.messagePart += 8;
+                    break;
+                case 11: // C
+                    radioMessage.messagePart += 1;
+                    break;
+                case 18: // D
+                    radioMessage.messagePart += 1;
+                    radioMessage.nextPath = 4;
                     break;
             }
         }

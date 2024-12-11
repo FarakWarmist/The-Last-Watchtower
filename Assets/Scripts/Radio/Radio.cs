@@ -71,11 +71,6 @@ public class Radio : MonoBehaviour, IInteractable
 
         if (isLooking)
         {
-            if (radioMessage.newMessage)
-            {
-                radioMessage.newMessage = false;
-            }
-
             if (Input.GetKeyDown(KeyCode.S))
             {
                 boxCollider.enabled = true;
@@ -124,6 +119,11 @@ public class Radio : MonoBehaviour, IInteractable
                         {
                             StartCoroutine(radioText.ShowText());
                         }
+                    }
+
+                    if (radioMessage.newMessage)
+                    {
+                        radioMessage.newMessage = false;
                     }
                 }
                 else

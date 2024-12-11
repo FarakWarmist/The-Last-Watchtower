@@ -9,7 +9,7 @@ public class MessageRadioManager : MonoBehaviour
     public string answer1;
     public string answer2;
 
-    public bool hasListen;
+    public bool hasListen = false;
     public bool newMessage;
     public bool needAnswer;
 
@@ -17,7 +17,7 @@ public class MessageRadioManager : MonoBehaviour
     public int answerNum;
     public int messageNum = 0;
     public float messagePart = 0;
-    public int nextPath = 0;
+    public int nextPath = 1;
 
     [SerializeField] GameObject monsters;
 
@@ -37,15 +37,27 @@ public class MessageRadioManager : MonoBehaviour
         {
             if (messagePart > 0)
             {
-                StartCoroutine(NextPart(1, 0));
+                StartCoroutine(NextPart(0.01f));
             }
         }
         else if (messageNum == 1)
         {
             if (messagePart > 24)
             {
-                StartCoroutine(NextPart(nextPath, Random.Range(60f, 120f)));
+                StartCoroutine(NextPart(1));
                 monsters.SetActive(true);
+            }
+        }
+        else if (messageNum == 2)
+        {
+            if (messagePart == 15)
+            {
+                messagePart = 18;
+            }
+
+            if (messagePart > 21)
+            {
+                StartCoroutine(NextPart(5));
             }
         }
     }
@@ -62,21 +74,21 @@ public class MessageRadioManager : MonoBehaviour
                 case 1:
                     message = @"J'ai perdu mon groupe et j'aurais besoin d'un coup de main.";
                     break;
-                case 2:
+                case 2: // A
                     message = @"Par pitié ! Est-ce que quelqu'un m'entend?";
                     answer1 = @"Oui! Je suis là?";
                     answer2 = @"Qu'est-ce qui ce passe?";
                     break;
-                // Answer 1 & 2
+                // Answer 1A & 2A
                 case 3f:
                     message = @"Ho mon Dieu! Ça l'a marcher !";
                     break;
-                case 4f:
+                case 4f: // B
                     message = @"Hum, pardon. Je suis Alex, explorateur de 2ème grade, et je me retrouve dans une situation compliqué.";
                     answer1 = @"Je suis Éron... le nouveau Watcher";
                     answer2 = @"Que c'est-il passé?";
                     break;
-                // Answer 1
+                // Answer 1B
                 case 5f:
                     message = @"Enchanté Ér.. Attend! Un Watcher?!";
                     break;
@@ -86,7 +98,7 @@ public class MessageRadioManager : MonoBehaviour
                 case 7f:
                     message = @"Je ne vais pas me plaindre. Un Watcher est exactement ce qu'il me faut !";
                     break;
-                // Answer 2
+                // Answer 2B
                 case 8f:
                     message = @"Moi et mon groupe avons été pris en embuscade par un Rooted Priest et ses Rooted Ghouls.";
                     break;
@@ -99,12 +111,12 @@ public class MessageRadioManager : MonoBehaviour
                 case 11f:
                     message = @"Mais si tu es dans une tour, ça voudrait dire que tu devrais en avoir une!";
                     break;
-                case 12f:
+                case 12f: // C
                     message = @"Avant qu'on se lance là-dedans, connais-tu la fonction d'un Watcher?";
                     answer1 = @"En faite, je suis nouveau.";
                     answer2 = @"Pas d'inquiétude là-dessus.";
                     break;
-                // Answer 1
+                // Answer 1C
                 case 13f:
                     message = @"Pas de problème, je te résume tout ça.";
                     break;
@@ -123,7 +135,7 @@ public class MessageRadioManager : MonoBehaviour
                 case 18f:
                     message = @"Maintenant que tout est expliquer, temps de se mettre au travail.";
                     break;
-                // Answer 2
+                // Answer 2C
                 case 18.1f:
                     message = @"Bien, ça me rassure.";
                     break;
@@ -133,11 +145,12 @@ public class MessageRadioManager : MonoBehaviour
                 case 20f:
                     message = @"Fis toi à la carte et indique moi le chemin vers le camps le plus proche.";
                     break;
-                case 21f:
+                case 21f: // D
                     message = @"N'oublie pas : Sud-Est, Arbre à 3 Troncs, Rocher avec Spiralle et Ruine. Quel direction je devrais prendre?";
                     answer1 = @"Nord-Est";
                     answer2 = @"Sud-Ouest";
                     break;
+                // Answer 1D & 2D
                 case 22f:
                     message = @"Merci chef, tu me sauves la vie!";
                     break;
@@ -157,10 +170,105 @@ public class MessageRadioManager : MonoBehaviour
             switch (messagePart)
             {
                 case 0:
-                    message = @"Nous somme dans la seconde partie.";
+                    message = @"C'est encore moi, Watcher.";
                     break;
-                case 1:
-                    message = @"E";
+                case 1: // A
+                    message = @"Tout vas bien de ton côté?";
+                    answer1 = @"C'est quoi ces choses à l'extérieur?";
+                    answer2 = @"J'ai eu de la visite.";
+                    break;
+                // Answer 1A & 2A
+                case 2:
+                    message = @"Tu a du rencontrer des Rooted Ghouls.";
+                    break;
+                case 3:
+                    message = @"Ces choses sont les esclaves des Rooted Priests. Des gens comme toi et moi qui ont eu le malheur de se retrouver transformer en... ça.";
+                    break;
+                case 4:
+                    message = @"Tu pourras trouver plus d'info sur ton Terminal.";
+                    break;
+                case 5:
+                    message = @"Ne les laisse pas te tourmanté. Ils essaient de te déstabiliser pour frapper au bon moment.";
+                    break;
+                case 6:
+                    message = @"Assure-toi juste de fréquemment regarder s'il y en a dans les alentours et les chasser.";
+                    break;
+                case 7:
+                    message = @"Et ne les laisse surtout pas renter dans la tour, ou tu finiras probablement comme eux.";
+                    break;
+                case 8:
+                    message = @"Maintenant, c'est moi qui aurait besoin de tes conseils.";
+                    break;
+                case 9:
+                    message = @"J'ai suivis le chemin que tu m'as dit sans difficulté. Mais je commence à entendre des sons qui n'annoncent rien de bon.";
+                    break;
+                case 10: // B
+                    message = @"Je viens de passer à côté d'un ancien... labo, je pense. Quel chemin je devrais prendre?";
+                    answer1 = @"Hum... Mauvaise nouvelle.";
+                    answer2 = @"...";
+                    break;
+                // Answer 1B
+                case 11: // C
+                    message = @"Quoi. Quoi! Qu'est-ce qu'il y a?";
+                    answer1 = @"Heu... Non, rien. Fausse alerte.";
+                    answer2 = @"Les deux chemin sont... non recommandé.";
+                    break;
+                // Answer 2C
+                case 12:
+                    message = @"Merde!";
+                    break;
+                case 13:
+                    message = @"...";
+                    break;
+                case 14:
+                    message = @"Bon, pas le choix. Je me réfère à toi, Watcher.";
+                    break;
+                // Answer 1C
+                case 16:
+                    message = @"...";
+                    break;
+                case 17:
+                    message = @"Hum... Ok?";
+                    break;
+                // Answer 2B
+                case 18: // D
+                    message = @"Alors? Quel chemin devrais-je prendre?";
+                    answer1 = @"Gauche.";
+                    answer2 = @"Droite.";
+                    break;
+                // Answer 1D & 2D
+                case 19:
+                    message = @"Très bien. C'est partie !";
+                    break;
+                case 20:
+                    message = @"Je te contacte dans un momment.";
+                    break;
+                case 21:
+                    message = @"Courage Watcher !";
+                    break;
+                default:
+                    message = "";
+                    break;
+            }
+        }
+        else if (messageNum == 3)
+        {
+            switch (messagePart)
+            {
+                case 0:
+                    message = @"Gauche.";
+                    break;
+                default:
+                    message = "";
+                    break;
+            }
+        }
+        else if (messageNum == 4)
+        {
+            switch (messagePart)
+            {
+                case 0:
+                    message = @"Droite.";
                     break;
                 default:
                     message = "";
@@ -181,10 +289,10 @@ public class MessageRadioManager : MonoBehaviour
         }
     }
 
-    IEnumerator NextPart(int nextPart, float time)
+    IEnumerator NextPart(float time)
     {
         yield return new WaitForSeconds(time);
-        messageNum = nextPart;
+        messageNum = nextPath;
         messagePart = 0;
         newMessage = true;
         hasListen = false;
