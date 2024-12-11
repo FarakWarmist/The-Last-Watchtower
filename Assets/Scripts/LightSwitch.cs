@@ -8,21 +8,23 @@ public class LightSwitch : MonoBehaviour, IInteractable
     AudioSource audioSource;
     [SerializeField] Generator generator;
     Sleep sleep;
-    CharacterText characterText;
+    [SerializeField] CharacterText characterText;
 
     private void Start()
     {
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
-        switchOn = false;
+        switchOn = true;
 
         sleep = FindAnyObjectByType<Sleep>();
-        characterText = GetComponent<CharacterText>();
     }
 
     public void Interact()
     {
-        Overheated();
+        if (switchOn)
+        {
+            Overheated();
+        }
 
         if (generator.energyLevel == 3)
         {
@@ -49,6 +51,7 @@ J'ai besoin de repartir la génératrice.";
         if (overheated)
         {
             generator.energyLevel = 0;
+            switchOn = false;
         }
     }
 
