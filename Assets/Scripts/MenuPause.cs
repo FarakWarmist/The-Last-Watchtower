@@ -4,8 +4,6 @@ using UnityEngine.UI;
 
 public class MenuPause : MonoBehaviour
 {
-    [SerializeField] AudioMixerGroup masterVolumeGroup;
-    [SerializeField] Slider masterVolumeSlider;
     [SerializeField] GameObject menuPause;
     public bool isActif = false;
 
@@ -30,10 +28,5 @@ public class MenuPause : MonoBehaviour
         }
 
         Time.timeScale = isActif ? 0 : 1;
-    }
-
-    public void OnMasterVolumeUpdate()
-    {
-        masterVolumeGroup.audioMixer.SetFloat("Volume", masterVolumeSlider.value);
     }
 }

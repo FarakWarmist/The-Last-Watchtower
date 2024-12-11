@@ -76,7 +76,15 @@ AudioMixerController:
   m_SuspendThreshold: -80
   m_EnableSuspend: 1
   m_UpdateMode: 0
-  m_ExposedParameters: []
+  m_ExposedParameters:
+  - guid: 8c2419f6ed5bd3946a3efbfe690dd1e9
+    name: Ambiant
+  - guid: 4e92638b20897a14d85d72b185c0d2a5
+    name: MasterVolume
+  - guid: 6921c5cc55ec2ae4faff4afbefc009f0
+    name: Music
+  - guid: 3b414fb50f6b8824d9bad65de4c7ad09
+    name: SoundEffects
   m_AudioMixerGroupViews:
   - guids:
     - 28f39b1d56d86cd44b985e292911d5d5
@@ -131,7 +139,8 @@ AudioMixerSnapshotController:
   m_Name: Snapshot
   m_AudioMixer: {fileID: 24100000}
   m_SnapshotID: dc19a6d444f784a4ba3dd99fef95a678
-  m_FloatValues: {}
+  m_FloatValues:
+    4e92638b20897a14d85d72b185c0d2a5: 0.13552584
   m_TransitionOverrides: {}
 --- !u!243 &4159349873166335605
 AudioMixerGroupController:
@@ -151,7 +160,7 @@ AudioMixerGroupController:
   m_UserColorIndex: 0
   m_Mute: 0
   m_Solo: 0
-  m_BypassEffects: 0
+  m_BypassEffects: 1
 --- !u!243 &4738477480915039985
 AudioMixerGroupController:
   m_ObjectHideFlags: 0

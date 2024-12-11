@@ -183,6 +183,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 3140374648780602776, guid: 25fdd5e58f1b3b9438376d610782b7c7, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 4738477480915039985, guid: fe8c6d15927f4b141a609f6638138eca, type: 2}
     - target: {fileID: 3213663174271753942, guid: 25fdd5e58f1b3b9438376d610782b7c7, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -580,6 +584,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 2277627446303749236, guid: d92b725d83045df4a93e139619a9a6ea, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 4738477480915039985, guid: fe8c6d15927f4b141a609f6638138eca, type: 2}
     - target: {fileID: 6897482989297250889, guid: d92b725d83045df4a93e139619a9a6ea, type: 3}
       propertyPath: window
       value: 
@@ -745,6 +753,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 876775166585544283}
     m_Modifications:
+    - target: {fileID: 2429999741784708181, guid: f892209384f838b4b962a8753b3d6b89, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 4738477480915039985, guid: fe8c6d15927f4b141a609f6638138eca, type: 2}
     - target: {fileID: 2529708612819119958, guid: f892209384f838b4b962a8753b3d6b89, type: 3}
       propertyPath: m_Layer
       value: 7

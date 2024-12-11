@@ -10,10 +10,12 @@ public class MainMenuManager : MonoBehaviour
     public Button playButton;
     public Button optionsButton;
     public Button quitButton;
+    public Button backButton;
     public CinemachineCamera mainMenuCam;
     public CinemachineCamera playerCam;
     public Animator animator;
     public Canvas mainMenu;
+    public Canvas settings;
     public GameObject introText;
     public CheckCursor cursorState;
     Player player;
@@ -25,11 +27,10 @@ public class MainMenuManager : MonoBehaviour
 
         StartCoroutine(StartMainMenu());
 
-        
-
         playButton.onClick.AddListener(OnPlayButtonClicked);
         optionsButton.onClick.AddListener(OnOptionsButtonClicked);
         quitButton.onClick.AddListener(OnQuitButtonClicked);
+        backButton.onClick.AddListener(OnBackButtonClicked);
     }
 
 
@@ -41,12 +42,22 @@ public class MainMenuManager : MonoBehaviour
     private void OnOptionsButtonClicked()
     {
         Debug.Log("Options");
+        mainMenu.enabled = false;
+        settings.enabled = true;
         EventSystem.current.SetSelectedGameObject(null);
     }
 
     private void OnQuitButtonClicked()
     {
         Debug.Log("Quit");
+        EventSystem.current.SetSelectedGameObject(null);
+    }
+
+    private void OnBackButtonClicked()
+    {
+        Debug.Log("Back");
+        mainMenu.enabled = true;
+        settings.enabled = false;
         EventSystem.current.SetSelectedGameObject(null);
     }
 
