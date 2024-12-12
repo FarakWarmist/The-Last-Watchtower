@@ -19,6 +19,8 @@ public class MessageRadioManager : MonoBehaviour
     public float messagePart = 0;
     public int nextPath = 1;
 
+    public float time;
+
     [SerializeField] GameObject monsters;
 
     private void Update()
@@ -165,7 +167,7 @@ public class MessageRadioManager : MonoBehaviour
                     break;
             }
         }
-        else if (messageNum == 2)
+        else if (messageNum == 2) // Nord-Est
         {
             switch (messagePart)
             {
@@ -238,7 +240,7 @@ public class MessageRadioManager : MonoBehaviour
                     break;
                 // Answer 1D & 2D
                 case 19:
-                    message = @"Très bien. C'est partie !";
+                    message = @"Très bien. C'est partie!";
                     break;
                 case 20:
                     message = @"Je te contacte dans un momment.";
@@ -251,19 +253,72 @@ public class MessageRadioManager : MonoBehaviour
                     break;
             }
         }
-        else if (messageNum == 3)
+        else if (messageNum == 3) // Gauche
         {
             switch (messagePart)
             {
-                case 0:
-                    message = @"Gauche.";
+                case 0: // A
+                    message = @"Hé, buddy! Toujours en un seul morceaux?";
+                    answer1 = @"Yep! Besoin de mon aide?";
+                    answer2 = @"Il me resque que ma tête, mais tout roule.";
+                    break;
+                // Answer A1
+                case 0.1f:
+                    message = @"Ho! Non, non. C'est juste que...";
+                    break;
+                // Answer A2
+                case 0.2f:
+                    message = @"Ha ha ! C'est qu'il a de l'humour le nouveau.";
+                    break;
+                case 1f:
+                    message = @"Se retrouver seul dans cette forêt maudite, avec tout ces bruits qui n'ont rien de rassurant, commence à gruger ma santé mentale.";
+                    break;
+                case 2:
+                    message = @"Je commence même à avoir la sérieuse sensation que quelque chose m'observe depuis un moment...";
+                    break;
+                case 3: // B
+                    message = @"Alors si je n'ai personne à qui parler, je sens que je vais peter un cable.";
+                    answer1 = @"Je comprend. Je suis là au besoin.";
+                    answer2 = @"...";
+                    break;
+                case 4: // B1
+                    message = @"Merci l'ami.";
+                    break;
+                case 5: // B2
+                    message = @"Tu sais, ce n'est pas la première fois que je suis séparé de mon groupe. Ça fait partie du métier d'Explorateur après tout.";
+                    break;
+                case 6:
+                    message = @"Mais se retrouver tout seul et en pleine nuit, c'est une première.";
+                    break;
+                case 7:
+                    message = @"On ne contait pas rester plus tard que le coucher du soleil, mais...";
+                    break;
+                case 8:
+                    message = @"On a trouver ce centre de recherche. C'était quoi déjà le nom?... C'était un truc comme ""Wonder-""...";
+                    break;
+                case 9:
+                    message = @"""WonderLife""! C'est ça! On y a trouvez des documents à propos d'une entité surnommée la ""Dryádos"" qui semblait être un des sujet de test du centre.";
+                    break;
+                case 10:
+                    message = @"L'entité semblait ne vouloir intéragir qu'avec les enfants. Ne leur parlant et se manifestant uniquement que lorsqu'ils étaient seul avec elle.";
+                    break;
+                case 11:
+                    message = @"Les documents m'entionnait la présence de six enfants qui servaient à comprendre un peu mieux les intentions et agissement de l'entité.";
+                    break;
+                case 12:
+                    message = @"Mais il y a eu un accident au centre qui a causé la perte de ...";
+                    break;
+                case 13:
+                    message = @"...";
+                    answer1 = @"Alex?...";
+                    answer2 = @"Tout va bien?";
                     break;
                 default:
                     message = "";
                     break;
             }
         }
-        else if (messageNum == 4)
+        else if (messageNum == 4) // Droite
         {
             switch (messagePart)
             {
