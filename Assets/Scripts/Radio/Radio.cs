@@ -8,9 +8,10 @@ using UnityEngine.UI;
 public class Radio : MonoBehaviour, IInteractable
 {
     public GameObject switchOnOff;
-
+    public GameObject timeBarObj;
     public GameObject messageObj;
 
+    public bool timerOn;
     public bool hasMessage;
     public bool isOn;
     public bool isLooking = false;
@@ -61,12 +62,18 @@ public class Radio : MonoBehaviour, IInteractable
 
     private void Update()
     {
+
         if (radioMessage.newMessage)
         {
             if (!lightFlashing)
             {
                 StartCoroutine(radioLights.RedLightFlashing());
             }
+        }
+
+        if (radioMessage.time > 0)
+        {
+            timerOn = true;
         }
 
         if (isLooking)
@@ -176,13 +183,25 @@ public class Radio : MonoBehaviour, IInteractable
             messageObj.SetActive(false);
         }
 
-        if (radioText.messageText.text == radioText.message && radioMessage.needAnswer && radioText.message != "")
+        if (radioText.messageText.text == radioText.message && radioText.message != "")
         {
-            StartCoroutine(MicroState(true));
-        }
-        else
-        {
-            isOn = false;
+            if (radioMessage.needAnswer)
+            {
+                StartCoroutine(MicroState(true));
+            }
+            else
+            {
+                isOn = false;
+            }
+
+            if(timerOn)
+            {
+                timeBarObj.SetActive(true);
+            }
+            else
+            { 
+                timeBarObj.SetActive(false); 
+            }
         }
     }
 

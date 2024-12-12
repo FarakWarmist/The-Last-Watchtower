@@ -104,7 +104,9 @@ public class Answers : MonoBehaviour
 
             }
         }
+        radio.timerOn = false;
         ResetAnswers();
+        ResetTimeLimit();
         EventSystem.current.SetSelectedGameObject(null);
     }
 
@@ -148,6 +150,31 @@ public class Answers : MonoBehaviour
                     break;
             }
         }
+        radio.timerOn = false;
+        ResetAnswers();
+        ResetTimeLimit();
+        EventSystem.current.SetSelectedGameObject(null);
+    }
+
+    public void TimeOut()
+    {
+        if (radioMessage.messageNum == 1)
+        {
+            switch (radioMessage.messagePart)
+            {
+                case 2: // A
+                    radioMessage.messagePart += 1;
+                    break;
+                case 4: // B
+                    radioMessage.messagePart += 1;
+                    break;
+            }
+        }
+        else if (radioMessage.messageNum == 2)
+        {
+
+        }
+        ResetTimeLimit();
         ResetAnswers();
         EventSystem.current.SetSelectedGameObject(null);
     }
@@ -156,6 +183,11 @@ public class Answers : MonoBehaviour
     {
         radioMessage.answer1 = "";
         radioMessage.answer2 = "";
+    }
+    
+    void ResetTimeLimit()
+    {
+        radioMessage.time = 0;
     }
 
     public IEnumerator ShowAnswers()
