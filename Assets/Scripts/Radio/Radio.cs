@@ -62,6 +62,26 @@ public class Radio : MonoBehaviour, IInteractable
 
     private void Update()
     {
+        if (radioText.messageText.text == radioText.message && radioText.message != "")
+        {
+            if (radioMessage.needAnswer)
+            {
+                StartCoroutine(MicroState(true));
+            }
+            else
+            {
+                isOn = false;
+            }
+
+            if (timerOn)
+            {
+                timeBarObj.SetActive(true);
+            }
+            else
+            {
+                timeBarObj.SetActive(false);
+            }
+        }
 
         if (radioMessage.newMessage)
         {
@@ -85,7 +105,7 @@ public class Radio : MonoBehaviour, IInteractable
                 IsLooking(camRadio, camPlayer, true);
                 cursorState.needCursor--;
             }
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.E) && !radioMessage.isDead)
             {
                 radioText.MessageState();
                 if (!radioMessage.newMessage)
@@ -98,8 +118,11 @@ public class Radio : MonoBehaviour, IInteractable
                     {
                         if (!radioMessage.needAnswer)
                         {
+                            timerOn = false;
+
                             if (radioMessage.messagePart % 1 == 0)
                             {
+                                
                                 ++radioMessage.messagePart;
                             }
                             else
@@ -183,26 +206,7 @@ public class Radio : MonoBehaviour, IInteractable
             messageObj.SetActive(false);
         }
 
-        if (radioText.messageText.text == radioText.message && radioText.message != "")
-        {
-            if (radioMessage.needAnswer)
-            {
-                StartCoroutine(MicroState(true));
-            }
-            else
-            {
-                isOn = false;
-            }
-
-            if(timerOn)
-            {
-                timeBarObj.SetActive(true);
-            }
-            else
-            { 
-                timeBarObj.SetActive(false); 
-            }
-        }
+        
     }
 
     private void IsLooking(CinemachineCamera camExit, CinemachineCamera camGo, bool state)
