@@ -19,10 +19,15 @@ public class Answers : MonoBehaviour
     public Material materialBrightBlack;
     public float alpha = 0;
 
+    float speedTransition = 5f;
+
+    public bool isShowed;
+
     public GameObject canvas;
 
     MessageRadioManager radioMessage;
     Radio radio;
+    [SerializeField] TimeBar timeBar;
 
     private void Start()
     {
@@ -45,27 +50,29 @@ public class Answers : MonoBehaviour
 
     private void Update()
     {
-        answerText1.text = radioMessage.answer1;
-        answerText2.text = radioMessage.answer2;
+        if (radioMessage.answer1 != "")
+        {
+            UpdateTexteAnswer(); 
+        }
 
         if (radio.isOn && radio.isLooking)
         {
-            if (alpha < 1)
+            if (!isShowed)
             {
                 StartCoroutine(ShowAnswers());
             }
         }
-        else
-        {
-            if (alpha > 0)
-            {
-                StartCoroutine(HideAnswers());
-            }
-        }
     }
+
+    private void UpdateTexteAnswer()
+    {
+        answerText1.text = radioMessage.answer1;
+        answerText2.text = radioMessage.answer2;
+    }
+
     public void ChooseAnswerNum1()
     {
-        if (radioMessage.messageNum == 1)
+        if (radioMessage.messageNum == 1)//Start
         {
             switch (radioMessage.messagePart)
             {
@@ -84,7 +91,7 @@ public class Answers : MonoBehaviour
                     break;
             }
         }
-        else if (radioMessage.messageNum == 2)
+        else if (radioMessage.messageNum == 2)//Nord-Est
         {
             switch (radioMessage.messagePart)
             {
@@ -101,12 +108,59 @@ public class Answers : MonoBehaviour
                     radioMessage.messagePart += 1;
                     radioMessage.nextPath = 3;
                     break;
-
+            }
+        }
+        else if (radioMessage.messageNum == 3)//Gauche
+        {
+            switch (radioMessage.messagePart)
+            {
+                case 0: // A
+                    radioMessage.messagePart += 0.1f;
+                    break;
+                case 3: // B
+                    radioMessage.messagePart += 1;
+                    break;
+                case 13: // C
+                    radioMessage.messagePart += 1;
+                    break;
+                case 15: // D
+                    radioMessage.messagePart += 1;
+                    break;
+                case 17: // E
+                    radioMessage.messagePart += 26.1f;
+                    break;
+                case 18: // F
+                    radioMessage.messagePart += 1;
+                    break;
+                case 21: // G
+                    radioMessage.messagePart += 1;
+                    break;
+                case 23: // H
+                    radioMessage.messagePart += 20.2f;
+                    break;
+                case 25: // I
+                    radioMessage.messagePart += 19.1f;
+                    break;
+                case 27: // J
+                    radioMessage.messagePart += 1;
+                    break;
+                case 31: // K
+                    radioMessage.messagePart += 3;
+                    break;
+                case 35: // L
+                    radioMessage.messagePart += 6;
+                    break;
+                case 36: // M
+                    radioMessage.messagePart += 1;
+                    break;
+                case 39: // N
+                    radioMessage.messagePart += 0.1f;
+                    radioMessage.nextPath = 666;
+                    break;
             }
         }
         radio.timerOn = false;
         ResetAnswers();
-        ResetTimeLimit();
         EventSystem.current.SetSelectedGameObject(null);
     }
 
@@ -150,54 +204,152 @@ public class Answers : MonoBehaviour
                     break;
             }
         }
+        else if (radioMessage.messageNum == 3)//Gauche
+        {
+            switch (radioMessage.messagePart)
+            {
+                case 0: // A
+                    radioMessage.messagePart += 0.2f;
+                    break;
+                case 3: // B
+                    radioMessage.messagePart += 2;
+                    break;
+                case 13: // C
+                    radioMessage.messagePart += 1;
+                    break;
+                case 15: // D
+                    radioMessage.messagePart += 1;
+                    break;
+                case 17: // E
+                    radioMessage.messagePart += 1;
+                    break;
+                case 18: // F
+                    radioMessage.messagePart += 5;
+                    break;
+                case 21: // G
+                    radioMessage.messagePart += 1;
+                    break;
+                case 23: // H
+                    radioMessage.messagePart += 1;
+                    break;
+                case 25: // I
+                    radioMessage.messagePart += 1;
+                    break;
+                case 27: // J
+                    radioMessage.messagePart += 16.1f;
+                    break;
+                case 31: // K
+                    radioMessage.messagePart += 1;
+                    break;
+                case 35: // L
+                    radioMessage.messagePart += 1;
+                    break;
+                case 36: // M
+                    radioMessage.messagePart += 4.2f;
+                    break;
+                case 39: // N
+                    radioMessage.messagePart += 1.1f;
+                    break;
+            }
+        }
         radio.timerOn = false;
         ResetAnswers();
-        ResetTimeLimit();
         EventSystem.current.SetSelectedGameObject(null);
     }
 
     public void TimeOut()
     {
-        if (radioMessage.messageNum == 1)
+        if (radioMessage.messageNum == 3)
         {
             switch (radioMessage.messagePart)
             {
-                case 2: // A
+                case 13: // C
                     radioMessage.messagePart += 1;
                     break;
-                case 4: // B
+                case 14: 
                     radioMessage.messagePart += 1;
+                    break;
+                case 15: // D
+                    radioMessage.messagePart += 28.1f;
+                    break;
+                case 17: // E
+                    radioMessage.messagePart += 26.1f;
+                    break;
+                case 18: // F
+                    radioMessage.messagePart += 25.1f;
+                    break;
+                case 19:
+                    radioMessage.messagePart += 1;
+                    break;
+                case 20:
+                    radioMessage.messagePart += 1;
+                    break;
+                case 21: // G
+                    radioMessage.messagePart += 22.1f;
+                    break;
+                case 22:
+                    radioMessage.messagePart += 1;
+                    break;
+                case 23: // H
+                    radioMessage.messagePart += 20.1f;
+                    break;
+                case 24:
+                    radioMessage.messagePart += 1;
+                    break;
+                case 25: // I
+                    radioMessage.messagePart += 18.1f;
+                    break;
+                case 26:
+                    radioMessage.messagePart += 1;
+                    break;
+                case 27: // J
+                    radioMessage.messagePart += 16.1f;
+                    break;
+                case 28:
+                    radioMessage.messagePart += 1;
+                    break;
+                case 29:
+                    radioMessage.messagePart += 1;
+                    break;
+                case 35: // L
+                    radioMessage.messagePart += 6;
+                    break;
+                case 36: // M
+                    radioMessage.messagePart += 4.2f;
+                    break;
+                case 37:
+                    radioMessage.messagePart += 1;
+                    break;
+                case 38:
+                    radioMessage.messagePart += 1;
+                    break;
+                case 39: // N
+                    radioMessage.messagePart += 1.1f;
                     break;
             }
         }
-        else if (radioMessage.messageNum == 2)
-        {
-
-        }
-        ResetTimeLimit();
+        radio.timerOn = false;
         ResetAnswers();
         EventSystem.current.SetSelectedGameObject(null);
     }
 
     void ResetAnswers()
     {
+        radioMessage.time = 0;
         radioMessage.answer1 = "";
         radioMessage.answer2 = "";
-    }
-    
-    void ResetTimeLimit()
-    {
-        radioMessage.time = 0;
+        StartCoroutine(HideAnswers());
     }
 
     public IEnumerator ShowAnswers()
     {
+        isShowed = true;
         canvas.SetActive(true);
         yield return new WaitForSeconds(0.1f);
 
         while (alpha < 1.1f)
         {
-            alpha += Time.deltaTime;
+            alpha += speedTransition * Time.deltaTime;
             UpdateAlpha(alpha);
             yield return null;
         }
@@ -214,7 +366,7 @@ public class Answers : MonoBehaviour
 
         while (alpha > -0.1f)
         {
-            alpha -= Time.deltaTime;
+            alpha -= speedTransition * Time.deltaTime;
             UpdateAlpha(alpha);
             yield return null;
         }
@@ -222,6 +374,7 @@ public class Answers : MonoBehaviour
 
         yield return new WaitForSeconds(0.1f);
         canvas.SetActive(false);
+        isShowed = false;
     }
 
     private void UpdateAlpha(float newAlpha)
