@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class Flashligh : MonoBehaviour
+public class Flashlight : MonoBehaviour
 {
     [SerializeField] GameObject lightObj;
     public AudioClip[] interactSounds;
