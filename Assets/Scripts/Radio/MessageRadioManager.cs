@@ -82,6 +82,18 @@ public class MessageRadioManager : MonoBehaviour
                 messagePart = 51;
             }
         }
+        else if (messageNum == 666)
+        {
+            if (messagePart > 0 && messagePart < 6)
+            {
+                isDead = true;
+            }
+            if (messagePart == 6)
+            {
+                gameOver.AlexIsDead();
+                messagePart = 7;
+            }
+        }
     }
 
     public void StartMessage()
@@ -322,10 +334,10 @@ public class MessageRadioManager : MonoBehaviour
                     message = @"""WonderLife""! C'est ça! On y a trouvez des documents à propos d'une entité surnommée la ""Dryádos"" qui semblait être un des sujet de test du centre.";
                     break;
                 case 10:
-                    message = @"L'entité semblait ne vouloir intéragir qu'avec les enfants. Ne leur parlant et se manifestant uniquement que lorsqu'ils étaient seul avec elle.";
+                    message = @"L'entité semblait rétissant à l'idée d'intéragir avec les membre du centre.";
                     break;
                 case 11:
-                    message = @"Les documents m'entionnait la présence de six enfants qui servaient à comprendre un peu mieux les intentions et agissement de l'entité.";
+                    message = @"Les documents m'entionnait qu'ils ont utilisés six enfants pour servir de communication entre elle et les chercheurs.";
                     break;
                 case 12:
                     message = @"Mais il y a eu un accident au centre qui a causé la perte de ...";
@@ -554,8 +566,30 @@ public class MessageRadioManager : MonoBehaviour
         {
             switch (messagePart)
             {
-                case 0:
-                    message = @"Mauvais chemin.";
+                case 0: // A
+                    message = @"...";
+                    answer1 = @"Allo?";
+                    answer2 = @"Alex?";
+                    break;
+                // Answer A1 & A2
+                case 1:
+                    message = "...";
+                    break;
+                case 2: // B
+                    message = "Ha... ha ha ha... ";
+                    answer1 = @"Qui êtes vous?";
+                    answer2 = @"Où est Alex?";
+                    break;
+                // Answer B1 & B2
+                case 3:
+                    message = "...";
+                    break;
+                case 4:
+                    message = "Mauvais choix, Watcher.";
+                    break;
+                case 5:
+                    message = @"(Bip)...";
+                    time = 5;
                     break;
                 default:
                     message = "";
