@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class TimeBar : MonoBehaviour
 {
     public Slider timeBarSlider;
+    public Canvas canvas;
     public float timeLimit;
     
     public bool isAppeared;
@@ -19,19 +20,26 @@ public class TimeBar : MonoBehaviour
 
     private void OnEnable()
     {
-        alpha = 0;
         transition = false;
         isAppeared = false;
-        timeLimit = messageRadio.time;
-        timeBarSlider.maxValue = timeLimit;
-        timeBarSlider.value = timeLimit;
+        alpha = 0;
+        StartCoroutine(EnableTimeBar());
+    }
+
+    private void OnDisable()
+    {
+        transition = false;
+        isAppeared = false;
+        canvas.enabled = false;
+        alpha = 0;
+        messageRadio.time = 0;
     }
 
     private void Update()
     {
         if (!isAppeared)
         {
-            if(!transition)
+            if (!transition)
             {
                 StartCoroutine(ShowTimeBar());
             }
@@ -51,7 +59,18 @@ public class TimeBar : MonoBehaviour
                     StartCoroutine(HideTimeBar());
                 }
             }
-        }
+        } 
+    }
+
+    IEnumerator EnableTimeBar()
+    {
+        yield return new WaitForSeconds(0.01f);
+        materialBrightWhite.SetFloat("_Alpha", alpha);
+        timeLimit = messageRadio.time;
+        timeBarSlider.maxValue = timeLimit;
+        timeBarSlider.value = timeLimit;
+        yield return new WaitForSeconds(0.01f);
+        canvas.enabled = true;
     }
 
     public IEnumerator ShowTimeBar()
@@ -59,7 +78,7 @@ public class TimeBar : MonoBehaviour
         transition = true;
         yield return new WaitForSeconds(0.1f);
 
-        while (alpha < 1.1f)
+        while (alpha < 0.8f)
         {
             alpha += Time.deltaTime;
             materialBrightWhite.SetFloat("_Alpha", alpha);
