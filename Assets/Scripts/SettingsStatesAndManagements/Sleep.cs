@@ -77,7 +77,8 @@ public class Sleep : MonoBehaviour, IInteractable
         PlayerState(false);
 
         yield return new WaitForSeconds(0.8f);
-
+        camPlayer.enabled = false;
+        camTransition.enabled = true;
         isDay = false;
         door.isOpen = false;
         MessageRadioManager radioMessage = FindAnyObjectByType<MessageRadioManager>();
