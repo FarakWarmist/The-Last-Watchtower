@@ -21,6 +21,9 @@ public class MessageRadioManager : MonoBehaviour
     public int nextPath = 1;
 
     public float time;
+    public float shortTime = 8f;
+    public float mediumTime = 20f;
+    public float longTime = 60f;
 
     [SerializeField] GameObject monsters;
     [SerializeField] GameOver gameOver;
@@ -82,6 +85,39 @@ public class MessageRadioManager : MonoBehaviour
                 messagePart = 51;
             }
         }
+        else if (messageNum == 4)
+        {
+            if (messagePart == 6)
+            {
+                messagePart = 13;
+            }
+
+            if (messagePart == 41)
+            {
+                messagePart = 50.1f;
+            }
+
+            if (messagePart == 43)
+            {
+                messagePart = 60f;
+            }
+
+            if (messagePart > 43 && messagePart < 50)
+            {
+                isDead = true;
+            }
+
+            if (messagePart > 50 && messagePart < 59)
+            {
+                isDead = true;
+            }
+
+            if (messagePart == 50 || messagePart == 59)
+            {
+                gameOver.AlexIsDead();
+                messagePart = 60;
+            }
+        }
         else if (messageNum == 666)
         {
             if (messagePart > 0 && messagePart < 6)
@@ -130,17 +166,20 @@ public class MessageRadioManager : MonoBehaviour
                     message = @"Je pensait que la dernière Tour avait avait été détruite.";
                     break;
                 case 7f:
-                    message = @"Je ne vais pas me plaindre. Un Watcher est exactement ce qu'il me faut !";
+                    message = @"Je ne vais pas me plaindre.
+Un Watcher est exactement ce qu'il me faut !";
                     break;
                 // Answer 2B
                 case 8f:
                     message = @"Moi et mon groupe avons été pris en embuscade par un Rooted Priest et ses Rooted Ghouls.";
                     break;
                 case 9f:
-                    message = @"Dans la panique, on a été séparé. J'ai réussit à trouver refuge dans une Ruine où j'ai trouver cette radio avec les reste d'un Explorateur malchanceux.";
+                    message = @"Dans la panique, on a été séparé.
+J'ai réussit à trouver refuge dans une Ruine où j'ai trouver cette radio avec les reste d'un Explorateur malchanceux.";
                     break;
                 case 10f:
-                    message = @"L'un de mes collèges avait la carte. Et sans repère, autant dire que je suis mort.";
+                    message = @"L'un de mes collèges avait la carte.
+Et sans repère, autant dire que je suis mort.";
                     break;
                 case 11f:
                     message = @"Mais si tu es dans une tour, ça voudrait dire que tu devrais en avoir une!";
@@ -158,13 +197,15 @@ public class MessageRadioManager : MonoBehaviour
                     message = @"Dans un moment, je vais te donner des points de repère afin que tu me localise sur la carte.";
                     break;
                 case 15f:
-                    message = @"Une fois fait, tu dois me ramener au Camp le plus près en me dirigeant dans la bonne direction.";
+                    message = @"Une fois fait, tu dois m'indiquer le chemin vers le Camp le plus près.
+Et il n'y a pas de retour possible, alors soit sûr de toi.";
                     break;
                 case 16f:
                     message = @"Je risque aussi d'avoir besoin de ton aide si je rencontre des anomalies";
                     break;
                 case 17f:
-                    message = @"Tu devrais avoir un terminal à ta porter. Utilise le pour m'indiquer comment m'en sauver.";
+                    message = @"Tu devrais avoir un terminal à ta porter.
+Utilise le pour m'indiquer comment m'en sauver.";
                     break;
                 case 18f:
                     message = @"Maintenant que tout est expliquer, temps de se mettre au travail.";
@@ -174,13 +215,15 @@ public class MessageRadioManager : MonoBehaviour
                     message = @"Bien, ça me rassure.";
                     break;
                 case 19f:
-                    message = @"Durant l'attque, j'ai couru Sud-Est. J'ai croisé un arbre à 3 troncs, un rocher avec une spiralle et je me suis abrité dans une Ruine.";
+                    message = @"Durant l'attque, j'ai couru Sud-Est.
+J'ai croisé un arbre à 3 troncs, un rocher avec une spiralle et je me suis abrité dans une Ruine.";
                     break;
                 case 20f:
                     message = @"Fis toi à la carte et indique moi le chemin vers le camps le plus proche.";
                     break;
                 case 21f: // D
-                    message = @"N'oublie pas : Sud-Est, Arbre à 3 Troncs, Rocher avec Spiralle et Ruine. Quel direction je devrais prendre?";
+                    message = @"N'oublie pas : Sud-Est, Arbre à 3 Troncs, Rocher avec Spiralle et Ruine.
+Quel direction je devrais prendre?";
                     answer1 = @"Nord-Est";
                     answer2 = @"Sud-Ouest";
                     break;
@@ -189,10 +232,11 @@ public class MessageRadioManager : MonoBehaviour
                     message = @"Merci chef, tu me sauves la vie!";
                     break;
                 case 23f:
-                    message = @"Je te rappelle dans un moment. En attendant, fait attention à toi.";
+                    message = @"Je te rappelle dans un moment.
+En attendant, fait attention à toi.";
                     break;
                 case 24f:
-                    message = @"À ce qu'on raconte, les Tours ne sont pas un endroit très sur.";
+                    message = @"À ce qu'on raconte, les Tours ne sont pas un endroit très sûr.";
                     break;
                 default:
                     message = "";
@@ -216,13 +260,15 @@ public class MessageRadioManager : MonoBehaviour
                     message = @"Tu a du rencontrer des Rooted Ghouls.";
                     break;
                 case 3:
-                    message = @"Ces choses sont les esclaves des Rooted Priests. Des gens comme toi et moi qui ont eu le malheur de se retrouver transformer en... ça.";
+                    message = @"Ces choses sont les esclaves des Rooted Priests.
+Des gens comme toi et moi qui ont eu le malheur de se retrouver transformer en... ça.";
                     break;
                 case 4:
                     message = @"Tu pourras trouver plus d'info sur ton Terminal.";
                     break;
                 case 5:
-                    message = @"Ne les laisse pas te tourmanté. Ils essaient de te déstabiliser pour frapper au bon moment.";
+                    message = @"Ne les laisse pas te tourmanté. 
+Ils essaient de te déstabiliser pour frapper au bon moment.";
                     break;
                 case 6:
                     message = @"Assure-toi juste de fréquemment regarder s'il y en a dans les alentours et les chasser.";
@@ -234,10 +280,12 @@ public class MessageRadioManager : MonoBehaviour
                     message = @"Maintenant, c'est moi qui aurait besoin de tes conseils.";
                     break;
                 case 9:
-                    message = @"J'ai suivis le chemin que tu m'as dit sans difficulté. Mais je commence à entendre des sons qui n'annoncent rien de bon.";
+                    message = @"J'ai suivis le chemin que tu m'as dit sans difficulté. 
+Mais je commence à entendre des sons qui n'annoncent rien de bon.";
                     break;
                 case 10: // B
-                    message = @"Je viens de passer à côté d'un ancien... labo, je pense. Quel chemin je devrais prendre?";
+                    message = @"Je viens de passer à côté d'une ancien... maison, je pense. 
+Quel chemin je devrais prendre?";
                     answer1 = @"Hum... Mauvaise nouvelle.";
                     answer2 = @"...";
                     break;
@@ -303,7 +351,7 @@ public class MessageRadioManager : MonoBehaviour
                     message = @"Ha ha ! C'est qu'il a de l'humour le nouveau.";
                     break;
                 case 1f:
-                    message = @"Se retrouver seul dans cette forêt maudite, avec tout ces bruits qui n'ont rien de rassurant, commence à gruger ma santé mentale.";
+                    message = @"Se retrouver seul dans cette forêt maudite, avec tout ces bruits, ça commence à gruger ma santé mentale.";
                     break;
                 case 2:
                     message = @"Je commence même à avoir la sérieuse sensation que quelque chose m'observe depuis un moment...";
@@ -319,7 +367,8 @@ public class MessageRadioManager : MonoBehaviour
                     break;
                 // Answer B2
                 case 5:
-                    message = @"Tu sais, ce n'est pas la première fois que je suis séparé de mon groupe. Ça fait partie du métier d'Explorateur après tout.";
+                    message = @"Tu sais, ce n'est pas la première fois que je suis séparé de mon groupe.
+Ça fait partie du métier d'Explorateur après tout.";
                     break;
                 case 6:
                     message = @"Mais se retrouver tout seul et en pleine nuit, c'est une première.";
@@ -328,10 +377,12 @@ public class MessageRadioManager : MonoBehaviour
                     message = @"On ne contait pas rester plus tard que le coucher du soleil, mais...";
                     break;
                 case 8:
-                    message = @"On a trouver ce centre de recherche. C'était quoi déjà le nom?... C'était un truc comme ""Wonder-""...";
+                    message = @"On avait trouvé ce centre de recherche qui ne figurait pas sur la carte.
+C'était quoi déjà le nom?... C'était un truc comme ""Wonder-""...";
                     break;
                 case 9:
-                    message = @"""WonderLife""! C'est ça! On y a trouvez des documents à propos d'une entité surnommée la ""Dryádos"" qui semblait être un des sujet de test du centre.";
+                    message = @"""WonderLife""! C'est ça!
+On y a trouvez des documents à propos d'une entité surnommée la ""Dryádos"" qui semblait être un des sujet de test du centre.";
                     break;
                 case 10:
                     message = @"L'entité semblait rétissant à l'idée d'intéragir avec les membre du centre.";
@@ -347,139 +398,158 @@ public class MessageRadioManager : MonoBehaviour
                     message = @"...";
                     answer1 = @"Alex?...";
                     answer2 = @"Tout va bien?";
-                    time = 6;
+                    time = shortTime;
                     break;
                 // Answer C1 & C2
                 case 14:
                     message = @"...";
-                    time = 5;
+                    time = shortTime;
                     break;
                 case 15: // D
                     message = @"Un False Deer.";
                     answer1 = @"Un quoi?";
                     answer2 = @"Qu'est-ce que tu raconte?";
-                    time = 6;
+                    time = shortTime;
                     break;
                 // Answer D1 & D2
                 case 16:
                     message = @"Il y a une saloprie de Deer Smile qui me fix a à apein 3 mètres de moi!";
-                    time = 5;
+                    time = shortTime;
                     break;
                 case 17: // E
                     message = @"Je dois me tirer d'ici!";
                     answer1 = @"Cours !";
                     answer2 = @"Attend !";
-                    time = 5;
+                    time = shortTime;
                     break;
                 // Answer E2
                 case 18: // F
-                    message = @"Quoi?! Tu veux que je me laisse attraper par cette chose ?!";
+                    message = @"Quoi?!
+Tu veux que je me laisse attraper par cette chose ?!";
                     answer1 = @"Qu'est-qu'il fait?";
                     answer2 = @"Ne bouge pas ! Je vais trouver une solution.";
-                    time = 5;
+                    time = shortTime;
                     break;
                 // Answer F1
                 case 19:
-                    message = @"Il... Il ne bouge pas. Il ne fait que me fixer, avec le sourir d'un psychopathe.";
-                    time = 5;
+                    message = @"Il... Il ne bouge pas.
+Il ne fait que me fixer, avec le sourir d'un psychopathe.";
+                    time = shortTime;
                     break;
                 case 20:
                     message = @"Attend une seconde...";
-                    time = 5;
+                    time = shortTime;
                     break;
                 case 21: // G
                     message = @"Mon dieu...(BLERGH)!!!...";
                     answer1 = @"Alex?!";
                     answer2 = @"Qu'est-ce qu'il y a?";
-                    time = 6;
+                    time = shortTime;
                     break;
                 // Answer G1 & G2
                 case 22:
-                    message = @"Gill... Il tient... le corps de Gill... C'est son uniforme...";
-                    time = 5;
+                    message = @"Gill...
+Il tient... le corps de Gill...
+C'est son uniforme...";
+                    time = shortTime;
                     break;
                 // Answer F2
                 case 23: // H
                     message = @"Pitié, je ne veux pas mourir ici.";
                     answer1 = @"Prend de quoi te défendre en cas d'attaque.";
                     answer2 = @"Reste calme et garde un aire neutre.";
-                    time = 60;
+                    time = longTime;
                     break;
                 // Answer H2
                 case 24:
                     message = @"Ok, ok... (Inspire)... (Expire)...";
-                    time = 5;
+                    time = shortTime;
                     break;
                 case 25: // I
                     message = @"Et ensuite?";
                     answer1 = @"Utilises une source de lumière pour l'aveugler.";
                     answer2 = @"Continues en marchant, et gardes un contact visuel.";
-                    time = 60;
+                    time = longTime;
                     break;
                 // Answer I2
                 case 26:
                     message = @"Ok...";
-                    time = 8;
+                    time = shortTime;
                     break;
                 case 27: // J
-                    message = @"Je commence à le perdre de vu. Que dois-je faire.";
+                    message = @"Je commence à le perdre de vu.
+Que dois-je faire.";
                     answer1 = @"Tu peux le quitter de vu, mais continue de marcher.";
                     answer2 = @"Cours dès que tu le quittes des yeux.";
-                    time = 60;
+                    time = longTime;
                     break;
                 // Answer J1
                 case 28:
                     message = @"...";
-                    time = 8;
+                    time = shortTime;
                     break;
                 case 29:
                     message = @"...";
-                    time = 8;
+                    time = shortTime;
                     break;
                 case 30:
                     message = @"Je pense... je pense que c'est bon.";
                     break;
 //End Deer Smile Attack
                 case 31: // K
-                    message = @"Merci!... Merci de ne pas m'avoir laisser seul... (Sanglot)...";
+                    message = @"Merci!...
+Merci de ne pas m'avoir laisser seul...
+(Sanglot)...";
                     answer1 = @"Le pire est passé.";
                     answer2 = @"Tu me remerciras quand tu seras en sécutité au camp.";
                     break;
                 // Answer K2
                 case 32f:
-                    message = @"C'est vrai... (Sniff)... Il me reste encore à arriver au camp en un seul morceau.";
+                    message = @"C'est vrai... (Sniff)...
+Il me reste encore à arriver au camp en un seul morceau.";
                     break;
                 case 33f:
                     message = @"Mais j'ai confiance en tes compétences, Watcher.";
                     break;
                 // Answer K1
                 case 34f:
-                    message = @"Bon, aller! (Sniff)... C'est reparti.";
+                    message = @"Bon, aller!
+(Sniff)... C'est reparti.";
                     break;
                 case 35f: // L
-                    message = @"Je vois une cabane plus loin. Je vais m'y arrêter un moment, le temps de me laisser digérer tout ce qui vient de se passer.";
+                    message = @"Je vois une cabane plus loin.
+Je vais m'y arrêter un moment, le temps de me laisser digérer tout ce qui vient de se passer.";
                     answer1 = @"Bonne idée.";
                     answer2 = @"Attend!";
-                    time = 20;
+                    time = mediumTime;
                     break;
                 // Answer L2
                 case 36f: // M
                     message = @"Ha! Ne me fait pas peur comme ça!";
                     answer1 = @"Peux-tu me donner un point de repaire?";
                     answer2 = @"Fausse alerte.";
-                    time = 6;
+                    time = shortTime;
                     break;
                 // Answer M1
-                case 37f:
+                case 36.1f:
                     message = @"Hum... Donne moi une seconde.";
-                    time = 5;
+                    time = shortTime;
                     break;
-                case 38:
+                case 37:
                     message = @"Mmm...";
-                    time = 5;
+                    time = shortTime;
                     break;
+                case 38: // O
+                    message = @"Ho!
+Je vois un rocher avec un cercle avec un ""X"" par dessus.";
+                    answer1 = @"Je ne vois pas la cabane sur la carte.";
+                    answer2 = @"C'est bon. Fausse alerte.";
+                    time = shortTime;
+                    break;
+                // Answer O1
                 case 39: // N
-                    message = @"Hein?! Tu es sûr de toi? Devrais-je juste continuer?";
+                    message = @"Hein?! Tu es sûr de toi?
+Devrais-je juste continuer?";
                     answer1 = @"Vaux-mieux continuer.";
                     answer2 = @"Finalement, je n'en suis pas si sûr.";
                     break;
@@ -494,56 +564,65 @@ public class MessageRadioManager : MonoBehaviour
                 case 40.1f:
                     message = @"J'espère que tu te trompe, car mes jambes vont me lacher si je ne m'arrête pas prendre une pause.";
                     break;
-                // Answer M2
+                // Answer M2 & O2
                 case 40.2f:
-                    message = @"La vache!... C'est vraiment pas le moment de me faire stresser.";
+                    message = @"La vache!...
+C'est vraiment pas le moment de me faire stresser.";
                     break;
                 // Answer L1
                 case 41:
                     message = @"Je te rappelle dans un moment, Watcher";
                     break;
                 case 42:
-                    message = @"Et... Merci encore. Je te revaudrais ça.";
+                    message = @"Et... Merci encore.
+Je te revaudrais ça.";
                     break;
 // Deer Smile Death
                 // Answer E1, J2 & TimeOut
                 case 43.1f:
-                    message = @"Cette chose peut aller se faire voir! Je me tire !";
-                    time = 5;
+                    message = @"Cette chose peut aller se faire voir!
+Je me tire !";
+                    time = shortTime;
                     break;
                 // Answer H1, 
                 case 43.2f:
-                    message = @"Ok! Ok... Je penses que ce baton fera l'aff...";
-                    time = 5;
+                    message = @"Ok! Ok...
+Je penses que ce baton fera l'aff...";
+                    time = shortTime;
                     break;
                 case 44:
                     message = @"...";
-                    time = 3;
+                    time = shortTime;
                     break;
                 // Answer I1, 
                 case 44.1f:
-                    message = @"... Il avance... Pourquoi il avance?! Non! Non! Rec...!";
-                    time = 5;
+                    message = @"Il avance... 
+Pourquoi il avance?!
+Non! Non! Rec...!";
+                    time = shortTime;
                     break;
                 case 45:
                     message = @"AAAAAAAAAARRGH!!!";
-                    time = 5;
+                    time = shortTime;
                     break;
                 case 46:
-                    message = @"Ha... Ha!!! Ma jambe! Ma jamb...!";
-                    time = 5;
+                    message = @"Ha... Ha!!!
+Ma jambe!!!
+Ma jamb...!";
+                    time = shortTime;
                     break;
                 case 47:
                     message = @"...GHAAAAAAAAAAAAA!!!";
-                    time = 5;
+                    time = shortTime;
                     break;
                 case 48:
-                    message = @"À L'AIDE!!!... PAR PITIÉ AIDE-M...";
-                    time = 5;
+                    message = @"À L'AIDE!!!...
+PAR PITIÉ AIDE-M...";
+                    time = shortTime;
                     break;
                 case 49:
                     message = @"(Bip)...";
-                    time = 5;
+                    time = shortTime;
                     break;
                 default:
                     message = "";
@@ -554,8 +633,322 @@ public class MessageRadioManager : MonoBehaviour
         {
             switch (messagePart)
             {
+                case 0: // A
+                    message = @"Hé, buddy! Toujours en un seul morceaux?";
+                    answer1 = @"Yep! Besoin de mon aide?";
+                    answer2 = @"Il me resque que ma tête, mais tout roule.";
+                    break;
+                // Answer A1
+                case 0.1f:
+                    message = @"Ho! Non, non. C'est juste que...";
+                    break;
+                // Answer A2
+                case 0.2f:
+                    message = @"Ha ha ! C'est qu'il a de l'humour le nouveau.";
+                    break;
+                case 1f:// B
+                    message = @"Connaissais-tu bien les autres Watchers?";
+                    answer1 = @"La 4ème et le 5ème étaient mes grands-parents.";
+                    answer2 = @"Oui, on peut dire ça.";
+                    break;
+                // Answer B1
+                case 1.1f:
+                    message = @"Ho merde!
+Je... Je suis vraiment désolé... 
+C'était des gens bien et aimés de tous.";
+                    break;
+                // Answer B2
+                case 2:
+                    message = @"Si on a réussit à survivre aussi longtemps dans cette forêt, c'est grace à eux.
+Ils sont une véritable source d'espoir!";
+                    break;
+                case 3: 
+                    message = @"C'est pourquoi, lorsqu'on a aprit que le dernier Watcher avait périt, le moral était au plus bas.";
+                    break;
+                case 4:
+                    message = @"Utiliser ma radio était peine perdu.
+Et pourtant, te voilà!";
+                    break;
+                case 5:
+                    message = @"Quand les autres apprendront qu'il y a toujours un Watcher actif, ils pas en croire leurs orei...";
+                    break;
+// Start Deer Smile Attack
+                case 13: // C
+                    message = @"...";
+                    answer1 = @"Alex?...";
+                    answer2 = @"Tout va bien?";
+                    time = shortTime;
+                    break;
+                // Answer C1 & C2
+                case 14:
+                    message = @"...";
+                    time = shortTime;
+                    break;
+                case 15: // D
+                    message = @"Un False Deer.";
+                    answer1 = @"Un quoi?";
+                    answer2 = @"Qu'est-ce que tu raconte?";
+                    time = shortTime;
+                    break;
+                // Answer D1 & D2
+                case 16:
+                    message = @"Il y a une saloprie de Deer Smile qui me fix a à apein 3 mètres de moi!";
+                    time = shortTime;
+                    break;
+                case 17: // E
+                    message = @"Je dois me tirer d'ici!";
+                    answer1 = @"Cours !";
+                    answer2 = @"Attend !";
+                    time = shortTime;
+                    break;
+                // Answer E2
+                case 18: // F
+                    message = @"Quoi?!
+Tu veux que je me laisse attraper par cette chose ?!";
+                    answer1 = @"Qu'est-qu'il fait?";
+                    answer2 = @"Ne bouge pas ! Je vais trouver une solution.";
+                    time = shortTime;
+                    break;
+                // Answer F1
+                case 19:
+                    message = @"Il... Il ne bouge pas.
+Il ne fait que me fixer, avec le sourir d'un psychopathe.";
+                    time = shortTime;
+                    break;
+                case 20:
+                    message = @"Attend une seconde...";
+                    time = shortTime;
+                    break;
+                case 21: // G
+                    message = @"Mon dieu...(BLERGH)!!!...";
+                    answer1 = @"Alex?!";
+                    answer2 = @"Qu'est-ce qu'il y a?";
+                    time = shortTime;
+                    break;
+                // Answer G1 & G2
+                case 22:
+                    message = @"Gill...
+Il tient... le corps de Gill...
+C'est son uniforme...";
+                    time = shortTime;
+                    break;
+                // Answer F2
+                case 23: // H
+                    message = @"Pitié, je ne veux pas mourir ici.";
+                    answer1 = @"Prend de quoi te défendre en cas d'attaque.";
+                    answer2 = @"Reste calme et garde un aire neutre.";
+                    time = longTime;
+                    break;
+                // Answer H2
+                case 24:
+                    message = @"Ok, ok... (Inspire)... (Expire)...";
+                    time = shortTime;
+                    break;
+                case 25: // I
+                    message = @"Et ensuite?";
+                    answer1 = @"Utilises une source de lumière pour l'aveugler.";
+                    answer2 = @"Continues en marchant, et gardes un contact visuel.";
+                    time = longTime;
+                    break;
+                // Answer I2
+                case 26:
+                    message = @"Ok...";
+                    time = shortTime;
+                    break;
+                case 27: // J
+                    message = @"Je commence à le perdre de vu. Que dois-je faire.";
+                    answer1 = @"Tu peux le quitter de vu, mais continue de marcher.";
+                    answer2 = @"Cours dès que tu le quittes des yeux.";
+                    time = longTime;
+                    break;
+                // Answer J1
+                case 28:
+                    message = @"...";
+                    time = shortTime;
+                    break;
+                case 29:
+                    message = @"...";
+                    time = shortTime;
+                    break;
+                case 30:
+                    message = @"Je pense... je pense que c'est bon.";
+                    break;
+//End Deer Smile Attack
+                case 31: // K
+                    message = @"Merci!...
+Merci de ne pas m'avoir laisser seul...
+(Sanglot)...";
+                    answer1 = @"Le pire est passé.";
+                    answer2 = @"Tu me remerciras quand tu seras en sécutité au camp.";
+                    break;
+                // Answer K2
+                case 32f:
+                    message = @"C'est vrai... (Sniff)... 
+Il me reste encore à arriver au camp en un seul morceau.";
+                    break;
+                case 33f:
+                    message = @"Mais j'ai confiance en tes compétences, Watcher.";
+                    break;
+                // Answer K1
+                case 34f:
+                    message = @"Bon, aller! (Sniff)... C'est reparti.";
+                    break;
+                case 35f: // L
+                    message = @"Je vois une cabane plus loin.
+Je vais m'y arrêter un moment, le temps de me laisser digérer tout ce qui vient de se passer.";
+                    answer1 = @"Bonne idée.";
+                    answer2 = @"Attend!";
+                    time = mediumTime;
+                    break;
+                // Answer L2
+                case 36f: // M
+                    message = @"Ha! Ne me fait pas peur comme ça!";
+                    answer1 = @"Peux-tu me donner un point de repaire?";
+                    answer2 = @"Fausse alerte.";
+                    time = shortTime;
+                    break;
+                // Answer M1
+                case 36.1f:
+                    message = @"Hum... Donne moi une seconde.";
+                    time = shortTime;
+                    break;
+                case 37:
+                    message = @"Mmm...";
+                    time = shortTime;
+                    break;
+                case 38: // O
+                    message = @"Ho!
+Je vois un rocher avec un cercle avec un ""X"" par dessus.";
+                    answer1 = @"Je ne vois pas la cabane sur la carte.";
+                    answer2 = @"C'est bon. Fausse alerte.";
+                    time = shortTime;
+                    break;
+                // Answer O1
+                case 39: // N
+                    message = @"Hein?! Tu es sûr de toi?
+Devrais-je juste continuer?";
+                    answer1 = @"Il devrait y avoir une cabane un peu plus loin.";
+                    answer2 = @"Finalement, je n'en suis pas si sûr.";
+                    break;
+                // Answer N1
+                case 39.1f:
+                    message = @"...";
+                    break;
+                case 40:
+                    message = @"Pas le choix j'imagine.";
+                    break;
+                // Answer N2
+                case 40.1f:
+                    message = @"J'espère que tu te trompe, car mes jambes vont me lacher si je ne m'arrête pas prendre une pause.";
+                    break;
+                // Answer M2 & O2
+                case 40.2f:
+                    message = @"La vache!... C'est vraiment pas le moment de me faire stresser.";
+                    break;
+                // Answer N1
+                case 41.1f:
+                    message = @"Très bien, 
+Je te rapelle une fois arriver";
+                    break;
+                case 42:
+                    message = @"Et... Merci encore. 
+Je te revaudrais ça.";
+                    break;
+// Deer Smile Death
+                // Answer E1, J2 & TimeOut
+                case 43.1f:
+                    message = @"Cette chose peut aller se faire voir! Je me tire !";
+                    time = shortTime;
+                    break;
+                // Answer H1, 
+                case 43.2f:
+                    message = @"Ok! Ok... Je penses que ce baton fera l'aff...";
+                    time = shortTime;
+                    break;
+                case 44:
+                    message = @"...";
+                    time = shortTime;
+                    break;
+                // Answer I1, 
+                case 44.1f:
+                    message = @"... Il avance... Pourquoi il avance?! Non! Non! Rec...!";
+                    time = shortTime;
+                    break;
+                case 45:
+                    message = @"AAAAAAAAAARRGH!!!";
+                    time = shortTime;
+                    break;
+                case 46:
+                    message = @"Ha... Ha!!! Ma jambe! Ma jamb...!";
+                    time = shortTime;
+                    break;
+                case 47:
+                    message = @"...GHAAAAAAAAAAAAA!!!";
+                    time = shortTime;
+                    break;
+                case 48:
+                    message = @"À L'AIDE!!!... PAR PITIÉ AIDE-M...";
+                    time = shortTime;
+                    break;
+                case 49:
+                    message = @"(Bip)...";
+                    time = shortTime;
+                    break;
+// Hungry Cabin Death
+                // Answers L1
+                case 50.1f:
+                    message = @"...
+...
+...";
+                    time = shortTime;
+                    break;
+                case 51:
+                    message = @"HA!";
+                    time = shortTime;
+                    break;
+                case 52:
+                    message = @"La... La porte!
+Elle vient de se fermer!";
+                    time = shortTime;
+                    break;
+                case 53:
+                    message = @"Et... Bloquer.";
+                    time = shortTime;
+                    break;
+                case 54:
+                    message = @"(BASH!)...
+(BASH!)...
+(BASH!)...";
+                    time = shortTime;
+                    break;
+                case 55:
+                    message = @"Tu dois me sortir d'ici!";
+                    time = shortTime;
+                    break;
+                case 56:
+                    message = @"Pitié!";
+                    time = shortTime;
+                    break;
+                case 57:
+                    message = @"PIT...!!!";
+                    time = shortTime;
+                    break;
+                case 58:
+                    message = @"(KRACK)...!!!
+(Bip)...";
+                    time = shortTime;
+                    break;
+                default:
+                    message = "";
+                    break;
+            }
+        }
+        else if (messageNum == 5)
+        {
+            switch (messagePart)
+            {
                 case 0:
-                    message = @"Droite.";
+                    message = @"Part 5";
                     break;
                 default:
                     message = "";
@@ -589,7 +982,7 @@ public class MessageRadioManager : MonoBehaviour
                     break;
                 case 5:
                     message = @"(Bip)...";
-                    time = 5;
+                    time = shortTime;
                     break;
                 default:
                     message = "";

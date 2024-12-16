@@ -149,13 +149,69 @@ public class Answers : MonoBehaviour
                     break;
                 case 35: // L
                     radioMessage.messagePart += 6;
+                    radioMessage.nextPath = 5;
                     break;
                 case 36: // M
-                    radioMessage.messagePart += 1;
+                    radioMessage.messagePart += 0.1f;
                     break;
                 case 39: // N
                     radioMessage.messagePart += 0.1f;
                     radioMessage.nextPath = 666;
+                    break;
+                case 38: // O
+                    radioMessage.messagePart += 1;
+                    break;
+            }
+        }
+        else if (radioMessage.messageNum == 4)//Droite
+        {
+            switch (radioMessage.messagePart)
+            {
+                case 0: // A
+                    radioMessage.messagePart += 0.1f;
+                    break;
+                case 1: // B
+                    radioMessage.messagePart += 0.1f;
+                    break;
+                case 13: // C
+                    radioMessage.messagePart += 1;
+                    break;
+                case 15: // D
+                    radioMessage.messagePart += 1;
+                    break;
+                case 17: // E
+                    radioMessage.messagePart += 26.1f;
+                    break;
+                case 18: // F
+                    radioMessage.messagePart += 1;
+                    break;
+                case 21: // G
+                    radioMessage.messagePart += 1;
+                    break;
+                case 23: // H
+                    radioMessage.messagePart += 20.2f;
+                    break;
+                case 25: // I
+                    radioMessage.messagePart += 19.1f;
+                    break;
+                case 27: // J
+                    radioMessage.messagePart += 1;
+                    break;
+                case 31: // K
+                    radioMessage.messagePart += 3;
+                    break;
+                case 35: // L
+                    radioMessage.messagePart += 15.1f;
+                    break;
+                case 36: // M
+                    radioMessage.messagePart += 0.1f;
+                    break;
+                case 39: // N
+                    radioMessage.messagePart += 0.1f;
+                    radioMessage.nextPath = 5;
+                    break;
+                case 38: // O
+                    radioMessage.messagePart += 1;
                     break;
             }
         }
@@ -246,9 +302,66 @@ public class Answers : MonoBehaviour
                     break;
                 case 36: // M
                     radioMessage.messagePart += 4.2f;
+                    radioMessage.nextPath = 5;
                     break;
                 case 39: // N
                     radioMessage.messagePart += 1.1f;
+                    radioMessage.nextPath = 5;
+                    break;
+                case 38: // O
+                    radioMessage.messagePart += 2.2f;
+                    radioMessage.nextPath = 5;
+                    break;
+            }
+        }
+        else if (radioMessage.messageNum == 4)//Droite
+        {
+            switch (radioMessage.messagePart)
+            {
+                case 0: // A
+                    radioMessage.messagePart += 0.2f;
+                    break;
+                case 1: // B
+                    radioMessage.messagePart += 1;
+                    break;
+                case 13: // C
+                    radioMessage.messagePart += 1;
+                    break;
+                case 15: // D
+                    radioMessage.messagePart += 1;
+                    break;
+                case 17: // E
+                    radioMessage.messagePart += 1;
+                    break;
+                case 18: // F
+                    radioMessage.messagePart += 5;
+                    break;
+                case 21: // G
+                    radioMessage.messagePart += 1;
+                    break;
+                case 23: // H
+                    radioMessage.messagePart += 1;
+                    break;
+                case 25: // I
+                    radioMessage.messagePart += 1;
+                    break;
+                case 27: // J
+                    radioMessage.messagePart += 16.1f;
+                    break;
+                case 31: // K
+                    radioMessage.messagePart += 1;
+                    break;
+                case 35: // L
+                    radioMessage.messagePart += 1;
+                    break;
+                case 36: // M
+                    radioMessage.messagePart += 4.2f;
+                    break;
+                case 39: // N
+                    radioMessage.messagePart += 1.1f;
+                    break;
+                case 38: // O
+                    radioMessage.messagePart += 2.2f;
                     break;
             }
         }
