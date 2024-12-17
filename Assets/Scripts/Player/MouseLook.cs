@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class MouseLook : MonoBehaviour
@@ -17,8 +14,8 @@ public class MouseLook : MonoBehaviour
     {
         if (player.canMove)
         {
-            float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
-            float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
+            float mouseX = Input.GetAxis("Mouse X") * (mouseSensitivity / 100f);
+            float mouseY = Input.GetAxis("Mouse Y") * (mouseSensitivity / 100f);
 
             xRotation -= mouseY;
             xRotation = Mathf.Clamp(xRotation, -90f, 90f);

@@ -18,12 +18,14 @@ public class MainMenuManager : MonoBehaviour
     public Canvas settings;
     public GameObject introText;
     public CheckCursor cursorState;
+    public GameObject icons;
     Player player;
 
     private void OnEnable()
     {
         player = FindAnyObjectByType<Player>();
         player.enabled = false;
+        icons.SetActive(false);
 
         StartCoroutine(StartMainMenu());
 
@@ -69,6 +71,7 @@ public class MainMenuManager : MonoBehaviour
         mainMenu.enabled = true;
         animator.SetBool("Fade", false);
         yield return new WaitForSeconds(0.01f);
+        icons.SetActive(true);
         cursorState.needCursor++;
     }
 
