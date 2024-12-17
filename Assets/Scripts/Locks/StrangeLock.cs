@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Unity.Cinemachine;
 using UnityEditor.PackageManager;
@@ -11,8 +12,8 @@ public class StrangeLock : MonoBehaviour, IInteractable
     
     public CinemachineCamera camLock;
     public CinemachineCamera camPlayer;
-    
     CinemachineBrain brain;
+
     MouseLook cam;
     Player player;
     AudioSource audioSource;

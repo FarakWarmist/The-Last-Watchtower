@@ -453,7 +453,7 @@ MonoBehaviour:
   - {fileID: 2734054402534598891}
   - {fileID: 6204023129855759862}
   barricadeLocation: {fileID: 5962893002765506649}
-  windowState: {fileID: 0}
+  windowState: {fileID: 1842272050193693248}
   isBroken: 0
 --- !u!65 &3554435142582654330
 BoxCollider:

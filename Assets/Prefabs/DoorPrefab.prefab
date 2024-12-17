@@ -30,11 +30,10 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 651237580316918251}
-  - {fileID: 3783701527231505901}
-  - {fileID: 8936192051594004088}
+  - {fileID: 4077507036306890160}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &5008220744589724663
+--- !u!1 &3542083137692659868
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,73 +41,30 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8936192051594004088}
-  - component: {fileID: 7790291262679813671}
+  - component: {fileID: 4077507036306890160}
   m_Layer: 0
-  m_Name: OutsidePoV
+  m_Name: Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8936192051594004088
+--- !u!4 &4077507036306890160
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5008220744589724663}
+  m_GameObject: {fileID: 3542083137692659868}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.09561421, y: 0.26926264, z: 0.02687596, w: -0.95793176}
-  m_LocalPosition: {x: -0.839, y: 1.406, z: -0.844}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 3783701527231505901}
   m_Father: {fileID: 4600673685225178641}
-  m_LocalEulerAnglesHint: {x: -11.4, y: 328.6, z: 0}
---- !u!114 &7790291262679813671
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5008220744589724663}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9dfa5b682dcd46bda6128250e975f58, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Priority:
-    Enabled: 0
-    m_Value: 0
-  OutputChannel: 1
-  StandbyUpdate: 2
-  m_StreamingVersion: 20241001
-  m_LegacyPriority: 0
-  Target:
-    TrackingTarget: {fileID: 0}
-    LookAtTarget: {fileID: 0}
-    CustomLookAtTarget: 0
-  Lens:
-    FieldOfView: 60.000004
-    OrthographicSize: 5
-    NearClipPlane: 0.3
-    FarClipPlane: 1000
-    Dutch: 0
-    ModeOverride: 0
-    PhysicalProperties:
-      GateFit: 2
-      SensorSize: {x: 21.946, y: 16.002}
-      LensShift: {x: 0, y: 0}
-      FocusDistance: 10
-      Iso: 200
-      ShutterSpeed: 0.005
-      Aperture: 16
-      BladeCount: 5
-      Curvature: {x: 2, y: 11}
-      BarrelClipping: 0.25
-      Anamorphism: 0
-  BlendHint: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6636988257109951119
 GameObject:
   m_ObjectHideFlags: 0
@@ -135,11 +91,11 @@ Transform:
   m_GameObject: {fileID: 6636988257109951119}
   serializedVersion: 2
   m_LocalRotation: {x: -0.02687595, y: 0.9579318, z: 0.09561421, w: 0.26926255}
-  m_LocalPosition: {x: -1.747, y: 1.352, z: 0.928}
+  m_LocalPosition: {x: -1.747, y: 1.352, z: 0.9279995}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4600673685225178641}
+  m_Father: {fileID: 4077507036306890160}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8983631723325759060
 MonoBehaviour:
