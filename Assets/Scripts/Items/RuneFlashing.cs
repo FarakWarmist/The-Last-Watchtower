@@ -53,7 +53,7 @@ public class RuneFlashing : MonoBehaviour
                     var hitMonster = hit.collider.GetComponent<Monster>();
                     if (hitMonster != null )
                     {
-                        hitMonster.gameObject.SetActive(false);
+                        hitMonster.StartCoroutine(hitMonster.GetFlash());
                     }
 
                     var hitClue = hit.collider.GetComponent<Clue>();
@@ -63,14 +63,6 @@ public class RuneFlashing : MonoBehaviour
                     }
                 }
             }
-        }
-    }
-
-    private void Recharge()
-    {
-        if (runeLevel < 5)
-        {
-            runeLevel = Mathf.FloorToInt(Time.deltaTime);
         }
     }
 

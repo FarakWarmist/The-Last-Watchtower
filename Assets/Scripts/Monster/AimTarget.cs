@@ -3,7 +3,6 @@ using UnityEngine;
 public class AimTarget : MonoBehaviour
 {
     [SerializeField] Transform followTarget;
-    Vector3 newLocation;
     public bool isStop;
 
     private void Update()

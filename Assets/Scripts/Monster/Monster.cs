@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Animations.Rigging;
@@ -11,19 +12,24 @@ public class Monster : MonoBehaviour
     public Light runeLight;
 
     Animator animator;
-
     Collider hitBox;
+
+    public Material materialOriginal;
+    Material newMaterial;
+    public SkinnedMeshRenderer skinnedMeshRenderer;
 
     LightSwitch lightSwitch;
     InsideOrOutside playerLocationState;
     AimTarget aimTarget;
-
+    public MultiAimConstraint multiAimConstraint;
     public bool isTakeAction;
+    public bool isFlashed;
 
     public int listLenght;
     public float timeToMakeAction;
     public int windowIndex;
     public int direction;
+    float alpha;
 
     public Transform player;
     public float horizontalViewAngle = 90f;
@@ -34,6 +40,10 @@ public class Monster : MonoBehaviour
 
     private void OnEnable()
     {
+        if (newMaterial == null)
+        {
+            newMaterial = new Material(materialOriginal);
+        }
         monster = GetComponent<NavMeshAgent>();
         hitBox = GetComponent<Collider>();
         lightSwitch = FindAnyObjectByType<LightSwitch>();
@@ -41,7 +51,14 @@ public class Monster : MonoBehaviour
         player = FindAnyObjectByType<Player>().gameObject.transform;
         aimTarget = FindAnyObjectByType<AimTarget>();
 
+        skinnedMeshRenderer.material = newMaterial;
+        alpha = -1f;
+        newMaterial.SetFloat("_DissolveValue", alpha);
         animator = GetComponent<Animator>();
+
+        WeightedTransformArray source = multiAimConstraint.data.sourceObjects;
+        source.Add(new WeightedTransform(aimTarget.gameObject.transform, 1));
+        multiAimConstraint.data.sourceObjects = source;
 
         timeToMakeAction = Random.Range(5, 10);
         windowIndex = Random.Range(0, windowsLocation.Length);
@@ -59,6 +76,15 @@ public class Monster : MonoBehaviour
     {
         target = windowsTarget[windowIndex].gameObject.transform;
         Debug.Log(location.gameObject.name);
+
+        if (!isFlashed)
+        {
+            MonsterBehaviour();
+        }
+    }
+
+    private void MonsterBehaviour()
+    {
         if (playerLocationState.isInside)
         {
             if (monster.remainingDistance <= monster.stoppingDistance)
@@ -87,7 +113,7 @@ public class Monster : MonoBehaviour
                 {
                     monster.SetDestination(location.position);
                 }
-                
+
             }
             else
             {
@@ -98,10 +124,9 @@ public class Monster : MonoBehaviour
         else
         {
             animator.SetBool("FollowPlayer", true);
-            hitBox.isTrigger =false;
+            hitBox.isTrigger = false;
             ChaseThePlayer();
         }
-
     }
 
     private void MoveWhenNoBeSeen()
@@ -109,6 +134,7 @@ public class Monster : MonoBehaviour
         if (IsPlayerLookingAtMonster())
         {
             StopChasing();
+            animator.speed = 0;
         }
         else
         {
@@ -121,6 +147,7 @@ public class Monster : MonoBehaviour
         if (IsPlayerLookingAtMonster())
         {
             StopChasing();
+            animator.speed = 0;
         }
         else
         {
@@ -153,7 +180,6 @@ public class Monster : MonoBehaviour
         monster.ResetPath();
         monster.velocity = Vector3.zero;
         aimTarget.isStop = true;
-        animator.speed = 0;
     }
 
     void MoveToNextWindow()
@@ -196,5 +222,29 @@ public class Monster : MonoBehaviour
             MoveToNextWindow();
         }
         isTakeAction = false;
+    }
+
+    public IEnumerator GetFlash()
+    {
+        isFlashed = true;
+        StopChasing();
+        animator.speed = 1;
+        multiAimConstraint.data.sourceObjects = new WeightedTransformArray();
+        animator.SetBool("FollowPlayer", false);
+        animator.SetBool("Walk", false);
+        yield return new WaitForSeconds(0.01f);
+        animator.SetInteger("Flash", Random.Range(1, 4));
+        yield return new WaitForSeconds(0.1f);
+        while (alpha < 1.01f)
+        {
+            alpha += 0.8f * Time.deltaTime;
+            newMaterial.SetFloat("_DissolveValue", alpha);
+            yield return null;
+        }
+        yield return new WaitForSeconds(0.1f);
+        animator.SetInteger("Flash", 0);
+        isFlashed = false;
+        yield return new WaitForSeconds(0.01f);
+        gameObject.SetActive(false);
     }
 }

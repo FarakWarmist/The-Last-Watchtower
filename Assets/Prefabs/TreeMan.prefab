@@ -53,7 +53,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 2500478ee79d70b4dad3c78c093b5409, type: 3}
   - {fileID: 8300000, guid: b925b686adf98a94fa8588242f74f466, type: 3}
   thisMonster: {fileID: 48195931268189758}
-  wait: 0.15
 --- !u!82 &3628974397580388077
 AudioSource:
   m_ObjectHideFlags: 0
@@ -581,10 +580,10 @@ MonoBehaviour:
   m_Data:
     m_ConstrainedObject: {fileID: 2083632286513023528}
     m_SourceObjects:
-      m_Length: 1
+      m_Length: 0
       m_Item0:
         transform: {fileID: 0}
-        weight: 1
+        weight: 0
       m_Item1:
         transform: {fileID: 0}
         weight: 0
@@ -1660,7 +1659,11 @@ MonoBehaviour:
   windowsTarget: []
   monster: {fileID: 0}
   runeLight: {fileID: 0}
+  materialOriginal: {fileID: 2100000, guid: b12ae0fc99ab8f942a1f14641d5eaf5a, type: 2}
+  skinnedMeshRenderer: {fileID: 6605963094171214354}
+  multiAimConstraint: {fileID: 915380644444331187}
   isTakeAction: 0
+  isFlashed: 0
   listLenght: 0
   timeToMakeAction: 0
   windowIndex: 0
@@ -1766,6 +1769,11 @@ Transform:
 --- !u!4 &6393747126094160243 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1564860333797465651, guid: b93b4b50512314d4b971d569d538e4af, type: 3}
+  m_PrefabInstance: {fileID: 5551996110716583744}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &6605963094171214354 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 1630794972795428178, guid: b93b4b50512314d4b971d569d538e4af, type: 3}
   m_PrefabInstance: {fileID: 5551996110716583744}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &6648794732866631633 stripped
