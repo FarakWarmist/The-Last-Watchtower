@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Animations.Rigging;
@@ -13,6 +14,8 @@ public class Monster : MonoBehaviour
 
     Animator animator;
     Collider hitBox;
+    public Collider dangerZoneCollider;
+    public AudioSource audioSource;
 
     public Material materialOriginal;
     Material newMaterial;
@@ -21,7 +24,8 @@ public class Monster : MonoBehaviour
     LightSwitch lightSwitch;
     InsideOrOutside playerLocationState;
     AimTarget aimTarget;
-    public MultiAimConstraint multiAimConstraint;
+    MessageRadioManager messageRadio;
+
     public bool isTakeAction;
     public bool isFlashed;
 
@@ -31,12 +35,13 @@ public class Monster : MonoBehaviour
     public int direction;
     float alpha;
 
-    public Transform player;
+    public Transform playerTransform;
     public float horizontalViewAngle = 90f;
     public float verticalViewAngle = 30f;
 
     Transform location;
     Transform target;
+    public bool stopMoving;
 
     private void OnEnable()
     {
@@ -48,17 +53,14 @@ public class Monster : MonoBehaviour
         hitBox = GetComponent<Collider>();
         lightSwitch = FindAnyObjectByType<LightSwitch>();
         playerLocationState = FindAnyObjectByType<InsideOrOutside>();
-        player = FindAnyObjectByType<Player>().gameObject.transform;
+        playerTransform = FindAnyObjectByType<Player>().gameObject.transform;
         aimTarget = FindAnyObjectByType<AimTarget>();
+        messageRadio = FindAnyObjectByType<MessageRadioManager>();
 
         skinnedMeshRenderer.material = newMaterial;
         alpha = -1f;
         newMaterial.SetFloat("_DissolveValue", alpha);
         animator = GetComponent<Animator>();
-
-        WeightedTransformArray source = multiAimConstraint.data.sourceObjects;
-        source.Add(new WeightedTransform(aimTarget.gameObject.transform, 1));
-        multiAimConstraint.data.sourceObjects = source;
 
         timeToMakeAction = Random.Range(5, 10);
         windowIndex = Random.Range(0, windowsLocation.Length);
@@ -75,11 +77,19 @@ public class Monster : MonoBehaviour
     private void Update()
     {
         target = windowsTarget[windowIndex].gameObject.transform;
-        Debug.Log(location.gameObject.name);
 
-        if (!isFlashed)
+        if (messageRadio.isDead)
         {
-            MonsterBehaviour();
+            animator.speed = 0f;
+            StopChasing();
+        }
+        else
+        {
+            animator.speed = 1f;
+            if (!isFlashed)
+            {
+                MonsterBehaviour();
+            }
         }
     }
 
@@ -87,6 +97,8 @@ public class Monster : MonoBehaviour
     {
         if (playerLocationState.isInside)
         {
+            dangerZoneCollider.enabled = false;
+
             if (monster.remainingDistance <= monster.stoppingDistance)
             {
                 animator.SetBool("Walk", false);
@@ -148,18 +160,20 @@ public class Monster : MonoBehaviour
         {
             StopChasing();
             animator.speed = 0;
+            dangerZoneCollider.enabled = false;
         }
         else
         {
-            StartChasing(player.position);
+            StartChasing(playerTransform.position);
+            dangerZoneCollider.enabled = true;
         }
     }
 
     private bool IsPlayerLookingAtMonster()
     {
-        Vector3 toMonster = monster.transform.position - player.position;
+        Vector3 toMonster = monster.transform.position - playerTransform.position;
 
-        float horizontalAngle = Vector3.Angle(player.forward, new Vector3(toMonster.x, 0, toMonster.z));
+        float horizontalAngle = Vector3.Angle(playerTransform.forward, new Vector3(toMonster.x, 0, toMonster.z));
 
         float verticalAngle = Mathf.Abs(toMonster.y);
 
@@ -229,11 +243,11 @@ public class Monster : MonoBehaviour
         isFlashed = true;
         StopChasing();
         animator.speed = 1;
-        multiAimConstraint.data.sourceObjects = new WeightedTransformArray();
         animator.SetBool("FollowPlayer", false);
         animator.SetBool("Walk", false);
         yield return new WaitForSeconds(0.01f);
         animator.SetInteger("Flash", Random.Range(1, 4));
+        audioSource.Play();
         yield return new WaitForSeconds(0.1f);
         while (alpha < 1.01f)
         {
