@@ -98,14 +98,14 @@ public class Radio : MonoBehaviour, IInteractable
 
         if (isLooking)
         {
-            if (Input.GetKeyDown(KeyCode.S))
+            if (Input.GetKeyDown(KeyCode.S) && !radioMessage.isDead)
             {
                 boxCollider.enabled = true;
                 isLooking = false;
                 IsLooking(camRadio, camPlayer, true);
                 cursorState.needCursor--;
             }
-            if (Input.GetKeyDown(KeyCode.E) && !radioMessage.isDead)
+            if (Input.GetKeyDown(KeyCode.E))
             {
                 radioText.MessageState();
                 if (!radioMessage.newMessage)

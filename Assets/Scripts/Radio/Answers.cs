@@ -215,6 +215,18 @@ public class Answers : MonoBehaviour
                     break;
             }
         }
+        else if (radioMessage.messageNum == 666)
+        {
+            switch (radioMessage.messagePart)
+            {
+                case 0:
+                    radioMessage.messagePart += 1;
+                    break;
+                case 2:
+                    radioMessage.messagePart += 1;
+                    break;
+            }
+        }
         radio.timerOn = false;
         ResetAnswers();
         EventSystem.current.SetSelectedGameObject(null);
@@ -365,6 +377,18 @@ public class Answers : MonoBehaviour
                     break;
             }
         }
+        else if (radioMessage.messageNum == 666)
+        {
+            switch (radioMessage.messagePart)
+            {
+                case 0:
+                    radioMessage.messagePart += 1;
+                    break;
+                case 2:
+                    radioMessage.messagePart += 1;
+                    break;
+            }
+        }
         radio.timerOn = false;
         ResetAnswers();
         EventSystem.current.SetSelectedGameObject(null);
@@ -384,6 +408,9 @@ public class Answers : MonoBehaviour
                     break;
                 case 15: // D
                     radioMessage.messagePart += 28.1f;
+                    break;
+                case 16:
+                    radioMessage.messagePart += 1;
                     break;
                 case 17: // E
                     radioMessage.messagePart += 26.1f;
@@ -433,11 +460,167 @@ public class Answers : MonoBehaviour
                 case 37:
                     radioMessage.messagePart += 1;
                     break;
-                case 38:
+                case 43.1f:
+                    radioMessage.messagePart += 0.9f;
+                    break;
+                case 43.2f:
+                    radioMessage.messagePart += 1.8f;
+                    break;
+                case 44:
                     radioMessage.messagePart += 1;
                     break;
-                case 39: // N
-                    radioMessage.messagePart += 1.1f;
+                case 44.1f:
+                    radioMessage.messagePart += 0.9f;
+                    break;
+                case 45:
+                    radioMessage.messagePart += 1;
+                    break;
+                case 46:
+                    radioMessage.messagePart += 1;
+                    break;
+                case 47:
+                    radioMessage.messagePart += 1;
+                    break;
+                case 48:
+                    radioMessage.messagePart += 1;
+                    break;
+                case 49:
+                    radioMessage.messagePart += 1;
+                    break;
+            }
+        }
+        else if (radioMessage.messageNum == 4)
+        {
+            switch (radioMessage.messagePart)
+            {
+                case 13: // C
+                    radioMessage.messagePart += 1;
+                    break;
+                case 14:
+                    radioMessage.messagePart += 1;
+                    break;
+                case 15: // D
+                    radioMessage.messagePart += 28.1f;
+                    break;
+                case 16:
+                    radioMessage.messagePart += 1;
+                    break;
+                case 17: // E
+                    radioMessage.messagePart += 26.1f;
+                    break;
+                case 18: // F
+                    radioMessage.messagePart += 25.1f;
+                    break;
+                case 19:
+                    radioMessage.messagePart += 1;
+                    break;
+                case 20:
+                    radioMessage.messagePart += 1;
+                    break;
+                case 21: // G
+                    radioMessage.messagePart += 22.1f;
+                    break;
+                case 22:
+                    radioMessage.messagePart += 1;
+                    break;
+                case 23: // H
+                    radioMessage.messagePart += 20.1f;
+                    break;
+                case 24:
+                    radioMessage.messagePart += 1;
+                    break;
+                case 25: // I
+                    radioMessage.messagePart += 18.1f;
+                    break;
+                case 26:
+                    radioMessage.messagePart += 1;
+                    break;
+                case 27: // J
+                    radioMessage.messagePart += 16.1f;
+                    break;
+                case 28:
+                    radioMessage.messagePart += 1;
+                    break;
+                case 29:
+                    radioMessage.messagePart += 1;
+                    break;
+                case 35: // L
+                    radioMessage.messagePart += 15.1f;
+                    break;
+                case 36: // M
+                    radioMessage.messagePart += 4.2f;
+                    break;
+                case 36.1f:
+                    radioMessage.messagePart += 0.9f;
+                    break;
+                case 37:
+                    radioMessage.messagePart += 1;
+                    break;
+                case 43.1f:
+                    radioMessage.messagePart += 0.9f;
+                    break;
+                case 43.2f:
+                    radioMessage.messagePart += 1.8f;
+                    break;
+                case 44:
+                    radioMessage.messagePart += 1;
+                    break;
+                case 44.1f:
+                    radioMessage.messagePart += 0.9f;
+                    break;
+                case 45:
+                    radioMessage.messagePart += 1;
+                    break;
+                case 46:
+                    radioMessage.messagePart += 1;
+                    break;
+                case 47:
+                    radioMessage.messagePart += 1;
+                    break;
+                case 48:
+                    radioMessage.messagePart += 1;
+                    break;
+                case 49:
+                    radioMessage.messagePart += 1;
+                    break;
+                case 50.1f:
+                    radioMessage.messagePart += 0.9f;
+                    break;
+                case 51:
+                    radioMessage.messagePart += 1;
+                    break;
+                case 52:
+                    radioMessage.messagePart += 1;
+                    break;
+                case 53:
+                    radioMessage.messagePart += 1;
+                    break;
+                case 54:
+                    radioMessage.messagePart += 1;
+                    break;
+                case 55:
+                    radioMessage.messagePart += 1;
+                    break;
+                case 56:
+                    radioMessage.messagePart += 1;
+                    break;
+                case 57:
+                    radioMessage.messagePart += 1;
+                    break;
+                case 58:
+                    radioMessage.messagePart += 1;
+                    break;
+            }
+        }
+        else if (radioMessage.messageNum == 666)
+        {
+            switch (radioMessage.messagePart)
+            {
+                case 0:
+                    radioMessage.messagePart += 1;
+                    break;
+                case 2:
+                    radioMessage.messagePart += 1;
                     break;
             }
         }
