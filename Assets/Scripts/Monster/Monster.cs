@@ -14,7 +14,7 @@ public class Monster : MonoBehaviour
 
     Animator animator;
     Collider hitBox;
-    public Collider dangerZoneCollider;
+    //public Collider dangerZoneCollider;
     public AudioSource audioSource;
 
     public Material materialOriginal;
@@ -22,12 +22,13 @@ public class Monster : MonoBehaviour
     public SkinnedMeshRenderer skinnedMeshRenderer;
 
     LightSwitch lightSwitch;
-    InsideOrOutside playerLocationState;
+    InsideOrOutside InsideOrOutside;
     AimTarget aimTarget;
     MessageRadioManager messageRadio;
 
     public bool isTakeAction;
     public bool isFlashed;
+    public bool isInside;
 
     public int listLenght;
     public float timeToMakeAction;
@@ -52,7 +53,7 @@ public class Monster : MonoBehaviour
         monster = GetComponent<NavMeshAgent>();
         hitBox = GetComponent<Collider>();
         lightSwitch = FindAnyObjectByType<LightSwitch>();
-        playerLocationState = FindAnyObjectByType<InsideOrOutside>();
+        InsideOrOutside = FindAnyObjectByType<InsideOrOutside>();
         playerTransform = FindAnyObjectByType<Player>().gameObject.transform;
         aimTarget = FindAnyObjectByType<AimTarget>();
         messageRadio = FindAnyObjectByType<MessageRadioManager>();
@@ -81,7 +82,11 @@ public class Monster : MonoBehaviour
         if (messageRadio.isDead)
         {
             animator.speed = 0f;
-            StopChasing();
+            if (monster.enabled)
+            {
+                StopChasing(); 
+            }
+            hitBox.isTrigger = true;
         }
         else
         {
@@ -89,15 +94,15 @@ public class Monster : MonoBehaviour
             if (!isFlashed)
             {
                 MonsterBehaviour();
-            }
+            } 
         }
     }
 
     private void MonsterBehaviour()
     {
-        if (playerLocationState.isInside)
+        if (InsideOrOutside.playerIsInside)
         {
-            dangerZoneCollider.enabled = false;
+            //dangerZoneCollider.enabled = false;
 
             if (monster.remainingDistance <= monster.stoppingDistance)
             {
@@ -160,12 +165,12 @@ public class Monster : MonoBehaviour
         {
             StopChasing();
             animator.speed = 0;
-            dangerZoneCollider.enabled = false;
+            //dangerZoneCollider.enabled = false;
         }
         else
         {
             StartChasing(playerTransform.position);
-            dangerZoneCollider.enabled = true;
+            //dangerZoneCollider.enabled = true;
         }
     }
 
@@ -211,7 +216,7 @@ public class Monster : MonoBehaviour
     {
         if (monster.remainingDistance <= monster.stoppingDistance)
         {
-            windowsTarget[windowIndex].GetComponent<WindowState>().BreakTheWindow();
+            windowsTarget[windowIndex].GetComponent<WindowState>().BreakTheWindow(this);
         }
     }
 

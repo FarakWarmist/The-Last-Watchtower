@@ -17,6 +17,7 @@ public class GameOver : MonoBehaviour
     public CinemachineCamera camRadio;
     public CinemachineCamera camMenu;
     public CinemachineCamera currentDeathCam;
+    public GameObject currentMonster;
     public GameObject cameraRadioObject;
     public GameObject cameraPlayerObject;
 
@@ -30,6 +31,8 @@ public class GameOver : MonoBehaviour
     CheckCursor checkCursor;
 
     public bool follow;
+
+    public float distanceBehindPlayer = 0.25f;
 
     private void Start()
     {
@@ -69,13 +72,44 @@ public class GameOver : MonoBehaviour
     public void GetGot()
     {
         Debug.Log("HA! Gotcha!");
-        Generator generator = FindAnyObjectByType<Generator>();
-        generator.energyLevel = 0;
         MessageRadioManager messageRadio = FindAnyObjectByType<MessageRadioManager>();
         messageRadio.isDead = true;
         StartCoroutine(Gotcha());
+        
     }
 
+    public void AreInsideTheCabin()
+    {
+        Debug.Log("Monster is inside");
+        player.enabled = false;
+        mouseLook.enabled = false;
+        MessageRadioManager messageRadio = FindAnyObjectByType<MessageRadioManager>();
+        messageRadio.isDead = true;
+        StartCoroutine(ItIsInsideTheCabine());
+    }
+    
+    IEnumerator ItIsInsideTheCabine()
+    {
+        yield return new WaitForSeconds(0.5f);
+
+        Transform playerTransform = mouseLook.gameObject.transform;
+        Vector3 positionBehindPlayer = playerTransform.position - playerTransform.forward * distanceBehindPlayer;
+        positionBehindPlayer.y = currentMonster.transform.position.y;
+        currentMonster.GetComponent<Monster>().monster.enabled = false;
+
+        yield return new WaitForSeconds(0.5f);
+
+        currentMonster.transform.position = positionBehindPlayer;
+        currentMonster.transform.LookAt(playerTransform);
+        Vector3 lookAtPlayer = playerTransform.position - currentMonster.transform.position;
+        lookAtPlayer.y = 0;
+
+        if (lookAtPlayer != Vector3.zero)
+        {
+            Quaternion newRotation = Quaternion.LookRotation(lookAtPlayer);
+            currentMonster.transform.rotation = Quaternion.Euler(0, newRotation.eulerAngles.y, 0);
+        }
+    }
     IEnumerator Gotcha()
     {
         float initialPOV = 40;
@@ -99,6 +133,15 @@ public class GameOver : MonoBehaviour
         }
         StartCoroutine(DeathScreen(currentDeathCam));
         currentDeathCam.transform.localPosition = initialDeathCamPos;
+        Generator generator = FindAnyObjectByType<Generator>();
+        generator.energyLevel = 0;
+
+        yield return new WaitForSeconds(0.01f);
+
+        if (!currentMonster.GetComponent<Monster>().monster.enabled)
+        {
+            currentMonster.GetComponent<Monster>().monster.enabled = true;
+        }
     }
 
     IEnumerator DeathScene()

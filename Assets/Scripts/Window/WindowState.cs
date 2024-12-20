@@ -11,11 +11,14 @@ public class WindowState : MonoBehaviour
         player = FindAnyObjectByType<Player>();
     }
 
-    public void BreakTheWindow()
+    public void BreakTheWindow(Monster monster)
     {
         if (window.isBroken && isRepaired)
         {
-            player.GamerOver();
+            GameOver gameOver = FindAnyObjectByType<GameOver>();
+            monster.isInside = true;
+            gameOver.currentMonster = monster.gameObject;
+            gameOver.AreInsideTheCabin();
         }
         else if (!window.isBroken && isRepaired)
         {

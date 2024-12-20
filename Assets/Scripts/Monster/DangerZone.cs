@@ -4,10 +4,10 @@ using UnityEngine;
 public class DangerZone : MonoBehaviour
 {
     public CinemachineCamera deathCam;
-
+    AudioSource audioSource;
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.gameObject.name);
+        audioSource = GetComponent<AudioSource>();
         var player = other.gameObject.GetComponent<CharacterController>();
         if (player != null)
         {
@@ -15,6 +15,7 @@ public class DangerZone : MonoBehaviour
             GameOver gameOver = FindAnyObjectByType<GameOver>();
             gameOver.currentDeathCam = deathCam;
             gameOver.GetGot(); 
+            audioSource.Play();
         }
     }
 }

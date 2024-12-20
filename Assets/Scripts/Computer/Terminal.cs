@@ -171,7 +171,7 @@ NOTES : Le tragique jour de l’effondrement de la 7e Tour, un groupe de 5 Rooted 
 
 * Les Rooted Priests ne se défendront jamais physiquement, ce qui les rend faciles à éliminer lorsqu’ils sont à portée. Cependant, leur grande intelligence fait d’eux de redoutables stratèges, utilisant diverses sorts ou diversions pour se dissimuler et rester à distance.
 
-* Si l'objet fétiche d’un Rooted Priest est retrouvé, celui-ci doit être enterré, suivi d’une prière (quelle que soit la religion). Toute autre tentative de détruire l’objet entraînera l’invocation d’un phénomène appelé ""Zone Rouge"". Ce phénomène désigne une zone où l’objet sera placé sur un étrange piédestal, entouré des matériaux qu’il y avait à portée (principalement du bois, de la terre et de la roche). Le groupe de personnes présentes se retrouvera dans un état constant d’agonie, mortellement choqué, incapable de parler ou de se déplacer. La durée et les blessures d’une Zone Rouge varient selon l’ancienneté et le type de l’objet.";
+* Si l'objet fétiche d’un Rooted Priest est retrouvé, celui-ci doit être enterré, suivi d’une prière (quelle que soit la religion). Toute autre tentative de détruire l’objet entraînera l’invocation d’un phénomène appelé ""Red Zone"". Ce phénomène désigne une zone où l’objet sera placé sur un étrange piédestal, entouré des matériaux qu’il y avait à portée (principalement du bois, de la terre et de la roche). Le groupe de personnes présentes se retrouvera dans un état constant d’agonie, mortellement choqué, incapable de parler ou de se déplacer. La durée et les blessures d’une Red Zone varient selon l’ancienneté et le type de l’objet.";
 
             case "false tree":
                 return text =

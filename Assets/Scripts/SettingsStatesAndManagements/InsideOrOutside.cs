@@ -1,37 +1,42 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.UIElements;
 
 public class InsideOrOutside : MonoBehaviour
 {
     public Door door;
-    public bool isInside;
+    public bool playerIsInside;
+
     public AudioSource soundAmbiant;
     public float initialVolume = 1f;
 
     private void OnTriggerEnter(Collider other)
     {
         var player = other.GetComponent<Player>();
+
         if (player != null)
         {
             door.isInside = true;
-            isInside = door.isInside;
+            playerIsInside = door.isInside;
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
         var player = other.GetComponent<Player>();
+        var monster = other.GetComponent<Monster>();
+
         if (player != null)
         {
             door.isInside = false;
-            isInside = door.isInside;
+            playerIsInside = door.isInside;
         }
     }
 
     private void Update()
     {
-        if(isInside)
+        if(playerIsInside)
         {
             if (soundAmbiant.volume > 0.2f)
             {
@@ -48,32 +53,6 @@ public class InsideOrOutside : MonoBehaviour
             {
                 soundAmbiant.volume += 2 * Time.deltaTime;
             }
-        }
-    }
-
-    void SoundFadeOut()
-    {
-        if (soundAmbiant.volume > 0)
-        {
-            soundAmbiant.volume = Mathf.Lerp(initialVolume, 0f, Time.deltaTime * 10);
-        }
-        else
-        {
-            soundAmbiant.volume = 0f;
-            soundAmbiant.Stop(); 
-        }
-    }
-
-    void SoundFadeIn()
-    {
-        soundAmbiant.Play();
-        if (soundAmbiant.volume != initialVolume)
-        {
-            soundAmbiant.volume = Mathf.Lerp(0f, initialVolume, Time.deltaTime * 10);
-        }
-        else
-        {
-            soundAmbiant.volume = initialVolume;
         }
     }
 }
