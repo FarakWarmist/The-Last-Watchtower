@@ -13,12 +13,14 @@ public class MessageRadioManager : MonoBehaviour
     public bool newMessage;
     public bool needAnswer;
     public bool isDead;
+    bool musicUp;
 
     public int answerChoosed;
     public int answerNum;
     public int messageNum = 0;
     public float messagePart = 0;
     public int nextPath = 1;
+    public int lastPath;
 
     public float time;
     public float shortTime = 8f;
@@ -27,6 +29,9 @@ public class MessageRadioManager : MonoBehaviour
 
     [SerializeField] GameObject monsters;
     [SerializeField] GameOver gameOver;
+    [SerializeField] AudioSource audioSource;
+    public AudioClip[] stressMusics;
+    
 
     private void Update()
     {
@@ -69,12 +74,28 @@ public class MessageRadioManager : MonoBehaviour
         }
         else if (messageNum == 3)
         {
+            if (messagePart == 15)
+            {
+                if (!musicUp)
+                {
+                    StartCoroutine(MusicUp(0, 0.8f));
+                }
+            }
+
+            if (messagePart == 30)
+            {
+                if (musicUp)
+                {
+                    StartCoroutine(MusicDown());
+                }
+            }
+
             if (messagePart == 43)
             {
                 messagePart = 51;
             }
 
-            if (messagePart > 43 &&  messagePart < 50)
+            if (messagePart > 43 && messagePart < 50)
             {
                 isDead = true;
             }
@@ -90,6 +111,22 @@ public class MessageRadioManager : MonoBehaviour
             if (messagePart == 6)
             {
                 messagePart = 13;
+            }
+
+            if (messagePart == 15)
+            {
+                if (!musicUp)
+                {
+                    StartCoroutine(MusicUp(0, 0.8f));
+                }
+            }
+
+            if (messagePart == 30)
+            {
+                if (musicUp)
+                {
+                    StartCoroutine(MusicDown());
+                }
             }
 
             if (messagePart == 41)
@@ -120,6 +157,13 @@ public class MessageRadioManager : MonoBehaviour
         }
         else if (messageNum == 666)
         {
+            if (messagePart == 2)
+            {
+                if (!musicUp)
+                {
+                    StartCoroutine(MusicUp(1, 1));
+                }
+            }
             if (messagePart > 0 && messagePart < 6)
             {
                 isDead = true;
@@ -127,6 +171,8 @@ public class MessageRadioManager : MonoBehaviour
             if (messagePart == 6)
             {
                 gameOver.AlexIsDead();
+                audioSource.Stop();
+                audioSource.clip = null;
                 messagePart = 7;
             }
         }
@@ -225,7 +271,7 @@ J'ai croisé un arbre à 3 troncs, un rocher avec une spiralle et je me suis abrit
                     message = @"N'oublie pas : Sud-Est, Arbre à 3 Troncs, Rocher avec Spiralle et Ruine.
 Quel direction je devrais prendre?";
                     answer1 = @"Nord-Est";
-                    answer2 = @"Sud-Ouest";
+                    answer2 = @"Ouest";
                     break;
                 // Answer 1D & 2D
                 case 22f:
@@ -284,7 +330,8 @@ Ils essaient de te déstabiliser pour frapper au bon moment.";
 Mais je commence à entendre des sons qui n'annoncent rien de bon.";
                     break;
                 case 10: // B
-                    message = @"Je viens de passer à côté d'une ancien... maison, je pense. 
+                    message = @"Je viens de passer à côté d'une ruine.
+Une ancienne maison, je pense. 
 Quel chemin je devrais prendre?";
                     answer1 = @"Hum... Mauvaise nouvelle.";
                     answer2 = @"...";
@@ -362,7 +409,7 @@ Quel chemin je devrais prendre?";
                     answer2 = @"...";
                     break;
                 // Answer B1
-                case 4: 
+                case 4:
                     message = @"Merci l'ami!";
                     break;
                 // Answer B2
@@ -393,7 +440,7 @@ On y a trouvez des documents à propos d'une entité surnommée la ""Dryádos"" qui 
                 case 12:
                     message = @"Mais il y a eu un accident au centre qui a causé la perte de ...";
                     break;
-// Start Deer Smile Attack
+                // Start Deer Smile Attack
                 case 13: // C
                     message = @"...";
                     answer1 = @"Alex?...";
@@ -495,7 +542,7 @@ Que dois-je faire.";
                 case 30:
                     message = @"Je pense... je pense que c'est bon.";
                     break;
-//End Deer Smile Attack
+                //End Deer Smile Attack
                 case 31: // K
                     message = @"Merci!...
 Merci de ne pas m'avoir laisser seul...
@@ -544,7 +591,6 @@ Je vais m'y arrêter un moment, le temps de me laisser digérer tout ce qui vient 
 Je vois un rocher avec un cercle avec un ""X"" par dessus.";
                     answer1 = @"Je ne vois pas la cabane sur la carte.";
                     answer2 = @"C'est bon. Fausse alerte.";
-                    time = shortTime;
                     break;
                 // Answer O1
                 case 39: // N
@@ -662,7 +708,7 @@ C'était des gens bien et aimés de tous.";
                     message = @"Si on a réussit à survivre aussi longtemps dans cette forêt, c'est grace à eux.
 Ils sont une véritable source d'espoir!";
                     break;
-                case 3: 
+                case 3:
                     message = @"C'est pourquoi, lorsqu'on a aprit que le dernier Watcher avait périt, le moral était au plus bas.";
                     break;
                 case 4:
@@ -672,7 +718,7 @@ Et pourtant, te voilà!";
                 case 5:
                     message = @"Quand les autres apprendront qu'il y a toujours un Watcher actif, ils pas en croire leurs orei...";
                     break;
-// Start Deer Smile Attack
+                // Start Deer Smile Attack
                 case 13: // C
                     message = @"...";
                     answer1 = @"Alex?...";
@@ -818,16 +864,15 @@ Je vais m'y arrêter un moment, le temps de me laisser digérer tout ce qui vient 
                     break;
                 case 38: // O
                     message = @"Ho!
-Je vois un rocher avec un cercle avec un ""X"" par dessus.";
+Je vois un rocher avec un ""Z"" et une ligne vertical en son milieu.";
                     answer1 = @"Je ne vois pas la cabane sur la carte.";
                     answer2 = @"C'est bon. Fausse alerte.";
-                    time = shortTime;
                     break;
                 // Answer O1
                 case 39: // N
                     message = @"Hein?! Tu es sûr de toi?
 Devrais-je juste continuer?";
-                    answer1 = @"Il devrait y avoir une cabane un peu plus loin.";
+                    answer1 = @"Une cabane est plus loin à gauche.";
                     answer2 = @"Finalement, je n'en suis pas si sûr.";
                     break;
                 // Answer N1
@@ -991,12 +1036,54 @@ Elle vient de se fermer!";
         }
     }
 
+    public void ResetMessageRadio()
+    {
+        if (messageNum == 666)
+        {
+            messageNum = lastPath;
+        }
+        if (answer1 != "" || answer2 != "")
+        {
+            answer1 = "";
+            answer2 = "";
+        }
+        isDead = false;
+        messagePart = 0;
+        newMessage = true;
+        hasListen = false;
+    }
+
     IEnumerator NextPart(float time)
     {
+        lastPath = messageNum;
         yield return new WaitForSeconds(time);
         messageNum = nextPath;
         messagePart = 0;
         newMessage = true;
         hasListen = false;
+    }
+
+    IEnumerator MusicUp(int index, float volume)
+    {
+        musicUp = true;
+        audioSource.volume = 0;
+        audioSource.clip = stressMusics[index];
+        audioSource.Play();
+        while (audioSource.volume < volume)
+        {
+            audioSource.volume += 0.2f * Time.deltaTime;
+            yield return null;
+        }
+    }
+    IEnumerator MusicDown()
+    {
+        musicUp = false;
+        while (audioSource.volume > 0)
+        {
+            audioSource.volume -= 0.2f * Time.deltaTime;
+            yield return null;
+        }
+        audioSource.Stop();
+        audioSource.clip = null;
     }
 }

@@ -18,6 +18,23 @@ public class ItemsManager : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip[] audioClips;
 
+    public GameObject itemsHoldOffset;
+
+    [SerializeField] CinemachineCamera camPlayer;
+    [SerializeField] CinemachineCamera camDoor;
+
+    private void Update()
+    {
+        if (camPlayer.enabled || camDoor.enabled)
+        {
+            itemsHoldOffset.SetActive(true);
+        }
+        else
+        {
+            itemsHoldOffset.SetActive(false);
+        }
+    }
+
     internal void PickUpItem(ref bool hasItem, GameObject itemInHand)
     {
         audioSource.clip = audioClips[0];
@@ -57,5 +74,17 @@ public class ItemsManager : MonoBehaviour
                 Debug.Log("I need to put down " + currentItem.name);
             }
         }
+    }
+
+    public void ResetItems(GameObject[] items)
+    {
+        hasSomething = false;
+        currentItem = null;
+        hasPlank = false;
+        viewPlank.SetActive(false);
+        hasHammer = false;
+        viewHammer.SetActive(false);
+        hasRune = false;
+        viewRune.SetActive(false);
     }
 }

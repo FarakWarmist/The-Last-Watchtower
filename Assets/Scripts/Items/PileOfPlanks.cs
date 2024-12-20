@@ -57,4 +57,15 @@ public class PileOfPlanks : MonoBehaviour, IInteractable
         planksInPile = tempList;
         return planksInPile;
     }
+
+    public void ResetPlanksInPile()
+    {
+        for (int i = 0; i < planksInPile.Length; i++)
+        {
+            if (!planksInPile[i].activeSelf)
+            {
+                planksInPile[i].SetActive(true);
+            }
+        }
+    }
 }
