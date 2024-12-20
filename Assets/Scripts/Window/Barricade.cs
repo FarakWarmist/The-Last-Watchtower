@@ -2,14 +2,14 @@ using UnityEngine;
 
 public class Barricade : MonoBehaviour
 {
-    public BrokenWindow window;
+    public Window window;
     public WindowState windowState;
-    [SerializeField] PutPlank[] planks;
+    public PutPlank[] planks;
     public bool allPlace;
 
     private void Update()
     {
-        if(window.GetComponent<BrokenWindow>().isBroken)
+        if(window.GetComponent<Window>().isBroken)
         {
             foreach(PutPlank plank in planks)
             {
@@ -31,7 +31,7 @@ public class Barricade : MonoBehaviour
 
             if(allPlace)
             {
-                windowState.isBroken = false;
+                windowState.isRepaired = false;
             }
         }
     }

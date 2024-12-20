@@ -5,6 +5,7 @@ public class PutPlank : MonoBehaviour, IInteractable
 {
     [SerializeField] Material woodMat;
     [SerializeField] Material transparentWoodMat;
+    [SerializeField] GameObject plank;
     public bool isPlaced;
     public int InteractionDistance = 2;
 
@@ -19,8 +20,6 @@ public class PutPlank : MonoBehaviour, IInteractable
             if (itemsManager.hasPlank && itemsManager.hasHammer)
             {
                 audioSource.Play();
-                ChangeMaterial(woodMat);
-                CheckChild(true);
                 isPlaced = true;
                 itemsManager.hasPlank = false;
                 itemsManager.viewPlank.SetActive(false);
@@ -42,23 +41,20 @@ public class PutPlank : MonoBehaviour, IInteractable
         
     }
 
-    void Start()
+    private void Update()
     {
-        ChangeMaterial(transparentWoodMat);
-        CheckChild(false);
-    }
-
-    private void CheckChild(bool isActif)
-    {
-        foreach (Transform child in transform)
+        if (isPlaced)
         {
-            child.gameObject.SetActive(isActif);
+            ChangeMaterial(woodMat);
+        }
+        else
+        {
+            ChangeMaterial(transparentWoodMat);
         }
     }
 
     private void ChangeMaterial(Material mat)
     {
-        Renderer renderer = GetComponent<Renderer>();
-        renderer.material = mat;
+        plank.GetComponent<Renderer>().material = mat;
     }
 }
