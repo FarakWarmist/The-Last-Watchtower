@@ -3,7 +3,7 @@ using UnityEngine;
 public class LightSwitch : MonoBehaviour, IInteractable
 {
     public bool switchOn;
-    public Light roomLight;
+    public Light[] roomLights;
     Animator animator;
     AudioSource audioSource;
     [SerializeField] Generator generator;
@@ -57,7 +57,13 @@ J'ai besoin de repartir la génératrice.";
 
     private void Update()
     {
-        roomLight.enabled = switchOn;
+        if (roomLights[roomLights.Length - 1].enabled != switchOn)
+        {
+            foreach (Light light in roomLights)
+            {
+                light.enabled = switchOn;
+            }
+        }
         animator.SetBool("Switch", switchOn);
     }
 }
