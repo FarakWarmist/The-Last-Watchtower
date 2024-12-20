@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class WindowState : MonoBehaviour
 {
-    public bool isBroken = false;
-    public BrokenWindow brokenWindow;
+    public bool isRepaired = false;
+    public Window window;
     Player player;
 
     private void Start()
@@ -13,18 +13,18 @@ public class WindowState : MonoBehaviour
 
     public void BreakTheWindow()
     {
-        if (brokenWindow.isBroken && isBroken)
+        if (window.isBroken && isRepaired)
         {
             player.GamerOver();
         }
-        else if (!brokenWindow.isBroken && isBroken)
+        else if (!window.isBroken && isRepaired)
         {
             Debug.Log("La fenêtre a été barricadée");
         }
-        else if (!brokenWindow.isBroken && !isBroken)
+        else if (!window.isBroken && !isRepaired)
         {
-            isBroken = true;
-            brokenWindow.WindowIsBreaking();
+            isRepaired = true;
+            window.WindowIsBreaking();
         }
     }
 }

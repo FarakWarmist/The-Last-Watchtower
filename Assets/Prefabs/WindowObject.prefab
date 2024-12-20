@@ -75,8 +75,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8526289d9b9328846a550ea33b7b62db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isBroken: 0
-  brokenWindow: {fileID: 45170199597093104}
+  isRepaired: 0
+  window: {fileID: 45170199597093104}
 --- !u!1 &5962893002765506649
 GameObject:
   m_ObjectHideFlags: 0
@@ -120,6 +120,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9199794016587285013}
+  - component: {fileID: 1829975296263506331}
   m_Layer: 7
   m_Name: WindowObject
   m_TagString: Untagged
@@ -147,6 +148,24 @@ Transform:
   - {fileID: 5614370857998388923}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1829975296263506331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6387781537028641793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ede1fa9522410c44aae5b4b1274e28bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allBarricades:
+  - {fileID: 2608434250002878021}
+  - {fileID: 2734054402534598891}
+  - {fileID: 6204023129855759862}
+  window: {fileID: 3279733673892548076}
+  windowState: {fileID: 1842272050193693248}
 --- !u!1001 &1291821115414443488
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -205,7 +224,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3754937262044519691, guid: 25fdd5e58f1b3b9438376d610782b7c7, type: 3}
       propertyPath: m_Name
-      value: Planks02
+      value: Barricade 2
       objectReference: {fileID: 0}
     - target: {fileID: 3754937262044519691, guid: 25fdd5e58f1b3b9438376d610782b7c7, type: 3}
       propertyPath: m_Layer
@@ -486,7 +505,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5400290075497703, guid: d92b725d83045df4a93e139619a9a6ea, type: 3}
       propertyPath: m_Name
-      value: Planks01
+      value: Barricade 1
       objectReference: {fileID: 0}
     - target: {fileID: 5400290075497703, guid: d92b725d83045df4a93e139619a9a6ea, type: 3}
       propertyPath: m_Layer
@@ -819,7 +838,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4481638474518197446, guid: f892209384f838b4b962a8753b3d6b89, type: 3}
       propertyPath: m_Name
-      value: Planks03
+      value: Barricade 3
       objectReference: {fileID: 0}
     - target: {fileID: 4481638474518197446, guid: f892209384f838b4b962a8753b3d6b89, type: 3}
       propertyPath: m_Layer
