@@ -8,7 +8,6 @@ public class InsideOrOutside : MonoBehaviour
     public bool isInside;
     public AudioSource soundAmbiant;
     public float initialVolume = 1f;
-    float timer;
 
     private void OnTriggerEnter(Collider other)
     {
