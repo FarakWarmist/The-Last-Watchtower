@@ -9110,7 +9110,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4741673435058504209, guid: 834c36d623f5de640987f33a969bdf55, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5370013078431848619, guid: 834c36d623f5de640987f33a969bdf55, type: 3}
       propertyPath: m_LocalScale.x
@@ -9422,7 +9422,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4741673435058504209, guid: 834c36d623f5de640987f33a969bdf55, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5370013078431848619, guid: 834c36d623f5de640987f33a969bdf55, type: 3}
       propertyPath: m_LocalScale.x
@@ -15246,7 +15246,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4741673435058504209, guid: 834c36d623f5de640987f33a969bdf55, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5246343740419118396, guid: 834c36d623f5de640987f33a969bdf55, type: 3}
       propertyPath: m_IsActive
@@ -17103,7 +17103,7 @@ Transform:
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.21, y: 27.25, z: -17.98}
+  m_LocalPosition: {x: -2.35, y: 26.616, z: -13.574}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -20058,12 +20058,14 @@ MonoBehaviour:
   camRadio: {fileID: 1344013955}
   camMenu: {fileID: 591150321}
   currentDeathCam: {fileID: 0}
+  currentMonster: {fileID: 0}
   cameraRadioObject: {fileID: 1344013953}
   cameraPlayerObject: {fileID: 405462398}
   initialCameraPlayerPos: {x: 0, y: 0, z: 0}
   initialCameraRadioPos: {x: 0, y: 0, z: 0}
   blackScreen: {fileID: 955313019}
   follow: 0
+  distanceBehindPlayer: 0.75
 --- !u!4 &1121702401
 Transform:
   m_ObjectHideFlags: 0
@@ -23518,7 +23520,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: 2b1df2eae211dcb4582f873da00ba3af, type: 2}
   m_BuildHeightMesh: 0
 --- !u!1 &1343449748
 GameObject:
@@ -26885,7 +26887,7 @@ Transform:
   m_GameObject: {fileID: 1541090786}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.21, y: 26.45, z: -17.98}
+  m_LocalPosition: {x: -2.35, y: 25.816, z: -13.574}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -32012,9 +32014,9 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 1
-  m_Extents: {x: 5, y: 0.5, z: 5}
+  m_Extents: {x: 4, y: 0.5, z: 4}
   m_MoveThreshold: 0.1
-  m_Carve: 0
+  m_Carve: 1
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
