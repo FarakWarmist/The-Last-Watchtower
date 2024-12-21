@@ -215,6 +215,76 @@ public class Answers : MonoBehaviour
                     break;
             }
         }
+        else if (radioMessage.messageNum == 5)
+        {
+            switch (radioMessage.messagePart)
+            {
+                case 0: // A
+                    radioMessage.messagePart += 0.1f;
+                    break;
+                case 3: // B
+                    radioMessage.messagePart += 2;
+                    radioMessage.nextPath = 666;
+                    break;
+                case 13: // C
+                    radioMessage.messagePart += 1;
+                    break;
+                case 14: // D
+                    radioMessage.messagePart += 1;
+                    break;
+                case 19: // Chemin
+                    radioMessage.messagePart = 10000;
+                    break;
+
+                // ----- CHEMIN A -----
+                case 10001: // Chemin A
+                    radioMessage.messagePart = 11000;
+                    break;
+                            case 11001: // Chemin AA
+                                radioMessage.messagePart = 11100;
+                                break;
+                                        case 11101: // Chemin AAA
+                                            radioMessage.messagePart = 11110;
+                                            break;
+                            case 12001: // Chemin AB
+                                radioMessage.messagePart = 12100;
+                                break;
+
+                // ----- CHEMIN C -----
+                case 30001: // Chemin C
+                    radioMessage.messagePart = 31000;
+                    break;
+                            case 31001: // Chemin CA
+                                radioMessage.messagePart = 31100;
+                                break;
+                                        case 31101: // Chemin CAA
+                                            radioMessage.messagePart = 31110;
+                                            break;
+
+                // ----- CHEMIN D -----
+                case 50001: // Chemin D
+                    radioMessage.messagePart = 51000;
+                    break;
+                            case 51001: // Chemin DA
+                                radioMessage.messagePart = 51100;
+                                break;
+                                        case 51101: // Chemin DAA
+                                            radioMessage.messagePart = 51110;
+                                            break;
+                                                    case 51121: // Chemin DAAB
+                                                        radioMessage.messagePart = 51122;
+                                                        break;
+                // ----- CHEMIN E -----
+                case 40001: // Chemin E
+                    radioMessage.messagePart = 41000;
+                    break;
+
+                // ----- CHEMIN WIN -----
+                case 6011: // F
+                    radioMessage.messagePart += 1;
+                    break;
+            }
+        }
         else if (radioMessage.messageNum == 666)
         {
             switch (radioMessage.messagePart)
@@ -374,6 +444,75 @@ public class Answers : MonoBehaviour
                     break;
                 case 38: // O
                     radioMessage.messagePart += 2.2f;
+                    break;
+            }
+        }
+        else if (radioMessage.messageNum == 5)
+        {
+            switch (radioMessage.messagePart)
+            {
+                case 0: // A
+                    radioMessage.messagePart += 0.2f;
+                    break;
+                case 3: // B
+                    radioMessage.messagePart += 7;
+                    break;
+                case 13: // C
+                    radioMessage.messagePart += 1;
+                    break;
+                case 14: // D
+                    radioMessage.messagePart += 1;
+                    break;
+                case 19: // Chemin
+                    radioMessage.messagePart = 20000;
+                    break;
+
+                // ----- CHEMIN A -----
+                case 10001: // Chemin A
+                    radioMessage.messagePart = 12000;
+                    break;
+                            case 11001: // Chemin AA
+                                radioMessage.messagePart = 11200;
+                                break;
+                                        case 11101: // Chemin AAA
+                                            radioMessage.messagePart = 11120;
+                                            break;
+                            case 12001: // Chemin AB
+                                radioMessage.messagePart = 12200;
+                                break;
+
+                // ----- CHEMIN C -----
+                case 30001: // Chemin C
+                    radioMessage.messagePart = 32000;
+                    break;
+                            case 31001: // Chemin CA
+                                radioMessage.messagePart = 31200;
+                                break;
+                                        case 31101: // Chemin CAA
+                                            radioMessage.messagePart = 31120;
+                                            break;
+
+                // ----- CHEMIN D -----
+                case 50001: // Chemin D
+                    radioMessage.messagePart = 52000;
+                    break;
+                            case 51001: // Chemin DA
+                                radioMessage.messagePart = 51200;
+                                break;
+                                        case 51101: // Chemin DAA
+                                            radioMessage.messagePart = 51120;
+                                            break;
+                                                    case 51121: // Chemin DAAB
+                                                        radioMessage.messagePart = 51124;
+                                                        break;
+                // ----- CHEMIN E -----
+                case 40001: // Chemin E
+                    radioMessage.messagePart = 42000;
+                    break;
+
+                // ----- CHEMIN WIN -----
+                case 6011: // F
+                    radioMessage.messagePart += 1;
                     break;
             }
         }
@@ -612,6 +751,237 @@ public class Answers : MonoBehaviour
                     break;
             }
         }
+        else if (radioMessage.messageNum == 5)
+        {
+            switch (radioMessage.messagePart)
+            {
+                case 13: // C
+                    radioMessage.messagePart += 1;
+                    break;
+                case 14: // D
+                    radioMessage.messagePart += 1;
+                    break;
+                case 15:
+                    radioMessage.messagePart += 1;
+                    break;
+                case 16:
+                    radioMessage.messagePart += 1;
+                    break;
+                case 17:
+                    radioMessage.messagePart += 1;
+                    break;
+                case 18:
+                    radioMessage.messagePart += 1;
+                    break;
+                case 18.1f:
+                    radioMessage.messagePart += 0.9f;
+                    break;
+                case 10: // Chemin
+                    Shoot();
+                    break;
+
+                // ----- CHEMIN A -----
+                case 10000: 
+                    radioMessage.messagePart += 1;
+                    break;
+                case 10000.1f:
+                    radioMessage.messagePart += 0.9f;
+                    break;
+                case 10001: // Chemin A
+                    Shoot();
+                    break;
+                case 11000:
+                    radioMessage.messagePart += 1;
+                    break;
+                case 11000.1f:
+                    radioMessage.messagePart += 0.9f;
+                    break;
+                case 11001: // Chemin AA
+                    Shoot();
+                    break;
+                case 11100:
+                    radioMessage.messagePart += 1;
+                    break;
+                case 11100.1f:
+                    radioMessage.messagePart += 0.9f;
+                    break;
+                case 11101: // Chemin AAA
+                    Shoot();
+                    break;
+                case 11110:
+                    radioMessage.messagePart += 1;
+                    break;
+                case 11111:
+                    radioMessage.messagePart += 1;
+                    break;
+                case 11120:
+                    radioMessage.messagePart += 1;
+                    break;
+                case 11200:
+                    radioMessage.messagePart += 1;
+                    break;
+                case 12000:
+                    radioMessage.messagePart += 1;
+                    break;
+                case 12000.1f:
+                    radioMessage.messagePart += 0.9f;
+                    break;
+                case 12001: // Chemin AB
+                    Shoot();
+                    break;
+                case 12100:
+                    radioMessage.messagePart += 1;
+                    break;
+                case 12101:
+                    radioMessage.messagePart += 1;
+                    break;
+                case 12200:
+                    radioMessage.messagePart += 1;
+                    break;
+
+                // ----- CHEMIN B -----
+
+                case 20000:
+                    radioMessage.messagePart += 1;
+                    break;
+
+                // ----- CHEMIN C -----
+                case 30000.1f:
+                    radioMessage.messagePart += 0.9f;
+                    break;
+                case 30001: // Chemin C
+                    Shoot();
+                    break;
+                case 31000:
+                    radioMessage.messagePart += 1;
+                    break;
+                case 31000.1f:
+                    radioMessage.messagePart += 0.9f;
+                    break;
+                case 31001: // Chemin CA
+                    Shoot();
+                    break;
+                case 31100:
+                    radioMessage.messagePart += 1;
+                    break;
+                case 31100.1f:
+                    radioMessage.messagePart += 0.9f;
+                    break;
+                case 31101: // Chemin CAA
+                    Shoot();
+                    break;
+                case 31110:
+                    radioMessage.messagePart += 1;
+                    break;
+                case 31120:
+                    radioMessage.messagePart += 1;
+                    break;
+                case 31200:
+                    radioMessage.messagePart += 1;
+                    break;
+                case 32000:
+                    radioMessage.messagePart += 1;
+                    break;
+
+                // ----- CHEMIN D -----
+                case 50000.1f:
+                    radioMessage.messagePart += 0.9f;
+                    break;
+                case 50001: // Chemin D
+                    Shoot();
+                    break;
+                case 51000:
+                    radioMessage.messagePart += 1;
+                    break;
+                case 51000.1f:
+                    radioMessage.messagePart += 0.9f;
+                    break;
+                case 51001: // Chemin DA
+                    Shoot();
+                    break;
+                case 51100:
+                    radioMessage.messagePart += 1;
+                    break;
+                case 51100.1f:
+                    radioMessage.messagePart += 0.9f;
+                    break;
+                case 51101: // Chemin DAA
+                    Shoot();
+                    break;
+                case 51110:
+                    radioMessage.messagePart += 1;
+                    break;
+                case 51120:
+                    radioMessage.messagePart += 1;
+                    break;
+                case 51120.1f:
+                    radioMessage.messagePart += 0.9f;
+                    break;
+                case 51121: // Chemin DAAB
+                    Shoot();
+                    break;
+                case 51122:
+                    radioMessage.messagePart += 1;
+                    break;
+                case 51124:
+                    radioMessage.messagePart += 1;
+                    break;
+                case 51200:
+                    radioMessage.messagePart += 1;
+                    break;
+                case 52000:
+                    radioMessage.messagePart += 1;
+                    break;
+
+                // ----- CHEMIN E -----
+                case 40000.1f:
+                    radioMessage.messagePart += 0.9f;
+                    break;
+                case 40001: // Chemin E
+                    Shoot();
+                    break;
+                case 41000:
+                    radioMessage.messagePart += 1;
+                    break;
+                case 41001:
+                    radioMessage.messagePart += 1;
+                    break;
+                case 42000:
+                    radioMessage.messagePart += 1;
+                    break;
+
+                // ----- RED ZONE -----
+                case 7000:
+                    radioMessage.messagePart += 1;
+                    break;
+                case 7001:
+                    radioMessage.messagePart += 1;
+                    break;
+                case 7002:
+                    radioMessage.messagePart += 1;
+                    break;
+                case 7003:
+                    radioMessage.messagePart += 1;
+                    break;
+
+                // ----- DEAD END + NO BULLET LEFT -----
+                case 7100.1f:
+                    radioMessage.messagePart += 0.9f;
+                    break;
+                case 7100.2f:
+                    radioMessage.messagePart += 0.8f;
+                    break;
+                case 7101:
+                    radioMessage.messagePart += 1;
+                    break;
+                case 7102:
+                    radioMessage.messagePart += 1;
+                    break;
+                case 7103:
+                    radioMessage.messagePart += 1;
+                    break;
+            }
+        }
         else if (radioMessage.messageNum == 666)
         {
             switch (radioMessage.messagePart)
@@ -635,6 +1005,19 @@ public class Answers : MonoBehaviour
         radioMessage.answer1 = "";
         radioMessage.answer2 = "";
         StartCoroutine(HideAnswers());
+    }
+
+    void Shoot()
+    {
+        radioMessage.bullets -= 1;
+        if (radioMessage.bullets < 0)
+        {
+            radioMessage.messagePart = 7100.2f;
+        }
+        else 
+        { 
+            radioMessage.messagePart -= 0.9f;
+        }
     }
 
     public IEnumerator ShowAnswers()

@@ -26,6 +26,8 @@ public class MessageRadioManager : MonoBehaviour
     public float shortTime = 8f;
     public float mediumTime = 20f;
     public float longTime = 60f;
+    public float quickTime = 8;
+    public float bullets = 3;
 
     [SerializeField] GameObject monsters;
     [SerializeField] GameOver gameOver;
@@ -153,6 +155,64 @@ public class MessageRadioManager : MonoBehaviour
             {
                 gameOver.AlexIsDead();
                 messagePart = 60;
+            }
+        }
+        else if (messageNum == 5)
+        {
+            // Chemin C
+            if (messagePart == 12201 || messagePart == 20001)
+            {
+                messagePart = 30001; 
+            }
+            // Chemin D
+            if (messagePart == 11112 || messagePart == 41002 || messagePart == 42001)
+            {
+                messagePart = 50001; 
+            }
+            // Chemin E
+            if (messagePart == 11201 || messagePart == 12102 || messagePart == 31111)
+            {
+                messagePart = 40001; 
+            }
+            // Red Zone
+            if (messagePart == 31121 ||
+                messagePart == 31201 ||
+                messagePart == 32001 ||
+                messagePart == 42001 ||
+                messagePart == 51125 ||
+                messagePart == 51201 ||
+                messagePart == 52001)
+            {
+                messagePart = 7000;
+            }
+            // Dead End
+            if (messagePart == 51111)
+            {
+                messagePart = 7100.1f;
+            }
+            // Game Over
+            if (messagePart == 7005 || messagePart == 7105)
+            {
+                gameOver.AlexIsDead();
+                messagePart = 60000;
+            }
+
+            if (messagePart == 9)
+            {
+                StartCoroutine(NextPart(1));
+                messagePart = 60000;
+            }
+
+            if (messagePart == 11121)
+            {
+                lastPath = 5;
+                messageNum = 666;
+                messagePart = 0;
+            }
+            
+            if(messagePart > 7000 && messagePart < 7006 || messagePart > 7100 && messagePart < 7106)
+            {
+                isDead = true;
             }
         }
         else if (messageNum == 666)
@@ -992,9 +1052,553 @@ Elle vient de se fermer!";
         {
             switch (messagePart)
             {
-                case 0:
-                    message = @"Part 5";
+                case 0: // A
+                    message = @"Hé, Watcher?!
+Toujours là?";
+                    answer1 = @"Comment tu te sens?";
+                    answer2 = @"Tout roule!";
                     break;
+
+                // Answer A1
+                case 0.1f:
+                    message = @"Toujours sous le choque, mais je vais mieux.
+Merci de demander.";
+                    break;
+
+                // Answer A2
+                case 0.2f:
+                    message = @"On dirait que ça se passe mieux de ton coté que du mien.
+Ha.";
+                    break;
+                case 1:
+                    message = @"Je suis sortie de l'abri il y a un moment.
+Quelqu'un y avait laissé ce revolver, chargé avec 3 balles.";
+                    break;
+                case 2:
+                    message = @"Ça ne pourra certainement pas tuer l'une de ces choses, mais ça pourra au moins les ralentir.";
+                    break;
+
+                case 3: // B
+                    message = @"Je suis maintenant face à un grand arbre avec deux tronc où le chemin se sépare en deux.
+Quel chemin dois-je prendre.";
+                    answer1 = @"Gauche";
+                    answer2 = @"Droite";
+                    break;
+
+                // Answer B1
+                case 5:
+                    message = @"Compris chef!";
+                    break;
+                case 6:
+                    message = @"La batterie de ma radio commence à se faire faible, alors je te rappelle plus tard.";
+                    break;
+                case 7:
+                    message = @"Fait attention à toi Watcher.";
+                    break;
+                case 8:
+                    message = @"(Bip)!...";
+                    break;
+                // case : 666 (Crevace)
+
+                // Answer B2
+                case 10:
+                    message = @"Compris chef!";
+                    break;
+                case 11:
+                    message = @"La batterie de ma radio commence à se faire faible, alors je te rappelle quand...";
+                    break;
+                case 12:
+                    message = @"...";
+                    break;
+
+                case 13: // C
+                    message = @"Tu entends ça?";
+                    answer1 = @"Non";
+                    answer2 = @"Entendre quoi?";
+                    time = shortTime;
+                    break;
+
+                // Answer C1 & C2
+                case 14: // D
+                    message = @"Un chant...
+J'entend un sorte de chant.";
+                    answer1 = @"Un chant";
+                    answer2 = @"Ça n'annonce rien de bon";
+                    time = shortTime;
+                    break;
+
+                // Answer D1 & D2
+                case 15:
+                    message = @"Ça sonne comme le chant d'un...";
+                    time = shortTime;
+                    break;
+                case 16:
+                    message = @"Merde!
+Il y a un Rooted Priest avec une armée de Ghouls!";
+                    time = shortTime;
+                    break;
+                case 17:
+                    message = @"Pas le temps de trainer!
+J'espère que tu connais le chemin, car ça va aller vite!";
+                    time = shortTime;
+                    break;
+                case 18:
+                    message = @"...";
+                    time = mediumTime;
+                    break;
+                case 18.1f:
+                    BulletsLeft();
+                    break;
+                case 19: // Chemin
+                    message = @"L'arbre à deux tronc est à ma gauche et il y a ce qui ressemble à une ruine sur le chemin de gauche.
+Quelle est la prochaine direction?";
+                    answer1 = @"Gauche"; // Chemin A
+                    answer2 = @"Droite"; // Chemin B
+                    time = quickTime;
+                    break;
+
+                // ----- CHEMIN A -----
+                case 10000:
+                    message = @"...";
+                    time = shortTime;
+                    break;
+                case 10000.1f: // Shoot
+                    BulletsLeft();
+                    break;
+                case 10001:
+                    message = @"Je suis à la ruine.
+Quelle est la prochaine direction?";
+                    answer1 = @"Gauche"; // Chemin AA
+                    answer2 = @"Droite"; // Chemin AB
+                    time = quickTime;
+                    break;
+
+                // Chemin AA
+                case 11000:
+                    message = @"...";
+                    time = mediumTime;
+                    break;
+                case 11000.1f: // Shoot
+                    BulletsLeft();
+                    break;
+                case 11001:
+                    message = @"Il y a un rocher avec un ""8"" gravé dessus à ma gauche.
+Quelle est la prochaine direction?";
+                    answer1 = @"Gauche"; // Chemin AAA
+                    answer2 = @"Droite"; // Chemin AAB
+                    time = quickTime;
+                    break;
+
+                        // Chemin AAA
+                        case 11100:
+                            message = @"...";
+                            time = shortTime;
+                            break;
+                        case 11100.1f: // Shoot
+                            BulletsLeft();
+                            break;
+                        case 11101:
+                            message = @"J'ai passé le rocher avec un ""8"" gravé dessus.
+Quelle est la prochaine direction?";
+                            answer1 = @"Gauche"; // Chemin AAAA
+                            answer2 = @"Droite"; // Chemin AAAB
+                            time = quickTime;
+                            break;
+
+                                // Chemin AAAA
+                                case 11110:
+                                    message = @"...";
+                                    time = longTime;
+                                    break;
+                                case 11111:
+                                    message = @"J'ai passé un rocher avec une sorte d'enclume gravé dessus.
+Je suis arrivé à une ruine et je suis aller sur le chemin de gauche car des Ghouls venait vers ma droite.";
+                                    time = shortTime;
+                                    break;
+                                // case 11112: Chemin D
+
+                                // Chemin AAAB
+                                case 11120:
+                                    message = @"...";
+                                    time = shortTime;
+                                    break;
+                                // case 11121: 666 (Crevace)
+
+                        // Chemin AAB
+                        case 11200:
+                            message = @"...";
+                            time = mediumTime;
+                            break;
+                        // case 11201: Chemin E
+
+                // Chemin AB
+                case 12000:
+                    message = @"...";
+                    time = mediumTime;
+                    break;
+                case 12000.1f: // Shoot
+                    BulletsLeft();
+                    break;
+                case 12001:
+                    message = @"Je suis à un abri.
+Quelle est la prochaine direction?";
+                    answer1 = @"Gauche"; // Chemin ABA
+                    answer2 = @"Droite"; // Chemin ABB
+                    time = quickTime;
+                    break;
+
+                        // Chemin ABA
+                        case 12100:
+                            message = @"...";
+                            time = mediumTime;
+                            break;
+                        case 12101:
+                            message = @"J'ai passé un croisement.
+Je suis aller sur le chemin de gauche car des Ghouls venait vers ma droite.";
+                            time = shortTime;
+                            break;
+                        // case 12102: Chemin E
+
+                        // Chemin ABB
+                        case 12200:
+                            message = @"...";
+                            time = mediumTime;
+                            break;
+                        // case 12201: Chemin C
+
+                // ----- CHEMIN B -----
+                case 20000:
+                    message = @"...";
+                    time = longTime;
+                    break;
+                // case 20001: Chemin C
+
+                // ----- CHEMIN C -----
+                case 30000.1f: // Shoot
+                    BulletsLeft();
+                    break;
+                case 30001:
+                    message = @"J'ai passé un rocher avec ce qui ressemlait à un sablier.
+Je peux voir un grand arbre avec un creux en son milieu, plus loin devant moi.
+Quelle est la prochaine direction?";
+                    answer1 = @"Gauche"; // Chemin CA
+                    answer2 = @"Droite"; // Chemin CB
+                    time = quickTime;
+                    break;
+
+                // Chemin CA
+                case 31000:
+                    message = @"...";
+                    time = shortTime;
+                    break;
+                case 31000.1f: // Shoot
+                    BulletsLeft();
+                    break;
+                case 31001:
+                    message = @"Je suis à un abri.
+Quelle est la prochaine direction?";
+                    answer1 = @"Gauche"; // Chemin CAA
+                    answer2 = @"Droite"; // Chemin CAB
+                    time = quickTime;
+                    break;
+
+                        // Chemin CAA
+                        case 31100:
+                            message = @"...";
+                            time = shortTime;
+                            break;
+                        case 31100.1f: // Shoot
+                            BulletsLeft();
+                            break;
+                        case 31101:
+                            message = @"Il y a un grand arbre qui à été coupé à ma gauche.
+Quelle est la prochaine direction?";
+                            answer1 = @"Gauche"; // Chemin CAAA
+                            answer2 = @"Droite"; // Chemin CAAB
+                            time = quickTime;
+                            break;
+
+                                // Chemin CAAA
+                                case 31110:
+                                    message = @"...";
+                                    time = longTime;
+                                    break;
+                                // case 31111: Chemin E
+
+                                // Chemin CAAB
+                                case 31120:
+                                    message = @"...";
+                                    time = shortTime;
+                                    break;
+                                // case 31121: Red Zone
+
+                        // Chemin CAB
+                        case 31200:
+                            message = @"...";
+                            time = mediumTime;
+                            break;
+                        // case 31201: Red Zone
+
+                // Chemin CB
+                case 32000:
+                    message = @"...";
+                    time = shortTime;
+                    break;
+                // case 32001: Red Zone
+
+                // ----- CHEMIN E -----
+                case 40000.1f: // Shoot
+                    BulletsLeft();
+                    break;
+                case 40001:
+                    message = @"Je suis à une ruine.
+Il y a un rocher, où un symbole égale avec un ligne vertical sur le haut était gravé dessus, derrière moi.
+Quelle est la prochaine direction?";
+                    answer1 = @"Gauche"; // Chemin EA
+                    answer2 = @"Droite"; // Chemin EB
+                    time = quickTime;
+                    break;
+
+                // Chemin EA
+                case 41000:
+                    message = @"...";
+                    time = longTime;
+                    break;
+                case 41001:
+                    message = @"J'ai passé une autre ruine.
+J'ai continué tout droit car des Ghouls venait vers ma gauche.";
+                    time = shortTime;
+                    break;
+                // case 41002: Chemin D
+
+                // Chemin EB
+                case 42000:
+                    message = @"...";
+                    time = shortTime;
+                    break;
+                // case 42001: Red Zone
+
+                // ----- CHEMIN D -----
+                case 50000.1f: // Shoot
+                    BulletsLeft();
+                    break;
+                case 50001:
+                    message = @"Je vois maintenant un rocher, avec un cercle où une ligne séparée au millieu passe en diagonale, est gravé dessus à ma gauche.
+Quelle est la prochaine direction?";
+                    answer1 = @"Gauche"; // Chemin DA
+                    answer2 = @"Droite"; // Chemin DB
+                    time = quickTime;
+                    break;
+
+                // Chemin DA
+                case 51000:
+                    message = @"...";
+                    time = mediumTime;
+                    break;
+                case 51000.1f: // Shoot
+                    BulletsLeft();
+                    break;
+                case 51001:
+                    message = @"Je suis à une ruine.
+Quelle est la prochaine direction?";
+                    answer1 = @"Gauche"; // Chemin DAA
+                    answer2 = @"Droite"; // Chemin DAB
+                    time = quickTime;
+                    break;
+
+                        // Chemin DAA
+                        case 51100:
+                            message = @"...";
+                            time = mediumTime;
+                            break;
+                        case 51100.1f: // Shoot
+                            BulletsLeft();
+                            break;
+                        case 51101:
+                            message = @"Il y a un grand arbre avec deux troncs sur ma gauche.
+Quelle est la prochaine direction?";
+                            answer1 = @"Gauche"; // Chemin DAAA
+                            answer2 = @"Droite"; // Chemin DAAB
+                            time = quickTime;
+                            break;
+
+                                // Chemin DAAA
+                                case 51110:
+                                    message = @"...";
+                                    time = shortTime;
+                                    break;
+                                // case 51111: Dead End
+
+                                // Chemin DAAB
+                                case 51120:
+                                    message = @"...";
+                                    time = mediumTime;
+                                    break;
+                                case 51120.1f: // Shoot
+                                    BulletsLeft();
+                                    break;
+                                case 51121:
+                                    message = @"Il y a un rocher, où un cercle avec un point au milieu est gravé dessus, devant moi.
+Quelle est la prochaine direction?";
+                                    answer1 = @"Gauche"; // Chemin DAABA
+                                    answer2 = @"Droite"; // Chemin DAABB
+                                    time = quickTime;
+                                    break;
+
+                                        // Chemin DAABA
+                                        case 51122:
+                                            message = @"...";
+                                            time = mediumTime;
+                                            break;
+                                        // case 51123: Chemin Win
+
+                                        // Chemin DAABB
+                                        case 51124:
+                                            message = @"...";
+                                            time = shortTime;
+                                            break;
+                                        // case 51125: Red Zone
+
+                        // Chemin DAB
+                        case 51200:
+                            message = @"...";
+                            time = shortTime;
+                            break;
+                        // case 51201: Red Zone
+
+                // Chemin DB
+                case 52000:
+                    message = @"...";
+                    time = mediumTime;
+                    break;
+                // case 52001: Red Zone
+
+                // ----- CHEMIN WIN -----
+                case 6000:
+                    message = @"Oh mon dieu ! Ça y est !
+Le camp ! Je vpis le camps !";
+                    break;
+                case 6001:
+                    message = @"Hey ! Par ici !";
+                    break;
+                case 6002:
+                    message = @"Ils m'ont vu ! Je vois les porte commencer à s'ouvrir !";
+                    break;
+                case 6003:
+                    message = @"Aller !
+Un dernier p'tit effort !";
+                    break;
+                case 6004:
+                    message = @"...";
+                    break;
+                case 6005:
+                    message = @"Ha ! Hahaha !";
+                    break;
+                case 6006:
+                    message = @"J'y suis arrivé.
+On y est arriver !";
+                    break;
+                case 6007:
+                    message = @"J'y suis arrivé.
+On y est arrivé !";
+                    break;
+                case 6008:
+                    message = @"Ha ha ha! Yes !
+Dans les dent Root de mes deux !";
+                    break;
+                case 6009:
+                    message = @"Ha ha... ha...";
+                    break;
+                case 6010:
+                    message = @"...";
+                    break;
+                case 6011: // F
+                    message = @"Hé, Watcher...?";
+                    answer1 = @"Oui?"; 
+                    answer2 = @"Qu'est-ce qu'il y a Alex?";
+                    break;
+                // Answer F1 & F2
+                case 6012:
+                    message = @"Merci.";
+                    break;
+                case 6013:
+                    message = @"Sans ton aide, je serais probablement mort de manière horrible.";
+                    break;
+                case 6014:
+                    message = @"Je vais prévenir des Explorateur de recherche pour tenter de retrouver les autres membres de mon groupe.";
+                    break;
+                case 6015:
+                    message = @"Si tu as des nouvelles d'eux, tu pourras me communiquer directement.";
+                    break;
+                case 6016:
+                    message = @"Mais pour l'instant, repose toi bien.";
+                    break;
+                case 6017:
+                    message = @"On va avoir besoin de toi pour la nuit prochaine.";
+                    break;
+                case 6018:
+                    message = @"Aller! Bon repos Watcher.";
+                    break;
+                case 6019:
+                    message = @"Tu l'as mérité.";
+                    break;
+                case 6020:
+                    message = @"(Bip)!...";
+                    break;
+
+                // ----- RED ZONE -----
+                case 7000:
+                    message = @"Une Red Zone!?";
+                    time = shortTime;
+                    break;
+                case 7001:
+                    message = @"Tu m'as envoyer...
+Dans une RED ZONE!?";
+                    time = shortTime;
+                    break;
+                case 7002:
+                    message = @"Pourquoi tu as fait ça?!";
+                    time = shortTime;
+                    break;
+                case 7003:
+                    message = @"POURQUOI?!
+POURQUHAAAAAaarghll...!!!";
+                    time = mediumTime;
+                    break;
+                case 7004:
+                    message = @"(Bip)!...";
+                    break;
+
+                // ----- DEAD END + NO BULLET LEFT -----
+                case 7100.1f:
+                    message = @"Tu m'as envoyer dans un cul-de-sac !";
+                    time = shortTime;
+                    break;
+                case 7100.2f:
+                    message = @"Ils sont trop nombreux !
+Et il ne me reste plus aucune balle !";
+                    time = shortTime;
+                    break;
+                case 7101:
+                    message = @"Merde !
+Merde !!!
+MERDE !!!";
+                    time = shortTime;
+                    break;
+                case 7102:
+                    message = @"Reculez saloprie! Ou je vous jure que...";
+                    time = shortTime;
+                    break;
+                case 7103:
+                    message = @"(Crak)!... AAAAAAHRRGG...!!!
+MERDE! ALLEZ VOUS FAIRE F....!!! (Sklack)!...
+AAAAAAAAAAH.....!!!!!!";
+                    time = mediumTime;
+                    break;
+                case 7104:
+                    message = @"(Bip)!...";
+                    break;
+
                 default:
                     message = "";
                     break;
@@ -1047,10 +1651,18 @@ Elle vient de se fermer!";
             answer1 = "";
             answer2 = "";
         }
+        bullets = 3;
         isDead = false;
         messagePart = 0;
         newMessage = true;
         hasListen = false;
+    }
+
+    void BulletsLeft()
+    {
+        message = @$"Il me reste {bullets} balles.
+Je répète...";
+        time = shortTime;
     }
 
     IEnumerator NextPart(float time)
