@@ -1703,7 +1703,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &78719070
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2186,6 +2186,8 @@ MonoBehaviour:
   shortTime: 8
   mediumTime: 20
   longTime: 60
+  quickTime: 8
+  bullets: 3
   monsters: {fileID: 474222674}
   gameOver: {fileID: 1121702400}
   audioSource: {fileID: 939218235}
@@ -8560,7 +8562,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &474222675
 Transform:
   m_ObjectHideFlags: 0
@@ -9110,7 +9112,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4741673435058504209, guid: 834c36d623f5de640987f33a969bdf55, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5370013078431848619, guid: 834c36d623f5de640987f33a969bdf55, type: 3}
       propertyPath: m_LocalScale.x
@@ -9422,7 +9424,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4741673435058504209, guid: 834c36d623f5de640987f33a969bdf55, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5370013078431848619, guid: 834c36d623f5de640987f33a969bdf55, type: 3}
       propertyPath: m_LocalScale.x
@@ -15246,7 +15248,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4741673435058504209, guid: 834c36d623f5de640987f33a969bdf55, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5246343740419118396, guid: 834c36d623f5de640987f33a969bdf55, type: 3}
       propertyPath: m_IsActive
@@ -20059,7 +20061,7 @@ MonoBehaviour:
   camMenu: {fileID: 591150321}
   currentDeathCam: {fileID: 0}
   currentMonster: {fileID: 0}
-  cameraRadioObject: {fileID: 1344013953}
+  cameraRadioObject: {fileID: 186637599}
   cameraPlayerObject: {fileID: 405462398}
   initialCameraPlayerPos: {x: 0, y: 0, z: 0}
   initialCameraRadioPos: {x: 0, y: 0, z: 0}
@@ -23762,6 +23764,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5370013078431848619, guid: 834c36d623f5de640987f33a969bdf55, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6805751538204460939, guid: 834c36d623f5de640987f33a969bdf55, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8900591122970009836, guid: 834c36d623f5de640987f33a969bdf55, type: 3}
