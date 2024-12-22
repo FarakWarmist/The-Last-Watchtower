@@ -68,6 +68,7 @@ public class MonsterGameOver : MonoBehaviour
         animator.SetBool("GameOver", false);
         if (camCollider == null) return;
         camCollider.enabled = false;
+        startSound = false;
     }
 
     IEnumerator MoveSound()
