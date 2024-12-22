@@ -25,6 +25,7 @@ public class Radio : MonoBehaviour, IInteractable
     RadioLights radioLights;
     CheckCursor cursorState;
     Sleep sleep;
+    Answers answers;
 
     public CinemachineCamera camPlayer;
     public CinemachineCamera camRadio;
@@ -39,6 +40,7 @@ public class Radio : MonoBehaviour, IInteractable
         radioLights = GetComponent<RadioLights>();
         cursorState = FindAnyObjectByType<CheckCursor>();
         sleep = FindAnyObjectByType<Sleep>();
+        answers = FindAnyObjectByType<Answers>();
 
         isOn = false;
     }
@@ -82,6 +84,10 @@ public class Radio : MonoBehaviour, IInteractable
                 timeBarObj.SetActive(false);
             }
         }
+        else
+        {
+            timeBarObj.SetActive(false);
+        }
 
         if (radioMessage.newMessage)
         {
@@ -119,7 +125,7 @@ public class Radio : MonoBehaviour, IInteractable
                         if (!radioMessage.needAnswer)
                         {
                             timerOn = false;
-
+                            radioMessage.time = 0;
                             if (radioMessage.messagePart % 1 == 0)
                             {
                                 
@@ -129,6 +135,7 @@ public class Radio : MonoBehaviour, IInteractable
                             {
                                 radioMessage.messagePart = Mathf.Ceil(radioMessage.messagePart);
                             }
+                            answers.ResetAnswers();
                         }
                     }
                 }

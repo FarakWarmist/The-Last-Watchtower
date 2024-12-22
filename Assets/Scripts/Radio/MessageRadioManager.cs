@@ -23,10 +23,10 @@ public class MessageRadioManager : MonoBehaviour
     public int lastPath;
 
     public float time;
-    public float shortTime = 8f;
-    public float mediumTime = 20f;
+    public float shortTime = 12f;
+    public float mediumTime = 30f;
     public float longTime = 60f;
-    public float quickTime = 8;
+    public float quickTime = 18;
     public float bullets = 3;
 
     [SerializeField] GameObject monsters;
@@ -58,7 +58,7 @@ public class MessageRadioManager : MonoBehaviour
         {
             if (messagePart > 24)
             {
-                StartCoroutine(NextPart(1));
+                StartCoroutine(NextPart(Random.Range(45, 75)));
                 monsters.SetActive(true);
             }
         }
@@ -71,7 +71,7 @@ public class MessageRadioManager : MonoBehaviour
 
             if (messagePart > 21)
             {
-                StartCoroutine(NextPart(5));
+                StartCoroutine(NextPart(Random.Range(45, 75)));
             }
         }
         else if (messageNum == 3)
@@ -95,6 +95,7 @@ public class MessageRadioManager : MonoBehaviour
             if (messagePart == 43)
             {
                 messagePart = 51;
+                StartCoroutine(NextPart(Random.Range(45, 75)));
             }
 
             if (messagePart > 43 && messagePart < 50)
@@ -139,6 +140,7 @@ public class MessageRadioManager : MonoBehaviour
             if (messagePart == 43)
             {
                 messagePart = 60f;
+                StartCoroutine(NextPart(Random.Range(45, 75)));
             }
 
             if (messagePart > 43 && messagePart < 50)
@@ -162,16 +164,19 @@ public class MessageRadioManager : MonoBehaviour
             // Chemin C
             if (messagePart == 12201 || messagePart == 20001)
             {
+                time = 0;
                 messagePart = 30001; 
             }
             // Chemin D
             if (messagePart == 11112 || messagePart == 41002 || messagePart == 42001)
             {
+                time = 0;
                 messagePart = 50001; 
             }
             // Chemin E
             if (messagePart == 11201 || messagePart == 12102 || messagePart == 31111)
             {
+                time = 0;
                 messagePart = 40001; 
             }
             // Red Zone
@@ -183,11 +188,20 @@ public class MessageRadioManager : MonoBehaviour
                 messagePart == 51201 ||
                 messagePart == 52001)
             {
+                time = 0;
                 messagePart = 7000;
+            }
+
+            //Win
+            if (messagePart == 51123)
+            {
+                time = 0;
+                messagePart = 6000;
             }
             // Dead End
             if (messagePart == 51111)
             {
+                time = 0;
                 messagePart = 7100.1f;
             }
             // Game Over
@@ -205,6 +219,7 @@ public class MessageRadioManager : MonoBehaviour
 
             if (messagePart == 11121)
             {
+                time = 0;
                 lastPath = 5;
                 messageNum = 666;
                 messagePart = 0;
@@ -1144,7 +1159,7 @@ J'espère que tu connais le chemin, car ça va aller vite!";
                     break;
                 case 18:
                     message = @"...";
-                    time = mediumTime;
+                    time = 20;
                     break;
                 case 18.1f:
                     BulletsLeft();
@@ -1160,7 +1175,7 @@ Quelle est la prochaine direction?";
                 // ----- CHEMIN A -----
                 case 10000:
                     message = @"...";
-                    time = shortTime;
+                    time = 8;
                     break;
                 case 10000.1f: // Shoot
                     BulletsLeft();
@@ -1176,7 +1191,7 @@ Quelle est la prochaine direction?";
                 // Chemin AA
                 case 11000:
                     message = @"...";
-                    time = mediumTime;
+                    time = 20;
                     break;
                 case 11000.1f: // Shoot
                     BulletsLeft();
@@ -1205,7 +1220,7 @@ Quelle est la prochaine direction?";
                             time = quickTime;
                             break;
 
-                                // Chemin AAAA
+                                // Chemin AAAB
                                 case 11110:
                                     message = @"...";
                                     time = longTime;
@@ -1217,7 +1232,7 @@ Je suis arrivé à une ruine et je suis aller sur le chemin de gauche car des Ghou
                                     break;
                                 // case 11112: Chemin D
 
-                                // Chemin AAAB
+                                // Chemin AAAA
                                 case 11120:
                                     message = @"...";
                                     time = shortTime;
@@ -1267,7 +1282,7 @@ Je suis aller sur le chemin de gauche car des Ghouls venait vers ma droite.";
                         // case 12201: Chemin C
 
                 // ----- CHEMIN B -----
-                case 20000:
+                case 30000.2f:
                     message = @"...";
                     time = longTime;
                     break;
@@ -1476,13 +1491,13 @@ Quelle est la prochaine direction?";
                 // ----- CHEMIN WIN -----
                 case 6000:
                     message = @"Oh mon dieu ! Ça y est !
-Le camp ! Je vpis le camps !";
+Le camp ! Je vois le camps !";
                     break;
                 case 6001:
                     message = @"Hey ! Par ici !";
                     break;
                 case 6002:
-                    message = @"Ils m'ont vu ! Je vois les porte commencer à s'ouvrir !";
+                    message = @"Ils m'ont vu ! Je vois les portes commencer à s'ouvrir !";
                     break;
                 case 6003:
                     message = @"Aller !
@@ -1496,23 +1511,19 @@ Un dernier p'tit effort !";
                     break;
                 case 6006:
                     message = @"J'y suis arrivé.
-On y est arriver !";
-                    break;
-                case 6007:
-                    message = @"J'y suis arrivé.
 On y est arrivé !";
                     break;
-                case 6008:
+                case 6007:
                     message = @"Ha ha ha! Yes !
-Dans les dent Root de mes deux !";
+Dans les dents Root de mes deux !";
                     break;
-                case 6009:
+                case 6008:
                     message = @"Ha ha... ha...";
                     break;
-                case 6010:
+                case 6009:
                     message = @"...";
                     break;
-                case 6011: // F
+                case 6010: // F
                     message = @"Hé, Watcher...?";
                     answer1 = @"Oui?"; 
                     answer2 = @"Qu'est-ce qu'il y a Alex?";

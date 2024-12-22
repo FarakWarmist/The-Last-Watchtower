@@ -14,6 +14,9 @@ public class Answers : MonoBehaviour
     public TMP_Text answerText1;
     public TMP_Text answerText2;
 
+    public string answerText1Shown;
+    public string answerText2Shown;
+
     Color textColor;
     public Material materialBrightWhite;
     public Material materialBrightBlack;
@@ -50,11 +53,6 @@ public class Answers : MonoBehaviour
 
     private void Update()
     {
-        if (radioMessage.answer1 != "")
-        {
-            UpdateTexteAnswer(); 
-        }
-
         if (radio.isOn && radio.isLooking)
         {
             if (!isShowed)
@@ -62,12 +60,13 @@ public class Answers : MonoBehaviour
                 StartCoroutine(ShowAnswers());
             }
         }
-    }
-
-    private void UpdateTexteAnswer()
-    {
-        answerText1.text = radioMessage.answer1;
-        answerText2.text = radioMessage.answer2;
+        else
+        {
+            if (isShowed)
+            {
+                StartCoroutine(HideAnswers());
+            }
+        }
     }
 
     public void ChooseAnswerNum1()
@@ -244,7 +243,7 @@ public class Answers : MonoBehaviour
                                 radioMessage.messagePart = 11100;
                                 break;
                                         case 11101: // Chemin AAA
-                                            radioMessage.messagePart = 11110;
+                                            radioMessage.messagePart = 11120;
                                             break;
                             case 12001: // Chemin AB
                                 radioMessage.messagePart = 12100;
@@ -272,7 +271,7 @@ public class Answers : MonoBehaviour
                                             radioMessage.messagePart = 51110;
                                             break;
                                                     case 51121: // Chemin DAAB
-                                                        radioMessage.messagePart = 51122;
+                                                        radioMessage.messagePart += 1; // Chemin Win
                                                         break;
                 // ----- CHEMIN E -----
                 case 40001: // Chemin E
@@ -280,8 +279,8 @@ public class Answers : MonoBehaviour
                     break;
 
                 // ----- CHEMIN WIN -----
-                case 6011: // F
-                    radioMessage.messagePart += 1;
+                case 6010: // F
+                    radioMessage.messagePart += 2;
                     break;
             }
         }
@@ -297,7 +296,6 @@ public class Answers : MonoBehaviour
                     break;
             }
         }
-        radio.timerOn = false;
         ResetAnswers();
         EventSystem.current.SetSelectedGameObject(null);
     }
@@ -464,7 +462,7 @@ public class Answers : MonoBehaviour
                     radioMessage.messagePart += 1;
                     break;
                 case 19: // Chemin
-                    radioMessage.messagePart = 20000;
+                    radioMessage.messagePart = 30000.2f;
                     break;
 
                 // ----- CHEMIN A -----
@@ -475,7 +473,7 @@ public class Answers : MonoBehaviour
                                 radioMessage.messagePart = 11200;
                                 break;
                                         case 11101: // Chemin AAA
-                                            radioMessage.messagePart = 11120;
+                                            radioMessage.messagePart = 11110;
                                             break;
                             case 12001: // Chemin AB
                                 radioMessage.messagePart = 12200;
@@ -503,7 +501,7 @@ public class Answers : MonoBehaviour
                                             radioMessage.messagePart = 51120;
                                             break;
                                                     case 51121: // Chemin DAAB
-                                                        radioMessage.messagePart = 51124;
+                                                        radioMessage.messagePart = 6000;
                                                         break;
                 // ----- CHEMIN E -----
                 case 40001: // Chemin E
@@ -511,8 +509,8 @@ public class Answers : MonoBehaviour
                     break;
 
                 // ----- CHEMIN WIN -----
-                case 6011: // F
-                    radioMessage.messagePart += 1;
+                case 6010: // F
+                    radioMessage.messagePart += 2;
                     break;
             }
         }
@@ -528,7 +526,6 @@ public class Answers : MonoBehaviour
                     break;
             }
         }
-        radio.timerOn = false;
         ResetAnswers();
         EventSystem.current.SetSelectedGameObject(null);
     }
@@ -776,7 +773,7 @@ public class Answers : MonoBehaviour
                 case 18.1f:
                     radioMessage.messagePart += 0.9f;
                     break;
-                case 10: // Chemin
+                case 19: // Chemin
                     Shoot();
                     break;
 
@@ -950,6 +947,11 @@ public class Answers : MonoBehaviour
                     radioMessage.messagePart += 1;
                     break;
 
+                // ----- CHEMIN WIN -----
+                case 6000.1f:
+                    radioMessage.messagePart += 0.9f;
+                    break;
+
                 // ----- RED ZONE -----
                 case 7000:
                     radioMessage.messagePart += 1;
@@ -994,14 +996,15 @@ public class Answers : MonoBehaviour
                     break;
             }
         }
-        radio.timerOn = false;
         ResetAnswers();
         EventSystem.current.SetSelectedGameObject(null);
     }
 
-    void ResetAnswers()
+    public void ResetAnswers()
     {
+        Debug.Log("Reset");
         radioMessage.time = 0;
+        radio.timerOn = false;
         radioMessage.answer1 = "";
         radioMessage.answer2 = "";
         StartCoroutine(HideAnswers());
@@ -1025,6 +1028,11 @@ public class Answers : MonoBehaviour
         isShowed = true;
         canvas.SetActive(true);
         yield return new WaitForSeconds(0.1f);
+        answerText1Shown = radioMessage.answer1;
+        answerText2Shown = radioMessage.answer2;
+
+        answerText1.text = answerText1Shown;
+        answerText2.text = answerText2Shown;
 
         while (alpha < 1.1f)
         {
@@ -1042,6 +1050,7 @@ public class Answers : MonoBehaviour
     {
         answerBotton2.enabled = false;
         answerButton1.enabled = false;
+
 
         while (alpha > -0.1f)
         {
