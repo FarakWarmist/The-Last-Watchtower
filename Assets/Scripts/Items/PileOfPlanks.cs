@@ -21,18 +21,25 @@ public class PileOfPlanks : MonoBehaviour, IInteractable
     {
         if (!sleep.isDay)
         {
-            if (!itemsManager.hasPlank)
+            if (planksInPile.Length > 0)
             {
-                audioSource.clip = audioClips[0];
-                audioSource.Play();
-                PlankState(true);
+                if (!itemsManager.hasPlank)
+                {
+                    audioSource.clip = audioClips[0];
+                    audioSource.Play();
+                    PlankState(true);
+                }
+                else
+                {
+                    audioSource.clip = audioClips[1];
+                    audioSource.Play();
+                    PlankState(false);
+                } 
             }
             else
             {
-                audioSource.clip = audioClips[1];
-                audioSource.Play();
-                PlankState(false);
-            } 
+                Debug.Log("There is no more plank");
+            }
         }
         else
         {
