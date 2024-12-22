@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4640976022380044410}
   - component: {fileID: 2281077998942354843}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BarricadePrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -62,9 +62,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4640976022380044410}
     m_Modifications:
+    - target: {fileID: 379264162604742040, guid: 7f81e98284f801a46856106bc33dc910, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 930445464834052222, guid: 7f81e98284f801a46856106bc33dc910, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 1077176973968471059, guid: 7f81e98284f801a46856106bc33dc910, type: 3}
       propertyPath: m_Name
       value: PlankWithNails 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1077176973968471059, guid: 7f81e98284f801a46856106bc33dc910, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 4259368494071304971, guid: 7f81e98284f801a46856106bc33dc910, type: 3}
       propertyPath: m_LocalScale.x
@@ -122,6 +134,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7066479926101591097, guid: 7f81e98284f801a46856106bc33dc910, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 7383126090034456108, guid: 7f81e98284f801a46856106bc33dc910, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -170,6 +186,30 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7763044170292208095, guid: 7f81e98284f801a46856106bc33dc910, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7871714506191961238, guid: 7f81e98284f801a46856106bc33dc910, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8234062118636374710, guid: 7f81e98284f801a46856106bc33dc910, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8302958985541188593, guid: 7f81e98284f801a46856106bc33dc910, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8831832320102637079, guid: 7f81e98284f801a46856106bc33dc910, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8930552683996884816, guid: 7f81e98284f801a46856106bc33dc910, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6957418636640615894, guid: 7f81e98284f801a46856106bc33dc910, type: 3}
     m_RemovedGameObjects: []
@@ -200,9 +240,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4640976022380044410}
     m_Modifications:
+    - target: {fileID: 379264162604742040, guid: 7f81e98284f801a46856106bc33dc910, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 930445464834052222, guid: 7f81e98284f801a46856106bc33dc910, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 1077176973968471059, guid: 7f81e98284f801a46856106bc33dc910, type: 3}
       propertyPath: m_Name
       value: PlankWithNails 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1077176973968471059, guid: 7f81e98284f801a46856106bc33dc910, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 4259368494071304971, guid: 7f81e98284f801a46856106bc33dc910, type: 3}
       propertyPath: m_LocalScale.x
@@ -260,6 +312,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7066479926101591097, guid: 7f81e98284f801a46856106bc33dc910, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 7383126090034456108, guid: 7f81e98284f801a46856106bc33dc910, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -308,6 +364,30 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7763044170292208095, guid: 7f81e98284f801a46856106bc33dc910, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7871714506191961238, guid: 7f81e98284f801a46856106bc33dc910, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8234062118636374710, guid: 7f81e98284f801a46856106bc33dc910, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8302958985541188593, guid: 7f81e98284f801a46856106bc33dc910, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8831832320102637079, guid: 7f81e98284f801a46856106bc33dc910, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8930552683996884816, guid: 7f81e98284f801a46856106bc33dc910, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6957418636640615894, guid: 7f81e98284f801a46856106bc33dc910, type: 3}
     m_RemovedGameObjects: []
@@ -338,9 +418,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4640976022380044410}
     m_Modifications:
+    - target: {fileID: 379264162604742040, guid: 7f81e98284f801a46856106bc33dc910, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 930445464834052222, guid: 7f81e98284f801a46856106bc33dc910, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 1077176973968471059, guid: 7f81e98284f801a46856106bc33dc910, type: 3}
       propertyPath: m_Name
       value: PlankWithNails 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1077176973968471059, guid: 7f81e98284f801a46856106bc33dc910, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 4259368494071304971, guid: 7f81e98284f801a46856106bc33dc910, type: 3}
       propertyPath: m_LocalScale.x
@@ -398,6 +490,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7066479926101591097, guid: 7f81e98284f801a46856106bc33dc910, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 7383126090034456108, guid: 7f81e98284f801a46856106bc33dc910, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -445,6 +541,30 @@ PrefabInstance:
     - target: {fileID: 7419589201872329567, guid: 7f81e98284f801a46856106bc33dc910, type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7763044170292208095, guid: 7f81e98284f801a46856106bc33dc910, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7871714506191961238, guid: 7f81e98284f801a46856106bc33dc910, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8234062118636374710, guid: 7f81e98284f801a46856106bc33dc910, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8302958985541188593, guid: 7f81e98284f801a46856106bc33dc910, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8831832320102637079, guid: 7f81e98284f801a46856106bc33dc910, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8930552683996884816, guid: 7f81e98284f801a46856106bc33dc910, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6957418636640615894, guid: 7f81e98284f801a46856106bc33dc910, type: 3}

@@ -14,13 +14,20 @@ public class RuneFlashing : MonoBehaviour
     Camera cam;
 
     public AudioClip[] flashSounds;
-
-    public LayerMask ignoreWindowLayer;
+    
+    LayerMask ignoredLayers;
 
     [SerializeField] Image runeIcon;
     public Sprite[] sprites;
     public int runeLevel = 5;
     float timerCount = 0f;
+
+    private void Start()
+    {
+        int layerWindow = LayerMask.GetMask("Window");
+        int layerBarricade = LayerMask.GetMask("Barricade");
+        ignoredLayers = layerBarricade | layerWindow;
+    }
 
     private void Update()
     {
@@ -48,7 +55,7 @@ public class RuneFlashing : MonoBehaviour
                 
                 RaycastHit hit;
 
-                if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, 6f, ~ignoreWindowLayer))
+                if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, 6f, ~ignoredLayers))
                 {
                     var hitMonster = hit.collider.GetComponent<Monster>();
                     if (hitMonster != null )
