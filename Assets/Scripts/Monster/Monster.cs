@@ -37,6 +37,8 @@ public class Monster : MonoBehaviour
     public int direction;
     float alpha;
 
+    float randomActionTime;
+
     public Transform playerTransform;
     public float horizontalViewAngle = 90f;
     public float verticalViewAngle = 30f;
@@ -44,6 +46,10 @@ public class Monster : MonoBehaviour
     Transform location;
     Transform target;
     public bool stopMoving;
+
+    public MultiAimConstraint multiAimConstraint;
+    public int sourceIndex;
+    public float newWeight;
 
     private void OnEnable()
     {
@@ -76,6 +82,16 @@ public class Monster : MonoBehaviour
         monster.SetDestination(location.position);
 
         StartCoroutine(TakeAction(2));
+    }
+
+    private void OnDisable()
+    {
+        var sourceObjects = multiAimConstraint.data.sourceObjects;
+        var source = sourceObjects[sourceIndex];
+        source.weight = 1;
+        sourceObjects[sourceIndex] = source;
+        multiAimConstraint.data.sourceObjects = sourceObjects;
+        location.gameObject.SetActive(true);
     }
 
     private void Update()
@@ -121,7 +137,8 @@ public class Monster : MonoBehaviour
 
                 if (!isTakeAction)
                 {
-                    StartCoroutine(TakeAction(5));
+                    randomActionTime = Random.Range(8,  18);
+                    StartCoroutine(TakeAction(randomActionTime));
                 }
             }
             else
@@ -175,12 +192,12 @@ public class Monster : MonoBehaviour
         {
             StopChasing();
             animator.speed = 0;
-            //dangerZoneCollider.enabled = false;
+
         }
         else
         {
             StartChasing(playerTransform.position);
-            //dangerZoneCollider.enabled = true;
+
         }
     }
 
@@ -263,6 +280,7 @@ public class Monster : MonoBehaviour
         animator.SetBool("Walk", false);
         yield return new WaitForSeconds(0.01f);
         animator.SetInteger("Flash", Random.Range(1, 4));
+        StartCoroutine(WeightConstraint());
         audioSource.Play();
         yield return new WaitForSeconds(0.1f);
         while (alpha < 1.01f)
@@ -275,5 +293,31 @@ public class Monster : MonoBehaviour
         animator.SetInteger("Flash", 0);
         yield return new WaitForSeconds(0.01f);
         gameObject.SetActive(false);
+    }
+
+    IEnumerator WeightConstraint()
+    {
+        var sourceObjects = multiAimConstraint.data.sourceObjects;
+        var source = sourceObjects[sourceIndex];
+
+        float initialWeight = source.weight;
+        float elapsedTime = 0f;
+
+        while (elapsedTime < 1)
+        {
+            // Interpole le poids
+            float newWeight = Mathf.Lerp(initialWeight, 0, elapsedTime * 5);
+
+            source.weight = newWeight;
+            sourceObjects[sourceIndex] = source;
+            multiAimConstraint.data.sourceObjects = sourceObjects;
+
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        source.weight = 0;
+        sourceObjects[sourceIndex] = source;
+        multiAimConstraint.data.sourceObjects = sourceObjects;
     }
 }
