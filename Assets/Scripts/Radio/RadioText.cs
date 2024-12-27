@@ -9,7 +9,7 @@ public class RadioText : MonoBehaviour
 {
     public bool writeText;
     public bool stopText = false;
-
+    Canvas textFrame;
     public TMP_Text messageText;
     public GameObject frameWhite;
     public GameObject frameBlack;
@@ -29,7 +29,8 @@ public class RadioText : MonoBehaviour
         radioMessage = FindAnyObjectByType<MessageRadioManager>();
 
         rtFrame = frameWhite.gameObject.GetComponent<RectTransform>();
-
+        Radio radio = FindAnyObjectByType<Radio>();
+        textFrame = radio.messageFrame;
         framePos = rtFrame.anchoredPosition;
         frameSize = rtFrame.sizeDelta;
 
@@ -39,7 +40,7 @@ public class RadioText : MonoBehaviour
     private void Update()
     {
         message = radioMessage.message;
-        if (messageText)
+        if (messageText && textFrame)
         {
             if (messageText.text != message && !writeText)
             {

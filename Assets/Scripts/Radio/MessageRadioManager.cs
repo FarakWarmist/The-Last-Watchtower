@@ -32,12 +32,16 @@ public class MessageRadioManager : MonoBehaviour
     [SerializeField] GameObject monsters;
     [SerializeField] GameOver gameOver;
     [SerializeField] AudioSource audioSource;
+    [SerializeField] LightSwitch lightSwitch;
     public AudioClip[] stressMusics;
-    
+    public GameObject forestMadness;
 
     private void Update()
     {
-        StartMessage();
+        if (lightSwitch.switchOn)
+        {
+            StartMessage(); 
+        }
         if (answer1 == "" || answer2 == "")
         {
             needAnswer = false;
@@ -56,10 +60,12 @@ public class MessageRadioManager : MonoBehaviour
         }
         else if (messageNum == 1)
         {
-            if (messagePart > 24)
+            if (messagePart == 25)
             {
+                messagePart = 26;
                 StartCoroutine(NextPart(Random.Range(45, 75)));
                 monsters.SetActive(true);
+                forestMadness.SetActive(true);
             }
         }
         else if (messageNum == 2)
@@ -69,8 +75,9 @@ public class MessageRadioManager : MonoBehaviour
                 messagePart = 18;
             }
 
-            if (messagePart > 21)
+            if (messagePart == 22)
             {
+                messagePart = 23;
                 StartCoroutine(NextPart(Random.Range(45, 75)));
             }
         }
@@ -134,29 +141,34 @@ public class MessageRadioManager : MonoBehaviour
 
             if (messagePart == 41)
             {
-                messagePart = 50.1f;
+                messagePart = 42.1f;
             }
 
-            if (messagePart == 43)
+            if (messagePart == 42)
             {
-                messagePart = 60f;
+                messagePart = 51.1f;
+            }
+
+            if (messagePart == 44)
+            {
+                messagePart = 61f;
                 StartCoroutine(NextPart(Random.Range(45, 75)));
             }
 
-            if (messagePart > 43 && messagePart < 50)
+            if (messagePart > 44 && messagePart < 51)
             {
                 isDead = true;
             }
 
-            if (messagePart > 50 && messagePart < 59)
+            if (messagePart > 51 && messagePart < 60)
             {
                 isDead = true;
             }
 
-            if (messagePart == 50 || messagePart == 59)
+            if (messagePart == 51 || messagePart == 60)
             {
                 gameOver.AlexIsDead();
-                messagePart = 60;
+                messagePart = 61;
             }
         }
         else if (messageNum == 5)
@@ -958,102 +970,102 @@ Devrais-je juste continuer?";
                     message = @"Pas le choix j'imagine.";
                     break;
                 // Answer N2
-                case 40.1f:
+                case 41.1f:
                     message = @"J'espère que tu te trompe, car mes jambes vont me lacher si je ne m'arrête pas prendre une pause.";
                     break;
                 // Answer M2 & O2
-                case 40.2f:
+                case 41.2f:
                     message = @"La vache!... C'est vraiment pas le moment de me faire stresser.";
                     break;
                 // Answer N1
-                case 41.1f:
+                case 42.1f:
                     message = @"Très bien, 
 Je te rapelle une fois arriver";
                     break;
-                case 42:
+                case 43:
                     message = @"Et... Merci encore. 
 Je te revaudrais ça.";
                     break;
 // Deer Smile Death
                 // Answer E1, J2 & TimeOut
-                case 43.1f:
+                case 44.1f:
                     message = @"Cette chose peut aller se faire voir! Je me tire !";
                     time = shortTime;
                     break;
                 // Answer H1, 
-                case 43.2f:
+                case 44.2f:
                     message = @"Ok! Ok... Je penses que ce baton fera l'aff...";
                     time = shortTime;
                     break;
-                case 44:
+                case 45:
                     message = @"...";
                     time = shortTime;
                     break;
                 // Answer I1, 
-                case 44.1f:
+                case 45.1f:
                     message = @"... Il avance... Pourquoi il avance?! Non! Non! Rec...!";
                     time = shortTime;
                     break;
-                case 45:
+                case 46:
                     message = @"AAAAAAAAAARRGH!!!";
                     time = shortTime;
                     break;
-                case 46:
+                case 47:
                     message = @"Ha... Ha!!! Ma jambe! Ma jamb...!";
                     time = shortTime;
                     break;
-                case 47:
+                case 48:
                     message = @"...GHAAAAAAAAAAAAA!!!";
                     time = shortTime;
                     break;
-                case 48:
+                case 49:
                     message = @"À L'AIDE!!!... PAR PITIÉ AIDE-M...";
                     time = shortTime;
                     break;
-                case 49:
+                case 50:
                     message = @"(Bip)...";
                     time = shortTime;
                     break;
 // Hungry Cabin Death
                 // Answers L1
-                case 50.1f:
+                case 51.1f:
                     message = @"...
 ...
 ...";
                     time = shortTime;
                     break;
-                case 51:
+                case 52:
                     message = @"HA!";
                     time = shortTime;
                     break;
-                case 52:
+                case 53:
                     message = @"La... La porte!
 Elle vient de se fermer!";
                     time = shortTime;
                     break;
-                case 53:
+                case 54:
                     message = @"Et... Bloquer.";
                     time = shortTime;
                     break;
-                case 54:
+                case 55:
                     message = @"(BASH!)...
 (BASH!)...
 (BASH!)...";
                     time = shortTime;
                     break;
-                case 55:
+                case 56:
                     message = @"Tu dois me sortir d'ici!";
                     time = shortTime;
                     break;
-                case 56:
+                case 57:
                     message = @"Pitié!";
                     time = shortTime;
                     break;
-                case 57:
+                case 58:
                     message = @"PIT...!!!";
                     time = shortTime;
                     break;
-                case 58:
+                case 59:
                     message = @"(KRACK)...!!!
 (Bip)...";
                     time = shortTime;
@@ -1684,6 +1696,7 @@ Je répète...";
         messagePart = 0;
         newMessage = true;
         hasListen = false;
+        yield return null;
     }
 
     IEnumerator MusicUp(int index, float volume)

@@ -9,10 +9,9 @@ public class Radio : MonoBehaviour, IInteractable
 {
     public GameObject switchOnOff;
     public GameObject timeBarObj;
-    public GameObject messageObj;
+    public Canvas messageFrame;
 
     public bool timerOn;
-    public bool hasMessage;
     public bool isOn;
     public bool isLooking = false;
     public bool lightFlashing = false;
@@ -111,7 +110,7 @@ public class Radio : MonoBehaviour, IInteractable
                 IsLooking(camRadio, camPlayer, true);
                 cursorState.needCursor--;
             }
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.E) && lightSwitch.switchOn)
             {
                 radioText.MessageState();
                 if (!radioMessage.newMessage)
@@ -158,34 +157,33 @@ public class Radio : MonoBehaviour, IInteractable
                         }
                     }
 
-                    if (radioMessage.newMessage)
-                    {
-                        radioMessage.newMessage = false;
-                    }
+                    radioMessage.newMessage = false;
                 }
-                else
-                {
-                    if (radioMessage.newMessage)
-                    {
-                        if (!lightFlashing)
-                        {
-                            StartCoroutine(radioLights.RedLightFlashing());
-                        }
-                    }
-                }
+                //else
+                //{
+                //    if (radioMessage.newMessage)
+                //    {
+                //        if (!lightFlashing)
+                //        {
+                //            StartCoroutine(radioLights.RedLightFlashing());
+                //        }
+                //    }
+                //}
 
                 if (radioMessage.hasListen)
                 {
-                    messageObj.SetActive(true);
+                    messageFrame.gameObject.SetActive(true);
                 }
                 else
                 {
-                    messageObj.SetActive(false);
+                    messageFrame.gameObject.SetActive(false);
                 }
+
+                messageFrame.enabled = radioMessage.hasListen;
             }
             else
             {
-                messageObj.SetActive(false);
+                messageFrame.enabled = false;
                 radioLights.RadioRedLightOFF();
             }
 
@@ -210,7 +208,7 @@ public class Radio : MonoBehaviour, IInteractable
 
             radioLights.newMessageSound.Stop();
 
-            messageObj.SetActive(false);
+            messageFrame.enabled = false;
         }
 
         

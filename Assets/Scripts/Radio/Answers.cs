@@ -31,14 +31,18 @@ public class Answers : MonoBehaviour
     MessageRadioManager radioMessage;
     Radio radio;
     [SerializeField] TimeBar timeBar;
+    LightSwitch lightSwitch;
+
+    public bool answersAreEnable;
 
     private void Start()
     {
         radioMessage = FindAnyObjectByType<MessageRadioManager>();
         radio = FindAnyObjectByType<Radio>();
+        lightSwitch = FindAnyObjectByType<LightSwitch>();
 
-        answerButton1.onClick.AddListener(ChooseAnswerNum1);
-        answerBotton2.onClick.AddListener(ChooseAnswerNum2);
+        //answerButton1.onClick.AddListener(ChooseAnswerNum1);
+        //answerBotton2.onClick.AddListener(ChooseAnswerNum2);
 
         canvas.SetActive(false);
 
@@ -53,7 +57,16 @@ public class Answers : MonoBehaviour
 
     private void Update()
     {
-        if (radio.isOn && radio.isLooking)
+        if (answerBotton2.enabled)
+        {
+            answersAreEnable = true;
+        }
+        else
+        {
+            answersAreEnable = false;
+        }
+
+        if (radio.isOn && radio.isLooking && lightSwitch.switchOn)
         {
             if (!isShowed)
             {
@@ -71,6 +84,7 @@ public class Answers : MonoBehaviour
 
     public void ChooseAnswerNum1()
     {
+        Debug.Log("Amswer no1");
         if (radioMessage.messageNum == 1)//Start
         {
             switch (radioMessage.messagePart)
@@ -179,7 +193,7 @@ public class Answers : MonoBehaviour
                     radioMessage.messagePart += 1;
                     break;
                 case 17: // E
-                    radioMessage.messagePart += 26.1f;
+                    radioMessage.messagePart += 27.1f;
                     break;
                 case 18: // F
                     radioMessage.messagePart += 1;
@@ -188,10 +202,10 @@ public class Answers : MonoBehaviour
                     radioMessage.messagePart += 1;
                     break;
                 case 23: // H
-                    radioMessage.messagePart += 20.2f;
+                    radioMessage.messagePart += 21.2f;
                     break;
                 case 25: // I
-                    radioMessage.messagePart += 19.1f;
+                    radioMessage.messagePart += 20.1f;
                     break;
                 case 27: // J
                     radioMessage.messagePart += 1;
@@ -200,7 +214,7 @@ public class Answers : MonoBehaviour
                     radioMessage.messagePart += 3;
                     break;
                 case 35: // L
-                    radioMessage.messagePart += 15.1f;
+                    radioMessage.messagePart += 16.1f;
                     break;
                 case 36: // M
                     radioMessage.messagePart += 0.1f;
@@ -302,6 +316,7 @@ public class Answers : MonoBehaviour
 
     public void ChooseAnswerNum2()
     {
+        Debug.Log("Amswer no2");
         if (radioMessage.messageNum == 1)
         {
             switch (radioMessage.messagePart)
@@ -426,7 +441,7 @@ public class Answers : MonoBehaviour
                     radioMessage.messagePart += 1;
                     break;
                 case 27: // J
-                    radioMessage.messagePart += 16.1f;
+                    radioMessage.messagePart += 17.1f;
                     break;
                 case 31: // K
                     radioMessage.messagePart += 1;
@@ -435,13 +450,13 @@ public class Answers : MonoBehaviour
                     radioMessage.messagePart += 1;
                     break;
                 case 36: // M
-                    radioMessage.messagePart += 4.2f;
+                    radioMessage.messagePart += 5.2f;
                     break;
                 case 39: // N
-                    radioMessage.messagePart += 1.1f;
+                    radioMessage.messagePart += 2.1f;
                     break;
                 case 38: // O
-                    radioMessage.messagePart += 2.2f;
+                    radioMessage.messagePart += 3.2f;
                     break;
             }
         }
@@ -636,16 +651,16 @@ public class Answers : MonoBehaviour
                     radioMessage.messagePart += 1;
                     break;
                 case 15: // D
-                    radioMessage.messagePart += 28.1f;
+                    radioMessage.messagePart += 29.1f;
                     break;
                 case 16:
                     radioMessage.messagePart += 1;
                     break;
                 case 17: // E
-                    radioMessage.messagePart += 26.1f;
+                    radioMessage.messagePart += 27.1f;
                     break;
                 case 18: // F
-                    radioMessage.messagePart += 25.1f;
+                    radioMessage.messagePart += 26.1f;
                     break;
                 case 19:
                     radioMessage.messagePart += 1;
@@ -654,25 +669,25 @@ public class Answers : MonoBehaviour
                     radioMessage.messagePart += 1;
                     break;
                 case 21: // G
-                    radioMessage.messagePart += 22.1f;
+                    radioMessage.messagePart += 23.1f;
                     break;
                 case 22:
                     radioMessage.messagePart += 1;
                     break;
                 case 23: // H
-                    radioMessage.messagePart += 20.1f;
+                    radioMessage.messagePart += 21.1f;
                     break;
                 case 24:
                     radioMessage.messagePart += 1;
                     break;
                 case 25: // I
-                    radioMessage.messagePart += 18.1f;
+                    radioMessage.messagePart += 19.1f;
                     break;
                 case 26:
                     radioMessage.messagePart += 1;
                     break;
                 case 27: // J
-                    radioMessage.messagePart += 16.1f;
+                    radioMessage.messagePart += 17.1f;
                     break;
                 case 28:
                     radioMessage.messagePart += 1;
@@ -681,10 +696,10 @@ public class Answers : MonoBehaviour
                     radioMessage.messagePart += 1;
                     break;
                 case 35: // L
-                    radioMessage.messagePart += 15.1f;
+                    radioMessage.messagePart += 16.1f;
                     break;
                 case 36: // M
-                    radioMessage.messagePart += 4.2f;
+                    radioMessage.messagePart += 5.2f;
                     break;
                 case 36.1f:
                     radioMessage.messagePart += 0.9f;
@@ -692,20 +707,17 @@ public class Answers : MonoBehaviour
                 case 37:
                     radioMessage.messagePart += 1;
                     break;
-                case 43.1f:
-                    radioMessage.messagePart += 0.9f;
-                    break;
-                case 43.2f:
-                    radioMessage.messagePart += 1.8f;
-                    break;
-                case 44:
-                    radioMessage.messagePart += 1;
-                    break;
                 case 44.1f:
                     radioMessage.messagePart += 0.9f;
                     break;
+                case 44.2f:
+                    radioMessage.messagePart += 1.8f;
+                    break;
                 case 45:
                     radioMessage.messagePart += 1;
+                    break;
+                case 45.1f:
+                    radioMessage.messagePart += 0.9f;
                     break;
                 case 46:
                     radioMessage.messagePart += 1;
@@ -719,11 +731,11 @@ public class Answers : MonoBehaviour
                 case 49:
                     radioMessage.messagePart += 1;
                     break;
-                case 50.1f:
-                    radioMessage.messagePart += 0.9f;
-                    break;
-                case 51:
+                case 50:
                     radioMessage.messagePart += 1;
+                    break;
+                case 51.1f:
+                    radioMessage.messagePart += 0.9f;
                     break;
                 case 52:
                     radioMessage.messagePart += 1;
@@ -744,6 +756,9 @@ public class Answers : MonoBehaviour
                     radioMessage.messagePart += 1;
                     break;
                 case 58:
+                    radioMessage.messagePart += 1;
+                    break;
+                case 59:
                     radioMessage.messagePart += 1;
                     break;
             }
