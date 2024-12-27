@@ -26,7 +26,8 @@ public class RuneFlashing : MonoBehaviour
     {
         int layerWindow = LayerMask.GetMask("Window");
         int layerBarricade = LayerMask.GetMask("Barricade");
-        ignoredLayers = layerBarricade | layerWindow;
+        int layerIgnoreFlash = LayerMask.GetMask("Ignore Flash");
+        ignoredLayers = layerBarricade | layerWindow | layerIgnoreFlash;
     }
 
     private void Update()
@@ -57,10 +58,11 @@ public class RuneFlashing : MonoBehaviour
 
                 if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, 6f, ~ignoredLayers))
                 {
+                    Debug.Log(hit.collider.gameObject.name);
                     var hitMonster = hit.collider.GetComponent<Monster>();
                     if (hitMonster != null )
                     {
-                        hitMonster.StartCoroutine(hitMonster.GetFlash());
+                        hitMonster.isFlashed = true;
                     }
 
                     var hitClue = hit.collider.GetComponent<Clue>();

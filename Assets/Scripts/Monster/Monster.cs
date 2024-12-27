@@ -28,6 +28,7 @@ public class Monster : MonoBehaviour
 
     public bool isTakeAction;
     public bool isFlashed;
+    public bool isDissolved;
     public bool isInside;
 
     public int listLenght;
@@ -66,6 +67,8 @@ public class Monster : MonoBehaviour
         timeToMakeAction = Random.Range(5, 10);
         windowIndex = Random.Range(0, windowsLocation.Length);
         isTakeAction = false;
+        isFlashed = false;
+        isDissolved = false;
 
         location = windowsLocation[windowIndex];
         monster.transform.position = location.position;
@@ -95,6 +98,13 @@ public class Monster : MonoBehaviour
             {
                 MonsterBehaviour();
             } 
+            else
+            {
+                if (!isDissolved)
+                {
+                    StartCoroutine(GetFlash()); 
+                }
+            }
         }
     }
 
@@ -245,7 +255,8 @@ public class Monster : MonoBehaviour
 
     public IEnumerator GetFlash()
     {
-        isFlashed = true;
+        isDissolved = true;
+        StopCoroutine("TakeAction");
         StopChasing();
         animator.speed = 1;
         animator.SetBool("FollowPlayer", false);
@@ -262,7 +273,6 @@ public class Monster : MonoBehaviour
         }
         yield return new WaitForSeconds(0.1f);
         animator.SetInteger("Flash", 0);
-        isFlashed = false;
         yield return new WaitForSeconds(0.01f);
         gameObject.SetActive(false);
     }
