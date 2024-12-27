@@ -27,19 +27,21 @@ public class ShedDoor : MonoBehaviour, IInteractable
         }
         else
         {
+            string newText;
             if (sleep.isDay)
             {
-                characterText.enabled = true;
-                characterText.newText =
-@"La porte est barrée par un cadenas."; 
+                newText =
+@"La porte est barrée par un cadenas.";  
+
             }
             else
             {
-                characterText.enabled = true;
-                characterText.newText =
+                newText =
 @"Un cadenas m'empêche de rentrer.
-La clé doit être quelque par dans la Tour.";
+La clé doit être quelque par dans la Tour."; 
+
             }
+            characterText.StartNewText(newText);
         }
     }
 }

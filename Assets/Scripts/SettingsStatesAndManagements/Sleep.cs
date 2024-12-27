@@ -30,6 +30,8 @@ public class Sleep : MonoBehaviour, IInteractable
     public GameObject rune;
     [SerializeField] GameObject flashlight;
 
+    string newText;
+
     private void Start()
     {
         startRotation = directionalLight.transform.rotation;
@@ -108,10 +110,10 @@ public class Sleep : MonoBehaviour, IInteractable
         isSleeping = false;
 
         yield return new WaitForSeconds(1f);
-        characterText.enabled = true;
-        characterText.newText =
+        newText =
 @"On dirait qu'il n'y a pas d'électricité.
-Peut-être il y a une génératrice dans le cabanon.";
+Peut-être il y a une génératrice dans le cabanon."; 
+        characterText.StartNewText(newText);
     }
 
     private void PlayerState(bool state)
@@ -127,8 +129,8 @@ Peut-être il y a une génératrice dans le cabanon.";
 
     public void CanNotUseItem()
     {
-        characterText.enabled = true;
-        characterText.newText =
+        newText =
 @"J'ai vraiment besoin de dormir maintenant.";
+        characterText.StartNewText(newText);
     }
 }

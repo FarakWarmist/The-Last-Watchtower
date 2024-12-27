@@ -33,6 +33,8 @@ public class IntroTexte : MonoBehaviour
     int indexBox;
     int indexPart;
 
+    public string newText;
+
     private void OnEnable()
     {
         player = FindAnyObjectByType<Player>();
@@ -163,10 +165,10 @@ public class IntroTexte : MonoBehaviour
         }
         part2.SetActive(false);
         yield return new WaitForSeconds(2f);
-        characterText.enabled = true;
-        characterText.newText =
+        newText =
 @"Enfin arrivé !
-Il n'y a pas de retour possible maintenant.";
+Il n'y a pas de retour possible maintenant."; 
+        characterText.StartNewText(newText);
         yield return new WaitForSeconds(0.1f);
         gameObject.SetActive(false);
     }

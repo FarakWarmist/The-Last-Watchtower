@@ -55,10 +55,10 @@ public class Door : MonoBehaviour, IInteractable
             }
             else
             {
-                characterText.enabled = true;
-                characterText.newText =
+                string newText =
 @"Je dois trouver les symboles pour débarrer ce verrou.
 Peut-être que la lettre peut m'aider à les trouver.";
+                characterText.StartNewText(newText);
             }
         }
         else

@@ -7,7 +7,7 @@ using static UnityEngine.Rendering.DebugUI;
 
 public class CharacterText : MonoBehaviour
 {
-    [SerializeField] GameObject canvas;
+    [SerializeField] Canvas canvas;
     [SerializeField] TMP_Text message;
     [SerializeField] Image frame;
     public string newText;
@@ -16,22 +16,34 @@ public class CharacterText : MonoBehaviour
 
     private void OnEnable()
     {
-        canvas.SetActive(true);
+        InitialeState();
+    }
+
+    private void InitialeState()
+    {
+        canvas.enabled = true;
         color = Color.white;
         color.a = 0f;
 
         frame.color = color;
         message.color = color;
         message.text = "";
+    }
+
+    public void StartNewText(string text)
+    {
+        Debug.Log($"StartNewText called with text: {text}, current newText: {newText}");
+
+        newText = text;
 
         if (!showText)
         {
-            StartCoroutine(ShowText()); 
+            StartCoroutine(ShowText(newText));
         }
     }
-
-    IEnumerator ShowText()
+    IEnumerator ShowText(string textToShow)
     {
+        InitialeState();
         showText = true;
         message.text = "";
         yield return new WaitForSeconds(0.5f);
@@ -43,16 +55,16 @@ public class CharacterText : MonoBehaviour
             yield return null;
         }
         yield return new WaitForSeconds(0.01f);
-        while (message.text != newText)
+        while (message.text != textToShow)
         {
-            foreach (char character in newText)
+            foreach (char character in textToShow)
             {
                 message.text += character;
                 yield return new WaitForSeconds(0.01f);
             }
             yield return null;
         }
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(3f);
         while (color.a > 0f)
         {
             color.a -= 5 * Time.deltaTime;
@@ -60,8 +72,7 @@ public class CharacterText : MonoBehaviour
             message.color = color;
             yield return null;
         }
+        canvas.enabled = false;
         showText = false;
-        this.enabled = false;
-        canvas.SetActive(false);
     }
 }
