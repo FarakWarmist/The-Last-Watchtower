@@ -15,6 +15,8 @@ public class GameOver : MonoBehaviour
 
     public CinemachineCamera camPlayer;
     public CinemachineCamera camRadio;
+    public CinemachineCamera camTerminal;
+    public CinemachineCamera camDoor;
     public CinemachineCamera camMenu;
     public CinemachineCamera currentDeathCam;
     public GameObject currentMonster;
@@ -43,7 +45,7 @@ public class GameOver : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.P))
         {
-            AlexIsDead();
+            //AlexIsDead();
         }
         if (follow)
         {
@@ -131,7 +133,7 @@ public class GameOver : MonoBehaviour
             currentDeathCam.transform.localPosition = initialDeathCamPos + randomOffset;
             yield return null;
         }
-        StartCoroutine(DeathScreen(currentDeathCam));
+        StartCoroutine(DeathScreen());
         currentDeathCam.transform.localPosition = initialDeathCamPos;
         Generator generator = FindAnyObjectByType<Generator>();
         generator.energyLevel = 0;
@@ -169,11 +171,11 @@ public class GameOver : MonoBehaviour
         monsterGameOver.run = true;
     }
 
-    public IEnumerator DeathScreen(CinemachineCamera currentCamera)
+    public IEnumerator DeathScreen()
     {
         blackScreen.enabled = true;
         animator.SetBool("Fade", true);
-        currentCamera.enabled = false;
+        DisableEveryCamera();
         camMenu.enabled = true;
 
         yield return new WaitForSeconds(1f);
@@ -188,5 +190,17 @@ public class GameOver : MonoBehaviour
         checkCursor = FindAnyObjectByType<CheckCursor>();
         mainMenuManager.deathMenu.enabled = true;
         checkCursor.needCursor++;
+    }
+
+    void DisableEveryCamera()
+    {
+        camPlayer.enabled = false;
+        camRadio.enabled = false;
+        camTerminal.enabled = false;
+        camDoor.enabled = false;
+        if (currentDeathCam != null)
+        {
+            currentDeathCam.enabled = false; 
+        }
     }
 }

@@ -56,7 +56,7 @@ public class MonsterGameOver : MonoBehaviour
         {
             run = false;
             Debug.Log("Touch!");
-            gameOver.StartCoroutine(gameOver.DeathScreen(gameOver.camRadio));
+            gameOver.StartCoroutine(gameOver.DeathScreen());
             gameOver.follow = false;
             gameObject.SetActive(false);
         }
