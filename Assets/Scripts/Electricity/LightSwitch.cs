@@ -39,8 +39,8 @@ public class LightSwitch : MonoBehaviour, IInteractable
             {
 
                 newText =
-@"Il n'y a plus d'ï¿½nergie.
-J'ai besoin de repartir la gï¿½nï¿½ratrice.";
+@"Il n'y a plus d'énergie.
+J'ai besoin de repartir la génératrice.";
                 characterText.StartNewText(newText);
             }
         }

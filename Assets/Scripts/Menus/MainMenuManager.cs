@@ -101,7 +101,7 @@ public class MainMenuManager : MonoBehaviour
         mainMenu.enabled = false;
         yield return new WaitForSeconds(1f);
         animator.SetBool("Fade", false);
-        //introText.SetActive(true);
+        introText.SetActive(true);
         player.enabled = true;
     }
 
