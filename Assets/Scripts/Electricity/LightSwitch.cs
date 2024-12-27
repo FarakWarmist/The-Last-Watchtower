@@ -10,6 +10,8 @@ public class LightSwitch : MonoBehaviour, IInteractable
     Sleep sleep;
     [SerializeField] CharacterText characterText;
 
+    public string newText;
+
     private void Start()
     {
         animator = GetComponent<Animator>();
@@ -35,10 +37,11 @@ public class LightSwitch : MonoBehaviour, IInteractable
             switchOn = false;
             if (!sleep.isDay)
             {
-                characterText.enabled = true;
-                characterText.newText =
-@"Il n'y a plus d'énergie.
-J'ai besoin de repartir la génératrice.";
+
+                newText =
+@"Il n'y a plus d'ï¿½nergie.
+J'ai besoin de repartir la gï¿½nï¿½ratrice.";
+                characterText.StartNewText(newText);
             }
         }
 
