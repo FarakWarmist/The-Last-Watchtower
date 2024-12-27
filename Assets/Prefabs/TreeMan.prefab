@@ -800,7 +800,7 @@ GameObject:
   - component: {fileID: 8091136907117809479}
   - component: {fileID: 738098237195133289}
   - component: {fileID: 853934224616459955}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: DangerZone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2092,6 +2092,7 @@ MonoBehaviour:
   skinnedMeshRenderer: {fileID: 6605963094171214354}
   isTakeAction: 0
   isFlashed: 0
+  isInside: 0
   listLenght: 0
   timeToMakeAction: 0
   windowIndex: 0
@@ -2100,6 +2101,9 @@ MonoBehaviour:
   horizontalViewAngle: 90
   verticalViewAngle: 30
   stopMoving: 0
+  multiAimConstraint: {fileID: 915380644444331187}
+  sourceIndex: 0
+  newWeight: 0
 --- !u!195 &1964442001824477033
 NavMeshAgent:
   m_ObjectHideFlags: 0
