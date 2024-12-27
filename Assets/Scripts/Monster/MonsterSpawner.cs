@@ -48,6 +48,11 @@ public class MonsterSpawner : MonoBehaviour
                 monstersList[i].SetActive(false);
             }
         }
+
+        if (isAppear)
+        {
+            isAppear = false;
+        }
     }
 
     IEnumerator WaitForTheNextMonster(int index)
