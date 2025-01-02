@@ -3,6 +3,7 @@ using UnityEngine;
 public class PileOfPlanks : MonoBehaviour, IInteractable
 {
     public GameObject[] planksInPile;
+    GameObject[] initialPlanksInPile;
     ItemsManager itemsManager;
 
     public AudioClip[] audioClips;
@@ -15,6 +16,7 @@ public class PileOfPlanks : MonoBehaviour, IInteractable
         itemsManager = FindAnyObjectByType<ItemsManager>();
         audioSource = GetComponent<AudioSource>();
         sleep = FindAnyObjectByType<Sleep>();
+        initialPlanksInPile = planksInPile;
     }
 
     public void Interact()
@@ -67,11 +69,17 @@ public class PileOfPlanks : MonoBehaviour, IInteractable
 
     public void ResetPlanksInPile()
     {
-        for (int i = 0; i < planksInPile.Length; i++)
+        GameObject[] tempList = new GameObject[initialPlanksInPile.Length];
+        for (int i = 0; i < tempList.Length; i++)
         {
-            if (!planksInPile[i].activeSelf)
+            tempList[i] = initialPlanksInPile[i];
+        }
+        planksInPile = tempList;
+        foreach (GameObject plank in planksInPile)
+        {
+            if (!plank.activeSelf)
             {
-                planksInPile[i].SetActive(true);
+                plank.SetActive(true);
             }
         }
     }
