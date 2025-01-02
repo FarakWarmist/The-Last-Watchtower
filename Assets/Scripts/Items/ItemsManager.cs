@@ -71,7 +71,7 @@ public class ItemsManager : MonoBehaviour
             }
             else
             {
-                Debug.Log("I need to put down " + currentItem.name);
+                HasAlreadySomething();
             }
         }
     }
@@ -86,5 +86,13 @@ public class ItemsManager : MonoBehaviour
         viewHammer.SetActive(false);
         hasRune = false;
         viewRune.SetActive(false);
+    }
+
+    void HasAlreadySomething()
+    {
+        CharacterText characterText = FindAnyObjectByType<CharacterText>();
+        string newText =
+@$"Je dois déposer le/la {currentItem.name} avant.";
+        characterText.StartNewText(newText);
     }
 }
