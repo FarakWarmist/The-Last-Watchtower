@@ -9,14 +9,16 @@ public class Icons : MonoBehaviour
     [SerializeField] Image icon;
     public List<Sprite> icons;
     int iconIndex;
+    LayerMask ignoredLayers;
     private void Update()
     {
+        ignoredLayers = LayerMask.GetMask("Detector");
         icon.sprite = icons[iconIndex];
 
         var camera = Camera.main;
         RaycastHit hitInfo;
 
-        if (Physics.Raycast(camera.transform.position, camera.transform.forward, out hitInfo, player.InteractionDistance))
+        if (Physics.Raycast(camera.transform.position, camera.transform.forward, out hitInfo, player.InteractionDistance, ~ignoredLayers))
         {
             var hit = hitInfo.collider;
             if (hit.GetComponent<IInteractable>() == null)

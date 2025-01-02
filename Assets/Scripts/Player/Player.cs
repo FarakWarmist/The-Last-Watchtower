@@ -25,8 +25,11 @@ public class Player : MonoBehaviour
 
     public float InteractionDistance = 2f;
 
+    LayerMask ignoredLayers;
+
     private void Start()
     {
+        ignoredLayers = LayerMask.GetMask("Detector");
         sprintSpeed = speed * 2;
     }
 
@@ -84,7 +87,7 @@ public class Player : MonoBehaviour
         var camera = Camera.main;
         RaycastHit hitInfo;
         
-        if (Physics.Raycast(camera.transform.position, camera.transform.forward, out hitInfo, InteractionDistance))
+        if (Physics.Raycast(camera.transform.position, camera.transform.forward, out hitInfo, InteractionDistance, ~ignoredLayers))
         {
             var interactable = hitInfo.collider.GetComponent<IInteractable>();
             if (interactable != null)
