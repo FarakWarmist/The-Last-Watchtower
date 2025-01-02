@@ -50,7 +50,7 @@ J'ai besoin de repartir la génératrice.";
 
     private void Overheated()
     {
-        bool overheated = Random.Range(0f, 1f) <= 0.2f;
+        bool overheated = Random.Range(0f, 1f) <= 0.1f;
         if (overheated)
         {
             generator.energyLevel = 0;
