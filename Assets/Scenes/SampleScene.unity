@@ -1480,6 +1480,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Detector
       objectReference: {fileID: 0}
+    - target: {fileID: 3760639291044098306, guid: 97aeccb981592a84288fce222b541e4f, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 5183381906332904373, guid: 97aeccb981592a84288fce222b541e4f, type: 3}
       propertyPath: m_Size.x
       value: 7.8397493
@@ -2169,7 +2173,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2378590622396243362, guid: f9aa4820610433041b2875124eccc343, type: 3}
       propertyPath: m_Name
-      value: RunePrefab
+      value: Rune
       objectReference: {fileID: 0}
     - target: {fileID: 2378590622396243362, guid: f9aa4820610433041b2875124eccc343, type: 3}
       propertyPath: m_IsActive
@@ -5286,7 +5290,7 @@ BoxCollider:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_LayerOverridePriority: 0
+  m_LayerOverridePriority: 1
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
@@ -7791,11 +7795,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3896996923809217151, guid: 646afeb044ca2694285f9b84dab5e2c2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 26.944006
+      value: 26.4696
       objectReference: {fileID: 0}
     - target: {fileID: 3896996923809217151, guid: 646afeb044ca2694285f9b84dab5e2c2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -11.009
+      value: -15.002
       objectReference: {fileID: 0}
     - target: {fileID: 3896996923809217151, guid: 646afeb044ca2694285f9b84dab5e2c2, type: 3}
       propertyPath: m_LocalRotation.w
@@ -10498,9 +10502,11 @@ MonoBehaviour:
   camTarget: {fileID: 675800210}
   camRadioObjet: {fileID: 186637599}
   monsterSpawner: {fileID: 78719070}
+  forestMadness: {fileID: 1071728010}
   items:
   - {fileID: 1365560234}
   - {fileID: 1235710636}
+  music: {fileID: 939218235}
 --- !u!1001 &563819093
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13483,7 +13489,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4128402634313922256, guid: dedc69f20ecb3314eb77e1e6b6f13a30, type: 3}
       propertyPath: m_Name
-      value: HammerPrefab
+      value: Hammer
       objectReference: {fileID: 0}
     - target: {fileID: 4128402634313922256, guid: dedc69f20ecb3314eb77e1e6b6f13a30, type: 3}
       propertyPath: m_IsActive
@@ -17260,7 +17266,7 @@ Transform:
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.35, y: 26.57, z: -14.98}
+  m_LocalPosition: {x: -2.35, y: 0.83, z: -52.14}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -17644,7 +17650,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2310047877597016293, guid: 7ec93a3c34005c544800db0203eded0d, type: 3}
       propertyPath: m_Name
-      value: ShedKeyPrefab
+      value: Shed Key
       objectReference: {fileID: 0}
     - target: {fileID: 2310047877597016293, guid: 7ec93a3c34005c544800db0203eded0d, type: 3}
       propertyPath: m_IsActive
@@ -18268,7 +18274,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7978992333262982770, guid: cded4a023f8b4ce49ad1f9f62659e0c2, type: 3}
       propertyPath: m_Name
-      value: PlankPrefab
+      value: Plank
       objectReference: {fileID: 0}
     - target: {fileID: 7978992333262982770, guid: cded4a023f8b4ce49ad1f9f62659e0c2, type: 3}
       propertyPath: m_IsActive
@@ -20263,6 +20269,7 @@ MonoBehaviour:
   mouseLook: {fileID: 1804414678}
   monsterPrefab: {fileID: 864643203}
   target: {fileID: 333102424}
+  forestMadness: {fileID: 1071728010}
   animator: {fileID: 1676463608}
   camPlayer: {fileID: 405462400}
   camRadio: {fileID: 1344013955}
@@ -20276,6 +20283,8 @@ MonoBehaviour:
   initialCameraPlayerPos: {x: 0, y: 0, z: 0}
   initialCameraRadioPos: {x: 0, y: 0, z: 0}
   blackScreen: {fileID: 955313019}
+  music: {fileID: 939218235}
+  gameOverMusic: {fileID: 8300000, guid: 7109051f1f362764787d8fea68e36946, type: 3}
   follow: 0
   distanceBehindPlayer: 0.75
 --- !u!4 &1121702401
@@ -25342,7 +25351,7 @@ BoxCollider:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_LayerOverridePriority: 0
+  m_LayerOverridePriority: 1
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
@@ -27175,7 +27184,7 @@ Transform:
   m_GameObject: {fileID: 1541090786}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.35, y: 25.77, z: -14.98}
+  m_LocalPosition: {x: -2.35, y: 0.03, z: -52.14}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -30649,7 +30658,7 @@ BoxCollider:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_LayerOverridePriority: 0
+  m_LayerOverridePriority: 1
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
@@ -36133,11 +36142,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 845273408282549041, guid: f9aa4820610433041b2875124eccc343, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 26.751406
+      value: 26.277
       objectReference: {fileID: 0}
     - target: {fileID: 845273408282549041, guid: f9aa4820610433041b2875124eccc343, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -10.992
+      value: -14.985
       objectReference: {fileID: 0}
     - target: {fileID: 845273408282549041, guid: f9aa4820610433041b2875124eccc343, type: 3}
       propertyPath: m_LocalRotation.w
