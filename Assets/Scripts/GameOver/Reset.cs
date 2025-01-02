@@ -1,3 +1,4 @@
+using System.Collections;
 using Unity.Cinemachine;
 using UnityEngine;
 
@@ -13,6 +14,7 @@ public class Reset : MonoBehaviour
     public GameObject camRadioObjet;
     MessageRadioManager messageRadio;
     public MonsterSpawner monsterSpawner;
+    public GameObject forestMadness;
 
     Generator generator;
     LightSwitch lightSwitch;
@@ -21,6 +23,8 @@ public class Reset : MonoBehaviour
 
     public GameObject[] items;
     ItemsManager itemsManager;
+
+    public AudioSource music;
 
     void Start()
     {
@@ -70,6 +74,8 @@ public class Reset : MonoBehaviour
             radio.GetComponent<BoxCollider>().enabled = true;
         }
 
+        forestMadness.SetActive(true);
+
         generator.energyLevel = 3;
         lightSwitch.switchOn = true;
         player.transform.position = transform.position;
@@ -77,5 +83,17 @@ public class Reset : MonoBehaviour
         camRadioObjet.transform.rotation = Quaternion.LookRotation(camTarget.position - camRadioObjet.transform.position);
 
         door.isOpen = false;
+    }
+
+    public IEnumerator DecreaseMusicVolume()
+    {
+        while (music.volume > 0)
+        {
+            music.volume -= Time.deltaTime * 3;
+            yield return null;
+        }
+        music.volume = 0;
+        music.clip = null;
+        music.volume = 1;
     }
 }

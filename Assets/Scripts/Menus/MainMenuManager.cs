@@ -68,6 +68,7 @@ public class MainMenuManager : MonoBehaviour
     private void OnRetryButtonClicked()
     {
         StartCoroutine(Retry());
+        reset.StartCoroutine(reset.DecreaseMusicVolume());
         EventSystem.current.SetSelectedGameObject(null);
     }
 
@@ -119,6 +120,7 @@ public class MainMenuManager : MonoBehaviour
         playerCam.enabled = true;
         icons.enabled = true;
         reset.ResetTheGame();
+        
 
         yield return new WaitForSeconds(0.5f);
 

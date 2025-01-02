@@ -10,6 +10,7 @@ public class GameOver : MonoBehaviour
     [SerializeField] MouseLook mouseLook;
     public GameObject monsterPrefab;
     public Transform target;
+    public GameObject forestMadness;
 
     public Animator animator;
 
@@ -31,6 +32,9 @@ public class GameOver : MonoBehaviour
     MonsterGameOver monsterGameOver;
     Door door;
     CheckCursor checkCursor;
+
+    public AudioSource music;
+    public AudioClip gameOverMusic;
 
     public bool follow;
 
@@ -68,7 +72,7 @@ public class GameOver : MonoBehaviour
         mouseLook.enabled = false;
         camPlayer.enabled = false;
         camRadio.enabled = true;
-        StartCoroutine(DeathScene());
+        StartCoroutine(MonsterWillGetYou());
     }
 
     public void GetGot()
@@ -112,6 +116,7 @@ public class GameOver : MonoBehaviour
             currentMonster.transform.rotation = Quaternion.Euler(0, newRotation.eulerAngles.y, 0);
         }
     }
+
     IEnumerator Gotcha()
     {
         float initialPOV = 40;
@@ -119,6 +124,8 @@ public class GameOver : MonoBehaviour
         currentDeathCam.Lens.FieldOfView = initialPOV;
         player.enabled = false;
         mouseLook.enabled = false;
+
+        music.Stop();
 
         yield return new WaitForSeconds(0.01f);
 
@@ -140,13 +147,16 @@ public class GameOver : MonoBehaviour
 
         yield return new WaitForSeconds(0.01f);
 
-        if (!currentMonster.GetComponent<Monster>().monster.enabled)
+        if (currentMonster != null)
         {
-            currentMonster.GetComponent<Monster>().monster.enabled = true;
+            if (!currentMonster.GetComponent<Monster>().monster.enabled)
+            {
+                currentMonster.GetComponent<Monster>().monster.enabled = true;
+            } 
         }
     }
 
-    IEnumerator DeathScene()
+    IEnumerator MonsterWillGetYou()
     {
         yield return new WaitForSeconds(0.2f);
         camRadio.enabled = true;
@@ -177,9 +187,17 @@ public class GameOver : MonoBehaviour
         animator.SetBool("Fade", true);
         DisableEveryCamera();
         camMenu.enabled = true;
-
+        music.volume = 0.75f;
+        music.clip = gameOverMusic;
+        music.loop = true;
+        music.Play();
+        
         yield return new WaitForSeconds(1f);
 
+        if(forestMadness.activeSelf)
+        {
+            forestMadness.SetActive(false);
+        }
         animator.speed = 0.25f;
         blackScreen.enabled = false;
         animator.SetBool("Fade", false);
