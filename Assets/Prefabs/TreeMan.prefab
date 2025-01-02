@@ -2087,11 +2087,13 @@ MonoBehaviour:
   windowsTarget: []
   monster: {fileID: 0}
   runeLight: {fileID: 0}
+  dangerZoneCollider: {fileID: 8091136907117809479}
   audioSource: {fileID: 6858186722383481281}
   materialOriginal: {fileID: 2100000, guid: b12ae0fc99ab8f942a1f14641d5eaf5a, type: 2}
   skinnedMeshRenderer: {fileID: 6605963094171214354}
   isTakeAction: 0
   isFlashed: 0
+  isDissolved: 0
   isInside: 0
   listLenght: 0
   timeToMakeAction: 0

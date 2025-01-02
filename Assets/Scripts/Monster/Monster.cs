@@ -14,7 +14,7 @@ public class Monster : MonoBehaviour
 
     Animator animator;
     Collider hitBox;
-    //public Collider dangerZoneCollider;
+    public Collider dangerZoneCollider;
     public AudioSource audioSource;
 
     public Material materialOriginal;
@@ -81,7 +81,7 @@ public class Monster : MonoBehaviour
         location.gameObject.SetActive(false);
         monster.SetDestination(location.position);
 
-        StartCoroutine(TakeAction(2));
+        MoveToNextWindow();
     }
 
     private void OnDisable()
@@ -128,7 +128,7 @@ public class Monster : MonoBehaviour
     {
         if (InsideOrOutside.playerIsInside)
         {
-            //dangerZoneCollider.enabled = false;
+            dangerZoneCollider.enabled = true;
 
             if (monster.remainingDistance <= monster.stoppingDistance)
             {
@@ -190,14 +190,14 @@ public class Monster : MonoBehaviour
     {
         if (IsPlayerLookingAtMonster())
         {
+            dangerZoneCollider.enabled = false;
             StopChasing();
             animator.speed = 0;
-
         }
         else
         {
             StartChasing(playerTransform.position);
-
+            dangerZoneCollider.enabled = true;
         }
     }
 
