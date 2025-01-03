@@ -5,6 +5,8 @@ using UnityEngine.UI;
 public class MenuPause : MonoBehaviour
 {
     [SerializeField] GameObject menuPause;
+    [SerializeField] Toggle helperToggle;
+    public Canvas helperCanvas;
     public bool isActif = false;
 
     [SerializeField] CheckCursor cursorState;
@@ -28,5 +30,7 @@ public class MenuPause : MonoBehaviour
         }
 
         Time.timeScale = isActif ? 0 : 1;
+
+        helperCanvas.enabled = helperToggle.isOn;
     }
 }
