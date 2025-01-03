@@ -30,6 +30,11 @@ public class RuneFlashing : MonoBehaviour
         ignoredLayers = layerBarricade | layerWindow | layerIgnoreFlash;
     }
 
+    private void OnDisable()
+    {
+        isFlashing = false;
+    }
+
     private void Update()
     {
         cam = Camera.main;
