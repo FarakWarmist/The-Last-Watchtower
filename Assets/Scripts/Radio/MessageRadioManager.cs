@@ -36,6 +36,13 @@ public class MessageRadioManager : MonoBehaviour
     public AudioClip[] stressMusics;
     public GameObject forestMadness;
 
+    public Map map;
+    public Path path1;
+    public Path path2;
+    public Pin pin;
+    public Pin pinPath1;
+    public Pin pinPath2;
+
     private void Update()
     {
         if (lightSwitch.switchOn)
@@ -60,6 +67,20 @@ public class MessageRadioManager : MonoBehaviour
         }
         else if (messageNum == 1)
         {
+            if (messagePart == 21)
+            {
+                map.pathMapActive = true;
+                path1.SetPath(1, 2, 3);
+                path2.SetPath(0, 1, 2);
+                pin.SetPosition(0);
+                pinPath1.SetPosition(1);
+                pinPath2.SetPosition(2);
+            }
+            else
+            {
+                map.pathMapActive = false;
+            }
+
             if (messagePart == 25)
             {
                 messagePart = 26;
@@ -73,6 +94,20 @@ public class MessageRadioManager : MonoBehaviour
             if (messagePart == 15)
             {
                 messagePart = 18;
+            }
+
+            if (messagePart == 18)
+            {
+                map.pathMapActive = true;
+                path1.SetPath(4, 5, 6);
+                path2.SetPath(4, 5, 6);
+                pin.SetPosition(2);
+                pinPath1.SetPosition(5);
+                pinPath2.SetPosition(5);
+            }
+            else
+            {
+                map.pathMapActive = false;
             }
 
             if (messagePart == 22)
@@ -97,6 +132,20 @@ public class MessageRadioManager : MonoBehaviour
                 {
                     StartCoroutine(MusicDown());
                 }
+            }
+
+            if (messagePart >= 35 && messagePart < 39.1f)
+            {
+                map.pathMapActive = true;
+                path1.SetPath(0, 0, 6);
+                path2.SetPath(0, 0, 0);
+                pin.SetPosition(3);
+                pinPath1.SetPosition(5);
+                pinPath2.SetPosition(5);
+            }
+            else
+            {
+                map.pathMapActive = false;
             }
 
             if (messagePart == 43)
@@ -139,6 +188,20 @@ public class MessageRadioManager : MonoBehaviour
                 }
             }
 
+            if (messagePart >= 35 && messagePart < 39.1f)
+            {
+                map.pathMapActive = true;
+                path1.SetPath(0, 0, 0);
+                path2.SetPath(0, 0, 6);
+                pin.SetPosition(4);
+                pinPath1.SetPosition(5);
+                pinPath2.SetPosition(5);
+            }
+            else
+            {
+                map.pathMapActive = false;
+            }
+
             if (messagePart == 41)
             {
                 messagePart = 42.1f;
@@ -173,6 +236,137 @@ public class MessageRadioManager : MonoBehaviour
         }
         else if (messageNum == 5)
         {
+            if (messagePart == 3)
+            {
+                map.pathMapActive = true;
+                path1.SetPath(0, 7, 8);
+                path2.SetPath(0, 0, 7);
+                pin.SetPosition(6);
+                pinPath1.SetPosition(7);
+                pinPath2.SetPosition(8);
+            }
+            else if (messagePart == 19)
+            {
+                map.pathMapActive = true;
+                path1.SetPath(0, 0, 9);
+                path2.SetPath(8, 9, 10);
+                pin.SetPosition(8);
+                pinPath1.SetPosition(9);
+                pinPath2.SetPosition(14);
+            }
+            else if (messagePart == 10001)
+            {
+                map.pathMapActive = true;
+                path1.SetPath(0, 0, 10);
+                path2.SetPath(0, 0, 24);
+                pin.SetPosition(9);
+                pinPath1.SetPosition(10);
+                pinPath2.SetPosition(13);
+            }
+            else if (messagePart == 11001)
+            {
+                map.pathMapActive = true;
+                path1.SetPath(0, 0, 11);
+                path2.SetPath(0, 0, 13);
+                pin.SetPosition(10);
+                pinPath1.SetPosition(11);
+                pinPath2.SetPosition(17);
+            }
+            else if (messagePart == 11101)
+            {
+                map.pathMapActive = true;
+                path1.SetPath(0, 0, 12);
+                path2.SetPath(14, 15, 16);
+                pin.SetPosition(11);
+                pinPath1.SetPosition(12);
+                pinPath2.SetPosition(19);
+            }
+            else if (messagePart == 12001)
+            {
+                map.pathMapActive = true;
+                path1.SetPath(0, 13, 14);
+                path2.SetPath(0, 9, 10);
+                pin.SetPosition(13);
+                pinPath1.SetPosition(18);
+                pinPath2.SetPosition(13);
+            }
+            else if (messagePart == 30001)
+            {
+                map.pathMapActive = true;
+                path1.SetPath(0, 0, 15);
+                path2.SetPath(0, 0, 11);
+                pin.SetPosition(14);
+                pinPath1.SetPosition(15);
+                pinPath2.SetPosition(21);
+            }
+            else if (messagePart == 31001)
+            {
+                map.pathMapActive = true;
+                path1.SetPath(0, 0, 16);
+                path2.SetPath(0, 0, 12);
+                pin.SetPosition(15);
+                pinPath1.SetPosition(16);
+                pinPath2.SetPosition(22);
+            }
+            else if (messagePart == 31101)
+            {
+                map.pathMapActive = true;
+                path1.SetPath(0, 13, 14);
+                path2.SetPath(0, 0, 17);
+                pin.SetPosition(16);
+                pinPath1.SetPosition(18);
+                pinPath2.SetPosition(23);
+            }
+            else if (messagePart == 40001)
+            {
+                map.pathMapActive = true;
+                path1.SetPath(0, 17, 18);
+                path2.SetPath(0, 18, 19);
+                pin.SetPosition(18);
+                pinPath1.SetPosition(29);
+                pinPath2.SetPosition(22);
+            }
+            else if (messagePart == 50001)
+            {
+                map.pathMapActive = true;
+                path1.SetPath(0, 0, 19);
+                path2.SetPath(0, 0, 20);
+                pin.SetPosition(20);
+                pinPath1.SetPosition(24);
+                pinPath2.SetPosition(30);
+            }
+            else if (messagePart == 51001)
+            {
+                map.pathMapActive = true;
+                path1.SetPath(0, 0, 20);
+                path2.SetPath(0, 0, 21);
+                pin.SetPosition(24);
+                pinPath1.SetPosition(25);
+                pinPath2.SetPosition(31);
+            }
+            else if (messagePart == 51101)
+            {
+                map.pathMapActive = true;
+                path1.SetPath(0, 0, 21);
+                path2.SetPath(0, 0, 22);
+                pin.SetPosition(25);
+                pinPath1.SetPosition(26);
+                pinPath2.SetPosition(27);
+            }
+            else if (messagePart == 51121)
+            {
+                map.pathMapActive = true;
+                path1.SetPath(0, 0, 22);
+                path2.SetPath(0, 0, 21);
+                pin.SetPosition(27);
+                pinPath1.SetPosition(28);
+                pinPath2.SetPosition(31);
+            }
+            else
+            {
+                map.pathMapActive = false;
+            }
+
             // Chemin C
             if (messagePart == 12201 || messagePart == 20001)
             {

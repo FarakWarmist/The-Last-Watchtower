@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using Unity.Cinemachine;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Map : MonoBehaviour, IInteractable
 {
@@ -9,12 +10,16 @@ public class Map : MonoBehaviour, IInteractable
     public CinemachineCamera camPlayer;
     public CinemachineCamera camMap;
     public Canvas icons;
+    public Toggle toggle;
 
     ZoomMap zoomMap;
     Player player;
     MouseLook camLook;
 
     public bool isLooking;
+
+    public GameObject pathMap;
+    public bool pathMapActive;
 
     public void Interact()
     {
@@ -46,9 +51,23 @@ public class Map : MonoBehaviour, IInteractable
                 boxCollider.enabled = true;
                 icons.enabled = true;
             }
+
+            if (toggle.isOn)
+            {
+                pathMap.SetActive(pathMapActive);
+            }
+            else
+            {
+                pathMap.SetActive(false);
+            }
+        }
+        else
+        {
+            pathMap.SetActive(false);
         }
 
         zoomMap.enabled = isLooking;
+
     }
 
     private void IsLooking(CinemachineCamera camExit, CinemachineCamera camGo, bool state)
