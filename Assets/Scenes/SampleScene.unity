@@ -24331,6 +24331,8 @@ MonoBehaviour:
   transition: {fileID: 1676463608}
   door: {fileID: 1204523731}
   camLook: {fileID: 1804414678}
+  characterTextCanvas: {fileID: 46047768}
+  iconsCanvas: {fileID: 2078213467}
   camPlayer: {fileID: 405462400}
   camTransition: {fileID: 1063057332}
   items:
