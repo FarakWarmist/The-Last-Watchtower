@@ -22,6 +22,9 @@ public class Sleep : MonoBehaviour, IInteractable
     [SerializeField] MouseLook camLook;
 
     CharacterText characterText;
+    public Canvas characterTextCanvas;
+
+    public Canvas iconsCanvas;
 
     public CinemachineCamera camPlayer;
     public CinemachineCamera camTransition;
@@ -69,7 +72,9 @@ public class Sleep : MonoBehaviour, IInteractable
         }
         else
         {
-            Debug.Log("I can't sleep right now");
+            newText =
+@"Je ne peux pas me permettre de dormir maintenant.";
+            characterText.StartNewText(newText);
         }
     }
 
@@ -77,12 +82,12 @@ public class Sleep : MonoBehaviour, IInteractable
     {
         Transition(true);
         PlayerState(false);
-
         yield return new WaitForSeconds(0.8f);
         camPlayer.enabled = false;
         camTransition.enabled = true;
         isDay = false;
         door.isOpen = false;
+        characterTextCanvas.enabled = false;
         MessageRadioManager radioMessage = FindAnyObjectByType<MessageRadioManager>();
 
         yield return new WaitForSeconds(0.4f);
@@ -102,6 +107,7 @@ public class Sleep : MonoBehaviour, IInteractable
         radioMessage.messagePart++;
         camPlayer.enabled = true;
         camTransition.enabled = false;
+        characterTextCanvas.enabled = true; 
 
         yield return new WaitForSeconds(0.4f);
         PlayerState(true);
@@ -120,6 +126,7 @@ Peut-être il y a une génératrice dans le cabanon.";
     {
         player.enabled = state;
         camLook.enabled = state;
+        iconsCanvas.enabled = state;
     }
 
     public void Transition (bool state)
