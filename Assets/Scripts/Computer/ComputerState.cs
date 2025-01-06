@@ -109,18 +109,19 @@ public class ComputerState : MonoBehaviour, IInteractable
 
         if (isLooking)
         {
+            var activeBlend = brain.ActiveBlend;
             if (isOn)
             {
                 terminal.inputTerminal.ActivateInputField();
                 menuPause.enabled = false;
-                if (Input.GetKeyUp(KeyCode.Escape))
+                if (Input.GetKeyUp(KeyCode.Escape) && activeBlend == null)
                 {
                     CamGoBack();
                 }
             }
             else
             {
-                if (Input.GetKeyUp(KeyCode.S))
+                if (Input.GetKeyUp(KeyCode.S) && activeBlend == null)
                 {
                     CamGoBack();
                 }

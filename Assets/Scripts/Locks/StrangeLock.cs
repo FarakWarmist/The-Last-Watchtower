@@ -45,6 +45,7 @@ public class StrangeLock : MonoBehaviour, IInteractable
     {
         if (isLooking)
         {
+            var activeBlend = brain.ActiveBlend;
             if (Input.GetMouseButtonDown(0))
             {
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -60,7 +61,7 @@ public class StrangeLock : MonoBehaviour, IInteractable
                 }
             }
 
-            if (Input.GetKeyDown(KeyCode.S))
+            if (Input.GetKeyDown(KeyCode.S) && activeBlend == null)
             {
                 isLooking = false;
                 IsLooking(camLock, camPlayer, true);

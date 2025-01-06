@@ -12,6 +12,7 @@ public class Map : MonoBehaviour, IInteractable
     public Canvas icons;
     public Toggle toggle;
 
+    CinemachineBrain brain;
     ZoomMap zoomMap;
     Player player;
     MouseLook camLook;
@@ -34,6 +35,7 @@ public class Map : MonoBehaviour, IInteractable
 
     void Start()
     {
+        brain = FindAnyObjectByType<CinemachineBrain>();
         player = FindAnyObjectByType<Player>();
         camLook = FindAnyObjectByType<MouseLook>();
         zoomMap = GetComponent<ZoomMap>();
@@ -44,7 +46,8 @@ public class Map : MonoBehaviour, IInteractable
     {
         if (isLooking)
         {
-            if (Input.GetKeyDown(KeyCode.S))
+            var activeBlend = brain.ActiveBlend;
+            if (Input.GetKeyDown(KeyCode.S) && activeBlend == null)
             {
                 isLooking = false;
                 IsLooking(camMap, camPlayer, true);

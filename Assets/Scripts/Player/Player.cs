@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Cinemachine;
 using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,6 +10,8 @@ public class Player : MonoBehaviour
 {
     public CharacterController controller;
     [SerializeField] Icons icon;
+
+    CinemachineBrain brain;
 
     public float speed = 8f;
     float sprintSpeed;
@@ -31,6 +34,7 @@ public class Player : MonoBehaviour
     {
         ignoredLayers = LayerMask.GetMask("Detector");
         sprintSpeed = speed * 2;
+        brain = FindAnyObjectByType<CinemachineBrain>();
     }
 
     void Update()
@@ -76,7 +80,8 @@ public class Player : MonoBehaviour
         }
 
         // Interaction
-        if (Input.GetKeyDown(KeyCode.E))
+        var activeBlend = brain.ActiveBlend;
+        if (Input.GetKeyDown(KeyCode.E) && activeBlend == null)
         {
             TryToInteract();
         }

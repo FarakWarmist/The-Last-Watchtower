@@ -26,6 +26,7 @@ public class Radio : MonoBehaviour, IInteractable
     Sleep sleep;
     Answers answers;
 
+    CinemachineBrain brain;
     public CinemachineCamera camPlayer;
     public CinemachineCamera camRadio;
 
@@ -33,6 +34,7 @@ public class Radio : MonoBehaviour, IInteractable
 
     private void Start()
     {
+        brain = FindAnyObjectByType<CinemachineBrain>();
         radioMessage = FindAnyObjectByType<MessageRadioManager>();
         radioText = FindAnyObjectByType<RadioText>();
         player = FindAnyObjectByType<Player>();
@@ -101,7 +103,8 @@ public class Radio : MonoBehaviour, IInteractable
             timerOn = true;
         }
 
-        if (isLooking)
+        var activeBlend = brain.ActiveBlend;
+        if (isLooking && activeBlend == null)
         {
             if (Input.GetKeyDown(KeyCode.S) && !radioMessage.isDead)
             {

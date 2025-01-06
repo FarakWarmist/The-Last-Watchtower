@@ -71,7 +71,8 @@ Peut-être que la lettre peut m'aider à les trouver.";
     private void Update()
     {
         animator.SetBool("IsOpen", isOpen);
-        if (isCheck)
+        var activeBlend = brain.ActiveBlend;
+        if (isCheck && activeBlend == null)
         {
             if(Input.GetKeyDown(KeyCode.E))
             {
