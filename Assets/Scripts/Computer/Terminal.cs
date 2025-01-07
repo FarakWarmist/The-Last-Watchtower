@@ -8,17 +8,20 @@ public class Terminal : MonoBehaviour
 {
     public TMP_InputField inputTerminal;
     public TMP_Text outputTerminal;
-    private string text;
+    string text;
+    string mainText;
 
     public Canvas inputCanvas;
 
     private void OnEnable()
     {
-        text =
+        mainText =
 @"Bienvenue sur le Terminal de la Watchtower No9.
+
 Vous y trouverez les informations collectées sur les diverses anomalies de la Lost Forest, ainsi que des conseils pour survivre en cas d'attaque pendant vos heures de travail.
 
 Pour connaître les différentes options, tapez HELP.";
+        text = mainText;
         StartCoroutine(ShowText());
         inputTerminal.onEndEdit.AddListener(HandleInput);
         inputTerminal.onValueChanged.AddListener(OnValueChange);
@@ -30,11 +33,7 @@ Pour connaître les différentes options, tapez HELP.";
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             outputTerminal.text = "Exit command activated.";
-            text =
-@"Bienvenu sur le Terminal de la Watchtower No9.
-Vous pouvez y trouver les informations collectées sur les divers anomalies de la Lost Forest ainsi de comment survivre en cas d'attaque sur vos heures de travaille.
-
-Pour connaître les différentes options, tapez ""help"".";
+            text = mainText;
             StartCoroutine(ShowText());
             inputTerminal.text = "";
         }
@@ -89,9 +88,12 @@ FALSE TREE
 THE DOORMAN
 FOREST MADNESS
 ROOT TOTEM
+ROOTED TOOL
 HUNGRY CABIN
 PATH TO NOWHERE
+RED ZONE
 ";
+            case "deer":
             case "smiling deer":
             case "deer smile":
                 return text =
@@ -202,34 +204,27 @@ Si une personne succombe à la Forest Madness, elle finira par devenir une Rooted
 
 * Si vous ne pouvez rien faire pour vous débarrasser de la Forest Madness dans les secondes qui suivent, la meilleure option reste de mettre fin à vos jours. Dans le cas contraire, vous finirez par devenir un Rooted Ghoul.";
 
-            case "exit":
+            case "totem":
+            case "root totem":
                 return text =
-@"Bienvenu dans W.A.T. v3.2 (Watchtower Anomalies Terminal) Que voulez-vous savoir?
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a";
+@"|| ROOT TOTEM ||
+
+Les Root Totems sont d'étranges effigies, créées par les Rooted Priests à partir de bois, de roches, de boue et de divers matériaux organiques. Elles mesurent environ 1 mètre de hauteur sur ½ mètre de large. Il existe actuellement que trois types de Totems, chacun ayant ses propres caractéristiques.
+
+Le Screaming Totem émet un enchaînement de plusieurs cris d'agonies à travers les équipements de communication dans les environs. Cela empêche toute communication radio et permet aux anomalies de localiser les Watchers et que les Explorers.
+
+Le Target Totem attire les créatures vers sa position. S'il n'est pas détruit rapidement, le regroupement de monstres finira par devenir incontrôlable.
+
+Le Blind Totem absorbe toute forme de lumière et d'énergie dans ses environs, rendant inutilisables toutes communications, runes et sources de lumière.
+
+- CONSEILS -
+* Au moindre signe qu'un Totem a été planté à proximité, trouvez-le et brûlez-le.
+
+* Si des indices montrent qu'un Rooted Priest était dans les environs, fouillez la zone à la recherche d'un potentiel Totem.";
+
+            case "exit":
+                return text = mainText;
+
             default:
                 return text ="Commande [" + command.ToUpper() + "] non reconnue";
         }
