@@ -93,6 +93,7 @@ HUNGRY CABIN
 PATH TO NOWHERE
 RED ZONE
 RUNES
+FAIRY
 ";
             case "deer":
             case "smiling deer":
@@ -242,6 +243,26 @@ Les effets des Cursed Tools lorsque utilisés par un Priest sont les suivant :
 
 - CONSEILS -
 * Si vous tombez sur un Cursed Tool, vous devez immédiatement l'enterrer sans le toucher de vos mains et réciter une prière, quelle que soit la religion. Dans le cas contraire, le Cursed Tool finira par générer une Red Zone.";
+
+            case "red zone":
+            case "zone red":
+                return text =
+@"|| RED ZONE ||
+
+L'anomalie que l'on appelle ""Red Zone"" est à la fois la plus facile à éviter et la plus dangereuse.
+
+Une Red Zone apparaît lorsqu'un Cursed Tool n'a pas été correctement disposé. Un phénomène se déclenche alors, où tout ce qui se trouve dans un rayon pouvant aller de 5 à 200 mètres finit par être fusionné, démantelé, tordu et déformé.
+
+Lorsqu'un être vivant entre dans une Red Zone, un brouillard luminescent rouge émergera. C'est ce qui a valu le nom à l'anomalie. Tout ce qui entre dans une Red Zone finit par rejoindre le paysage chaotique, emprisonné dans un état constant entre la vie et la mort, et doit être considéré comme perdu.
+
+Il n'existe encore aucune façon d'inverser les effets d'une Red Zone. C'est pourquoi il est du devoir de chacun de prévenir la formation de nouvelles Red Zones.
+
+- CONSEILS -
+* Suivez les étapes à faire lorsque vous trouvez une Cursed Tool.
+
+* Mettez régulièrement à jour votre carte pour localiser la formation de nouvelles Red Zones.
+
+* Ne cherchez pas à sauver ce qui est entré dans une Red Zone.";
 
             case "exit":
                 return text = mainText;
