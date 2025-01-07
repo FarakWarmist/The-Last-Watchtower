@@ -88,10 +88,11 @@ FALSE TREE
 THE DOORMAN
 FOREST MADNESS
 ROOT TOTEM
-ROOTED TOOL
+CURSED TOOL
 HUNGRY CABIN
 PATH TO NOWHERE
 RED ZONE
+RUNES
 ";
             case "deer":
             case "smiling deer":
@@ -117,13 +118,14 @@ Voici ce que vous devez faire :
 
 * Si vous entendez une personne appeler à l’aide, accompagnée de cris de douleur, ne tentez pas de la sauver. Profitez-en pour vous déplacer aussi rapidement que possible. Personne ne vous en voudra.";
 
+            case "priest":
             case "rooted priest":
                 return text =
 @"|| ROOTED PRIEST ||
 
 Les Rooted Priests sont des humanoïdes partisans et croyants, volontaires ou non, d'un culte vénérant The Root, et sont suspectés d’être la principale cause des anomalies et de la propagation de l’influence de The Root. Ils sont considérés comme les yeux, la bouche et les oreilles de The Root.
 
-Les Rooted Priests sont vêtus d’une étrange tunique aux couleurs de la forêt, recouverte de boue, de branches et de feuilles, leur permettant de mieux se dissimuler dans la végétation. Ils sont souvent vus portant divers objets de prière, appelés ""Rooted Tool"", qui leur confèrent une certaine influence sur les autres anomalies. 
+Les Rooted Priests sont vêtus d’une étrange tunique aux couleurs de la forêt, recouverte de boue, de branches et de feuilles, leur permettant de mieux se dissimuler dans la végétation. Ils sont souvent vus portant divers objets de prière, appelés ""Cursed Tool"", qui leur confèrent une certaine influence sur les autres anomalies. 
 
 Les Rooted Priests sont dans un état constant d’euphorie et cherchent visiblement à partager ce ""bonheur"" avec tout être humain. Pour ce faire, ils vont, seuls ou en groupe, trouver une ou plusieurs personnes et commencer à réciter un chant religieux tout en interagissant avec l’objet fétiche qu’ils détiennent. Lors de ces rencontres, une variété d’événements peut survenir. Le chant brisé des Rooted Priests peut créer ou invoquer des anomalies qui blesseront ou tueront une partie des personnes ciblées. L’autre partie entrera dans un état de transe, envoûtée par le chant, jusqu’à disparaître dans la forêt avec le Priest. Le sort réservé à ces personnes reste encore un mystère.
 
@@ -221,6 +223,25 @@ Le Blind Totem absorbe toute forme de lumière et d'énergie dans ses environs, re
 * Au moindre signe qu'un Totem a été planté à proximité, trouvez-le et brûlez-le.
 
 * Si des indices montrent qu'un Rooted Priest était dans les environs, fouillez la zone à la recherche d'un potentiel Totem.";
+
+            case "cursed tool":
+                return text =
+@"|| CURSED TOOL ||
+
+Les Cursed Tools sont les principaux instruments surnaturels utilisés par les Rooted Priests. Il existe une grande variété de Cursed Tools, et chacun d'entre eux ressemble à un objet de culte ou à un artefact religieux.
+
+En raison de leur dangerosité lorsqu'ils sont utilisés par un être humain, il n'est pas encore possible de déterminer une relation claire entre les différents Cursed Tools et les effets qu'ils peuvent générer.
+
+Les effets des Cursed Tools lorsque utilisés par un Priest sont les suivant :
+- Invoque une armée de Rooted Ghouls.
+- Émet un champ qui annule les effets des runes.
+- Génère des racines géantes qui détruisent et tuent tout ce qui est à proximité.
+- Crée des illusions et vagues psychiques provoquant de violentes migraines.
+- Manipule une ou plusieurs personnes.
+- Invoque un épais brouillard.
+
+- CONSEILS -
+* Si vous tombez sur un Cursed Tool, vous devez immédiatement l'enterrer sans le toucher de vos mains et réciter une prière, quelle que soit la religion. Dans le cas contraire, le Cursed Tool finira par générer une Red Zone.";
 
             case "exit":
                 return text = mainText;
