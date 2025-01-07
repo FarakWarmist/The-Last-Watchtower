@@ -145,11 +145,11 @@ Si un False Tree est particulièrement affamé, il devient plus agressif et moins 
 Les False Trees ont également montré qu'ils peuvent ressentir la peur, la tristesse, la joie et la colère, mais pas l’amour ni la compassion. Toute tentative d'apprivoiser ou d’élever un False Tree se termine généralement par la mort de la créature ou des personnes impliquées.
 
 - CONSEILS -
-*Le feu reste le moyen le plus efficace pour les éloigner. Une simple flamme peut plonger un False Tree dans un état de panique extrême. Ce phénomène est des plus étranges, car il a été observé que la peau des False Trees comporte une couche d’huile les rendant résistants au feu.
+* Le feu reste le moyen le plus efficace pour les éloigner. Une simple flamme peut plonger un False Tree dans un état de panique extrême. Ce phénomène est des plus étranges, car il a été observé que la peau des False Trees comporte une couche d’huile les rendant résistants au feu.
 
-*Les False Trees évitent généralement la confrontation. Leur lancer des objets ou des projectiles peut les dissuader de faire de vous leur prochain repas.
+* Les False Trees évitent généralement la confrontation. Leur lancer des objets ou des projectiles peut les dissuader de faire de vous leur prochain repas.
 
-*Il est également recommandé d’éviter de rester à découvert lorsqu’un False Tree vous traque. Cherchez un abri, comme une cabane, une grotte ou tout autre refuge en attendant que le False Tree perde patience et passe à autre chose.";
+* Il est également recommandé d’éviter de rester à découvert lorsqu’un False Tree vous traque. Cherchez un abri, comme une cabane, une grotte ou tout autre refuge en attendant que le False Tree perde patience et passe à autre chose.";
 
             case "the doorman":
             case "doorman":
@@ -174,13 +174,33 @@ Si la victime a déjà fait affaire au Doorman, l'entité ne prétendra pas être la 
 Ceux qui ont vu The Doorman, et sont toujours là pour en parler, disent n'avoir vu que leur visage. Celui-ci, étant une copie de la personne décédée à qui appartenait la voix, mais avec les yeux et la bouche creuses, souriant de manière non-naturelle à mesure qu'il s'approchait.
 
 - CONSEILS -
-*Évitez de vous retrouver seul dans un lieu intérieur ou garder la porte ouverte si ça ne vous met pas en danger.
+* Évitez de vous retrouver seul dans un lieu intérieur ou garder la porte ouverte si ça ne vous met pas en danger.
 
-*Si The Doorman se présente à vous, garder la tête froide et ignoré toute promesse et mensonge qu'il vous raconte, aussi tentant qu'ils sont.
+* Si The Doorman se présente à vous, garder la tête froide et ignoré toute promesse et mensonge qu'il vous raconte, aussi tentant qu'ils sont.
 
-*Si vous êtes munie d'une rune de purification ou d'une puissante source de lumière, approchez vous de la porte pour entrevoir The Doorman et utilisez-la lorsque vous voyez son visage souriant.
+* Si vous êtes munie d'une rune de purification ou d'une puissante source de lumière, approchez vous de la porte pour entrevoir The Doorman et utilisez-la lorsque vous voyez son visage souriant.
 
-*La dernière solution reste de rester loin de la porte jusqu'à ce qu'il perde patience en vous tenant loin de la porte.";
+* La dernière solution reste de rester loin de la porte jusqu'à ce qu'il perde patience en vous tenant loin de la porte.";
+
+            case "forest madness":
+                return text =
+@"|| FOREST MADNESS ||
+
+La Forest Madness est un événement paranormal qui affecte toute personne se trouvant à proximité d'une anomalie liée à The Root, lorsqu'elle se retrouve complètement seule et dans l'obscurité.
+
+Les symptômes sont les suivants :
+- Hallucinations visuelles et auditives.
+- Sensation extrême d'anxiété.
+- Entendre une voix féminine inconnue.
+
+Si une personne succombe à la Forest Madness, elle finira par devenir une Rooted Ghoul.
+
+- CONSEILS -
+* Gardez toujours une source de lumière sur vous, ou l'équipement nécessaire pour en générer une. Par exemple, des allumettes, un briquet ou un pistolet de détresse.
+
+* Si possible, contactez un Watcher ou toute autre personne et informez-les de votre situation tout en maintenant une communication radio.
+
+* Si vous ne pouvez rien faire pour vous débarrasser de la Forest Madness dans les secondes qui suivent, la meilleure option reste de mettre fin à vos jours. Dans le cas contraire, vous finirez par devenir un Rooted Ghoul.";
 
             case "exit":
                 return text =
