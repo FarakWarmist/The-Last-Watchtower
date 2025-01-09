@@ -135,6 +135,26 @@ Les Rooted Priests sont dans un �tat constant d�euphorie et cherchent visibl
 * Si vous commencez � entendre le chant d�un Rooted Priest, vous devez le trouver et l��liminer le plus rapidement possible. Plus le chant continue, plus le nombre ou la dangerosit� des anomalies augmentera.
 
 * Les Rooted Priests ne se d�fendront jamais physiquement, ce qui les rend faciles � �liminer lorsqu�ils sont � port�e. Cependant, leur grande intelligence fait d�eux de redoutables strat�ges, utilisant divers sorts ou autres moyens de diversion pour se dissimuler et rester � distance.";
+            
+            case "rooted ghoul":
+            case "ghoul":
+                return text =
+@"|| ROOTED GHOUL ||
+
+Les Rooted Ghouls sont des cr�atures cr��es par les Rooted Priests � partir de corps humains r�par�s avec du bois et des racines. Malgr� le fait qu'ils soient constamment maltrait�s par les Priests, les Rooted Ghouls suivent leurs ordres au doigt et � l'�il.
+
+Les Rooted Ghouls ont d�montr� une certaine conscience de leur vie pr�c�dente. Certains, ayant encore des cordes vocales, ont murmur� des appels � l'aide, mais cela pourrait �galement �tre un leurre pour d�sorienter leurs victimes. Ils ont montr� une force surhumaine, ainsi qu'une grande r�sistance physique, et se comportent toujours de mani�re �trange lorsqu'ils n'ont pas de Priest pour les commander.
+
+Comme beaucoup d'anomalies cr��es par The Root, les Rooted Ghouls sont tr�s sensibles aux Runes, surtout celle de purification. Lorsqu'ils sont tu�s, ils se d�mat�rialisent et r�apparaissent dans la for�t. De ce fait, leur nombre est en constante augmentation.
+
+- CONSEILS -
+* Si un groupe de Rooted Ghouls attaque votre groupe, et que vous disposez de moyens de d�fense, que vous les d�passez en nombre et qu'il n'y a pas de Priest pr�sent, vous pouvez essayer de les d�truire et partir une fois fait.
+
+* Si vous avez un Runiste avec vous, il peut cr�er une zone de purification pour emp�cher les Ghouls de s'approcher.
+
+* Les Rooted Ghouls sans supervision ont d�montr� un comportement �trange o� ils cessent toute activit� lorsqu'ils sont observ�s. Assurez-vous donc d'avoir une vue claire sur eux.
+
+* Si un Rooted Priest est pr�sent, fuir reste la meilleure solution.";
 
             case "false tree":
                 return text =
