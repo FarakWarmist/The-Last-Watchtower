@@ -82,18 +82,19 @@ EXIT
 
 Liste des différentes créatures, anomalies et danger des alentours :
 
-DEER SMILE
-ROOTED PRIEST
-FALSE TREE
-THE DOORMAN
-FOREST MADNESS
-ROOT TOTEM
 CURSED TOOL
+DEER SMILE
+FAIRY
+FALSE TREE
+FOREST MADNESS
 HUNGRY CABIN
 PATH TO NOWHERE
 RED ZONE
+ROOT TOTEM
+ROOTED GHOUL
+ROOTED PRIEST
 RUNES
-FAIRY
+THE DOORMAN
 ";
             case "deer":
             case "smiling deer":
@@ -264,6 +265,24 @@ Il n'existe encore aucune façon d'inverser les effets d'une Red Zone. C'est pour
 
 * Ne cherchez pas à sauver ce qui est entré dans une Red Zone.";
 
+            case "hungry":
+            case "hungry cabin":
+                return text =
+@"|| HUNGRY CABIN ||
+
+Les Hungry Cabins sont des anomalies qui imitent un abri de secours afin de dévorer toute personne ayant la malchance d'y entrer, d'où leur nom.
+
+À l'exception de l'événement qui se produit lorsqu'un être vivant entre à l'intérieur, il est impossible de distinguer visuellement un abri régulier d'une Hungry Cabin.
+
+Lorsqu'une personne entre dans une Hungry Cabin, la porte de celle-ci se fermera violemment, y compris les fenêtres si présentes et ouvertes. À ce moment, l'Hungry Cabin commencera sa phase de digestion, sécrétant un acide gastrique puissant depuis le sol et le plafond. Ce processus peut durer entre 15 et 30 minutes. Si aucune personne n'est à proximité, l'entité disparaîtra sans laisser de traces.
+
+La méthode qu'utilisent les Hungry Cabins pour se matérialiser et se dématérialiser reste encore un mystère. Il n'est pas encore certain si elles sont des créatures vivantes ou une simple anomalie.
+
+- CONSEILS -
+* Avant d'entrer dans un abri, vérifiez toujours si celui-ci figure sur votre carte. Si ce n'est pas le cas, il y a de fortes chances que vous soyez face à une Hungry Cabin. Si vous n'avez pas de carte, contactez le Watcher en charge.
+
+* Si vous, ou l'un de vos compagnons, vous retrouvez pris à l'intérieur d'une Hungry Cabin, utilisez un objet tel qu'une hache, une masse ou un rocher pour tenter de briser la porte.";
+            
             case "exit":
                 return text = mainText;
 
