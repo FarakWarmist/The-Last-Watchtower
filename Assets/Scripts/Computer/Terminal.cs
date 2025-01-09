@@ -340,6 +340,13 @@ Les Fairies voient les humains comme une race inférieure qu'ils doivent aider et
 
 * Si une Fairy souhaite parler uniquement à un ""dirigeant"", allez chercher le chef du groupe. Si une figure plus haute n'est pas présente, excusez-vous et expliquez que celui-ci n'est pas actuellement là, mais que vous pouvez servir de messager.";
 
+            case "rune":
+            case "runes":
+                return text =
+@"|| RUNE ||
+
+Les Rune sont de la magie féérique mis sous une forme que les humains peuvent utilisée pour se protéger, se soigner et générer de l'énergie. Ceux qui étudient cette science sont appelé ""Runiste"" et sont capable de graver, transcrire et recréer des Runes.";
+
             case "exit":
                 return text = mainText;
 
