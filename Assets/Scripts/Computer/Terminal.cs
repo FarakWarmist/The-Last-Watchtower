@@ -71,9 +71,8 @@ Pour connaître les différentes options, tapez HELP.";
 Commandes disponibles:
 
 BESTIARY
-MAPS
-LOGS
-WATCHTOWER
+MAP
+TOOLS
 EXIT
 ";
             case "bestiary":
@@ -209,6 +208,7 @@ Ceux qui ont vu The Doorman, et sont toujours là pour en parler, disent n'avoir 
 * La dernière solution reste de rester loin de la porte jusqu'à ce qu'il perde patience en vous tenant loin de la porte.";
 
             case "forest madness":
+            case "madness":
                 return text =
 @"|| FOREST MADNESS ||
 
@@ -340,15 +340,224 @@ Les Fairies voient les humains comme une race inférieure qu'ils doivent aider et
 
 * Si une Fairy souhaite parler uniquement à un ""dirigeant"", allez chercher le chef du groupe. Si une figure plus haute n'est pas présente, excusez-vous et expliquez que celui-ci n'est pas actuellement là, mais que vous pouvez servir de messager.";
 
-            case "rune":
             case "runes":
+                return text =
+@"|| RUNES ||
+
+Les Runes sont de la magie féérique mise sous une forme que les humains peuvent utiliser pour se protéger, se soigner et générer de l'énergie. Ceux qui étudient cette science sont appelés ""Runistes"" et sont capables de graver, transcrire et recréer des Runes.";
+
+            case "map":
+            case "maps":
+                return text =
+@"|| MAP ||
+
+La Map vous aidera à guider ceux qui n'ont pas trouver refuge avant la tomber de la nuit.
+
+CAMP
+RED ZONE
+ROCK
+RUIN
+SHELTER
+TREE
+VILLAGE";
+            case "camp":
+            case "camps":
+                return text =
+@"|| CAMP ||
+
+Les Camps sont des zones de sûreté où les sbires de The Root et les anomalies ne peuvent y entrer. Les Explorers y passent la nuit ou y font un rapport de leurs trouvailles.";
+
+            case "rock":
+            case "rocks":
+                return text =
+@"|| ROCK ||
+
+Plusieurs rochers avec des symboles gravés dessus sont rependus dans la Lost Forest. Ils servent de repère pour les Explorers.";
+
+            case "ruins":
+            case "ruin":
+                return text =
+@"|| RUIN ||
+
+Les Ruins sont des bâtiments faits par l'homme qui ont fini dans la Lost Forest. Les Exploreurs y vont souvent à la recherche d'informations et de matériaux.";
+
+            case "shelter":
+                return text =
+@"|| SHELTER ||
+
+Les Shelters servent de lieu sécurisé temporaire pour les Explorers durant la nuit. Cependant, soyez vigilant aux Hungry Cabins! N'oubliez pas de consulter votre carte pour repérer la position des Shelters.";
+
+            case "tree":
+                return text =
+@"|| TREE ||
+
+Les Trees marqués sur votre carte sont des arbres particulièrement grands qui servent de repère aux Explorers. Certains Trees peuvent posséder de 1 à 3 troncs et, par moments, comporter une rune gravée.";
+
+            case "village":
+                return text =
+@"|| VILLAGE ||
+
+Le Village est le lieu où vivent les survivants de l'incident qui a amené les humains dans la Lost Forest. Pour éviter l'influence de The Root, le Village est construit sur une surface aride et stérile, ce qui empêche les habitants de cultiver quoi que ce soit ou de faire de l'élevage. C'est pour cette raison que les Explorers existent.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Il est bâti sur vos péchés.";
+
+            case "tool":
+            case "tools":
+                return text =
+@"|| TOOLS ||
+
+Afin de garantir votre sécurité, votre Watchtower comporte de nombreux outils pour vous aider, vous et les Explorers en aide.
+
+RADIO
+PLANKS AND HAMMER
+RUNE
+TERMINAL
+GENERATOR
+MAP";
+
+            case "radio":
+                return text =
+@"|| RADIO ||
+
+La Radio est votre seul moyen de communication avec les Explorers, les Camps et le Village. Lorsque quelqu'un tente de vous rejoindre, une petite lumière rouge, accompagnée du son, clignotera pour vous le signaler.
+
+Gardez à l'esprit que la Radio est reliée à l'énergie de la Watchtower, et qu'elle ne fonctionnera pas sans énergie.";
+
+            case "plank":
+            case "planks":
+            case "hammer":
+            case "plank and hammer":
+            case "planks and hammer":
+            case "hammer and planks":
+            case "hammer and plank":
+                return text =
+@"|| PLANKS AND HAMMER ||
+
+Dans la circonstance où l'une de vos fenêtres venait à être brisée, un marteau et des planches vous ont été fournis. Il vous est donc possible de barricader les fenêtres brisées et d'empêcher les anomalies de s'introduire.
+
+Rappelez-vous que vous êtes limité en quantité de planches, il est donc préférable de surveiller les fenêtres.";
+
+            case "rune":
                 return text =
 @"|| RUNE ||
 
-Les Rune sont de la magie féérique mis sous une forme que les humains peuvent utilisée pour se protéger, se soigner et générer de l'énergie. Ceux qui étudient cette science sont appelé ""Runiste"" et sont capable de graver, transcrire et recréer des Runes.";
+Afin de vous protéger des anomalies qui viendraient à votre rencontre, une Rune de purification se trouve à votre disposition.
+
+Si vous rencontrez une anomalie, il suffit d'utiliser la Rune sur elle pour la faire fuir. Mais attention ! La Vune prend un petit moment avant d'être de nouveau active.";
+
+            case "terminal":
+            case "computer":
+                return text =
+@"|| TERMINAL ||
+
+Le Terminal est la banque de données disponible dans tous les Watchtowers. Il est une source d'informations cruciale afin de fournir et renseigner les Watchers et les Explorers des dangers que comporte la Lost Forest et comment y faire face.
+
+Gardez à l'esprit que le Terminal est relié à l'énergie de la Watchtower, et qu'il ne fonctionnera pas sans énergie.";
+
+            case "generator":
+                return text =
+@"|| GENERATOR ||
+
+Chaque Watchtower comporte une génératrice servant à alimenter les runes qui fournissent l'énergie à la tour.
+
+Gardez à l'esprit que la génératrice peut parfois sauter. Et sans énergie, vous ne pouvez pas utiliser votre Radio, ni votre Terminal. Vous serez aussi plongé dans le noir, vous risquant à la Forest Madness.";
 
             case "exit":
                 return text = mainText;
+
+            // Special & EasterEgg
+            case "the lost forest":
+            case "lost forest":
+                return text =
+@"Des Elves m'ont demandé de l'aide pour trouver la source d'une corruption apparue récemment dans la Lost Forest. Puisque la corruption semble toucher la forêt et ce qui y vit, les Elves ont été obligés de ravaler leur fierté et demander à la seule personne extérieure capable de les aider. C'était satisfaisant de voir ces êtres pleins d'égo se rabaisser à ce point, mais je savais que s'ils en venaient à se remettre à moi, c'est que ça s'annonce plus critique que ce que je pensais. De plus, je préfère ne pas me les mettre à dos, ils peuvent s'avérer utiles.
+
+Une fois arrivé sur place, c'était bien pire que tout ce que je m'imaginais. Les plantes et créatures corrompues cherchaient à tuer ou corrompre tout ce qui ne l'était pas. Heureusement que les Elves ont su trouver un moyen de la contenir, mais la corruption semble avoir une puissante capacité d'adaptation.
+
+Durant mes recherches dans la zone corrompue, j'ai vite réalisé que de dangereuses entités ont élu domicile dans cet endroit. J'ai réussi à interroger l'une d'entre elles qui avait l'intelligence de communiquer. Il m'a raconté que la cause proviendrait de l'arrivée d'un regroupement religieux vénérant une entité supérieure inconnue.
+
+
+- J.W.";
+
+            case "the root":
+            case "root":
+                return text =
+@"J'ai rencontrer ce culte vénérant une entité invisible qu'ils appellent ""The Root"". J'ignore s'ils sont la cause de cette entité ou si l'entité est la cause du culte. Du peu que je sais, l'entité n'a jamais physiquement existé, mais ses cultistes utilisaient des hôtes pour lui offrir une possibilité d'interagir avec le monde physique. Alors pourquoi ces hôtes semblent-elles tant en peine et en souffrance?
+
+J'ai pris la décision de libérer ces hôtes de leur tourment, me mettant à dos les cultistes. J'ai eu beau essayer de leur soutirer des informations sur l'origine de leur pouvoir, mais ils m'ont juste ri au visage.
+
+J'ai prévenu les Elves de rester sur leur garde. Cette façon que ce culte corrompe d'autres entités ressemble beaucoup trop à la méthode utilisée par l' QXJicmUgYXV4IFBlbmR1cw==. Ça ne peut pas être une coïncidence.
+
+
+- J.W.";
 
             default:
                 return text ="Commande [" + command.ToUpper() + "] non reconnue";
