@@ -106,7 +106,7 @@ public class Radio : MonoBehaviour, IInteractable
         var activeBlend = brain.ActiveBlend;
         if (isLooking && activeBlend == null)
         {
-            if (Input.GetKeyDown(KeyCode.S) && !radioMessage.isDead)
+            if (Input.GetKeyDown(KeyCode.S) && !radioMessage.canNotMove)
             {
                 boxCollider.enabled = true;
                 isLooking = false;
@@ -162,16 +162,6 @@ public class Radio : MonoBehaviour, IInteractable
 
                     radioMessage.newMessage = false;
                 }
-                //else
-                //{
-                //    if (radioMessage.newMessage)
-                //    {
-                //        if (!lightFlashing)
-                //        {
-                //            StartCoroutine(radioLights.RedLightFlashing());
-                //        }
-                //    }
-                //}
 
                 if (radioMessage.hasListen)
                 {
