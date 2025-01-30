@@ -37,7 +37,7 @@ public class ForestMadness : MonoBehaviour
         else
         {
             MessageRadioManager messageRadio = FindAnyObjectByType<MessageRadioManager>();
-            messageRadio.isDead = true;
+            messageRadio.canNotMove = true;
             GameOver gameOver = FindAnyObjectByType<GameOver>();
             CinemachineCamera activeCamera;
             CinemachineCamera[] cameras = FindObjectsByType<CinemachineCamera>(FindObjectsSortMode.None);

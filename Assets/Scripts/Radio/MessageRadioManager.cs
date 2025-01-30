@@ -12,7 +12,7 @@ public class MessageRadioManager : MonoBehaviour
     public bool hasListen = false;
     public bool newMessage;
     public bool needAnswer;
-    public bool isDead;
+    public bool canNotMove;
     bool musicUp;
 
     public int answerChoosed;
@@ -35,6 +35,8 @@ public class MessageRadioManager : MonoBehaviour
     [SerializeField] LightSwitch lightSwitch;
     public AudioClip[] stressMusics;
     public GameObject forestMadness;
+
+    Sleep dayTime;
 
     public Map map;
     public Path path1;
@@ -156,7 +158,7 @@ public class MessageRadioManager : MonoBehaviour
 
             if (messagePart > 43 && messagePart < 50)
             {
-                isDead = true;
+                canNotMove = true;
             }
 
             if (messagePart == 50)
@@ -220,12 +222,12 @@ public class MessageRadioManager : MonoBehaviour
 
             if (messagePart > 44 && messagePart < 51)
             {
-                isDead = true;
+                canNotMove = true;
             }
 
             if (messagePart > 51 && messagePart < 60)
             {
-                isDead = true;
+                canNotMove = true;
             }
 
             if (messagePart == 51 || messagePart == 60)
@@ -404,6 +406,22 @@ public class MessageRadioManager : MonoBehaviour
                 time = 0;
                 messagePart = 6000;
             }
+            
+            if (messagePart == 6021)
+            {
+                messagePart = 8000;
+            }
+
+            if ((messagePart > 5999 && messagePart < 6021) || messagePart >= 8000)
+            {
+                canNotMove = true;
+                if (dayTime == null)
+                {
+                    dayTime = FindAnyObjectByType<Sleep>();
+                }
+
+                dayTime.Sunrise();
+            }
             // Dead End
             if (messagePart == 51111)
             {
@@ -433,7 +451,7 @@ public class MessageRadioManager : MonoBehaviour
             
             if(messagePart > 7000 && messagePart < 7006 || messagePart > 7100 && messagePart < 7106)
             {
-                isDead = true;
+                canNotMove = true;
             }
         }
         else if (messageNum == 666)
@@ -447,7 +465,7 @@ public class MessageRadioManager : MonoBehaviour
             }
             if (messagePart > 0 && messagePart < 6)
             {
-                isDead = true;
+                canNotMove = true;
             }
             if (messagePart == 6)
             {
@@ -1875,7 +1893,7 @@ AAAAAAAAAAH.....!!!!!!";
             answer2 = "";
         }
         bullets = 3;
-        isDead = false;
+        canNotMove = false;
         messagePart = 0;
         newMessage = true;
         hasListen = false;

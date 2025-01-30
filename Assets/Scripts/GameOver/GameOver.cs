@@ -79,7 +79,7 @@ public class GameOver : MonoBehaviour
     {
         Debug.Log("HA! Gotcha!");
         MessageRadioManager messageRadio = FindAnyObjectByType<MessageRadioManager>();
-        messageRadio.isDead = true;
+        messageRadio.canNotMove = true;
         StartCoroutine(Gotcha());
         
     }
@@ -90,7 +90,7 @@ public class GameOver : MonoBehaviour
         player.enabled = false;
         mouseLook.enabled = false;
         MessageRadioManager messageRadio = FindAnyObjectByType<MessageRadioManager>();
-        messageRadio.isDead = true;
+        messageRadio.canNotMove = true;
         StartCoroutine(ItIsInsideTheCabine());
     }
     

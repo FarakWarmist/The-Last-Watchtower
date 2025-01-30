@@ -98,7 +98,7 @@ public class Monster : MonoBehaviour
     {
         target = windowsTarget[windowIndex].gameObject.transform;
 
-        if (messageRadio.isDead)
+        if (messageRadio.canNotMove)
         {
             animator.speed = 0f;
             if (monster.enabled)
