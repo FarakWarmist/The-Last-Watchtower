@@ -34,7 +34,7 @@ public class UIHelper : MonoBehaviour
         {
             MessageRadioManager messageRadioManager = FindAnyObjectByType<MessageRadioManager>();
 
-            if (!messageRadioManager.isDead)
+            if (!messageRadioManager.canNotMove)
             {
                 radio.enabled = true; 
             }
@@ -73,7 +73,6 @@ public class UIHelper : MonoBehaviour
         else
         {
             DisableAllCanvas();
-            Debug.Log("Enable Rune");
             ItemsManager itemsManager = FindAnyObjectByType<ItemsManager>();
             rune.enabled = itemsManager.hasRune;
         }
