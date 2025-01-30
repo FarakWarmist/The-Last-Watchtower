@@ -10,11 +10,12 @@ public class Sleep : MonoBehaviour, IInteractable
     public Light directionalLight;
     public Color dayColor;
     public Color nightColor;
-    public float rotationSpeed;
+    float rotationSpeed = 0.2f;
 
     Quaternion startRotation;
     public Quaternion endRotation;
     float transitionProgress;
+    public float sunshinTransitionProgress;
 
     public Animator transition;
     public Door door;
@@ -48,21 +49,36 @@ public class Sleep : MonoBehaviour, IInteractable
     {
         if (isSleeping)
         {
-            transitionProgress += Time.deltaTime * rotationSpeed;
-            transitionProgress = Mathf.Clamp01(transitionProgress);
+            sunshinTransitionProgress += Time.deltaTime * rotationSpeed;
+            sunshinTransitionProgress = Mathf.Clamp01(sunshinTransitionProgress);
 
-            directionalLight.transform.rotation = Quaternion.Slerp(startRotation, endRotation, transitionProgress);
+            directionalLight.transform.rotation = Quaternion.Slerp(startRotation, endRotation, sunshinTransitionProgress);
 
-            Color currentColor = Color.Lerp(dayColor, nightColor, transitionProgress);
+            Color currentColor = Color.Lerp(dayColor, nightColor, sunshinTransitionProgress);
             directionalLight.color = currentColor;
 
-            if (transitionProgress >= 1.0f)
+            if (sunshinTransitionProgress >= 1.0f)
             {
-                transitionProgress = 1.0f;
+                sunshinTransitionProgress = 1.0f;
             }
         }
     }
 
+    public void Sunrise()
+    {
+        transitionProgress += Time.deltaTime * (rotationSpeed / 10f);
+        transitionProgress = Mathf.Clamp01(transitionProgress);
+
+        directionalLight.transform.rotation = Quaternion.Slerp(endRotation, startRotation, transitionProgress);
+
+        Color currentColor = Color.Lerp(nightColor, dayColor, transitionProgress);
+        directionalLight.color = currentColor;
+
+        if (transitionProgress >= 1.0f)
+        {
+            transitionProgress = 1.0f;
+        }
+    }
 
     public void Interact()
     {
