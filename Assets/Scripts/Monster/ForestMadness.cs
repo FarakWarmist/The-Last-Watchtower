@@ -16,6 +16,8 @@ public class ForestMadness : MonoBehaviour
     public AudioSource heartbeat;
     float volume;
 
+    public float madnessSpeed = 0.02f;
+
     [SerializeField] LightSwitch lightSwitch;
 
     private void OnEnable()
@@ -91,10 +93,10 @@ public class ForestMadness : MonoBehaviour
 
     private void Radius()
     {
-        radius -= Time.deltaTime * 0.02f;
+        radius -= Time.deltaTime * madnessSpeed;
         material.SetFloat("_Radius", radius);
 
-        volume += Time.deltaTime * 0.02f;
+        volume += Time.deltaTime * madnessSpeed;
         heartbeat.volume = volume;
     }
 

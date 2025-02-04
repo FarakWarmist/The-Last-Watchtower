@@ -50,4 +50,9 @@ public class Generator : MonoBehaviour, IInteractable
         yield return new WaitForSeconds(0.8f);
         generatorRunningSound.Play();
     }
+
+    public void Stalled()
+    {
+        energyLevel = 0;
+    }
 }

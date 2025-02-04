@@ -32,12 +32,15 @@ public class Monster : MonoBehaviour
     public bool isInside;
 
     public int listLenght;
-    public float timeToMakeAction;
     public int windowIndex;
     public int direction;
     float alpha;
 
     float randomActionTime;
+    public float timeMin = 8;
+    public float timeMax = 18;
+
+    public float chanceBreackingWindow = 0.25f;
 
     public Transform playerTransform;
     public float horizontalViewAngle = 90f;
@@ -51,12 +54,20 @@ public class Monster : MonoBehaviour
     public int sourceIndex;
     public float newWeight;
 
+    DifficultyManager difficultyManager;
+
     private void OnEnable()
     {
         if (newMaterial == null)
         {
             newMaterial = new Material(materialOriginal);
         }
+
+        if (difficultyManager == null)
+        {
+            difficultyManager = FindAnyObjectByType<DifficultyManager>();
+        }
+
         monster = GetComponent<NavMeshAgent>();
         hitBox = GetComponent<Collider>();
         lightSwitch = FindAnyObjectByType<LightSwitch>();
@@ -70,7 +81,6 @@ public class Monster : MonoBehaviour
         newMaterial.SetFloat("_DissolveValue", alpha);
         animator = GetComponent<Animator>();
 
-        timeToMakeAction = Random.Range(5, 10);
         windowIndex = Random.Range(0, windowsLocation.Length);
         isTakeAction = false;
         isFlashed = false;
@@ -97,6 +107,25 @@ public class Monster : MonoBehaviour
     private void Update()
     {
         target = windowsTarget[windowIndex].gameObject.transform;
+
+        switch (difficultyManager.lvlDifficulty)
+        {
+            case 1:
+                chanceBreackingWindow = 0.2f;
+                timeMin = 10;
+                timeMax = 25;
+                break;
+            case 3:
+                chanceBreackingWindow = 0.34f;
+                timeMin = 2;
+                timeMax = 12;
+                break;
+            default:
+                chanceBreackingWindow = 0.25f;
+                timeMin = 8;
+                timeMax = 18;
+                break;
+        }
 
         if (messageRadio.canNotMove)
         {
@@ -137,7 +166,7 @@ public class Monster : MonoBehaviour
 
                 if (!isTakeAction)
                 {
-                    randomActionTime = Random.Range(8,  18);
+                    randomActionTime = Random.Range(timeMin, timeMax);
                     StartCoroutine(TakeAction(randomActionTime));
                 }
             }
@@ -241,7 +270,7 @@ public class Monster : MonoBehaviour
 
     void BreakTheWindow()
     {
-        if (monster.remainingDistance <= monster.stoppingDistance)
+        if (monster.remainingDistance <= monster.stoppingDistance && !isFlashed)
         {
             windowsTarget[windowIndex].GetComponent<WindowState>().BreakTheWindow(this);
         }
@@ -258,7 +287,7 @@ public class Monster : MonoBehaviour
     {
         isTakeAction = true;
         yield return new WaitForSeconds(delay);
-        bool breakTheWindow = Random.Range(0f, 1f) < 0.25f;
+        bool breakTheWindow = Random.Range(0f, 1f) < chanceBreackingWindow;
         if (breakTheWindow)
         {
             BreakTheWindow();

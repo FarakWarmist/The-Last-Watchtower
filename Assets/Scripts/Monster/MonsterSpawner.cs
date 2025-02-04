@@ -3,16 +3,35 @@ using UnityEngine;
 
 public class MonsterSpawner : MonoBehaviour
 {
-    public float timeMonsterAppear;
+    float timeMonsterAppear;
+    public float timeMin;
+    public float timeMax;
     public GameObject[] monstersList;
     public bool isAppear;
     public bool startHunt = false;
     [SerializeField] MessageRadioManager radioMessage;
     [SerializeField] AudioSource audioSource;
     [SerializeField] AudioClip audioClip;
+    [SerializeField] DifficultyManager difficultyManager;
 
     private void Update()
     {
+        switch (difficultyManager.lvlDifficulty)
+        {
+            case 1:
+                timeMin = 45;
+                timeMax = 135;
+                break;
+            case 3:
+                timeMin = 30;
+                timeMax = 60;
+                break;
+            default:
+                timeMin = 30;
+                timeMax = 105;
+                break;
+        }
+
         if (!startHunt)
         {
             startHunt = true;
@@ -24,6 +43,10 @@ public class MonsterSpawner : MonoBehaviour
         if (!isAppear)
         {
             SpawnMonster();
+            if (difficultyManager.lvlDifficulty == 3)
+            {
+                SpawnMonsterGroup();
+            }
         }
     }
 
@@ -34,6 +57,22 @@ public class MonsterSpawner : MonoBehaviour
             if (!monstersList[i].activeSelf)
             {
                 StartCoroutine(WaitForTheNextMonster(i));
+                break;
+            }
+        }
+    }
+
+    private void SpawnMonsterGroup()
+    {
+        for (int i = 0; i < monstersList.Length; i++)
+        {
+            if (!monstersList[i].activeSelf)
+            {
+                bool spawn = Random.Range(0f, 1f) < 0.5f;
+                if (spawn)
+                {
+                    monstersList[i].SetActive(true);
+                }
                 break;
             }
         }
@@ -58,7 +97,7 @@ public class MonsterSpawner : MonoBehaviour
     IEnumerator WaitForTheNextMonster(int index)
     {
         isAppear = true;
-        timeMonsterAppear = Random.Range(30, 120);
+        timeMonsterAppear = Random.Range(timeMin, timeMax);
         yield return new WaitForSeconds(timeMonsterAppear);
         monstersList[index].SetActive(true);
         isAppear = false;

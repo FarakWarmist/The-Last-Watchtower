@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Unity.Cinemachine;
 using UnityEngine;
@@ -10,7 +11,14 @@ public class MainMenuManager : MonoBehaviour
     public Button playButton;
     public Button settingsButton;
     public Button quitButton;
-    public Button backButton;
+
+    public Button easyButton;
+    public Button normalButton;
+    public Button hardButton;
+
+    public Button backButtonSettings;
+    public Button backButtonDifficulty;
+
     public Button retryButton;
     public Button notRetryButton;
 
@@ -21,6 +29,7 @@ public class MainMenuManager : MonoBehaviour
 
     public Canvas mainMenu;
     public Canvas settings;
+    public Canvas difficultyChoice;
     public Canvas deathMenu;
 
     public GameObject introText;
@@ -28,6 +37,9 @@ public class MainMenuManager : MonoBehaviour
     public Canvas icons;
     Player player;
     Reset reset;
+
+    public string difficultyChosen;
+    public GameObject difficultyManagerObj;
 
     private void OnEnable()
     {
@@ -41,14 +53,41 @@ public class MainMenuManager : MonoBehaviour
         playButton.onClick.AddListener(OnPlayButtonClicked);
         settingsButton.onClick.AddListener(OnOptionsButtonClicked);
         quitButton.onClick.AddListener(OnQuitButtonClicked);
-        backButton.onClick.AddListener(OnBackButtonClicked);
+
+        easyButton.onClick.AddListener(OnEasyButtonClicked);
+        normalButton.onClick.AddListener(OnNormalButtonClicked);
+        hardButton.onClick.AddListener(OnHardButtonClicked);
+
+        backButtonSettings.onClick.AddListener(OnBackButtonClicked);
+        backButtonDifficulty.onClick.AddListener(OnBackButtonClicked);
+
         retryButton.onClick.AddListener(OnRetryButtonClicked);
         notRetryButton.onClick.AddListener(OnQuitButtonClicked);
     }
 
+    private void OnHardButtonClicked()
+    {
+        difficultyChosen = "hard";
+        StartCoroutine(StartGame());
+    }
+
+    private void OnNormalButtonClicked()
+    {
+        difficultyChosen = "normal";
+        StartCoroutine(StartGame());
+    }
+
+    private void OnEasyButtonClicked()
+    {
+        difficultyChosen = "easy";
+        StartCoroutine(StartGame());
+    }
+
     private void OnPlayButtonClicked()
     {
-        StartCoroutine(StartGame());
+        //StartCoroutine(StartGame());
+        mainMenu.enabled = false;
+        difficultyChoice.enabled = true;
         EventSystem.current.SetSelectedGameObject(null);
     }
     private void OnOptionsButtonClicked()
@@ -77,6 +116,7 @@ public class MainMenuManager : MonoBehaviour
         Debug.Log("Back");
         mainMenu.enabled = true;
         settings.enabled = false;
+        difficultyChoice.enabled = false;
         EventSystem.current.SetSelectedGameObject(null);
     }
 
@@ -96,10 +136,11 @@ public class MainMenuManager : MonoBehaviour
     {
         animator.SetBool("Fade", true);
         yield return new WaitForSeconds(1f);
+        difficultyManagerObj.SetActive(true);
         cursorState.needCursor--;
         mainMenuCam.enabled = false;
         playerCam.enabled = true;
-        mainMenu.enabled = false;
+        difficultyChoice.enabled = false;
         yield return new WaitForSeconds(1f);
         animator.SetBool("Fade", false);
         introText.SetActive(true);

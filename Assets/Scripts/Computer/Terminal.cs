@@ -11,6 +11,8 @@ public class Terminal : MonoBehaviour
     string text;
     string mainText;
 
+    public float loadingTime = 0.5f;
+
     public Canvas inputCanvas;
 
     private void OnEnable()

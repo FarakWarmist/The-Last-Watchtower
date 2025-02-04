@@ -8,7 +8,7 @@ public class Reset : MonoBehaviour
     public GameObject radio;
 
     ResetWindowState[] windows;
-    PileOfPlanks pileOfPlanks;
+    public PileOfPlanks pileOfPlanks;
 
     public Transform camTarget;
     public GameObject camRadioObjet;
@@ -28,13 +28,20 @@ public class Reset : MonoBehaviour
 
     void Start()
     {
-        pileOfPlanks = FindAnyObjectByType<PileOfPlanks>();
         messageRadio = FindAnyObjectByType<MessageRadioManager>();
         generator = FindAnyObjectByType<Generator>();
         lightSwitch = FindAnyObjectByType<LightSwitch>();
         windows = FindObjectsByType<ResetWindowState>(FindObjectsSortMode.None);
         door = FindAnyObjectByType<Door>();
         itemsManager = FindAnyObjectByType<ItemsManager>();
+    }
+
+    private void Update()
+    {
+        if (pileOfPlanks == null)
+        {
+            pileOfPlanks = FindAnyObjectByType<PileOfPlanks>();
+        }
     }
 
     public void ResetTheGame()

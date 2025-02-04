@@ -23,9 +23,9 @@ public class MessageRadioManager : MonoBehaviour
     public int lastPath;
 
     public float time;
-    public float shortTime = 15f;
-    public float mediumTime = 35f;
-    public float longTime = 75f;
+    public float shortTime = 30f;
+    public float mediumTime = 60f;
+    public float longTime = 90f;
     public float quickTime = 90f;
     public float bullets = 3;
 

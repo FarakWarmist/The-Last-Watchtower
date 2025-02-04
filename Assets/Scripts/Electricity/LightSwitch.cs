@@ -11,6 +11,7 @@ public class LightSwitch : MonoBehaviour, IInteractable
     [SerializeField] CharacterText characterText;
 
     public string newText;
+    public float chanceToOverheated = 0.1f;
 
     private void Start()
     {
@@ -50,7 +51,7 @@ J'ai besoin de repartir la génératrice.";
 
     private void Overheated()
     {
-        bool overheated = Random.Range(0f, 1f) <= 0.1f;
+        bool overheated = Random.Range(0f, 1f) <= chanceToOverheated;
         if (overheated)
         {
             generator.energyLevel = 0;
