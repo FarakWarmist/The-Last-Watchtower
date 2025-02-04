@@ -46,7 +46,21 @@ public class StrangeLock : MonoBehaviour, IInteractable
         if (isLooking)
         {
             var activeBlend = brain.ActiveBlend;
-            if (Input.GetMouseButtonDown(0))
+
+            if (symbols[0].currentSymbol == 3 &&
+                symbols[1].currentSymbol == 2 &&
+                symbols[2].currentSymbol == 3 &&
+                symbols[3].currentSymbol == 0 &&
+                symbols[4].currentSymbol == 2)
+            {
+                door.isLocked = false;
+            }
+            else
+            {
+                door.isLocked = true;
+            }
+
+            if (Input.GetMouseButtonDown(0) && door.isLocked)
             {
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 RaycastHit hit;
@@ -68,18 +82,6 @@ public class StrangeLock : MonoBehaviour, IInteractable
                 cursorState.needCursor--;
             }
 
-            if (symbols[0].currentSymbol == 3 &&
-                symbols[1].currentSymbol == 2 &&
-                symbols[2].currentSymbol == 3 &&
-                symbols[3].currentSymbol == 0 &&
-                symbols[4].currentSymbol == 2)
-            {
-                door.isLocked = false;
-            }
-            else
-            {
-                door.isLocked = true;
-            }
         }
     }
 
