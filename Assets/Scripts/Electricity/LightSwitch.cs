@@ -38,11 +38,7 @@ public class LightSwitch : MonoBehaviour, IInteractable
             switchOn = false;
             if (!sleep.isDay)
             {
-
-                newText =
-@"Il n'y a plus d'énergie.
-J'ai besoin de repartir la génératrice.";
-                characterText.StartNewText(newText);
+                HaveNoEnergyMessage();
             }
         }
 
@@ -57,6 +53,8 @@ J'ai besoin de repartir la génératrice.";
             generator.energyLevel = 0;
             switchOn = false;
         }
+
+        HaveNoEnergyMessage();
     }
 
     private void Update()
@@ -69,5 +67,13 @@ J'ai besoin de repartir la génératrice.";
             }
         }
         animator.SetBool("Switch", switchOn);
+    }
+
+    public void HaveNoEnergyMessage()
+    {
+        newText =
+@"Il n'y a plus d'énergie.
+J'ai besoin de repartir la génératrice.";
+        characterText.StartNewText(newText);
     }
 }

@@ -54,5 +54,6 @@ public class Generator : MonoBehaviour, IInteractable
     public void Stalled()
     {
         energyLevel = 0;
+        lightSwitch.HaveNoEnergyMessage();
     }
 }
