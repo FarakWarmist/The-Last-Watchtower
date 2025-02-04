@@ -1313,7 +1313,7 @@ Elle est bloquée.";
             switch (messagePart)
             {
                 case 0: // A
-                    message = @"Hé, Watcher?!
+                    message = @"Hey, Watcher!
 Toujours là?";
                     answer1 = @"Comment tu te sens?";
                     answer2 = @"Tout roule!";
@@ -1321,25 +1321,25 @@ Toujours là?";
 
                 // Answer A1
                 case 0.1f:
-                    message = @"Toujours sous le choque, mais je vais mieux.
+                    message = @"Toujours sous le choc, mais je vais mieux.
 Merci de demander.";
                     break;
 
                 // Answer A2
                 case 0.2f:
-                    message = @"On dirait que ça se passe mieux de ton coté que du mien.
-Ha.";
+                    message = @"On dirait que ça se passe mieux de ton côté que du mien.
+Ha ha!";
                     break;
                 case 1:
-                    message = @"Je suis sortie de l'abri il y a un moment.
-Quelqu'un y avait laissé ce revolver, chargé avec 3 balles.";
+                    message = @$"Je suis sortie de l'abri il y a un moment.
+Quelqu'un y avait laissé ce revolver, chargé avec {bullets} balles.";
                     break;
                 case 2:
                     message = @"Ça ne pourra certainement pas tuer l'une de ces choses, mais ça pourra au moins les ralentir.";
                     break;
 
                 case 3: // B
-                    message = @"Je suis maintenant face à un grand arbre avec deux tronc où le chemin se sépare en deux.
+                    message = @"Je suis maintenant face à un grand arbre avec deux troncs, là où le chemin se sépare en deux.
 Quel chemin dois-je prendre.";
                     answer1 = @"Gauche";
                     answer2 = @"Droite";
@@ -1353,7 +1353,7 @@ Quel chemin dois-je prendre.";
                     message = @"La batterie de ma radio commence à se faire faible, alors je te rappelle plus tard.";
                     break;
                 case 7:
-                    message = @"Fait attention à toi Watcher.";
+                    message = @"Fais attention à toi, Watcher.";
                     break;
                 case 8:
                     message = @"(Bip)!...";
@@ -1373,7 +1373,7 @@ Quel chemin dois-je prendre.";
 
                 case 13: // C
                     message = @"Tu entends ça?";
-                    answer1 = @"Non";
+                    answer1 = @"Non...";
                     answer2 = @"Entendre quoi?";
                     time = shortTime;
                     break;
@@ -1381,9 +1381,9 @@ Quel chemin dois-je prendre.";
                 // Answer C1 & C2
                 case 14: // D
                     message = @"Un chant...
-J'entend un sorte de chant.";
-                    answer1 = @"Un chant";
-                    answer2 = @"Ça n'annonce rien de bon";
+J'entends une sorte de chant.";
+                    answer1 = @"Un chant?";
+                    answer2 = @"Ça n'annonce rien de bon.";
                     time = shortTime;
                     break;
 
@@ -1398,7 +1398,7 @@ Il y a un Rooted Priest avec une armée de Ghouls!";
                     time = shortTime;
                     break;
                 case 17:
-                    message = @"Pas le temps de trainer!
+                    message = @"Pas le temps de traîner!
 J'espère que tu connais le chemin, car ça va aller vite!";
                     time = shortTime;
                     break;
@@ -1410,7 +1410,7 @@ J'espère que tu connais le chemin, car ça va aller vite!";
                     BulletsLeft();
                     break;
                 case 19: // Chemin
-                    message = @"L'arbre à deux tronc est à ma gauche et il y a ce qui ressemble à une ruine sur le chemin de gauche.
+                    message = @"L'arbre à deux troncs est à ma gauche et il y a ce qui ressemble à une ruine sur le chemin de gauche.
 Quelle est la prochaine direction?";
                     answer1 = @"Gauche"; // Chemin A
                     answer2 = @"Droite"; // Chemin B
@@ -1471,8 +1471,8 @@ Quelle est la prochaine direction?";
                                     time = longTime;
                                     break;
                                 case 11111:
-                                    message = @"J'ai passé un rocher avec une sorte d'enclume gravé dessus.
-Je suis arrivé à une ruine et je suis aller sur le chemin de gauche car des Ghouls venait vers ma droite.";
+                                    message = @"J'ai passé un rocher avec une sorte d'enclume gravée dessus.
+Je suis arrivé à une ruine et je suis allé sur le chemin de gauche car des Ghouls venaient vers ma droite.";
                                     time = shortTime;
                                     break;
                                 // case 11112: Chemin D
@@ -1514,7 +1514,7 @@ Quelle est la prochaine direction?";
                             break;
                         case 12101:
                             message = @"J'ai passé un croisement.
-Je suis aller sur le chemin de gauche car des Ghouls venait vers ma droite.";
+Je suis allé sur le chemin de gauche car des Ghouls venaient vers ma droite.";
                             time = shortTime;
                             break;
                         // case 12102: Chemin E
@@ -1538,7 +1538,7 @@ Je suis aller sur le chemin de gauche car des Ghouls venait vers ma droite.";
                     BulletsLeft();
                     break;
                 case 30001:
-                    message = @"J'ai passé un rocher avec ce qui ressemlait à un sablier.
+                    message = @"J'ai passé un rocher avec ce qui ressemblait à un sablier.
 Je peux voir un grand arbre avec un creux en son milieu, plus loin devant moi.
 Quelle est la prochaine direction?";
                     answer1 = @"Gauche"; // Chemin CA
@@ -1571,7 +1571,7 @@ Quelle est la prochaine direction?";
                             BulletsLeft();
                             break;
                         case 31101:
-                            message = @"Il y a un grand arbre qui à été coupé à ma gauche.
+                            message = @"Il y a un grand arbre qui a été coupé à ma gauche.
 Quelle est la prochaine direction?";
                             answer1 = @"Gauche"; // Chemin CAAA
                             answer2 = @"Droite"; // Chemin CAAB
@@ -1612,7 +1612,7 @@ Quelle est la prochaine direction?";
                     break;
                 case 40001:
                     message = @"Je suis à une ruine.
-Il y a un rocher, où un symbole égale avec un ligne vertical sur le haut était gravé dessus, derrière moi.
+Il y a un rocher, où un symbole égale avec une ligne verticale sur le haut était gravé dessus, derrière moi.
 Quelle est la prochaine direction?";
                     answer1 = @"Gauche"; // Chemin EA
                     answer2 = @"Droite"; // Chemin EB
@@ -1626,7 +1626,7 @@ Quelle est la prochaine direction?";
                     break;
                 case 41001:
                     message = @"J'ai passé une autre ruine.
-J'ai continué tout droit car des Ghouls venait vers ma gauche.";
+J'ai continué tout droit car des Ghouls venaient vers ma gauche.";
                     time = shortTime;
                     break;
                 // case 41002: Chemin D
@@ -1643,7 +1643,7 @@ J'ai continué tout droit car des Ghouls venait vers ma gauche.";
                     BulletsLeft();
                     break;
                 case 50001:
-                    message = @"Je vois maintenant un rocher, avec un cercle où une ligne séparée au millieu passe en diagonale, est gravé dessus à ma gauche.
+                    message = @"Je vois maintenant un rocher, avec un cercle où une ligne séparée au milieu passe en diagonale, est gravé dessus à ma gauche.
 Quelle est la prochaine direction?";
                     answer1 = @"Gauche"; // Chemin DA
                     answer2 = @"Droite"; // Chemin DB
@@ -1735,32 +1735,33 @@ Quelle est la prochaine direction?";
 
                 // ----- CHEMIN WIN -----
                 case 6000:
-                    message = @"Oh mon dieu ! Ça y est !
-Le camp ! Je vois le camps !";
+                    message = @"Oh mon dieu! Ça y est!
+Le camp! Je vois le camp!";
                     break;
                 case 6001:
-                    message = @"Hey ! Par ici !";
+                    message = @"Hey! Par ici!";
                     break;
                 case 6002:
-                    message = @"Ils m'ont vu ! Je vois les portes commencer à s'ouvrir !";
+                    message = @"Ils m'ont vu! Je vois les portes commencer à s'ouvrir!";
                     break;
                 case 6003:
-                    message = @"Aller !
-Un dernier p'tit effort !";
+                    message = @"Aller!
+Un dernier petit effort!";
                     break;
                 case 6004:
                     message = @"...";
                     break;
                 case 6005:
-                    message = @"Ha ! Hahaha !";
+                    message = @"Ha! 
+Hahaha!";
                     break;
                 case 6006:
                     message = @"J'y suis arrivé.
-On y est arrivé !";
+On y est arrivé!";
                     break;
                 case 6007:
-                    message = @"Ha ha ha! Yes !
-Dans les dents Root de mes deux !";
+                    message = @"Ha ha ha! Yes!
+Dans les dents Root de mes deux!";
                     break;
                 case 6008:
                     message = @"Ha ha... ha...";
@@ -1769,9 +1770,9 @@ Dans les dents Root de mes deux !";
                     message = @"...";
                     break;
                 case 6010: // F
-                    message = @"Hé, Watcher...?";
+                    message = @"Hey, Watcher...?";
                     answer1 = @"Oui?"; 
-                    answer2 = @"Qu'est-ce qu'il y a Alex?";
+                    answer2 = @"Qu'est-ce qu'il y a, Alex?";
                     break;
                 // Answer F1 & F2
                 case 6012:
@@ -1781,19 +1782,19 @@ Dans les dents Root de mes deux !";
                     message = @"Sans ton aide, je serais probablement mort de manière horrible.";
                     break;
                 case 6014:
-                    message = @"Je vais prévenir des Explorateur de recherche pour tenter de retrouver les autres membres de mon groupe.";
+                    message = @"Je vais prévenir des Explorers pour tenter de retrouver les autres membres de mon groupe.";
                     break;
                 case 6015:
                     message = @"Si tu as des nouvelles d'eux, tu pourras me communiquer directement.";
                     break;
                 case 6016:
-                    message = @"Mais pour l'instant, repose toi bien.";
+                    message = @"Mais pour l'instant, repose-toi bien.";
                     break;
                 case 6017:
                     message = @"On va avoir besoin de toi pour la nuit prochaine.";
                     break;
                 case 6018:
-                    message = @"Aller! Bon repos Watcher.";
+                    message = @"Aller! Bon repos, Watcher.";
                     break;
                 case 6019:
                     message = @"Tu l'as mérité.";
@@ -1808,7 +1809,7 @@ Dans les dents Root de mes deux !";
                     time = shortTime;
                     break;
                 case 7001:
-                    message = @"Tu m'as envoyer...
+                    message = @"Tu m'as envoyé...
 Dans une RED ZONE!?";
                     time = shortTime;
                     break;
@@ -1827,12 +1828,12 @@ POURQUHAAAAAaarghll...!!!";
 
                 // ----- DEAD END + NO BULLET LEFT -----
                 case 7100.1f:
-                    message = @"Tu m'as envoyer dans un cul-de-sac !";
+                    message = @"Tu m'as envoyé dans un cul-de-sac!";
                     time = shortTime;
                     break;
                 case 7100.2f:
-                    message = @"Ils sont trop nombreux !
-Et il ne me reste plus aucune balle !";
+                    message = @"Ils sont trop nombreux!
+Et il ne me reste plus aucune balle!";
                     time = shortTime;
                     break;
                 case 7101:
@@ -1842,7 +1843,7 @@ MERDE !!!";
                     time = shortTime;
                     break;
                 case 7102:
-                    message = @"Reculez saloprie! Ou je vous jure que...";
+                    message = @"Reculez, saloprie! Ou je vous jure que...";
                     time = shortTime;
                     break;
                 case 7103:
