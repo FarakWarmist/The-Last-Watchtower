@@ -49,7 +49,7 @@ public class GameOver : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.P))
         {
-            //AlexIsDead();
+            AlexIsDead();
         }
         if (follow)
         {
@@ -183,6 +183,8 @@ public class GameOver : MonoBehaviour
 
     public IEnumerator DeathScreen()
     {
+        mainMenuManager = FindAnyObjectByType<MainMenuManager>();
+        checkCursor = FindAnyObjectByType<CheckCursor>();
         blackScreen.enabled = true;
         animator.SetBool("Fade", true);
         DisableEveryCamera();
@@ -194,20 +196,21 @@ public class GameOver : MonoBehaviour
         
         yield return new WaitForSeconds(1f);
 
-        if(forestMadness.activeSelf)
-        {
-            forestMadness.SetActive(false);
-        }
         animator.speed = 0.25f;
         blackScreen.enabled = false;
         animator.SetBool("Fade", false);
+        checkCursor.needCursor++;
 
         yield return new WaitForSeconds(1f);
 
-        mainMenuManager = FindAnyObjectByType<MainMenuManager>();
-        checkCursor = FindAnyObjectByType<CheckCursor>();
         mainMenuManager.deathMenu.enabled = true;
-        checkCursor.needCursor++;
+
+        yield return new WaitForSeconds(0.01f);
+
+        if (forestMadness.activeSelf)
+        {
+            forestMadness.SetActive(false);
+        }
     }
 
     void DisableEveryCamera()

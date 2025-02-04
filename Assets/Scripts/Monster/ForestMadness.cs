@@ -6,6 +6,7 @@ using UnityEngine;
 public class ForestMadness : MonoBehaviour
 {
     public float timer;
+    public bool isMad;
 
     public Material material;
     float opacity;
@@ -34,27 +35,35 @@ public class ForestMadness : MonoBehaviour
     {
         if (radius > 0)
         {
-            Madness(); 
+            Madness();
         }
-        else
+        else if (radius <= 0 && radius > -1)
         {
-            MessageRadioManager messageRadio = FindAnyObjectByType<MessageRadioManager>();
-            messageRadio.canNotMove = true;
-            GameOver gameOver = FindAnyObjectByType<GameOver>();
-            CinemachineCamera activeCamera;
-            CinemachineCamera[] cameras = FindObjectsByType<CinemachineCamera>(FindObjectsSortMode.None);
-
-            foreach (var cam in cameras)
-            {
-                if (cam.enabled)
-                {
-                    activeCamera = cam;
-                    break;
-                }
-            }
-            StartCoroutine(gameOver.DeathScreen());
-            canvas.enabled = false;
+            GetMad();
         }
+    }
+
+    private void GetMad()
+    {
+        radius = -1;
+        MessageRadioManager messageRadio = FindAnyObjectByType<MessageRadioManager>();
+        messageRadio.canNotMove = true;
+        GameOver gameOver = FindAnyObjectByType<GameOver>();
+        CinemachineCamera activeCamera;
+        CinemachineCamera[] cameras = FindObjectsByType<CinemachineCamera>(FindObjectsSortMode.None);
+
+        foreach (var cam in cameras)
+        {
+            if (cam.enabled)
+            {
+                activeCamera = cam;
+                break;
+            }
+        }
+        StartCoroutine(gameOver.DeathScreen());
+        heartbeat.volume = 0;
+        heartbeat.Stop();
+        canvas.enabled = false;
     }
 
     private void Madness()
