@@ -159,20 +159,23 @@ public class Monster : MonoBehaviour
         {
             dangerZoneCollider.enabled = true;
 
-            if (monster.remainingDistance <= monster.stoppingDistance)
+            if (!isFlashed && !messageRadio.canNotMove)
             {
-                animator.SetBool("Walk", false);
-                RotateTowardsWindow(target);
-
-                if (!isTakeAction)
+                if (monster.remainingDistance <= monster.stoppingDistance)
                 {
-                    randomActionTime = Random.Range(timeMin, timeMax);
-                    StartCoroutine(TakeAction(randomActionTime));
+                    animator.SetBool("Walk", false);
+                    RotateTowardsWindow(target);
+
+                    if (!isTakeAction)
+                    {
+                        randomActionTime = Random.Range(timeMin, timeMax);
+                        StartCoroutine(TakeAction(randomActionTime));
+                    }
                 }
-            }
-            else
-            {
-                animator.SetBool("Walk", true);
+                else
+                {
+                    animator.SetBool("Walk", true);
+                } 
             }
 
             hitBox.isTrigger = true;
@@ -270,9 +273,13 @@ public class Monster : MonoBehaviour
 
     void BreakTheWindow()
     {
-        if (monster.remainingDistance <= monster.stoppingDistance && !isFlashed)
+        if (monster.remainingDistance <= monster.stoppingDistance && !isFlashed && !messageRadio.canNotMove)
         {
             windowsTarget[windowIndex].GetComponent<WindowState>().BreakTheWindow(this);
+        }
+        else
+        {
+            return;
         }
     }
 
