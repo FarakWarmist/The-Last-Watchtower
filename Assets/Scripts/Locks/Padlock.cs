@@ -23,7 +23,8 @@ public class Padlock : MonoBehaviour, IInteractable
             }
             else
             {
-                Debug.Log("I need a key");
+                ShedDoor shedDoor = FindAnyObjectByType<ShedDoor>();
+                shedDoor.DoorIsLockedMessage();
             }
         }
     }
