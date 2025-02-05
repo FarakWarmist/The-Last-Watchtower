@@ -85,7 +85,6 @@ public class MainMenuManager : MonoBehaviour
 
     private void OnPlayButtonClicked()
     {
-        //StartCoroutine(StartGame());
         mainMenu.enabled = false;
         difficultyChoice.enabled = true;
         EventSystem.current.SetSelectedGameObject(null);

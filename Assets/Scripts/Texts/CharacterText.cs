@@ -32,8 +32,6 @@ public class CharacterText : MonoBehaviour
 
     public void StartNewText(string text)
     {
-        Debug.Log($"StartNewText called with text: {text}, current newText: {newText}");
-
         newText = text;
 
         if (!showText)

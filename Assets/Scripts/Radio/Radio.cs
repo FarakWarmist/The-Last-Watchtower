@@ -69,7 +69,7 @@ public class Radio : MonoBehaviour, IInteractable
         {
             if (radioMessage.needAnswer)
             {
-                StartCoroutine(MicroState(true));
+                StartCoroutine(MicState(true));
             }
             else
             {
@@ -230,7 +230,7 @@ public class Radio : MonoBehaviour, IInteractable
         player.enabled = state;
     }
 
-    IEnumerator MicroState(bool microState)
+    IEnumerator MicState(bool microState)
     {
         yield return new WaitForSeconds(0.1f);
         if (radioText.messageText.text == radioText.message)
