@@ -11,6 +11,16 @@ public class MenuPause : MonoBehaviour
 
     [SerializeField] CheckCursor cursorState;
 
+    public MainMenuManager mainMenu;
+    public Button frenchButton;
+    public Button englishButton;
+
+    private void OnEnable()
+    {
+        frenchButton.onClick.AddListener(mainMenu.OnFrenchButtonClicked);
+        englishButton.onClick.AddListener(mainMenu.OnEnglishButtonClicked);
+    }
+
     private void Update()
     {
         menuPause.SetActive(isActif);

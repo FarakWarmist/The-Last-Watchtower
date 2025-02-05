@@ -22,6 +22,9 @@ public class MainMenuManager : MonoBehaviour
     public Button retryButton;
     public Button notRetryButton;
 
+    public Button frenchButton;
+    public Button englishButton;
+
     public CinemachineCamera mainMenuCam;
     public CinemachineCamera playerCam;
 
@@ -31,6 +34,7 @@ public class MainMenuManager : MonoBehaviour
     public Canvas settings;
     public Canvas difficultyChoice;
     public Canvas deathMenu;
+    public Canvas languagesCanvas;
 
     public GameObject introText;
     public CheckCursor cursorState;
@@ -40,6 +44,8 @@ public class MainMenuManager : MonoBehaviour
 
     public string difficultyChosen;
     public GameObject difficultyManagerObj;
+
+    public string language = "French";
 
     private void OnEnable()
     {
@@ -63,6 +69,19 @@ public class MainMenuManager : MonoBehaviour
 
         retryButton.onClick.AddListener(OnRetryButtonClicked);
         notRetryButton.onClick.AddListener(OnQuitButtonClicked);
+
+        frenchButton.onClick.AddListener(OnFrenchButtonClicked);
+        englishButton.onClick.AddListener(OnEnglishButtonClicked);
+    }
+
+    public void OnFrenchButtonClicked()
+    {
+        language = "French";
+    }
+
+    public void OnEnglishButtonClicked()
+    {
+        language = "English";
     }
 
     private void OnHardButtonClicked()
@@ -125,6 +144,7 @@ public class MainMenuManager : MonoBehaviour
         playerCam.enabled = false;
         yield return new WaitForSeconds(1.3f);
         mainMenu.enabled = true;
+        languagesCanvas.enabled = true;
         animator.SetBool("Fade", false);
         yield return new WaitForSeconds(0.01f);
         icons.enabled = true;
@@ -140,6 +160,7 @@ public class MainMenuManager : MonoBehaviour
         mainMenuCam.enabled = false;
         playerCam.enabled = true;
         difficultyChoice.enabled = false;
+        languagesCanvas.enabled = false;
         yield return new WaitForSeconds(1f);
         animator.SetBool("Fade", false);
         introText.SetActive(true);

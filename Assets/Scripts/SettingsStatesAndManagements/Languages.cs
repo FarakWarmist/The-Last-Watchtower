@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class Languages : MonoBehaviour
 {
+    MainMenuManager mainMenu;
+
     public string language = "French";
     public int index;
 
@@ -39,6 +41,13 @@ public class Languages : MonoBehaviour
 
     void Update()
     {
+        if (mainMenu == null)
+        {
+            mainMenu = FindAnyObjectByType<MainMenuManager>();
+        }
+
+        language = mainMenu.language;
+
         if (language == "French")
         {
             French();
