@@ -91,8 +91,18 @@ public class ItemsManager : MonoBehaviour
     void HasAlreadySomething()
     {
         CharacterText characterText = FindAnyObjectByType<CharacterText>();
-        string newText =
-@$"Je dois déposer le/la {currentItem.name} avant.";
+        Languages language = FindAnyObjectByType<Languages>();
+        string newText;
+        if (language.index == 0) // French
+        {
+            newText =
+@$"Je dois déposer le/la {currentItem.name} avant."; 
+        }
+        else // English
+        {
+            newText =
+@$"I have to drop the {currentItem.name} off first.";
+        }
         characterText.StartNewText(newText);
     }
 }

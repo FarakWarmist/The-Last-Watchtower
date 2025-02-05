@@ -24,6 +24,8 @@ public class IntroTexte : MonoBehaviour
 
     [SerializeField] CharacterText characterText;
 
+    Languages language;
+
     Color color = Color.black;
     Color textColor = Color.white;
     public float timeToFade = 1.3f;
@@ -33,12 +35,12 @@ public class IntroTexte : MonoBehaviour
     int indexBox;
     int indexPart;
 
-    public string newText;
-
     private void OnEnable()
     {
         player = FindAnyObjectByType<Player>();
         player.enabled = false;
+
+        language = FindAnyObjectByType<Languages>();
 
         color.a = 1;
         
@@ -165,11 +167,27 @@ public class IntroTexte : MonoBehaviour
         }
         part2.SetActive(false);
         yield return new WaitForSeconds(2f);
-        newText =
-@"Enfin arrivé !
-Il n'y a pas de retour possible maintenant."; 
-        characterText.StartNewText(newText);
+        characterText.StartNewText(IntroMessage());
         yield return new WaitForSeconds(0.1f);
         gameObject.SetActive(false);
+    }
+
+    private string IntroMessage()
+    {
+        string newText;
+        if (language.index == 0)
+        {
+            newText =
+@"Enfin arrivé !
+Il n'y a pas de retour possible maintenant."; 
+        }
+        else
+        {
+            newText =
+@"Finally here!
+There is no turning back now.";
+        }
+
+        return newText;
     }
 }

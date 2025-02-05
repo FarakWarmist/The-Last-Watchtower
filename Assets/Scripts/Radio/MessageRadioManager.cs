@@ -1,5 +1,6 @@
 using System.Collections;
 using TMPro;
+using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -35,6 +36,7 @@ public class MessageRadioManager : MonoBehaviour
     [SerializeField] LightSwitch lightSwitch;
     public AudioClip[] stressMusics;
     public GameObject forestMadness;
+    Languages language;
 
     Sleep dayTime;
 
@@ -477,7 +479,25 @@ public class MessageRadioManager : MonoBehaviour
         }
     }
 
-    public void StartMessage()
+    private void StartMessage()
+    {
+        if (language == null)
+        {
+            language = FindAnyObjectByType<Languages>();
+        }
+        else
+        {
+            if (language.index == 0)
+            {
+                FrenchText();
+            }
+            else
+            {
+                EnglishText();
+            }
+        }
+    }
+    public void FrenchText()
     {
         if (messageNum == 1)
         {
@@ -491,7 +511,7 @@ public class MessageRadioManager : MonoBehaviour
                     break;
                 case 2: // A
                     message = @"Par pitié! Est-ce que quelqu'un m'entend?";
-                    answer1 = @"Oui! Je suis là?";
+                    answer1 = @"Oui! Je suis là.";
                     answer2 = @"Qu'est-ce qui se passe?";
                     break;
                 // Answer 1A & 2A
@@ -499,7 +519,8 @@ public class MessageRadioManager : MonoBehaviour
                     message = @"Ho mon Dieu! Ça a marché!";
                     break;
                 case 4f: // B
-                    message = @"Hum, pardon. Je suis Alex, explorateur de 2ème grade, et je me trouve dans une situation compliquée.";
+                    message = @"Hum, pardon. 
+Je suis Alex, Explorer de 2ème grade, et je me trouve dans une situation compliquée.";
                     answer1 = @"Je suis Éron... le nouveau Watcher.";
                     answer2 = @"Que s'est-il passé?";
                     break;
@@ -717,7 +738,7 @@ C'est qu'il a de l'humour, le nouveau!";
                 // Answer B2
                 case 5:
                     message = @"Tu sais, ce n'est pas la première fois que je suis séparé de mon groupe.
-Ça fait partie du métier d'Explorateur après tout.";
+Ça fait partie du métier d'Explorer après tout.";
                     break;
                 case 6:
                     message = @"Mais se retrouver tout seul et en pleine nuit, c'est une première.";
@@ -829,7 +850,7 @@ C'est son uniforme...";
                     break;
                 case 27: // J
                     message = @"Je commence à le perdre de vue.
-Que dois-je faire.";
+Que dois-je faire?";
                     answer1 = @"Tu peux le quitter de vue, mais continue de marcher.";
                     answer2 = @"Cours dès que tu le quittes des yeux.";
                     time = longTime;
@@ -1206,7 +1227,7 @@ Ce n'est vraiment pas le moment de me faire stresser.";
                     break;
                 // Answer N1
                 case 42.1f:
-                    message = @"Très bien, 
+                    message = @"Très bien!
 Je te rappelle une fois arrivé.";
                     break;
                 case 43:
@@ -1216,12 +1237,14 @@ Je te revaudrais ça.";
 // Deer Smile Death
                 // Answer E1, J2 & TimeOut
                 case 44.1f:
-                    message = @"Cette chose peut aller se faire voir! Je me tire !";
+                    message = @"Cette chose peut aller se faire voir!
+Je me tire!";
                     time = shortTime;
                     break;
                 // Answer H1, 
                 case 44.2f:
-                    message = @"Ok! Ok... Je pense que ce bâton fera l'aff...";
+                    message = @"Ok! Ok... 
+Je pense que ce bâton fera l'aff...";
                     time = shortTime;
                     break;
                 case 45:
@@ -1340,7 +1363,7 @@ Quelqu'un y avait laissé ce revolver, chargé avec {bullets} balles.";
 
                 case 3: // B
                     message = @"Je suis maintenant face à un grand arbre avec deux troncs, là où le chemin se sépare en deux.
-Quel chemin dois-je prendre.";
+Quel chemin dois-je prendre?";
                     answer1 = @"Gauche";
                     answer2 = @"Droite";
                     break;
@@ -1843,11 +1866,11 @@ MERDE !!!";
                     time = shortTime;
                     break;
                 case 7102:
-                    message = @"Reculez, saloprie! Ou je vous jure que...";
+                    message = @"Reculez, salopries! Ou je vous jure que...";
                     time = shortTime;
                     break;
                 case 7103:
-                    message = @"(Crak)!... AAAAAAHRRGG...!!!
+                    message = @"(Crack)!... AAAAAAHRRGG...!!!
 MERDE! ALLEZ VOUS FAIRE F....!!! (Sklack)!...
 AAAAAAAAAAH.....!!!!!!";
                     time = mediumTime;
@@ -1898,6 +1921,1430 @@ Ha ha ha...!!! ";
         }
     }
 
+    public void EnglishText()
+    {
+        if (messageNum == 1)
+        {
+            switch (messagePart)
+            {
+                case 0:
+                    message = @"Is anyone hear me?";
+                    break;
+                case 1:
+                    message = @"I lost my group and could use some help.";
+                    break;
+                case 2: // A
+                    message = @"Please! Can anyone hear me?";
+                    answer1 = @"Yes! I’m here.";
+                    answer2 = @"What’s going on?";
+                    break;
+                // Answer 1A & 2A
+                case 3f:
+                    message = @"Oh my God! It worked!";
+                    break;
+                case 4f: // B
+                    message = @"Um, sorry.
+I'm Alex, a 2nd grade Explorer, and I’m in a complicated situation.";
+                    answer1 = @"I'm Éron... the new Watcher.";
+                    answer2 = @"What happened?";
+                    break;
+                // Answer 1B
+                case 5f:
+                    message = @"Nice to meet you Ér... Wait! A Watcher?!";
+                    break;
+                case 6f:
+                    message = @"I thought the last Tower was destroyed.";
+                    break;
+                case 7f:
+                    message = @"I won’t complain.
+A Watcher is exactly what I need!";
+                    break;
+                // Answer 2B
+                case 8f:
+                    message = @"Me and my group were ambushed by a Rooted Priest and his Rooted Ghouls.";
+                    break;
+                case 9f:
+                    message = @"In a panic, we split up.
+I managed to find refuge in a Ruin where I found this radio with the remains of an unlucky Explorer.";
+                    break;
+                case 10f:
+                    message = @"One of my colleagues had the map.
+And without it, I might as well be dead.";
+                    break;
+                case 11f:
+                    message = @"But if you're in a Watchtower, that would mean you should have one!";
+                    break;
+                case 12f: // C
+                    message = @"Before we get into this, do you know what a Watcher does?";
+                    answer1 = @"Actually, I'm new.";
+                    answer2 = @"No worries about that.";
+                    break;
+                // Answer 1C
+                case 13f:
+                    message = @"No problem, I'll sum it all up for you.";
+                    break;
+                case 14f:
+                    message = @"In a moment, I'll give you some landmarks so you can locate me on the map.";
+                    break;
+                case 15f:
+                    message = @"Once done, you must tell me the way to the nearest Camp. But be careful, some paths may have a Red Zone.
+And there is no way back, so be sure.";
+                    break;
+                case 16f:
+                    message = @"I may also need your help if I encounter anomalies or other dangers.";
+                    break;
+                case 17f:
+                    message = @"You should have a Terminal at your disposal.
+Use it to learn about what lives in the forest and tell me how to get out if I encounter any.";
+                    break;
+                case 18f:
+                    message = @"Now that everything is explained, it's time to get to work.";
+                    break;
+                // Answer 2C
+                case 18.1f:
+                    message = @"Good, that reassures me.";
+                    break;
+                case 19f:
+                    message = @"During the attack, I ran towards the South-East.
+I came across a tree with 3 trunks, a rock with a spiral and I took shelter in a Ruin.";
+                    break;
+                case 20f:
+                    message = @"Look at your map and tell me the way to the nearest Camp.";
+                    break;
+                case 21f: // D
+                    message = @"Don't forget: South-East, Tree with 3 Trunks, Rock with Spiral and I am at a Ruin.
+Which direction should I take?";
+                    answer1 = @"North-East";
+                    answer2 = @"West";
+                    break;
+                // Answer 1D & 2D
+                case 22f:
+                    message = @"Thank you chief, you saved my life!";
+                    break;
+                case 23f:
+                    message = @"I'll call you back in a moment.
+In the meantime, take care of yourself.";
+                    break;
+                case 24f:
+                    message = @"The Towers are said to be not a very safe place.";
+                    break;
+                default:
+                    message = "";
+                    break;
+            }
+        }
+        else if (messageNum == 2) // Nord-Est
+        {
+            switch (messagePart)
+            {
+                case 0:
+                    message = @"It's me again, Watcher.";
+                    break;
+                case 1: // A
+                    message = @"Is everything okay on your side?";
+                    answer1 = @"What are those things outside?";
+                    answer2 = @"I had some visitors.";
+                    break;
+                // Answer 1A & 2A
+                case 2:
+                    message = @"You must have encountered some Rooted Ghouls.";
+                    break;
+                case 3:
+                    message = @"These things are the slaves of the Rooted Priests.
+People like you and me who had the misfortune of finding themselves transformed into... this.";
+                    break;
+                case 4:
+                    message = @"You can find more info on your Terminal.";
+                    break;
+                case 5:
+                    message = @"Don't let them torment you. 
+They try to destabilize you so they can strike at the right time.";
+                    break;
+                case 6:
+                    message = @"Just make sure to check around frequently for any and chase them away.";
+                    break;
+                case 7:
+                    message = @"And don't let them into the Tower, or you'll probably end up like them.";
+                    break;
+                case 8:
+                    message = @"Now I'm the one who needs your advice.";
+                    break;
+                case 9:
+                    message = @"I followed the path you showed me without difficulty.
+But I'm starting to hear sounds that don't portend anything good.";
+                    break;
+                case 10: // B
+                    message = @"I just passed by a ruin.
+An old house, I think. 
+Which path should I take?";
+                    answer1 = @"Hmm... Bad news.";
+                    answer2 = @"...";
+                    break;
+                // Answer 1B
+                case 11: // C
+                    message = @"What's wrong?";
+                    answer1 = @"Um... Nothing. False alarm.";
+                    answer2 = @"Both paths are... not recommended.";
+                    break;
+                // Answer 2C
+                case 12:
+                    message = @"Damn it!";
+                    break;
+                case 13:
+                    message = @"...";
+                    break;
+                case 14:
+                    message = @"Well, no choice. I refer to you, Watcher.";
+                    break;
+                // Answer 1C
+                case 16:
+                    message = @"...";
+                    break;
+                case 17:
+                    message = @"Um... Okay?";
+                    break;
+                // Answer 2B
+                case 18: // D
+                    message = @"So? Which path?";
+                    answer1 = @"Left.";
+                    answer2 = @"Right.";
+                    break;
+                // Answer 1D & 2D
+                case 19:
+                    message = @"Alright. Here we go!";
+                    break;
+                case 20:
+                    message = @"I'll get back to you in a moment.";
+                    break;
+                case 21:
+                    message = @"Take care, Watcher!";
+                    break;
+                default:
+                    message = "";
+                    break;
+            }
+        }
+        else if (messageNum == 3) // Gauche
+        {
+            switch (messagePart)
+            {
+                case 0: // A
+                    message = @"Hey, buddy!
+Still in one piece?";
+                    answer1 = @"Yep! Need my help?";
+                    answer2 = @"I only have my head left, but everything is fine.";
+                    break;
+                // Answer A1
+                case 0.1f:
+                    message = @"Oh! No, no.
+It's just...";
+                    break;
+                // Answer A2
+                case 0.2f:
+                    message = @"Ha ha!
+He's got a sense of humor, the new guy!";
+                    break;
+                case 1f:
+                    message = @"Being alone in this cursed forest, with all these noises, it’s starting to make me insane.";
+                    break;
+                case 2:
+                    message = @"I'm even starting to get the serious feeling that something has been watching me for a while...";
+                    break;
+                case 3: // B
+                    message = @"So if I don't have anyone to talk to, I feel like I'm going to freak out.";
+                    answer1 = @"I understand. I'm here if needed.";
+                    answer2 = @"...";
+                    break;
+                // Answer B1
+                case 4:
+                    message = @"Thank, bud.";
+                    break;
+                // Answer B2
+                case 5:
+                    message = @"You know, it's not the first time I've been separated from my group.
+It's part of being an Explorer after all.";
+                    break;
+                case 6:
+                    message = @"But all alone in the middle of the night is a first.";
+                    break;
+                case 7:
+                    message = @"We weren't planning to stay later than sunset, but...";
+                    break;
+                case 8:
+                    message = @"We had found this research center that was not on the map.
+What was the name?... Something like ""Wonder-""...";
+                    break;
+                case 9:
+                    message = @"""WonderLife""! That's it!
+Documents were found there about an entity called the ""Dryádos"" which appeared to be one of the center's test subjects.";
+                    break;
+                case 10:
+                    message = @"The entity was reluctant to interact with staff members.";
+                    break;
+                case 11:
+                    message = @"The documents mentioned that they used six children who acted as communication between her and the researchers.";
+                    break;
+                case 12:
+                    message = @"But there was an accident at the center that caused the loss of...";
+                    break;
+                // Start Deer Smile Attack
+                case 13: // C
+                    message = @"...";
+                    answer1 = @"Alex?...";
+                    answer2 = @"Is everything okay?";
+                    time = shortTime;
+                    break;
+                // Answer C1 & C2
+                case 14:
+                    message = @"...";
+                    time = shortTime;
+                    break;
+                case 15: // D
+                    message = @"A False Deer.";
+                    answer1 = @"A what?";
+                    answer2 = @"What are you talking about?";
+                    time = shortTime;
+                    break;
+                // Answer D1 & D2
+                case 16:
+                    message = @"There's a fucking Deer Smile staring at me from barely 3 meters away!";
+                    time = shortTime;
+                    break;
+                case 17: // E
+                    message = @"I have to get out of here!";
+                    answer1 = @"Run!";
+                    answer2 = @"Wait!";
+                    time = shortTime;
+                    break;
+                // Answer E2
+                case 18: // F
+                    message = @"What?!
+You want me to get caught by this thing?!";
+                    answer1 = @"What is it doing?";
+                    answer2 = @"Don't move! I'll find a solution.";
+                    time = shortTime;
+                    break;
+                // Answer F1
+                case 19:
+                    message = @"It... It doesn't move.
+It just stares at me, with the smile of a psychopath.";
+                    time = shortTime;
+                    break;
+                case 20:
+                    message = @"Wait a second...";
+                    time = shortTime;
+                    break;
+                case 21: // G
+                    message = @"My God...(BLERGH)!!!...";
+                    answer1 = @"Alex?!";
+                    answer2 = @"Are you okay?";
+                    time = shortTime;
+                    break;
+                // Answer G1 & G2
+                case 22:
+                    message = @"Gill...
+It holds... Gill's body...
+This is her uniform...";
+                    time = shortTime;
+                    break;
+                // Answer F2
+                case 23: // H
+                    message = @"Please, I don't want to die here.";
+                    answer1 = @"Take something to defend yourself.";
+                    answer2 = @"Stay calm and neutral.";
+                    time = longTime;
+                    break;
+                // Answer H2
+                case 24:
+                    message = @"Okay, okay...
+(Inhales)...
+(Exhales)...";
+                    time = shortTime;
+                    break;
+                case 25: // I
+                    message = @"What next?";
+                    answer1 = @"Use a light source to blind him.";
+                    answer2 = @"Continue on your way, and keep eye contact.";
+                    time = longTime;
+                    break;
+                // Answer I2
+                case 26:
+                    message = @"Okay...";
+                    time = shortTime;
+                    break;
+                case 27: // J
+                    message = @"I'm starting to lose sight of him.
+What should I do?";
+                    answer1 = @"It's okay, just keep walking.";
+                    answer2 = @"Run as soon as you take your eyes off him.";
+                    time = longTime;
+                    break;
+                // Answer J1
+                case 28:
+                    message = @"...";
+                    time = shortTime;
+                    break;
+                case 29:
+                    message = @"...";
+                    time = shortTime;
+                    break;
+                case 30:
+                    message = @"I think... I think it's okay.";
+                    break;
+                //End Deer Smile Attack
+                case 31: // K
+                    message = @"Thank you!...
+Thank you for not leaving me alone...
+(Sob)...";
+                    answer1 = @"The worst has passed.";
+                    answer2 = @"You'll thank me when you're safe at the camp.";
+                    break;
+                // Answer K2
+                case 32f:
+                    message = @"You're right... (Sniff)...
+I still have to get to the camp in one piece.";
+                    break;
+                case 33f:
+                    message = @"But I trust your skills, Watcher.";
+                    break;
+                // Answer K1
+                case 34f:
+                    message = @"Alright!
+(Sniff)... Let's go.";
+                    break;
+                case 35f: // L
+                    message = @"I see a shelter further away.
+I'm going to stop there for a moment, to let myself digest everything that just happened.";
+                    answer1 = @"Good idea.";
+                    answer2 = @"Wait!";
+                    time = mediumTime;
+                    break;
+                // Answer L2
+                case 36f: // M
+                    message = @"Haa!
+Don't scare me like that!";
+                    answer1 = @"Can you give me some points of reference?";
+                    answer2 = @"False alarm.";
+                    time = shortTime;
+                    break;
+                // Answer M1
+                case 36.1f:
+                    message = @"Hmm... Give me a second.";
+                    time = shortTime;
+                    break;
+                case 37:
+                    message = @"Mmm...";
+                    time = shortTime;
+                    break;
+                case 38: // O
+                    message = @"Ho!
+I see a rock with a circle and an ""X"" on top of it.";
+                    answer1 = @"I don't see the shelter on the map.";
+                    answer2 = @"All good. False alarm.";
+                    break;
+                // Answer O1
+                case 39: // N
+                    message = @"Huh?! Are you sure?
+Should I just keep going?";
+                    answer1 = @"Better to continue.";
+                    answer2 = @"Well, I'm not so sure.";
+                    break;
+                // Answer N1
+                case 39.1f:
+                    message = @"...";
+                    break;
+                case 40:
+                    message = @"No choice I guess.";
+                    break;
+                // Answer N2
+                case 40.1f:
+                    message = @"I hope you’re wrong, because my legs are going to give up if I don’t stop for a break.";
+                    break;
+                // Answer M2 & O2
+                case 40.2f:
+                    message = @"For God's sake!...
+This is really not the time to stress me out.";
+                    break;
+                // Answer L1
+                case 41:
+                    message = @"I'll call you back in a bit, Watcher.";
+                    break;
+                case 42:
+                    message = @"And... Thanks again.
+I owe you a lot.";
+                    break;
+                // Deer Smile Death
+                // Answer E1, J2 & TimeOut
+                case 43.1f:
+                    message = @"This thing can go to hell!
+I'm out of here!";
+                    time = shortTime;
+                    break;
+                // Answer H1, 
+                case 43.2f:
+                    message = @"Okay! Okay...
+I think this stick will do the j...";
+                    time = shortTime;
+                    break;
+                case 44:
+                    message = @"...";
+                    time = shortTime;
+                    break;
+                // Answer I1, 
+                case 44.1f:
+                    message = @"He's coming towards me...
+Why is he coming?!
+No! No! Get b...!";
+                    time = shortTime;
+                    break;
+                case 45:
+                    message = @"AAAAAAAAAARRGH!!!";
+                    time = shortTime;
+                    break;
+                case 46:
+                    message = @"Ha... Ha!!!
+My leg!!!
+Ma le...!";
+                    time = shortTime;
+                    break;
+                case 47:
+                    message = @"...GHAAAAAAAAAAAAA!!!";
+                    time = shortTime;
+                    break;
+                case 48:
+                    message = @"HELP!!!...
+PLEASE HELP M...!";
+                    time = shortTime;
+                    break;
+                case 49:
+                    message = @"(Bip)...";
+                    time = shortTime;
+                    break;
+                default:
+                    message = "";
+                    break;
+            }
+        }
+        else if (messageNum == 4) // Droite
+        {
+            switch (messagePart)
+            {
+                case 0: // A
+                    message = @"Hey, buddy!
+Still in one piece?";
+                    answer1 = @"Yep! Need my help?";
+                    answer2 = @"I only have my head left, but everything is fine.";
+                    break;
+                // Answer A1
+                case 0.1f:
+                    message = @"Oh! No, no.
+It's just...";
+                    break;
+                // Answer A2
+                case 0.2f:
+                    message = @"Ha ha!
+He's got a sense of humor, the new guy!";
+                    break;
+                case 1f:// B
+                    message = @"Did you know the other Watchers well?";
+                    answer1 = @"The 6th and 7th were my grandparents.";
+                    answer2 = @"Yes, you could say that.";
+                    break;
+                // Answer B1
+                case 1.1f:
+                    message = @"Oh shit!
+I... I'm so sorry...
+They were good people and loved by everyone.";
+                    break;
+                // Answer B2
+                case 2:
+                    message = @"If we have managed to survive this long in this forest, it's thanks to them.
+They are a real source of hope!";
+                    break;
+                case 3:
+                    message = @"So when it was learned that the last Watcher had fallen, morale was at its lowest.";
+                    break;
+                case 4:
+                    message = @"Using my radio was a shot in the dark.
+And yet, here you are!";
+                    break;
+                case 5:
+                    message = @"When the others learn that there is still a Watcher active, they won't be able to believe their ea...";
+                    break;
+                // Start Deer Smile Attack
+                case 13: // C
+                    message = @"...";
+                    answer1 = @"Alex?...";
+                    answer2 = @"Is everything okay?";
+                    time = shortTime;
+                    break;
+                // Answer C1 & C2
+                case 14:
+                    message = @"...";
+                    time = shortTime;
+                    break;
+                case 15: // D
+                    message = @"A False Deer.";
+                    answer1 = @"A what?";
+                    answer2 = @"What are you talking about?";
+                    time = shortTime;
+                    break;
+                // Answer D1 & D2
+                case 16:
+                    message = @"There's a fucking Deer Smile staring at me from barely 3 meters away!";
+                    time = shortTime;
+                    break;
+                case 17: // E
+                    message = @"I have to get out of here!";
+                    answer1 = @"Run!";
+                    answer2 = @"Wait!";
+                    time = shortTime;
+                    break;
+                // Answer E2
+                case 18: // F
+                    message = @"What?!
+You want me to get caught by this thing?!";
+                    answer1 = @"What is it doing?";
+                    answer2 = @"Don't move! I'll find a solution.";
+                    time = shortTime;
+                    break;
+                // Answer F1
+                case 19:
+                    message = @"It... It doesn't move.
+It just stares at me, with the smile of a psychopath.";
+                    time = shortTime;
+                    break;
+                case 20:
+                    message = @"Wait a second...";
+                    time = shortTime;
+                    break;
+                case 21: // G
+                    message = @"My God...(BLERGH)!!!...";
+                    answer1 = @"Alex?!";
+                    answer2 = @"Are you okay?";
+                    time = shortTime;
+                    break;
+                // Answer G1 & G2
+                case 22:
+                    message = @"Gill...
+It holds... Gill's body...
+This is her uniform...";
+                    time = shortTime;
+                    break;
+                // Answer F2
+                case 23: // H
+                    message = @"Please, I don't want to die here.";
+                    answer1 = @"Take something to defend yourself.";
+                    answer2 = @"Stay calm and neutral.";
+                    time = longTime;
+                    break;
+                // Answer H2
+                case 24:
+                    message = @"Okay, okay...
+(Inhales)...
+(Exhales)...";
+                    time = shortTime;
+                    break;
+                case 25: // I
+                    message = @"What next?";
+                    answer1 = @"Use a light source to blind him.";
+                    answer2 = @"Continue on your way, and keep eye contact.";
+                    time = longTime;
+                    break;
+                // Answer I2
+                case 26:
+                    message = @"Okay...";
+                    time = shortTime;
+                    break;
+                case 27: // J
+                    message = @"I'm starting to lose sight of him.
+What should I do?";
+                    answer1 = @"It's okay, just keep walking.";
+                    answer2 = @"Run as soon as you take your eyes off him.";
+                    time = longTime;
+                    break;
+                // Answer J1
+                case 28:
+                    message = @"...";
+                    time = shortTime;
+                    break;
+                case 29:
+                    message = @"...";
+                    time = shortTime;
+                    break;
+                case 30:
+                    message = @"I think... I think it's okay.";
+                    break;
+                //End Deer Smile Attack
+                case 31: // K
+                    message = @"Thank you!...
+Thank you for not leaving me alone...
+(Sob)...";
+                    answer1 = @"The worst has passed.";
+                    answer2 = @"You'll thank me when you're safe at the camp.";
+                    break;
+                // Answer K2
+                case 32f:
+                    message = @"You're right... (Sniff)...
+I still have to get to the camp in one piece.";
+                    break;
+                case 33f:
+                    message = @"But I trust your skills, Watcher.";
+                    break;
+                // Answer K1
+                case 34f:
+                    message = @"Alright!
+(Sniff)... Let's go.";
+                    break;
+                case 35f: // L
+                    message = @"I see a shelter further away.
+I'm going to stop there for a moment, to let myself digest everything that just happened.";
+                    answer1 = @"Good idea.";
+                    answer2 = @"Wait!";
+                    time = mediumTime;
+                    break;
+                // Answer L2
+                case 36f: // M
+                    message = @"Haa!
+Don't scare me like that!";
+                    answer1 = @"Can you give me some points of reference?";
+                    answer2 = @"False alarm.";
+                    time = shortTime;
+                    break;
+                // Answer M1
+                case 36.1f:
+                    message = @"Hmm... Give me a second.";
+                    time = shortTime;
+                    break;
+                case 37:
+                    message = @"Mmm...";
+                    time = shortTime;
+                    break;
+                case 38: // O
+                    message = @"Ho!
+I see a rock with a ""Z"" and a vertical line in the middle.";
+                    answer1 = @"I don't see the shelter on the map.";
+                    answer2 = @"All good. False alarm.";
+                    break;
+                // Answer O1
+                case 39: // N
+                    message = @"Huh?! Are you sure?
+Should I just keep going?";
+                    answer1 = @"There is a shelter a little further on.";
+                    answer2 = @"Well, I'm not so sure.";
+                    break;
+                // Answer N1
+                case 39.1f:
+                    message = @"...";
+                    break;
+                case 40:
+                    message = @"No choice I guess.";
+                    break;
+                // Answer N2
+                case 41.1f:
+                    message = @"I hope you’re wrong, because my legs are going to give up if I don’t stop for a break.";
+                    break;
+                // Answer M2 & O2
+                case 41.2f:
+                    message = @"For God's sake!...
+This is really not the time to stress me out.";
+                    break;
+                // Answer N1
+                case 42.1f:
+                    message = @"Alright!
+I'll call you back once I get there.";
+                    break;
+                case 43:
+                    message = @"And... Thanks again.
+I owe you a lot.";
+                    break;
+                // Deer Smile Death
+                // Answer E1, J2 & TimeOut
+                case 44.1f:
+                    message = @"This thing can go to hell!
+I'm out of here!";
+                    time = shortTime;
+                    break;
+                // Answer H1, 
+                case 44.2f:
+                    message = @"Okay! Okay...
+I think this stick will do the j...";
+                    time = shortTime;
+                    break;
+                case 45:
+                    message = @"...";
+                    time = shortTime;
+                    break;
+                // Answer I1, 
+                case 45.1f:
+                    message = @"He's coming towards me...
+Why is he coming?!
+No! No! Get b...!";
+                    time = shortTime;
+                    break;
+                case 46:
+                    message = @"AAAAAAAAAARRGH!!!";
+                    time = shortTime;
+                    break;
+                case 47:
+                    message = @"Ha... Ha!!!
+My leg!!!
+Ma le...!";
+                    time = shortTime;
+                    break;
+                case 48:
+                    message = @"...GHAAAAAAAAAAAAA!!!";
+                    time = shortTime;
+                    break;
+                case 49:
+                    message = @"HELP!!!...
+PLEASE HELP M...!";
+                    time = shortTime;
+                    break;
+                case 50:
+                    message = @"(Bip)...";
+                    time = shortTime;
+                    break;
+                // Hungry Cabin Death
+                // Answers L1
+                case 51.1f:
+                    message = @"...
+...
+...";
+                    time = shortTime;
+                    break;
+                case 52:
+                    message = @"HA!";
+                    time = shortTime;
+                    break;
+                case 53:
+                    message = @"The... The door!
+It just closed!";
+                    time = shortTime;
+                    break;
+                case 54:
+                    message = @"And...
+It is blocked.";
+                    time = shortTime;
+                    break;
+                case 55:
+                    message = @"(BASH!)...
+(BASH!)...
+(BASH!)...";
+                    time = shortTime;
+                    break;
+                case 56:
+                    message = @"You have to get me out of here!";
+                    time = shortTime;
+                    break;
+                case 57:
+                    message = @"Please!";
+                    time = shortTime;
+                    break;
+                case 58:
+                    message = @"PLEA...!!!";
+                    time = shortTime;
+                    break;
+                case 59:
+                    message = @"(KRACK)...!!!
+(Bip)...";
+                    time = shortTime;
+                    break;
+                default:
+                    message = "";
+                    break;
+            }
+        }
+        else if (messageNum == 5)
+        {
+            switch (messagePart)
+            {
+                case 0: // A
+                    message = @"Hey, Watcher!
+Still there?";
+                    answer1 = @"How do you feel?";
+                    answer2 = @"Everything is going well!";
+                    break;
+
+                // Answer A1
+                case 0.1f:
+                    message = @"Still in shock, but feeling better.
+Thanks for asking.";
+                    break;
+
+                // Answer A2
+                case 0.2f:
+                    message = @"It seems like things are going better on your side than mine.
+Ha ha!";
+                    break;
+                case 1:
+                    message = @$"I left the shelter a while ago.
+Someone had left this revolver there, loaded with {bullets} bullets.";
+                    break;
+                case 2:
+                    message = @"It certainly won't kill any of these things, but it might at least slow them down.";
+                    break;
+
+                case 3: // B
+                    message = @"I am now facing a large tree with two trunks, where the path splits into two.
+Which path should I take?";
+                    answer1 = @"Left";
+                    answer2 = @"Right";
+                    break;
+
+                // Answer B1
+                case 5:
+                    message = @"Got it boss!";
+                    break;
+                case 6:
+                    message = @"My radio battery is getting low, so I'll call you back later.";
+                    break;
+                case 7:
+                    message = @"Take care, Watcher.";
+                    break;
+                case 8:
+                    message = @"(Bip)!...";
+                    break;
+                // case : 666 (Crevace)
+
+                // Answer B2
+                case 10:
+                    message = @"Got it boss!";
+                    break;
+                case 11:
+                    message = @"My radio battery is starting to get low, so I'll call you back when...";
+                    break;
+                case 12:
+                    message = @"...";
+                    break;
+
+                case 13: // C
+                    message = @"Do you hear that?";
+                    answer1 = @"No...";
+                    answer2 = @"Hear what?";
+                    time = shortTime;
+                    break;
+
+                // Answer C1 & C2
+                case 14: // D
+                    message = @"A chant...
+I hear a kind of chant.";
+                    answer1 = @"A chant?";
+                    answer2 = @"That doesn't bode well.";
+                    time = shortTime;
+                    break;
+
+                // Answer D1 & D2
+                case 15:
+                    message = @"It sounds like the chant of a...";
+                    time = shortTime;
+                    break;
+                case 16:
+                    message = @"Shit!
+There's a Rooted Priest with an army of Ghouls!";
+                    time = shortTime;
+                    break;
+                case 17:
+                    message = @"No time to hang around!
+I hope you know the way, because it's going to go quickly!";
+                    time = shortTime;
+                    break;
+                case 18:
+                    message = @"...";
+                    time = 20;
+                    break;
+                case 18.1f:
+                    BulletsLeft();
+                    break;
+                case 19: // Chemin
+                    message = @"The two-trunked tree is to my left and there is what looks like a ruin on the left path.
+Which path should I take?";
+                    answer1 = @"Left"; // Chemin A
+                    answer2 = @"Right"; // Chemin B
+                    time = quickTime;
+                    break;
+
+                // ----- CHEMIN A -----
+                case 10000:
+                    message = @"...";
+                    time = 8;
+                    break;
+                case 10000.1f: // Shoot
+                    BulletsLeft();
+                    break;
+                case 10001:
+                    message = @"I'm at the ruin.
+Which path should I take?";
+                    answer1 = @"Left"; // Chemin AA
+                    answer2 = @"Right"; // Chemin AB
+                    time = quickTime;
+                    break;
+
+                // Chemin AA
+                case 11000:
+                    message = @"...";
+                    time = 20;
+                    break;
+                case 11000.1f: // Shoot
+                    BulletsLeft();
+                    break;
+                case 11001:
+                    message = @"There is a rock with an ""8"" carved on it to my left.
+Which path should I take?";
+                    answer1 = @"Left"; // Chemin AAA
+                    answer2 = @"Right"; // Chemin AAB
+                    time = quickTime;
+                    break;
+
+                // Chemin AAA
+                case 11100:
+                    message = @"...";
+                    time = shortTime;
+                    break;
+                case 11100.1f: // Shoot
+                    BulletsLeft();
+                    break;
+                case 11101:
+                    message = @"I passed the rock with an ""8"" engraved on it.
+Which path should I take?";
+                    answer1 = @"Left"; // Chemin AAAA
+                    answer2 = @"Right"; // Chemin AAAB
+                    time = quickTime;
+                    break;
+
+                // Chemin AAAB
+                case 11110:
+                    message = @"...";
+                    time = longTime;
+                    break;
+                case 11111:
+                    message = @"I passed a rock with some kind of anvil carved into it.
+I came to a ruin and went to the left path because Ghouls were coming to my right.";
+                    time = shortTime;
+                    break;
+                // case 11112: Chemin D
+
+                // Chemin AAAA
+                case 11120:
+                    message = @"...";
+                    time = shortTime;
+                    break;
+                // case 11121: 666 (Crevace)
+
+                // Chemin AAB
+                case 11200:
+                    message = @"...";
+                    time = mediumTime;
+                    break;
+                // case 11201: Chemin E
+
+                // Chemin AB
+                case 12000:
+                    message = @"...";
+                    time = mediumTime;
+                    break;
+                case 12000.1f: // Shoot
+                    BulletsLeft();
+                    break;
+                case 12001:
+                    message = @"I'm at a shelter.
+Which path should I take?";
+                    answer1 = @"Left"; // Chemin ABA
+                    answer2 = @"Right"; // Chemin ABB
+                    time = quickTime;
+                    break;
+
+                // Chemin ABA
+                case 12100:
+                    message = @"...";
+                    time = mediumTime;
+                    break;
+                case 12101:
+                    message = @"I passed a crossroads.
+I went to the left path because Ghouls were coming to my right.";
+                    time = shortTime;
+                    break;
+                // case 12102: Chemin E
+
+                // Chemin ABB
+                case 12200:
+                    message = @"...";
+                    time = mediumTime;
+                    break;
+                // case 12201: Chemin C
+
+                // ----- CHEMIN B -----
+                case 30000.2f:
+                    message = @"...";
+                    time = longTime;
+                    break;
+                // case 20001: Chemin C
+
+                // ----- CHEMIN C -----
+                case 30000.1f: // Shoot
+                    BulletsLeft();
+                    break;
+                case 30001:
+                    message = @"I passed a rock with what looked like an hourglass.
+I can see a large tree with a hollow in the middle, further ahead of me.
+Which path should I take?";
+                    answer1 = @"Left"; // Chemin CA
+                    answer2 = @"Right"; // Chemin CB
+                    time = quickTime;
+                    break;
+
+                // Chemin CA
+                case 31000:
+                    message = @"...";
+                    time = shortTime;
+                    break;
+                case 31000.1f: // Shoot
+                    BulletsLeft();
+                    break;
+                case 31001:
+                    message = @"I'm at a shelter.
+Which path should I take?";
+                    answer1 = @"Left"; // Chemin CAA
+                    answer2 = @"Right"; // Chemin CAB
+                    time = quickTime;
+                    break;
+
+                // Chemin CAA
+                case 31100:
+                    message = @"...";
+                    time = shortTime;
+                    break;
+                case 31100.1f: // Shoot
+                    BulletsLeft();
+                    break;
+                case 31101:
+                    message = @"There is a large tree that has been cut down to my left.
+Which path should I take?";
+                    answer1 = @"Left"; // Chemin CAAA
+                    answer2 = @"Right"; // Chemin CAAB
+                    time = quickTime;
+                    break;
+
+                // Chemin CAAA
+                case 31110:
+                    message = @"...";
+                    time = longTime;
+                    break;
+                // case 31111: Chemin E
+
+                // Chemin CAAB
+                case 31120:
+                    message = @"...";
+                    time = shortTime;
+                    break;
+                // case 31121: Red Zone
+
+                // Chemin CAB
+                case 31200:
+                    message = @"...";
+                    time = mediumTime;
+                    break;
+                // case 31201: Red Zone
+
+                // Chemin CB
+                case 32000:
+                    message = @"...";
+                    time = shortTime;
+                    break;
+                // case 32001: Red Zone
+
+                // ----- CHEMIN E -----
+                case 40000.1f: // Shoot
+                    BulletsLeft();
+                    break;
+                case 40001:
+                    message = @"I'm at a ruin.
+There is a rock, where an equal symbol with a vertical line on the top was carved on it, behind me.
+Which path should I take?";
+                    answer1 = @"Left"; // Chemin EA
+                    answer2 = @"Right"; // Chemin EB
+                    time = quickTime;
+                    break;
+
+                // Chemin EA
+                case 41000:
+                    message = @"...";
+                    time = longTime;
+                    break;
+                case 41001:
+                    message = @"I passed another ruin.
+I continued straight because Ghouls were coming to my left.";
+                    time = shortTime;
+                    break;
+                // case 41002: Chemin D
+
+                // Chemin EB
+                case 42000:
+                    message = @"...";
+                    time = shortTime;
+                    break;
+                // case 42001: Red Zone
+
+                // ----- CHEMIN D -----
+                case 50000.1f: // Shoot
+                    BulletsLeft();
+                    break;
+                case 50001:
+                    message = @"I now see on my left a rock with a circle, where a separate line in the middle goes diagonally, is engraved on it.
+Which path should I take?";
+                    answer1 = @"Left"; // Chemin DA
+                    answer2 = @"Right"; // Chemin DB
+                    time = quickTime;
+                    break;
+
+                // Chemin DA
+                case 51000:
+                    message = @"...";
+                    time = mediumTime;
+                    break;
+                case 51000.1f: // Shoot
+                    BulletsLeft();
+                    break;
+                case 51001:
+                    message = @"I'm at a ruin.
+Which path should I take?";
+                    answer1 = @"Left"; // Chemin DAA
+                    answer2 = @"Right"; // Chemin DAB
+                    time = quickTime;
+                    break;
+
+                // Chemin DAA
+                case 51100:
+                    message = @"...";
+                    time = mediumTime;
+                    break;
+                case 51100.1f: // Shoot
+                    BulletsLeft();
+                    break;
+                case 51101:
+                    message = @"There is a large tree with two trunks on my left.
+Which path should I take?";
+                    answer1 = @"Left"; // Chemin DAAA
+                    answer2 = @"Right"; // Chemin DAAB
+                    time = quickTime;
+                    break;
+
+                // Chemin DAAA
+                case 51110:
+                    message = @"...";
+                    time = shortTime;
+                    break;
+                // case 51111: Dead End
+
+                // Chemin DAAB
+                case 51120:
+                    message = @"...";
+                    time = mediumTime;
+                    break;
+                case 51120.1f: // Shoot
+                    BulletsLeft();
+                    break;
+                case 51121:
+                    message = @"There is a rock, with a circle with a dot in the middle carved on it, in front of me.
+Which path should I take?";
+                    answer1 = @"Left"; // Chemin DAABA
+                    answer2 = @"Right"; // Chemin DAABB
+                    time = quickTime;
+                    break;
+
+                // Chemin DAABA
+                case 51122:
+                    message = @"...";
+                    time = mediumTime;
+                    break;
+                // case 51123: Chemin Win
+
+                // Chemin DAABB
+                case 51124:
+                    message = @"...";
+                    time = shortTime;
+                    break;
+                // case 51125: Red Zone
+
+                // Chemin DAB
+                case 51200:
+                    message = @"...";
+                    time = shortTime;
+                    break;
+                // case 51201: Red Zone
+
+                // Chemin DB
+                case 52000:
+                    message = @"...";
+                    time = mediumTime;
+                    break;
+                // case 52001: Red Zone
+
+                // ----- CHEMIN WIN -----
+                case 6000:
+                    message = @"Oh my god! Here it is!
+The camp! I see the camp!";
+                    break;
+                case 6001:
+                    message = @"Hey! Right here!";
+                    break;
+                case 6002:
+                    message = @"They saw me! I see the doors starting to open!";
+                    break;
+                case 6003:
+                    message = @"Come on!
+I'm almost there!";
+                    break;
+                case 6004:
+                    message = @"...";
+                    break;
+                case 6005:
+                    message = @"Ha! 
+Hahaha!";
+                    break;
+                case 6006:
+                    message = @"I made it.
+We made it!";
+                    break;
+                case 6007:
+                    message = @"Ha ha ha! Yes!
+Take that stupid Root!";
+                    break;
+                case 6008:
+                    message = @"Ha ha... ha...";
+                    break;
+                case 6009:
+                    message = @"...";
+                    break;
+                case 6010: // F
+                    message = @"Hey, Watcher...?";
+                    answer1 = @"Yes?";
+                    answer2 = @"What is it, Alex?";
+                    break;
+                // Answer F1 & F2
+                case 6012:
+                    message = @"Thank you.";
+                    break;
+                case 6013:
+                    message = @"Without your help, I probably would have died horribly.";
+                    break;
+                case 6014:
+                    message = @"I'm going to warn some Explorers to try to find the other members of my group.";
+                    break;
+                case 6015:
+                    message = @"If you have any news from them, you can contact me directly.";
+                    break;
+                case 6016:
+                    message = @"But for now, rest well.";
+                    break;
+                case 6017:
+                    message = @"We're going to need you for next night.";
+                    break;
+                case 6018:
+                    message = @"Enjoy your rest, Watcher.";
+                    break;
+                case 6019:
+                    message = @"You earned it.";
+                    break;
+                case 6020:
+                    message = @"(Bip)!...";
+                    break;
+
+                // ----- RED ZONE -----
+                case 7000:
+                    message = @"A Red Zone!?";
+                    time = shortTime;
+                    break;
+                case 7001:
+                    message = @"You sent me...
+In a RED ZONE!?";
+                    time = shortTime;
+                    break;
+                case 7002:
+                    message = @"Why did you do this to me?!";
+                    time = shortTime;
+                    break;
+                case 7003:
+                    message = @"WHY?!
+WHYYAAAAAaarghll...!!!";
+                    time = mediumTime;
+                    break;
+                case 7004:
+                    message = @"(Bip)!...";
+                    break;
+
+                // ----- DEAD END + NO BULLET LEFT -----
+                case 7100.1f:
+                    message = @"You sent me to a dead end!";
+                    time = shortTime;
+                    break;
+                case 7100.2f:
+                    message = @"There are too many of them!
+And I don't have any bullets left!";
+                    time = shortTime;
+                    break;
+                case 7101:
+                    message = @"Shit!
+Shit!!!
+SHIT!!!";
+                    time = shortTime;
+                    break;
+                case 7102:
+                    message = @"Stand back, you bastards! Or I swear...";
+                    time = shortTime;
+                    break;
+                case 7103:
+                    message = @"(Crack)!... AAAAAAHRRGG...!!!
+FUCK! GO FUCKING YOURS....!!! (Sklack)!...
+AAAAAAAAAAH.....!!!!!!";
+                    time = mediumTime;
+                    break;
+                case 7104:
+                    message = @"(Bip)!...";
+                    break;
+
+                default:
+                    message = "";
+                    break;
+            }
+        }
+        else if (messageNum == 666)
+        {
+            switch (messagePart)
+            {
+                case 0: // A
+                    message = @"...";
+                    answer1 = @"Hello?";
+                    answer2 = @"Alex?";
+                    break;
+                // Answer A1 & A2
+                case 1:
+                    message = "...";
+                    break;
+                case 2: // B
+                    message = @"Ha...
+Ha ha ha...!!! ";
+                    answer1 = @"Who are you?";
+                    answer2 = @"Où est Alex?";
+                    break;
+                // Answer B1 & B2
+                case 3:
+                    message = "...";
+                    break;
+                case 4:
+                    message = "Bad choice, Watcher.";
+                    break;
+                case 5:
+                    message = @"(Bip)...";
+                    time = shortTime;
+                    break;
+                default:
+                    message = "";
+                    break;
+            }
+        }
+    }
+
     public void ResetMessageRadio()
     {
         if (messageNum == 666)
@@ -1918,8 +3365,16 @@ Ha ha ha...!!! ";
 
     void BulletsLeft()
     {
-        message = @$"Il me reste {bullets} balles.
-Je répète...";
+        if (language.index == 0)
+        {
+            message = @$"Il me reste {bullets} balles.
+Je répète..."; 
+        }
+        else
+        {
+            message = @$"I have {bullets} bullets left.
+I repeat...";
+        }
         time = shortTime;
     }
 

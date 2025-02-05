@@ -34,6 +34,8 @@ public class Sleep : MonoBehaviour, IInteractable
     public GameObject rune;
     [SerializeField] GameObject flashlight;
 
+    Languages language;
+
     string newText;
 
     private void Start()
@@ -43,6 +45,7 @@ public class Sleep : MonoBehaviour, IInteractable
         camLook = FindAnyObjectByType<MouseLook>();
         characterText = FindAnyObjectByType<CharacterText>();
         flashlight.SetActive(false);
+        language = FindAnyObjectByType<Languages>();
     }
 
     private void Update()
@@ -88,9 +91,16 @@ public class Sleep : MonoBehaviour, IInteractable
         }
         else
         {
-            newText =
-@"Je ne peux pas me permettre de dormir maintenant.";
-            characterText.StartNewText(newText);
+            if (language.index == 0)
+            {
+                newText = @"Je ne peux pas me permettre de dormir maintenant.";
+            }
+            else
+            {
+                newText = @"I can't allow myself to sleep now.";
+            }
+
+            characterText.StartNewText(newText); 
         }
     }
 
@@ -132,10 +142,28 @@ public class Sleep : MonoBehaviour, IInteractable
         isSleeping = false;
 
         yield return new WaitForSeconds(1f);
-        newText =
-@"On dirait qu'il n'y a pas d'électricité.
-Peut-être il y a une génératrice dans le cabanon."; 
+        Message();
         characterText.StartNewText(newText);
+    }
+
+    private string Message()
+    {
+        Languages language = FindAnyObjectByType<Languages>();
+
+        if (language.index == 0) // French
+        {
+            newText =
+@"On dirait qu'il n'y a pas d'électricité.
+Il doit y avoir une génératrice dans le cabanon."; 
+        }
+        else // English
+        {
+            newText =
+@"It looks like there’s no electricity.
+There must be a generator in the shed.";
+        }
+
+        return newText;
     }
 
     private void PlayerState(bool state)

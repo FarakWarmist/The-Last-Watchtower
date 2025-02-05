@@ -40,7 +40,7 @@ public class PileOfPlanks : MonoBehaviour, IInteractable
             }
             else
             {
-                Debug.Log("There is no more plank");
+                NoMorePlank();
             }
         }
         else
@@ -82,5 +82,23 @@ public class PileOfPlanks : MonoBehaviour, IInteractable
                 plank.SetActive(true);
             }
         }
+    }
+
+    void NoMorePlank()
+    {
+        CharacterText characterText = FindAnyObjectByType<CharacterText>();
+        Languages language = FindAnyObjectByType<Languages>();
+        string newText;
+        if (language.index == 0) // French
+        {
+            newText =
+@"Il n'y a plus de planche.";
+        }
+        else // English
+        {
+            newText =
+@$"There is no plank left.";
+        }
+        characterText.StartNewText(newText);
     }
 }

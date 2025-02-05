@@ -10,7 +10,7 @@ public class LightSwitch : MonoBehaviour, IInteractable
     Sleep sleep;
     [SerializeField] CharacterText characterText;
 
-    public string newText;
+
     public float chanceToOverheated = 0.1f;
 
     private void Start()
@@ -71,9 +71,21 @@ public class LightSwitch : MonoBehaviour, IInteractable
 
     public void HaveNoEnergyMessage()
     {
-        newText =
+        Languages language = FindAnyObjectByType<Languages>();
+        string newText;
+
+        if (language.index == 0) // French
+        {
+            newText =
 @"Il n'y a plus d'énergie.
-J'ai besoin de repartir la génératrice.";
+J'ai besoin de repartir la génératrice."; 
+        }
+        else // English
+        {
+            newText =
+@"There is no more energy.
+I need to restart the generator.";
+        }
         characterText.StartNewText(newText);
     }
 }

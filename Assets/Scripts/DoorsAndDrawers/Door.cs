@@ -55,10 +55,7 @@ public class Door : MonoBehaviour, IInteractable
             }
             else
             {
-                string newText =
-@"Je dois trouver les symboles pour débarrer ce verrou.
-Peut-être que la lettre peut m'aider à les trouver.";
-                characterText.StartNewText(newText);
+                ShowMessage();
             }
         }
         else
@@ -67,7 +64,25 @@ Peut-être que la lettre peut m'aider à les trouver.";
         }        
     }
 
-    
+    private void ShowMessage()
+    {
+        Languages language = FindAnyObjectByType<Languages>();
+        string newText;
+        if (language.index == 0) // French
+        {
+            newText =
+@"Je dois trouver les symboles pour débarrer ce verrou.
+Peut-être que la lettre peut m'aider à les trouver.";
+        }
+        else // English
+        {
+            newText =
+@"I have to find the symbols to get this lock off.
+Maybe the letter can help me find them.";
+        }
+        characterText.StartNewText(newText);
+    }
+
     private void Update()
     {
         animator.SetBool("IsOpen", isOpen);

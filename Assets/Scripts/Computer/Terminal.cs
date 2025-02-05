@@ -15,23 +15,20 @@ public class Terminal : MonoBehaviour
 
     public Canvas inputCanvas;
 
+    [SerializeField] Languages language;
+
     private void OnEnable()
     {
-        mainText =
-@"Bienvenue sur le Terminal de la Watchtower No9.
-
-Vous y trouverez les informations collectées sur les diverses anomalies de la Lost Forest, ainsi que des conseils pour survivre en cas d'attaque pendant vos heures de travail.
-
-Pour connaître les différentes options, tapez HELP.";
+        MainTerminalText();
         text = mainText;
         StartCoroutine(ShowText());
         inputTerminal.onEndEdit.AddListener(HandleInput);
         inputTerminal.onValueChanged.AddListener(OnValueChange);
     }
 
-
     private void Update()
     {
+        MainTerminalText();
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             outputTerminal.text = "Exit command activated.";
@@ -62,7 +59,41 @@ Pour connaître les différentes options, tapez HELP.";
         
     }
 
+    private void MainTerminalText()
+    {
+        if (language.index == 0)
+        {
+            mainText =
+    @"Bienvenue sur le Terminal de la Watchtower No8.
+
+Vous y trouverez les informations collectées sur les diverses anomalies de la Lost Forest, ainsi que des conseils pour survivre en cas d'attaque pendant vos heures de travail.
+
+Pour connaître les différentes options, tapez HELP.";
+        }
+        else
+        {
+            mainText =
+@"Welcome to Watchtower Terminal No8.
+
+There you will find information collected on the various anomalies of the Lost Forest, as well as tips for surviving in the event of an attack during your working hours.
+
+To see the different options, type HELP.";
+        }
+    }
+
     private string ProcessCommand(string command)
+    {
+        if (language.index == 0)
+        {
+            return FrenchTerminal(command); 
+        }
+        else
+        {
+            return EnglishTerminal(command);
+        }
+    }
+
+    private string FrenchTerminal(string command)
     {
         switch (command.ToLower())
         {
@@ -136,7 +167,7 @@ Les Rooted Priests sont dans un état constant d’euphorie et cherchent visiblemen
 * Si vous commencez à entendre le chant d’un Rooted Priest, vous devez le trouver et l’éliminer le plus rapidement possible. Plus le chant continue, plus le nombre ou la dangerosité des anomalies augmentera.
 
 * Les Rooted Priests ne se défendront jamais physiquement, ce qui les rend faciles à éliminer lorsqu’ils sont à portée. Cependant, leur grande intelligence fait d’eux de redoutables stratèges, utilisant divers sorts ou autres moyens de diversion pour se dissimuler et rester à distance.";
-            
+
             case "rooted ghoul":
             case "ghoul":
                 return text =
@@ -514,7 +545,7 @@ Rappelez-vous que vous êtes limité en quantité de planches, il est donc préférab
 
 Afin de vous protéger des anomalies qui viendraient à votre rencontre, une Rune de purification se trouve à votre disposition.
 
-Si vous rencontrez une anomalie, il suffit d'utiliser la Rune sur elle pour la faire fuir. Mais attention ! La Vune prend un petit moment avant d'être de nouveau active.";
+Si vous rencontrez une anomalie, il suffit d'utiliser la Rune sur elle pour la faire fuir. Mais attention ! La Rune prend un petit moment avant d'être de nouveau active.";
 
             case "terminal":
             case "computer":
@@ -562,7 +593,509 @@ J'ai prévenu les Elves de rester sur leur garde. Cette façon que ce culte corrom
 - J.W.";
 
             default:
-                return text ="Commande [" + command.ToUpper() + "] non reconnue";
+                return text = "Commande [" + command.ToUpper() + "] non reconnue";
+        }
+    }
+
+    private string EnglishTerminal(string command)
+    {
+        switch (command.ToLower())
+        {
+            case "help":
+                return text =
+@"|| HELP ||
+
+Available commands:
+
+BESTIARY
+MAP
+TOOLS
+EXIT
+";
+            case "bestiary":
+                return text =
+@"|| BESTIARY ||
+
+List of different creatures, anomalies and dangers in the area:
+
+CURSED TOOL
+DEER SMILE
+FAIRY
+FALSE TREE
+FOREST MADNESS
+HUNGRY CABIN
+PATH TO NOWHERE
+RED ZONE
+ROOT TOTEM
+ROOTED GHOUL
+ROOTED PRIEST
+RUNES
+THE DOORMAN
+";
+            case "deer":
+            case "smiling deer":
+            case "deer smile":
+                return text =
+@"|| DEER SMILE ||
+
+The Deer Smile, or Smiling Deer, is a species of deer parasitized by The Root. It gets its name from its large exposed jaw, resembling a distorted smile, as well as the noise it makes, similar to a muffled laugh.
+
+During the day, Deer Smiles look and behave like regular deer, except for their fearlessness and the fact that predators instinctively flee from them. In the event that it comes across a human, the Deer Smile will approach and act curious, allowing itself to be petted and cuddled to coax the human. The Deer Smile uses this tactic in order to have its target lead it to its group.
+
+When night falls, they undergo a rapid mutation, deforming them, giving them supernatural abilities and unusual intelligence. In this form, the Deer Smiles exhibit sadistic and psychopathic behavior. If they have not found a human group during the day, they wander into the forest looking for a potential victim. Once a target is spotted, the Deer Smile will torture them first psychologically and then physically, managing to keep them alive for hours. Why the Deer Smiles have such a great knowledge of human anatomy remains a mystery.
+
+- CONSEILS -
+* If a deer shows no fear of humans, seems to scan the surroundings or follows a person closely, eliminate it immediately without hesitation and burn its carcass.
+
+* If you find yourself facing a Deer Smile during the night, do not panic under any circumstances.
+Here's what you need to do:
+- Stay calm and try to keep your breathing and heart rate at a normal level.
+- Don't run! Let the Deer Smile know you've seen it by looking it in the eye, then walk normally towards your destination, ignoring it.
+- Avoid calling for help or shouting.
+- Do not verbalize with a Deer Smile. He may interpret your words as an attempt to reassure you, which would indicate to him that you are under stress.
+
+* If you hear someone calling for help, accompanied by cries of pain, do not try to save them. Take advantage of this to move as quickly as possible. No one will blame you.";
+
+            case "priest":
+            case "rooted priest":
+                return text =
+@"|| ROOTED PRIEST ||
+
+Rooted Priests are humanoid followers and believers, willing or not, of a cult worshiping The Root, and are suspected of being the main cause of the anomalies and the spread of The Root's influence. They are considered the eyes, mouth, and ears of The Root.
+
+Rooted Priests wear strange forest-colored tunics covered in mud, branches, and leaves, allowing them to better conceal themselves in the vegetation. They are often seen carrying various prayer objects, called ""Cursed Tools,"" which grant them some influence over other anomalies.
+
+Les Rooted Priests sont dans un état constant d’euphorie et cherchent visiblement à partager ce ""bonheur"" avec tout être humain. Pour ce faire, ils vont, seuls ou en groupe, trouver une ou plusieurs personnes et commencer à réciter un chant religieux tout en interagissant avec l’objet fétiche qu’ils détiennent. Lors de ces rencontres, une variété d’événements peut survenir. Le chant brisé des Rooted Priests peut créer ou invoquer des anomalies qui blesseront ou tueront une partie des personnes ciblées. L’autre partie entrera dans un état de transe, envoûtée par le chant, jusqu’à disparaître dans la forêt avec le Priest. Le sort réservé à ces personnes reste encore un mystère.
+
+- CONSEILS -
+* The Rooted Priests are in a constant state of euphoria and seek to share this ""happiness"" with every human being. To do this, they will, alone or in a group, find one or more people and begin to recite a religious chant while interacting with the fetish object they are holding. During these encounters, a variety of events can occur. The Rooted Priests' broken chant can create or summon anomalies that will injure or kill some of the targeted individuals. Some of the surviving victims will enter a trance-like state, bewitched by the chant, until they disappear into the forest with the Priest. The fate of these people remains a mystery.
+
+* Rooted Priests will never defend themselves physically, making them easy to eliminate when in range. However, their great intelligence makes them formidable strategists, using various spells or other means of diversion to conceal themselves and stay at a distance.";
+
+            case "rooted ghoul":
+            case "ghoul":
+                return text =
+@"|| ROOTED GHOUL ||
+
+Rooted Ghouls are creatures created by the Rooted Priests from human bodies repaired with wood and roots. Despite being constantly mistreated by the Priests, Rooted Ghouls follow their orders.
+
+Rooted Ghouls have demonstrated some awareness of their previous lives. Some, still with vocal cords, whispered calls for help, but this could also be a decoy to disorient their victims. They have shown superhuman strength, as well as great physical stamina, and always behave strangely when they do not have a Priest to command them.
+
+Like many anomalies created by The Root, Rooted Ghouls are very sensitive to Runes, especially the one of purification. When killed, they dematerialize and reappear in the forest. As a result, their numbers are constantly increasing.
+
+- CONSEILS -
+* If a group of Rooted Ghouls attacks your group, and you have defenses, outnumber them, and no Priest is present, you can attempt to destroy them and leave once done.
+
+* If you have a Runist with you, he can create a purification zone to prevent Ghouls from approaching.
+
+* Unsupervised Rooted Ghouls have demonstrated strange behavior where they cease all activity when observed, so make sure you have a clear view of them.
+
+* If a Rooted Priest is present, fleeing is still the best option.";
+
+            case "false tree":
+                return text =
+@"|| FALSE TREE ||
+
+The False Tree is the name given to a group of giant, carnivorous entities. Theories say that they were created artificially, by the Rooted Priests or an as yet unknown anomaly, due to the increase in their numbers without signs of reproduction.
+
+At first glance, False Trees look like large dead pine trees, with whitish bark and no needles. However, upon closer inspection, one notices their phenomenal camouflage. What we perceive as branches are in reality hands with several hooked fingers, covered with small hooks, allowing an optimal grip on their victims. What appear to be knots are actually a series of eyes, ranging in number from 15 to 32, providing almost absolute panoramic vision. Despite this excellent view, False Trees have a very limited view of what lies below them. This is why they use flexible, root-like appendages to geolocate their surroundings.
+
+False Trees are nocturnal creatures that sleep during the day and only hunt when hungry. When hunting, they move silently until they spot prey of interest. Once the prey is located, they root and wait for it to approach, before grabbing it and depositing it in one of their mouths.
+
+If a False Tree is particularly hungry, it will become more aggressive and less stealthy. Some reports mention groups being attacked by a False Tree that simply charged, emitting a disturbing screech, before grabbing a victim and returning to the forest.
+
+False Trees have also been shown to feel fear, sadness, joy, and anger, but not love or compassion. Any attempt to tame or raise a False Tree usually ends in the death of the creature or the people involved.
+
+- CONSEILS -
+* Fire remains the most effective way to keep them away. A simple flame can plunge a False Tree into a state of extreme panic. This phenomenon is most strange, because it has been observed that the skin of False Trees has a layer of oil making them resistant to fire.
+
+* False Trees generally avoid confrontation. Throwing objects or projectiles at them may dissuade them from making you their next meal.
+
+* It is also recommended to avoid staying out in the open when a False Tree is stalking you. Seek shelter, such as a cabin, cave, or other refuge until the False Tree loses its patience and moves on.";
+
+            case "the doorman":
+            case "doorman":
+                return text =
+@"|| THE DOORMAN ||
+
+The thing nicknamed ""The Doorman"" is an entity whose purpose, appearance, or what happens to its victims remains unclear.
+
+Every instance where The Doorman has manifested has these things in common:
+- The Doorman always knocks on the door to announce his arrival.
+- The victim was in an indoor location, such as a tent, shelter or cabin.
+- The victim was in a state of mourning or depression.
+- The victim was alone.
+- The victim was in a stressful situation.
+- All doors and windows become impossible to open or break from the outside.
+- The victim lost a loved one she cared about very much.
+
+When The Doorman manifests, it will take on the voice of a deceased person who was dear to his victim, pretending to be that person who has come to help them. It will lure his prey to approach the half-open door before grabbing them and dragging them into the darkness.
+
+If the victim has dealt with the Doorman before, the entity will not pretend to be the loved one, but will use its voice to lower the morale of its prey. Thus leading them to think that it is the only solution to their problem.
+
+Those who have seen The Doorman, and are still here to talk about it, say they only saw their faces. This one, being a copy of the deceased person to whom the voice belonged, but with hollow eyes and mouth, smiling unnaturally as it approached.
+
+- CONSEILS -
+* Avoid being alone in an indoor place or keep the door open if it does not put you in danger.
+
+* If The Doorman comes to you, keep a cool head and ignore any promises and lies it tells you, no matter how tempting they may be.
+
+* If you have a purification rune or a powerful light source, approach the door to catch a glimpse of The Doorman and use it when you see his smiling face.
+
+* The last resort is to stay away from the door until he loses his patience with you staying away from the door.";
+
+            case "forest madness":
+            case "madness":
+                return text =
+@"|| FOREST MADNESS ||
+
+Forest Madness is a paranormal event that affects anyone near an anomaly related to The Root, when they find themselves completely alone and in the dark.
+
+Symptoms include:
+- Visual and auditory hallucinations.
+- Extreme feeling of anxiety.
+- Hearing an unfamiliar female voice.
+
+If a person succumbs to Forest Madness, they will eventually become a Rooted Ghoul.
+
+- CONSEILS -
+* Always carry a source of light with you, or the equipment needed to generate one. For example, matches, a lighter or a flare gun.
+
+* If possible, contact a Watcher or other person and inform them of your situation while maintaining radio communication.
+
+* If you can't do anything to get rid of Forest Madness in the next few seconds, your best option is to end your life. Otherwise, you'll end up becoming a Rooted Ghoul.";
+
+            case "totem":
+            case "root totem":
+                return text =
+@"|| ROOT TOTEM ||
+
+Root Totems are strange effigies, created by the Rooted Priests from wood, rock, mud, and various organic materials. They measure approximately 1 meter in height and ½ meter in width. There are currently only three types of Totems, each with their own effects.
+
+The Screaming Totem emits a sequence of several agonizing screams through the communications equipment in the surrounding area. This prevents all radio communication and allows the anomalies to locate the Watchers and the Explorers.
+
+The Target Totem draws creatures to its location. If it is not destroyed quickly, the mob gathering will eventually get out of control.
+
+The Blind Totem absorbs all forms of light and energy in its surroundings, rendering all communications, runes and light sources unusable.
+
+- CONSEILS -
+* At the slightest sign that a Totem has been planted nearby, find it and burn it.
+
+* If there are any clues that a Rooted Priest was in the vicinity, search the area for a potential Totem.";
+
+            case "cursed tool":
+                return text =
+@"|| CURSED TOOL ||
+
+Cursed Tools are the primary supernatural instruments used by the Rooted Priests. There are a wide variety of Cursed Tools, and each one resembles a cult object or religious artifact.
+
+Due to their dangerousness when used by a human being, it is not yet possible to determine a clear relationship between the different Cursed Tools and the effects they can generate.
+
+The effects of Cursed Tools when used by a Priest are as follows:
+- Summons an army of Rooted Ghouls.
+- Emits a field that cancels the effects of runes.
+- Spawns giant roots that destroy and kill anything nearby.
+- Creates illusions and psychic waves causing violent migraines.
+- Manipulates one or multiple people.
+- Summons a thick fog.
+
+- CONSEILS -
+* If you come across a Cursed Tool, you must immediately bury it without touching it with your hands and recite a prayer, regardless of religion. Otherwise, the Cursed Tool will eventually generate a Red Zone.";
+            
+            case "red zone":
+            case "zone red":
+                return text =
+@"|| RED ZONE ||
+
+The anomaly called the ""Red Zone"" is both the easiest to avoid and the most dangerous.
+
+A Red Zone appears when a Cursed Tool has not been properly disposed. A phenomenon is then triggered, where everything within a radius of 5 to 200 meters ends up being fused, dismantled, twisted and deformed.
+
+When a living being enters a Red Zone, a red glowing fog will emerge. This is what gave the anomaly its name. Anything that enters a Red Zone will eventually join the chaotic landscape, trapped in a constant state between life and death, and must be considered lost.
+
+There is still no way to reverse the effects of a Red Zone. That is why it is everyone's duty to prevent the formation of new Red Zones.
+
+- CONSEILS -
+* Follow the steps to do when you find a Cursed Tool.
+
+* Update your map regularly to locate the formation of new Red Zones.
+
+* Don't try to save what has entered a Red Zone.";
+
+            case "hungry":
+            case "hungry cabin":
+                return text =
+@"|| HUNGRY CABIN ||
+
+Hungry Cabins are anomalies that mimic an emergency shelter in order to devour anyone unfortunate enough to enter them, hence their name.
+
+Except for the event that occurs when a living being enters inside, it is impossible to visually distinguish a regular shelter from a Hungry Cabin.
+
+When a person enters a Hungry Cabin, the door to the cabin will slam shut, including any windows if present and open. At this point, the Hungry Cabin will begin its digestion phase, secreting powerful stomach acid from the floor and ceiling. This process can last between 15 and 30 minutes. If no one is nearby, the entity will disappear without leaving a trace.
+
+The method the Hungry Cabins use to materialize and dematerialize remains a mystery. It is still uncertain whether they are living creatures or simply an anomaly.
+
+- CONSEILS -
+* Before entering a shelter, always check if it is on your map. If it is not, there is a good chance that you are facing a Hungry Cabin. If you do not have a map, contact the Watcher in charge.
+
+* If you or one of your companions finds yourselves trapped inside a Hungry Cabin, use an object such as an axe, mace, or rock to attempt to break down the door.";
+
+            case "path to nowhere":
+            case "nowhere":
+            case "path to":
+                return text =
+@"|| PATH TO NOWHERE ||
+
+The anomaly ""Path to Nowhere"" describes a path that should not exist from which a sense of comfort and well-being emanates, thus inciting these victims to take it.
+
+When a person sees the Path to Nowhere, they enter a trance-like state, constantly describing the beauty of the path, filled with natural wonders, with the sun's rays piercing through the leaves of the trees, even if it’s night. If the person is not brought to their senses, they will move deeper into the forest and disappear as soon as they are out of sight. Those who have been brought back to their senses have no memory of seeing such a path, but only remember a gentle voice calling them.
+
+It is not yet clear whether the Path to Nowhere is the creation of The Root or the Fairies, nor whether this anomaly is an exit or a decoy. However, due to reports of furtive appearances of missing people after taking the path observing them from shadowy areas in the forest, it's best to think of the Path to Nowhere as a dangerous anomaly to be avoided.
+
+- CONSEILS -
+* If you see a path that is too good to be true, immediately close your eyes and plug your ears. Wait a few minutes or ask someone to move you away from it.
+
+* If one of your companions mentions a non-existent path, stand in front of them and cover their ears. In a few seconds, they should come to their senses.
+
+* If a victim of the anomaly is too deep into the forest, they should be considered lost. Trying to find them would put you in danger.";
+
+            case "fairy":
+            case "fairies":
+                return text =
+@"|| FAIRY ||
+
+The creatures known as ""Fairies"" are a variety of non-hostile creatures that inhabited the Lost Forest long before the arrival of man. Some resemble animals or insects, sometimes with a more humanoid form, but always with features reminiscent of nature, such as flowers, leaves and wood. Those who call themselves ""Elf"" are shapeshifters who, for some, like to take on a human appearance and live among them.
+
+When humans arrived, some of them shared their knowledge of rune magic, allowing humans to protect themselves against The Root. Other Fairies consider them to be the cause of The Root's appearance in the Lost Forest, hating humans to the highest degree.
+
+Fairies see humans as an inferior race that they must help and protect, like a parent and child, or destroy and exterminate. Some have greater pride than others that can be easily hurt. But, despite their large egos, Fairies have a strong sense of honor, respect, and hierarchy.
+
+- CONSEILS -
+* If you and your group meet one or more fairies, always be polite, grateful and on guard. Avoid at all costs to put them against you.
+
+* All Elves living among humans are to be treated like any other person.
+
+* If a Fairy only wants to speak to a ""governor"", go find the leader of the group. If a higher figure is not present, apologize and explain that they are not currently there, but that you can serve as a messenger.";
+            case "runes":
+                return text =
+@"|| RUNES ||
+
+Runes are faerie magic put into a form that humans can use for protection, healing, and energy generation. Those who study this science are called ""Runists"" and are able to engrave, transcribe and recreate Runes.";
+            
+            case "map":
+            case "maps":
+                return text =
+@"|| MAP ||
+
+The Map will help guide those who have not found shelter before nightfall.
+
+CAMP
+RED ZONE
+ROCK
+RUIN
+SHELTER
+TREE
+VILLAGE";
+            case "camp":
+            case "camps":
+                return text =
+@"|| CAMP ||
+
+Camps are safe zones where The Root's minions and anomalies cannot enter. Explorers spend the night there or report their findings.";
+            
+            case "rock":
+            case "rocks":
+                return text =
+@"|| ROCK ||
+
+Several rocks with symbols carved into them are scattered throughout the Lost Forest. They serve as landmarks for Explorers.";
+
+            case "ruins":
+            case "ruin":
+                return text =
+@"|| RUIN ||
+
+Ruins are man-made buildings that ended up in the Lost Forest. Explorers often go there in search of information and materials.";
+
+            case "shelter":
+                return text =
+@"|| SHELTER ||
+
+Shelters serve as a temporary secure location for Explorers during the night. However, be aware of the Hungry Cabins! Don't forget to check your map for the location of the Shelters.";
+
+            case "tree":
+                return text =
+@"|| TREE ||
+
+The Trees marked on your map are particularly large trees that serve as landmarks for Explorers. Some Trees may have 1 to 3 trunks and, at times, may have a rune engraved on them.";
+
+            case "village":
+                return text =
+@"|| VILLAGE ||
+
+The Village is where the survivors of the incident that brought humans to the Lost Forest live. To avoid the Root's influence, the Village is built on a barren, arid surface, but prevents the inhabitants from growing anything or raising livestock. This is why Explorers exist.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+It is built on your sins.";
+
+            case "tool":
+            case "tools":
+                return text =
+@"|| TOOLS ||
+
+To help keep you safe, your Watchtower has many tools to help you and the Explorers you are helping.
+
+RADIO
+PLANKS AND HAMMER
+RUNE
+TERMINAL
+GENERATOR
+MAP";
+
+            case "radio":
+                return text =
+@"|| RADIO ||
+
+The Radio is your only means of communication with the Explorers, Camps and the Village. When someone tries to reach you, a small red light, accompanied by sound, will flash to let you know.
+
+Keep in mind that the Radio is connected to the Watchtower's power, and will not function without it.";
+
+            case "plank":
+            case "planks":
+            case "hammer":
+            case "plank and hammer":
+            case "planks and hammer":
+            case "hammer and planks":
+            case "hammer and plank":
+                return text =
+@"|| PLANKS AND HAMMER ||
+
+In the event that one of your windows were to be broken, a hammer and planks have been provided for you. So you can barricade broken windows and prevent anomalies from entering.
+
+Remember that you are limited in the amount of boards, so it is best to keep an eye on the windows.";
+
+            case "rune":
+                return text =
+@"|| RUNE ||
+
+In order to protect yourself from anomalies that may come your way, a Rune of purification is at your disposal.
+
+If you encounter an anomaly, simply use the Rune on it to scare it away. But be careful! The Rune takes a little while before it becomes active again.";
+
+            case "terminal":
+            case "computer":
+                return text =
+@"|| TERMINAL ||
+
+The Terminal is the data bank available in all Watchtowers. It is a crucial source of information to provide and educate Watchers and Explorers about the dangers the Lost Forest presents and how to deal with them.
+
+Keep in mind that the Terminal is connected to the Watchtower's power, and will not function without it.";
+            case "generator":
+                return text =
+@"|| GENERATOR ||
+
+Each Watchtower has a generator that powers the runes that supply energy to the tower.
+
+Keep in mind that the generator can sometimes go out. And without power, you can't use your Radio, or your Terminal. You'll also be plunged into darkness, risking Forest Madness.";
+
+            case "exit":
+                return text = mainText;
+
+            // Special & EasterEgg
+            case "the lost forest":
+            case "lost forest":
+                return text =
+@"Some Elves have asked me for help in finding the source of a corruption that has recently appeared in the Lost Forest. As corruption seems to be affecting the forest and what lives within it, the Elves have been forced to swallow their pride and ask the only outsider who can help them. It was satisfying to see these egotistical beings stoop so low, but I knew that if they were going to turn to me, it was going to be more serious than I thought. Besides, I prefer not to get on their bad side, they can be useful.
+
+When I got there, it was much worse than I had imagined. Corrupted plants and creatures sought to kill or corrupt anything that was not. Fortunately the Elves were able to find a way to contain it, but corruption seems to have a powerful ability to adapt.
+
+During my research in the corrupted zone, I quickly realized that dangerous entities have made this place their home. I managed to interrogate one of them who had the intelligence to communicate. They told me that the cause would come from the arrival of a religious group worshiping an unknown higher entity.
+
+
+- J.W.";
+
+            case "the root":
+            case "root":
+                return text =
+@"I met this cult worshiping an invisible entity they call ""The Root"". I don't know if they are the cause of this entity or if the entity is the cause of the cult. From what I know, the entity never physically existed, but its cultists used hosts to offer it a possibility of interacting with the physical world. So why do these hosts seem so in pain and suffering?
+
+I made the decision to free these hosts from their torment, turning the cultists against me. I tried to get information from them about the origin of their power, but they just laughed in my face.
+
+I warned the Elves to be on their guard. This way in which this cult corrupts other entities is far too similar to the method used by the QXJicmUgYXV4IFBlbmR1cw==. It can't be a coincidence.
+
+
+- J.W.";
+
+            default:
+                return text = "Commande [" + command.ToUpper() + "] non reconnue";
         }
     }
 
