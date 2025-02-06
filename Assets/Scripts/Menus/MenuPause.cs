@@ -1,5 +1,7 @@
+using System;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class MenuPause : MonoBehaviour
@@ -9,6 +11,10 @@ public class MenuPause : MonoBehaviour
     [SerializeField] Toggle tipsToggle;
     public Canvas helperCanvas;
     public Canvas tipsCanvas;
+    public Canvas warningCanvas;
+    public Button quitButton;
+    public Button yesButton;
+    public Button noButton;
     public bool isActif = false;
 
     [SerializeField] CheckCursor cursorState;
@@ -21,7 +27,12 @@ public class MenuPause : MonoBehaviour
     {
         frenchButton.onClick.AddListener(mainMenu.OnFrenchButtonClicked);
         englishButton.onClick.AddListener(mainMenu.OnEnglishButtonClicked);
+
+        quitButton.onClick.AddListener(OnWarningButtonClicked);
+        yesButton.onClick.AddListener(mainMenu.OnQuitButtonClicked);
+        noButton.onClick.AddListener(OnReturnButtonClicked);
     }
+
 
     private void Update()
     {
@@ -45,5 +56,17 @@ public class MenuPause : MonoBehaviour
 
         helperCanvas.enabled = helperToggle.isOn;
         tipsCanvas.enabled = tipsToggle.isOn;
+    }
+
+    private void OnWarningButtonClicked()
+    {
+        warningCanvas.enabled = true;
+        EventSystem.current.SetSelectedGameObject(null); ;
+    }
+
+    private void OnReturnButtonClicked()
+    {
+        warningCanvas.enabled = false;
+        EventSystem.current.SetSelectedGameObject(null);
     }
 }

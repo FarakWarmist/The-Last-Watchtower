@@ -116,7 +116,7 @@ public class MainMenuManager : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(null);
     }
 
-    private void OnQuitButtonClicked()
+    public void OnQuitButtonClicked()
     {
         Debug.Log("Quit");
         EventSystem.current.SetSelectedGameObject(null);

@@ -38,7 +38,12 @@ public class Languages : MonoBehaviour
     public TMP_Text helpUIText;
     public TMP_Text mapLocationUIText;
     public TMP_Text tipsUIText;
+    
     public TMP_Text pauseText;
+    public TMP_Text quitPauseButtonText;
+    public TMP_Text yesButtonText;
+    public TMP_Text noButtonText;
+    public TMP_Text warningText;
 
     void Update()
     {
@@ -61,24 +66,32 @@ public class Languages : MonoBehaviour
 
     private void French()
     {
+        warningText.text =
+@"Êtes-vous sûr de vouloir quitter?
+Le jeu se fermera et votre progression sera perdue.";
+
         TextToChange(0,
                      "Jouer", "Options", "Quitter",
                      "Facile", "Normale", "Difficile",
                      "Retour", "Réessayer",
                      "Musique", "Ambiant", "Effets Sonores", "Sensibilité",
                      "Aide", "Carte Localisation", "Astuces",
-                     "ESC pour fermer");
+                     "ESC pour fermer", "Oui", "Non");
     }
 
     private void English()
     {
+        warningText.text =
+@"Are you sure you want to quit?
+The game will close and your progress will be lost.";
+
         TextToChange(1,
                      "Play", "Settings", "Quit",
                      "Easy", "Normal", "Hard",
                      "Back", "Retry",
                      "Music", "Ambient", "Sound Effects", "Sensitivity",
                      "Help", "Map Location", "Tips",
-                     "ESC to close");
+                     "ESC to close", "Yes", "No");
     }
 
     void TextToChange(int i,
@@ -87,7 +100,7 @@ public class Languages : MonoBehaviour
                       string backButton, string retryButton,
                       string musicSetting, string ambientSetting, string soundEffectsSetting, string sensitivitySetting,
                       string helpUI, string mapLocationUI, string tipsUI,
-                      string pauseClose)
+                      string pauseClose, string yesButton, string noButton)
     {
         index = i;
 
@@ -113,9 +126,14 @@ public class Languages : MonoBehaviour
         ambientPauseText.text = ambientSetting;
         soundEffectsPauseText.text = soundEffectsSetting;
         sensitivityPauseText.text = sensitivitySetting;
+
         helpUIText.text = helpUI;
         mapLocationUIText.text = mapLocationUI;
         tipsUIText.text = tipsUI;
+
         pauseText.text = pauseClose;
+        yesButtonText.text = yesButton;
+        noButtonText.text = noButton;
+        quitPauseButtonText.text = quitButton;
     }
 }
