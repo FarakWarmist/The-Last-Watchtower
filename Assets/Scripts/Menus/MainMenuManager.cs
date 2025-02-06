@@ -118,7 +118,12 @@ public class MainMenuManager : MonoBehaviour
 
     public void OnQuitButtonClicked()
     {
-        Debug.Log("Quit");
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
+        Debug.Log("Le jeu a été fermé !");
         EventSystem.current.SetSelectedGameObject(null);
     }
 
