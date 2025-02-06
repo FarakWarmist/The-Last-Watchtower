@@ -37,6 +37,7 @@ public class Languages : MonoBehaviour
 
     public TMP_Text helpUIText;
     public TMP_Text mapLocationUIText;
+    public TMP_Text tipsUIText;
     public TMP_Text pauseText;
 
     void Update()
@@ -60,63 +61,61 @@ public class Languages : MonoBehaviour
 
     private void French()
     {
-        index = 0;
-
-        playButtonText.text = "Jouer";
-        settingButtonText.text = "Options";
-        quitButtonText.text = "Quitter";
-
-        easyButtonText.text = "Facile";
-        normalButtonText.text = "Normale";
-        hardButtonText.text = "Difficile";
-        backDifficultyButtonText.text = "Retour";
-
-        retryButtonText.text = "Réessayer";
-        notRetryButtonText.text = "Quitter";
-
-        musicSettingText.text = "Musique";
-        ambientSettingText.text = "Ambiant";
-        soundEffectsSettingText.text = "Effets Sonores";
-        sensitivitySettingText.text = "Sensibilité";
-        backSettingButtonText.text = backDifficultyButtonText.text;
-
-        musicPauseText.text = musicSettingText.text;
-        ambientPauseText.text = ambientSettingText.text;
-        soundEffectsPauseText.text = soundEffectsSettingText.text;
-        sensitivityPauseText.text = sensitivitySettingText.text;
-        helpUIText.text = "Aide";
-        mapLocationUIText.text = "Carte Localisation";
-        pauseText.text = "ESC pour fermer";
+        TextToChange(0,
+                     "Jouer", "Options", "Quitter",
+                     "Facile", "Normale", "Difficile",
+                     "Retour", "Réessayer",
+                     "Musique", "Ambiant", "Effets Sonores", "Sensibilité",
+                     "Aide", "Carte Localisation", "Astuces",
+                     "ESC pour fermer");
     }
 
     private void English()
     {
-        index = 1;
+        TextToChange(1,
+                     "Play", "Settings", "Quit",
+                     "Easy", "Normal", "Hard",
+                     "Back", "Retry",
+                     "Music", "Ambient", "Sound Effects", "Sensitivity",
+                     "Help", "Map Location", "Tips",
+                     "ESC to close");
+    }
 
-        playButtonText.text = "Play";
-        settingButtonText.text = "Settings";
-        quitButtonText.text = "Quit";
+    void TextToChange(int i,
+                      string playButton, string settingButton, string quitButton,
+                      string easyButton, string normalButton, string hardButton,
+                      string backButton, string retryButton,
+                      string musicSetting, string ambientSetting, string soundEffectsSetting, string sensitivitySetting,
+                      string helpUI, string mapLocationUI, string tipsUI,
+                      string pauseClose)
+    {
+        index = i;
 
-        easyButtonText.text = "Easy";
-        normalButtonText.text = "Normal";
-        hardButtonText.text = "Hard";
-        backDifficultyButtonText.text = "Back";
+        playButtonText.text = playButton;
+        settingButtonText.text = settingButton;
+        quitButtonText.text = quitButton;
 
-        retryButtonText.text = "Retry";
-        notRetryButtonText.text = "Quit";
+        easyButtonText.text = easyButton;
+        normalButtonText.text = normalButton;
+        hardButtonText.text = hardButton;
+        backDifficultyButtonText.text = backButton;
 
-        musicSettingText.text = "Music";
-        ambientSettingText.text = "Ambient";
-        soundEffectsSettingText.text = "Sound Effects";
-        sensitivitySettingText.text = "Sensitivity";
-        backSettingButtonText.text = backDifficultyButtonText.text;
+        retryButtonText.text = retryButton;
+        notRetryButtonText.text = quitButton;
 
-        musicPauseText.text = musicSettingText.text;
-        ambientPauseText.text = ambientSettingText.text;
-        soundEffectsPauseText.text = soundEffectsSettingText.text;
-        sensitivityPauseText.text = sensitivitySettingText.text;
-        helpUIText.text = "Help";
-        mapLocationUIText.text = "Map Location";
-        pauseText.text = "ESC to close";
+        musicSettingText.text = musicSetting;
+        ambientSettingText.text = ambientSetting;
+        soundEffectsSettingText.text = soundEffectsSetting;
+        sensitivitySettingText.text = sensitivitySetting;
+        backSettingButtonText.text = backButton;
+
+        musicPauseText.text = musicSetting;
+        ambientPauseText.text = ambientSetting;
+        soundEffectsPauseText.text = soundEffectsSetting;
+        sensitivityPauseText.text = sensitivitySetting;
+        helpUIText.text = helpUI;
+        mapLocationUIText.text = mapLocationUI;
+        tipsUIText.text = tipsUI;
+        pauseText.text = pauseClose;
     }
 }
