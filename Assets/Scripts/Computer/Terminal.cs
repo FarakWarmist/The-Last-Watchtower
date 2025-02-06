@@ -644,7 +644,7 @@ During the day, Deer Smiles look and behave like regular deer, except for their 
 
 When night falls, they undergo a rapid mutation, deforming them, giving them supernatural abilities and unusual intelligence. In this form, the Deer Smiles exhibit sadistic and psychopathic behavior. If they have not found a human group during the day, they wander into the forest looking for a potential victim. Once a target is spotted, the Deer Smile will torture them first psychologically and then physically, managing to keep them alive for hours. Why the Deer Smiles have such a great knowledge of human anatomy remains a mystery.
 
-- CONSEILS -
+- ADVICE -
 * If a deer shows no fear of humans, seems to scan the surroundings or follows a person closely, eliminate it immediately without hesitation and burn its carcass.
 
 * If you find yourself facing a Deer Smile during the night, do not panic under any circumstances.
@@ -667,7 +667,7 @@ Rooted Priests wear strange forest-colored tunics covered in mud, branches, and 
 
 Les Rooted Priests sont dans un état constant d’euphorie et cherchent visiblement à partager ce ""bonheur"" avec tout être humain. Pour ce faire, ils vont, seuls ou en groupe, trouver une ou plusieurs personnes et commencer à réciter un chant religieux tout en interagissant avec l’objet fétiche qu’ils détiennent. Lors de ces rencontres, une variété d’événements peut survenir. Le chant brisé des Rooted Priests peut créer ou invoquer des anomalies qui blesseront ou tueront une partie des personnes ciblées. L’autre partie entrera dans un état de transe, envoûtée par le chant, jusqu’à disparaître dans la forêt avec le Priest. Le sort réservé à ces personnes reste encore un mystère.
 
-- CONSEILS -
+- ADVICE -
 * The Rooted Priests are in a constant state of euphoria and seek to share this ""happiness"" with every human being. To do this, they will, alone or in a group, find one or more people and begin to recite a religious chant while interacting with the fetish object they are holding. During these encounters, a variety of events can occur. The Rooted Priests' broken chant can create or summon anomalies that will injure or kill some of the targeted individuals. Some of the surviving victims will enter a trance-like state, bewitched by the chant, until they disappear into the forest with the Priest. The fate of these people remains a mystery.
 
 * Rooted Priests will never defend themselves physically, making them easy to eliminate when in range. However, their great intelligence makes them formidable strategists, using various spells or other means of diversion to conceal themselves and stay at a distance.";
@@ -677,13 +677,13 @@ Les Rooted Priests sont dans un état constant d’euphorie et cherchent visiblemen
                 return text =
 @"|| ROOTED GHOUL ||
 
-Rooted Ghouls are creatures created by the Rooted Priests from human bodies repaired with wood and roots. Despite being constantly mistreated by the Priests, Rooted Ghouls follow their orders.
+Rooted Ghouls are creatures created by the Rooted Priests from human bodies repaired with wood and roots. Despite being constantly mistreated by the Priests, the Rooted Ghouls will always follow their orders.
 
 Rooted Ghouls have demonstrated some awareness of their previous lives. Some, still with vocal cords, whispered calls for help, but this could also be a decoy to disorient their victims. They have shown superhuman strength, as well as great physical stamina, and always behave strangely when they do not have a Priest to command them.
 
 Like many anomalies created by The Root, Rooted Ghouls are very sensitive to Runes, especially the one of purification. When killed, they dematerialize and reappear in the forest. As a result, their numbers are constantly increasing.
 
-- CONSEILS -
+- ADVICE -
 * If a group of Rooted Ghouls attacks your group, and you have defenses, outnumber them, and no Priest is present, you can attempt to destroy them and leave once done.
 
 * If you have a Runist with you, he can create a purification zone to prevent Ghouls from approaching.
@@ -706,7 +706,7 @@ If a False Tree is particularly hungry, it will become more aggressive and less 
 
 False Trees have also been shown to feel fear, sadness, joy, and anger, but not love or compassion. Any attempt to tame or raise a False Tree usually ends in the death of the creature or the people involved.
 
-- CONSEILS -
+- ADVICE -
 * Fire remains the most effective way to keep them away. A simple flame can plunge a False Tree into a state of extreme panic. This phenomenon is most strange, because it has been observed that the skin of False Trees has a layer of oil making them resistant to fire.
 
 * False Trees generally avoid confrontation. Throwing objects or projectiles at them may dissuade them from making you their next meal.
@@ -735,7 +735,7 @@ If the victim has dealt with the Doorman before, the entity will not pretend to 
 
 Those who have seen The Doorman, and are still here to talk about it, say they only saw their faces. This one, being a copy of the deceased person to whom the voice belonged, but with hollow eyes and mouth, smiling unnaturally as it approached.
 
-- CONSEILS -
+- ADVICE -
 * Avoid being alone in an indoor place or keep the door open if it does not put you in danger.
 
 * If The Doorman comes to you, keep a cool head and ignore any promises and lies it tells you, no matter how tempting they may be.
@@ -758,7 +758,7 @@ Symptoms include:
 
 If a person succumbs to Forest Madness, they will eventually become a Rooted Ghoul.
 
-- CONSEILS -
+- ADVICE -
 * Always carry a source of light with you, or the equipment needed to generate one. For example, matches, a lighter or a flare gun.
 
 * If possible, contact a Watcher or other person and inform them of your situation while maintaining radio communication.
@@ -778,7 +778,7 @@ The Target Totem draws creatures to its location. If it is not destroyed quickly
 
 The Blind Totem absorbs all forms of light and energy in its surroundings, rendering all communications, runes and light sources unusable.
 
-- CONSEILS -
+- ADVICE -
 * At the slightest sign that a Totem has been planted nearby, find it and burn it.
 
 * If there are any clues that a Rooted Priest was in the vicinity, search the area for a potential Totem.";
@@ -799,7 +799,7 @@ The effects of Cursed Tools when used by a Priest are as follows:
 - Manipulates one or multiple people.
 - Summons a thick fog.
 
-- CONSEILS -
+- ADVICE -
 * If you come across a Cursed Tool, you must immediately bury it without touching it with your hands and recite a prayer, regardless of religion. Otherwise, the Cursed Tool will eventually generate a Red Zone.";
             
             case "red zone":
@@ -815,7 +815,7 @@ When a living being enters a Red Zone, a red glowing fog will emerge. This is wh
 
 There is still no way to reverse the effects of a Red Zone. That is why it is everyone's duty to prevent the formation of new Red Zones.
 
-- CONSEILS -
+- ADVICE -
 * Follow the steps to do when you find a Cursed Tool.
 
 * Update your map regularly to locate the formation of new Red Zones.
@@ -835,7 +835,7 @@ When a person enters a Hungry Cabin, the door to the cabin will slam shut, inclu
 
 The method the Hungry Cabins use to materialize and dematerialize remains a mystery. It is still uncertain whether they are living creatures or simply an anomaly.
 
-- CONSEILS -
+- ADVICE -
 * Before entering a shelter, always check if it is on your map. If it is not, there is a good chance that you are facing a Hungry Cabin. If you do not have a map, contact the Watcher in charge.
 
 * If you or one of your companions finds yourselves trapped inside a Hungry Cabin, use an object such as an axe, mace, or rock to attempt to break down the door.";
@@ -852,7 +852,7 @@ When a person sees the Path to Nowhere, they enter a trance-like state, constant
 
 It is not yet clear whether the Path to Nowhere is the creation of The Root or the Fairies, nor whether this anomaly is an exit or a decoy. However, due to reports of furtive appearances of missing people after taking the path observing them from shadowy areas in the forest, it's best to think of the Path to Nowhere as a dangerous anomaly to be avoided.
 
-- CONSEILS -
+- ADVICE -
 * If you see a path that is too good to be true, immediately close your eyes and plug your ears. Wait a few minutes or ask someone to move you away from it.
 
 * If one of your companions mentions a non-existent path, stand in front of them and cover their ears. In a few seconds, they should come to their senses.
@@ -870,7 +870,7 @@ When humans arrived, some of them shared their knowledge of rune magic, allowing
 
 Fairies see humans as an inferior race that they must help and protect, like a parent and child, or destroy and exterminate. Some have greater pride than others that can be easily hurt. But, despite their large egos, Fairies have a strong sense of honor, respect, and hierarchy.
 
-- CONSEILS -
+- ADVICE -
 * If you and your group meet one or more fairies, always be polite, grateful and on guard. Avoid at all costs to put them against you.
 
 * All Elves living among humans are to be treated like any other person.
