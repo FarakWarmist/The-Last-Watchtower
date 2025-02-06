@@ -7,6 +7,7 @@ using UnityEngine;
 public class Door : MonoBehaviour, IInteractable
 {
     public bool isOpen;
+    public bool isDoorCheck;
     public bool isInside;
     public bool isCheck;
     public bool isLocked;
@@ -86,6 +87,7 @@ Maybe the letter can help me find them.";
     private void Update()
     {
         animator.SetBool("IsOpen", isOpen);
+        animator.SetBool("IsCheck", isDoorCheck);
         var activeBlend = brain.ActiveBlend;
         if (isCheck && activeBlend == null)
         {
@@ -125,6 +127,7 @@ Maybe the letter can help me find them.";
 
     IEnumerator CheckDoor(bool state)
     {
+        isDoorCheck = true;
         while (brain.IsBlending)
         {
             yield return null;
@@ -136,6 +139,7 @@ Maybe the letter can help me find them.";
 
     IEnumerator UseDoor(bool open)
     {
+        isDoorCheck = false;
         while (brain.IsBlending)
         {
             yield return null;
