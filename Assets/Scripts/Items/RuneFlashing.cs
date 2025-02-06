@@ -11,7 +11,7 @@ public class RuneFlashing : MonoBehaviour
     public Light runeLight;
     public Light runeFlash;
     public AudioSource flashAudio;
-    Camera cam;
+    public Camera cam;
 
     public AudioClip[] flashSounds;
 
@@ -28,7 +28,6 @@ public class RuneFlashing : MonoBehaviour
 
     private void Start()
     {
-
         int layerWindow = LayerMask.GetMask("Window");
         int layerBarricade = LayerMask.GetMask("Barricade");
         int layerIgnoreFlash = LayerMask.GetMask("Ignore Flash");
@@ -80,6 +79,14 @@ public class RuneFlashing : MonoBehaviour
                     {
                         hitClue.isActif = true;
                     }
+
+                    var hitTheDoorman = hit.collider.GetComponent<TheDoorman>();
+                    if (hitTheDoorman != null )
+                    {
+                        hitTheDoorman.CheckFlash();
+                    }
+
+                    Debug.Log(hit.collider.gameObject.name);
                 }
             }
         }

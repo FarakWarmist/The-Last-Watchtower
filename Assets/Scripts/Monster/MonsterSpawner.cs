@@ -15,9 +15,12 @@ public class MonsterSpawner : MonoBehaviour
     [SerializeField] AudioClip audioClip;
     [SerializeField] DifficultyManager difficultyManager;
     [SerializeField] UIHelper helper;
+    [SerializeField] GameObject theDoorman;
 
     public int tipsBrokenWindows = 0;
     public int tipsMonster = 0;
+
+    public float doormanDelay;
 
     private void Update()
     {
@@ -53,6 +56,11 @@ public class MonsterSpawner : MonoBehaviour
                 SpawnMonsterGroup();
             }
         }
+
+        if (!theDoorman.activeSelf)
+        {
+            StartCoroutine(SpawnTheDoorman());
+        }
     }
 
     private void SpawnMonster()
@@ -66,7 +74,11 @@ public class MonsterSpawner : MonoBehaviour
             }
         }
     }
-
+    IEnumerator SpawnTheDoorman()
+    {
+        yield return new WaitForSeconds(doormanDelay);
+        theDoorman.SetActive(true);
+    }
     private void SpawnMonsterGroup()
     {
         for (int i = 0; i < monstersList.Length; i++)
