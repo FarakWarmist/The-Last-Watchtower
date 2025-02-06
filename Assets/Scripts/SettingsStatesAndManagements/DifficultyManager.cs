@@ -68,59 +68,68 @@ public class DifficultyManager : MonoBehaviour
 
     void EasyMode()
     {
-        lvlDifficulty = 1;
-
-        messageRadio.shortTime = 60;
-        messageRadio.mediumTime = 90;
-        messageRadio.longTime = 120;
-        messageRadio.quickTime = 120;
-        messageRadio.bullets = 5;
-
-        forestMadness.madnessSpeed = 0.008f;
-
-        lightSwitch.chanceToOverheated = 0.1f;
-
-        terminal.loadingTime = 0.2f;
+        SetDifficulty(1,
+                      60f, 90f, 120f, 5,
+                      0.008f, 9f,
+                      0.1f, 0.25f);
     }
 
     void NormalMode()
     {
-        lvlDifficulty = 2;
-
-        messageRadio.shortTime = 45f;
-        messageRadio.mediumTime = 75f;
-        messageRadio.longTime = 90;
-        messageRadio.quickTime = 90;
-        messageRadio.bullets = 3;
-
-        forestMadness.madnessSpeed = 0.02f;
-
-        lightSwitch.chanceToOverheated = 0.125f;
-
-        terminal.loadingTime = 0.5f;
+        SetDifficulty(2,
+                      45f, 75f, 90f, 4,
+                      0.02f, 6.5f,
+                      0.125f, 0.65f);
     }
 
     void HardMode()
     {
-        lvlDifficulty = 3;
+        SetDifficulty(3, false,
+                      30f, 45f, 60f, 3,
+                      0.03f, 4f,
+                      0.2f, 1f);
+    }
 
-        toggleMap.isOn = false;
-        toggleMap.interactable = false;
+    void SetDifficulty(int difficultyIndex, float shortTime, float mediumTime, float longTime, int bullets, float madnessSpeed, float startMadness, float chanceToOverheated, float loadingTime)
+    {
+        lvlDifficulty = difficultyIndex;
 
-        toggleTips.isOn = false;
-        toggleTips.interactable = false;
+        messageRadio.shortTime = shortTime;
+        messageRadio.mediumTime = mediumTime;
+        messageRadio.longTime = longTime;
+        messageRadio.quickTime = longTime;
+        messageRadio.bullets = bullets;
 
-        messageRadio.shortTime = 30f;
-        messageRadio.mediumTime = 45f;
-        messageRadio.longTime = 60;
-        messageRadio.quickTime = 60;
-        messageRadio.bullets = 3;
+        forestMadness.madnessSpeed = madnessSpeed;
+        forestMadness.startMadness = startMadness;
 
-        forestMadness.madnessSpeed = 0.03f;
+        lightSwitch.chanceToOverheated = chanceToOverheated;
 
-        lightSwitch.chanceToOverheated = 0.2f;
+        terminal.loadingTime = loadingTime;
+    }
 
-        terminal.loadingTime = 0.8f;
+    void SetDifficulty(int difficultyIndex,bool deactivatedToggle, float shortTime, float mediumTime, float longTime, int bullets, float madnessSpeed, float startMadness, float chanceToOverheated, float loadingTime)
+    {
+        lvlDifficulty = difficultyIndex;
+
+        toggleMap.isOn = deactivatedToggle;
+        toggleMap.interactable = deactivatedToggle;
+
+        toggleTips.isOn = deactivatedToggle;
+        toggleTips.interactable = deactivatedToggle;
+
+        messageRadio.shortTime = shortTime;
+        messageRadio.mediumTime = mediumTime;
+        messageRadio.longTime = longTime;
+        messageRadio.quickTime = longTime;
+        messageRadio.bullets = bullets;
+
+        forestMadness.madnessSpeed = madnessSpeed;
+        forestMadness.startMadness = startMadness;
+
+        lightSwitch.chanceToOverheated = chanceToOverheated;
+
+        terminal.loadingTime = loadingTime;
     }
 
     void NoEnergy(float maxChance)
