@@ -45,6 +45,13 @@ public class Languages : MonoBehaviour
     public TMP_Text noButtonText;
     public TMP_Text warningText;
 
+    public TMP_Text easyDifficultyText;
+    public TMP_Text normalDifficultyText;
+    public TMP_Text hardDifficultyText;
+    string easyDifficultyDesc;
+    string normalDifficultyDesc;
+    string hardDifficultyDesc;
+
     void Update()
     {
         if (mainMenu == null)
@@ -62,6 +69,10 @@ public class Languages : MonoBehaviour
         {
             English();
         }
+
+        easyDifficultyText.text = easyDifficultyDesc;
+        normalDifficultyText.text = normalDifficultyDesc;
+        hardDifficultyText.text = hardDifficultyDesc;
     }
 
     private void French()
@@ -77,6 +88,30 @@ Le jeu se fermera et votre progression sera perdue.";
                      "Musique", "Ambiant", "Effets Sonores", "Sensibilité",
                      "Aide", "Carte Localisation", "Astuces",
                      "ESC pour fermer", "Oui", "Non");
+
+        easyDifficultyDesc =
+@"Pour les joueurs qui veulent une expérience de jeu plus calme et moins stressante.
+
+• Plus de temps pour agir.
+• Plus de planches.
+• Moins de chance pour qu'une fenêtre se casse.
+• Moins de chance pour que le générateur surchauffe.
+• Les monstres se présentent moins souvent.";
+
+        normalDifficultyDesc =
+@"Pour les joueurs qui veulent une expérience de jeu classique avec la bonne dose de stress.";
+
+        hardDifficultyDesc =
+@"Pour les joueurs qui ont déjà joués et cherche plus gros défi ou les accros au stress.
+
+• Moins de temps pour agir.
+• Moins de planches.
+• Plus de chance pour qu'une fenêtre se casse.
+• Plus de chance pour que le générateur surchauffe.
+• Les monstres se présentent plus souvent
+• Plusieurs monstres peuvent apparaître en même temps.
+• Le générateur a des chances de caler à tout moment.
+• Vous n'avez plus accès aux options pour activer les astuces et la localisation sur la carte.";
     }
 
     private void English()
@@ -92,6 +127,30 @@ The game will close and your progress will be lost.";
                      "Music", "Ambient", "Sound Effects", "Sensitivity",
                      "Help", "Map Location", "Tips",
                      "ESC to close", "Yes", "No");
+
+        easyDifficultyDesc =
+@"For players who want a calmer and less stressful gaming experience.
+
+• More time to act.
+• More planks.
+• Less chance of a window getting broken.
+• Less chance of the generator overheating.
+• Monsters appear less often.";
+
+        normalDifficultyDesc =
+@"For players who want a classic gaming experience with the right amount of stress.";
+
+        hardDifficultyDesc =
+@"For players who have already played and are looking for a bigger challenge or stress addicts.
+
+• Less time to act.
+• Fewer planks.
+• More chance of a window getting broken.
+• More chance for the generator to overheat.
+• Monsters appear more often.
+• Multiple monsters can appear at the same time.
+• The generator has a chance to stall at any time.
+• You no longer have access to the options to enable tips and map localization.";
     }
 
     void TextToChange(int i,
