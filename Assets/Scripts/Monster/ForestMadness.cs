@@ -18,6 +18,7 @@ public class ForestMadness : MonoBehaviour
     float volume;
 
     public float madnessSpeed = 0.02f;
+    public float startMadness;
 
     [SerializeField] LightSwitch lightSwitch;
 
@@ -72,7 +73,7 @@ public class ForestMadness : MonoBehaviour
         {
             canvas.enabled = true;
             timer += Time.deltaTime;
-            if (timer > 3)
+            if (timer > startMadness)
             {
                 if (!heartbeat.isPlaying)
                 {
