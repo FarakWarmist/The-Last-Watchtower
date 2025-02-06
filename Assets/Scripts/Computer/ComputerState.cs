@@ -37,8 +37,14 @@ public class ComputerState : MonoBehaviour, IInteractable
     public bool isOn;
     bool buttonPressed;
 
+    UIHelper helper;
+    public int tipsOn = 0;
+    public int tipsOff = 0;
+
     private void Start()
     {
+        helper = FindAnyObjectByType<UIHelper>();
+
         terminal = GetComponent<Terminal>();
 
         audioSource = GetComponent<AudioSource>();
@@ -70,7 +76,8 @@ public class ComputerState : MonoBehaviour, IInteractable
 
                 IsLooking(camPlayer, camTerminal, false);
                 cursorState.needCursor++;
-            } 
+            }
+            tipsOff = helper.ActiveTips(tipsOff);
         }
         else
         {
@@ -102,6 +109,7 @@ public class ComputerState : MonoBehaviour, IInteractable
                     if (hitCollider == buttonCollider)
                     {
                         PressButton();
+                        tipsOn = helper.ActiveTips(tipsOn);
                     }
                 }
             }

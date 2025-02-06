@@ -25,6 +25,9 @@ public class Radio : MonoBehaviour, IInteractable
     CheckCursor cursorState;
     Sleep sleep;
     Answers answers;
+    UIHelper helper;
+
+    public int tips = 0;
 
     CinemachineBrain brain;
     public CinemachineCamera camPlayer;
@@ -34,6 +37,7 @@ public class Radio : MonoBehaviour, IInteractable
 
     private void Start()
     {
+        helper = FindAnyObjectByType<UIHelper>();
         brain = FindAnyObjectByType<CinemachineBrain>();
         radioMessage = FindAnyObjectByType<MessageRadioManager>();
         radioText = FindAnyObjectByType<RadioText>();
@@ -55,7 +59,8 @@ public class Radio : MonoBehaviour, IInteractable
                 boxCollider.enabled = false;
                 IsLooking(camPlayer, camRadio, false);
                 cursorState.needCursor++;
-            } 
+            }
+            tips = helper.ActiveTips(tips);
         }
         else
         {

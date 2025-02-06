@@ -25,6 +25,8 @@ public class Monster : MonoBehaviour
     InsideOrOutside InsideOrOutside;
     AimTarget aimTarget;
     MessageRadioManager messageRadio;
+    MonsterSpawner monsterSpawner;
+    UIHelper helper;
 
     public bool isTakeAction;
     public bool isFlashed;
@@ -58,6 +60,16 @@ public class Monster : MonoBehaviour
 
     private void OnEnable()
     {
+        if (monsterSpawner == null)
+        {
+            monsterSpawner = FindAnyObjectByType<MonsterSpawner>();
+        }
+
+        if (helper == null)
+        {
+            helper = FindAnyObjectByType<UIHelper>();
+        }
+
         if (newMaterial == null)
         {
             newMaterial = new Material(materialOriginal);
@@ -275,6 +287,7 @@ public class Monster : MonoBehaviour
     {
         if (monster.remainingDistance <= monster.stoppingDistance && !isFlashed && !messageRadio.canNotMove)
         {
+            monsterSpawner.ShowTip();
             windowsTarget[windowIndex].GetComponent<WindowState>().BreakTheWindow(this);
         }
         else

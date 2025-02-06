@@ -1,4 +1,5 @@
 using System.Collections;
+using UnityEditor;
 using UnityEngine;
 
 public class MonsterSpawner : MonoBehaviour
@@ -13,6 +14,10 @@ public class MonsterSpawner : MonoBehaviour
     [SerializeField] AudioSource audioSource;
     [SerializeField] AudioClip audioClip;
     [SerializeField] DifficultyManager difficultyManager;
+    [SerializeField] UIHelper helper;
+
+    public int tipsBrokenWindows = 0;
+    public int tipsMonster = 0;
 
     private void Update()
     {
@@ -92,6 +97,11 @@ public class MonsterSpawner : MonoBehaviour
         {
             isAppear = false;
         }
+    }
+
+    public void ShowTip()
+    {
+        tipsBrokenWindows = helper.ActiveTips(tipsBrokenWindows);
     }
 
     IEnumerator WaitForTheNextMonster(int index)

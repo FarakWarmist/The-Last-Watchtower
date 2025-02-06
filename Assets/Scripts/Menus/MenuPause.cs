@@ -6,7 +6,9 @@ public class MenuPause : MonoBehaviour
 {
     [SerializeField] GameObject menuPause;
     [SerializeField] Toggle helperToggle;
+    [SerializeField] Toggle tipsToggle;
     public Canvas helperCanvas;
+    public Canvas tipsCanvas;
     public bool isActif = false;
 
     [SerializeField] CheckCursor cursorState;
@@ -42,5 +44,6 @@ public class MenuPause : MonoBehaviour
         Time.timeScale = isActif ? 0 : 1;
 
         helperCanvas.enabled = helperToggle.isOn;
+        tipsCanvas.enabled = tipsToggle.isOn;
     }
 }

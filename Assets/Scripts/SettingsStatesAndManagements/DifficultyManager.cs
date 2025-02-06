@@ -20,6 +20,7 @@ public class DifficultyManager : MonoBehaviour
     public Transform pileOfPlanksLocation;
 
     public Toggle toggleMap;
+    public Toggle toggleTips;
     void Start()
     {
         terminal = FindAnyObjectByType<Terminal>();
@@ -105,6 +106,9 @@ public class DifficultyManager : MonoBehaviour
 
         toggleMap.isOn = false;
         toggleMap.interactable = false;
+
+        toggleTips.isOn = false;
+        toggleTips.interactable = false;
 
         messageRadio.shortTime = 30f;
         messageRadio.mediumTime = 45f;

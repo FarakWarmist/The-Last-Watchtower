@@ -14,6 +14,8 @@ public class RuneFlashing : MonoBehaviour
     Camera cam;
 
     public AudioClip[] flashSounds;
+
+    public int tips = 0;
     
     LayerMask ignoredLayers;
 
@@ -22,13 +24,17 @@ public class RuneFlashing : MonoBehaviour
     public int runeLevel = 5;
     float timerCount = 0f;
 
+    
+
     private void Start()
     {
+
         int layerWindow = LayerMask.GetMask("Window");
         int layerBarricade = LayerMask.GetMask("Barricade");
         int layerIgnoreFlash = LayerMask.GetMask("Ignore Flash");
         ignoredLayers = layerBarricade | layerWindow | layerIgnoreFlash;
     }
+
 
     private void OnDisable()
     {
@@ -63,7 +69,6 @@ public class RuneFlashing : MonoBehaviour
 
                 if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, 6f, ~ignoredLayers))
                 {
-                    Debug.Log(hit.collider.gameObject.name);
                     var hitMonster = hit.collider.GetComponent<Monster>();
                     if (hitMonster != null )
                     {
