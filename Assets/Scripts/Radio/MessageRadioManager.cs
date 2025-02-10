@@ -116,6 +116,9 @@ public class MessageRadioManager : MonoBehaviour
 
             if (messagePart == 22)
             {
+                MonsterSpawner monsterSpawner;
+                monsterSpawner = FindAnyObjectByType<MonsterSpawner>();
+                monsterSpawner.doormanActif = true;
                 messagePart = 23;
                 StartCoroutine(NextPart(Random.Range(45, 75)));
             }
