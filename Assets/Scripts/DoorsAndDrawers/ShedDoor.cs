@@ -7,6 +7,8 @@ public class ShedDoor : MonoBehaviour, IInteractable
     public Animator animator;
     [SerializeField] Sleep sleep;
     [SerializeField] CharacterText characterText;
+    public AudioSource audioSource;
+    public AudioClip[] clips;
 
     public bool isOpen = false;
 
@@ -18,11 +20,15 @@ public class ShedDoor : MonoBehaviour, IInteractable
             {
                 isOpen = true;
                 animator.SetBool("Open", isOpen);
+                audioSource.clip = clips[0];
+                audioSource.Play();
             }
             else
             {
                 isOpen = false;
                 animator.SetBool("Open", isOpen);
+                audioSource.clip = clips[1];
+                audioSource.Play();
             }
         }
         else
