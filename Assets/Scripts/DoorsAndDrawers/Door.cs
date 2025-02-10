@@ -12,7 +12,7 @@ public class Door : MonoBehaviour, IInteractable
     public bool isCheck;
     public bool isLocked;
 
-    Animator animator;
+    public Animator animator;
 
     public CinemachineCamera doorCheckCam;
     public CinemachineCamera playerCam;
@@ -107,6 +107,7 @@ Maybe the letter can help me find them.";
         switch (key)
         {
             case KeyCode.E:
+                isOpen = true;
                 IsCheck(doorCheckCam, playerCam, UseDoor(true));
                 break;
             case KeyCode.S:
@@ -139,12 +140,12 @@ Maybe the letter can help me find them.";
 
     IEnumerator UseDoor(bool open)
     {
-        isDoorCheck = false;
         while (brain.IsBlending)
         {
             yield return null;
         }
         isOpen = open;
+        isDoorCheck = false;
 
         yield return new WaitForSeconds(brain.DefaultBlend.Time + 0.1f);
         camLook.enabled = true;
