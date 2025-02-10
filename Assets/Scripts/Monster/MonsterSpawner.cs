@@ -10,12 +10,14 @@ public class MonsterSpawner : MonoBehaviour
     public GameObject[] monstersList;
     public bool isAppear;
     public bool startHunt = false;
+    public bool doormanActif = false;
     [SerializeField] MessageRadioManager radioMessage;
     [SerializeField] AudioSource audioSource;
     [SerializeField] AudioClip audioClip;
     [SerializeField] DifficultyManager difficultyManager;
     [SerializeField] UIHelper helper;
     [SerializeField] GameObject theDoorman;
+    [SerializeField] InsideOrOutside insideOrOutside;
 
     public int tipsBrokenWindows = 0;
     public int tipsMonster = 0;
@@ -57,7 +59,7 @@ public class MonsterSpawner : MonoBehaviour
             }
         }
 
-        if (!theDoorman.activeSelf)
+        if (doormanActif && !theDoorman.activeSelf && insideOrOutside.playerIsInside)
         {
             StartCoroutine(SpawnTheDoorman());
         }

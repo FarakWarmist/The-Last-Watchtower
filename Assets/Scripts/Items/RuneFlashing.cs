@@ -24,7 +24,7 @@ public class RuneFlashing : MonoBehaviour
     public int runeLevel = 5;
     float timerCount = 0f;
 
-    
+    [SerializeField] GameObject doormanFace;
 
     private void Start()
     {
@@ -80,13 +80,15 @@ public class RuneFlashing : MonoBehaviour
                         hitClue.isActif = true;
                     }
 
-                    var hitTheDoorman = hit.collider.GetComponent<TheDoorman>();
-                    if (hitTheDoorman != null )
+                    if (hit.collider.gameObject == doormanFace )
                     {
-                        hitTheDoorman.CheckFlash();
+                        TheDoorman theDoorman;
+                        theDoorman = FindAnyObjectByType<TheDoorman>();
+                        theDoorman.CheckFlash();
+                        Debug.Log("Got the Face");
                     }
 
-                    Debug.Log(hit.collider.gameObject.name);
+                    Debug.Log(hit.collider.gameObject);
                 }
             }
         }
