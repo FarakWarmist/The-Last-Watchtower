@@ -1046,9 +1046,13 @@ MonoBehaviour:
   introText: {fileID: 448684419}
   cursorState: {fileID: 2084485361}
   icons: {fileID: 2078213467}
+  detector: {fileID: 363398240}
   difficultyChosen: 
   difficultyManagerObj: {fileID: 1252969155}
   language: French
+  musicMainMenu: {fileID: 8300000, guid: 4e465d96ed33e6c428af6300f0ffab9c, type: 3}
+  music: {fileID: 939218235}
+  ambient: {fileID: 1490740279}
 --- !u!4 &43979564
 Transform:
   m_ObjectHideFlags: 0
@@ -2183,6 +2187,10 @@ PrefabInstance:
       propertyPath: door
       value: 
       objectReference: {fileID: 1204523731}
+    - target: {fileID: 1328358930380778831, guid: 97aeccb981592a84288fce222b541e4f, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1328358930380778831, guid: 97aeccb981592a84288fce222b541e4f, type: 3}
       propertyPath: soundAmbiant
       value: 
@@ -9962,7 +9970,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 57640989}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6e817ea10ff53424f812541458bf34e7, type: 3}
   m_Name: 
@@ -23558,9 +23566,9 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: b1ed3162284949048b1c78f0045417ed, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0
+  m_Volume: 0.2
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -29637,6 +29645,9 @@ MonoBehaviour:
   transition: {fileID: 1676463608}
   door: {fileID: 1204523731}
   camLook: {fileID: 1804414678}
+  detector: {fileID: 363398240}
+  ambient: {fileID: 1490740279}
+  nightSound: {fileID: 8300000, guid: a39ea18e59105be42a4ad93875339cd1, type: 3}
   characterTextCanvas: {fileID: 46047768}
   iconsCanvas: {fileID: 2078213467}
   camPlayer: {fileID: 405462400}
@@ -39174,8 +39185,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 4159349873166335605, guid: fe8c6d15927f4b141a609f6638138eca, type: 2}
-  m_audioClip: {fileID: 8300000, guid: a39ea18e59105be42a4ad93875339cd1, type: 3}
-  m_Resource: {fileID: 8300000, guid: a39ea18e59105be42a4ad93875339cd1, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 25c621c9957684c43b14ab32c24e9d7e, type: 3}
+  m_Resource: {fileID: 8300000, guid: 25c621c9957684c43b14ab32c24e9d7e, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.6
   m_Pitch: 1

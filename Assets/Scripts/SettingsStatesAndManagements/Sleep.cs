@@ -11,6 +11,7 @@ public class Sleep : MonoBehaviour, IInteractable
     public Color dayColor;
     public Color nightColor;
     float rotationSpeed = 0.2f;
+    float volume;
 
     Quaternion startRotation;
     public Quaternion endRotation;
@@ -21,6 +22,9 @@ public class Sleep : MonoBehaviour, IInteractable
     public Door door;
     Player player;
     [SerializeField] MouseLook camLook;
+    [SerializeField] InsideOrOutside detector;
+    [SerializeField] AudioSource ambient;
+    [SerializeField] AudioClip nightSound;
 
     CharacterText characterText;
     public Canvas characterTextCanvas;
@@ -46,6 +50,7 @@ public class Sleep : MonoBehaviour, IInteractable
         characterText = FindAnyObjectByType<CharacterText>();
         flashlight.SetActive(false);
         language = FindAnyObjectByType<Languages>();
+        volume = ambient.volume;
     }
 
     private void Update()
@@ -106,9 +111,11 @@ public class Sleep : MonoBehaviour, IInteractable
 
     IEnumerator NightFall()
     {
+        detector.enabled = false;
         Transition(true);
         PlayerState(false);
         yield return new WaitForSeconds(0.8f);
+        StartCoroutine(SetDayAmbientVolume());
         camPlayer.enabled = false;
         camTransition.enabled = true;
         isDay = false;
@@ -133,7 +140,8 @@ public class Sleep : MonoBehaviour, IInteractable
         radioMessage.messagePart++;
         camPlayer.enabled = true;
         camTransition.enabled = false;
-        characterTextCanvas.enabled = true; 
+        characterTextCanvas.enabled = true;
+        detector.enabled = true;
 
         yield return new WaitForSeconds(0.4f);
         PlayerState(true);
@@ -144,6 +152,37 @@ public class Sleep : MonoBehaviour, IInteractable
         yield return new WaitForSeconds(1f);
         Message();
         characterText.StartNewText(newText);
+    }
+
+    IEnumerator SetDayAmbientVolume()
+    {
+        volume = ambient.volume;
+        while (volume < 0.8f)
+        {
+            volume += Time.deltaTime * 2;
+            ambient.volume = volume;
+            yield return null;
+        }
+        yield return new WaitForSeconds(0.01f);
+        while (volume > 0)
+        {
+            volume -= Time.deltaTime * 0.8f;
+            ambient.volume = volume;
+            yield return null;
+        }
+        StartCoroutine(SetNightAmbientVolume());
+    }
+
+    IEnumerator SetNightAmbientVolume()
+    {
+        ambient.clip = nightSound;
+        ambient.Play();
+        while (volume < 0.8f)
+        {
+            volume += Time.deltaTime * 0.8f;
+            ambient.volume = volume;
+            yield return null;
+        }
     }
 
     private string Message()

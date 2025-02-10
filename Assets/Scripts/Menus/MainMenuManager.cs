@@ -41,11 +41,18 @@ public class MainMenuManager : MonoBehaviour
     public Canvas icons;
     Player player;
     Reset reset;
+    [SerializeField] InsideOrOutside detector;
 
     public string difficultyChosen;
     public GameObject difficultyManagerObj;
 
     public string language = "French";
+
+    [SerializeField] AudioClip musicMainMenu;
+    [SerializeField] AudioSource music;
+    [SerializeField] AudioSource ambient;
+    float musicVolume;
+    float ambientVolume;
 
     private void OnEnable()
     {
@@ -72,6 +79,11 @@ public class MainMenuManager : MonoBehaviour
 
         frenchButton.onClick.AddListener(OnFrenchButtonClicked);
         englishButton.onClick.AddListener(OnEnglishButtonClicked);
+
+        ambient.volume = 0;
+        musicVolume = music.volume;
+        music.clip = musicMainMenu;
+        music.Play();
     }
 
     public void OnFrenchButtonClicked()
@@ -159,6 +171,7 @@ public class MainMenuManager : MonoBehaviour
     IEnumerator StartGame()
     {
         animator.SetBool("Fade", true);
+        StartCoroutine(SetMusicVolume());
         yield return new WaitForSeconds(1f);
         difficultyManagerObj.SetActive(true);
         cursorState.needCursor--;
@@ -197,5 +210,29 @@ public class MainMenuManager : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
         animator.speed = 1;
+    }
+
+    IEnumerator SetMusicVolume()
+    {
+        while (musicVolume > 0)
+        {
+            musicVolume -= Time.deltaTime * 0.05f;
+            music.volume = musicVolume;
+            yield return null;
+        }
+        music.volume = 0;
+        music.loop = false;
+        StartCoroutine(SetAmbientVolume());
+    }
+
+    IEnumerator SetAmbientVolume()
+    {
+        while (ambientVolume < 0.8f)
+        {
+            ambientVolume += Time.deltaTime * 0.3f;
+            ambient.volume = ambientVolume;
+            yield return null;
+        }
+        detector.enabled = true;
     }
 }

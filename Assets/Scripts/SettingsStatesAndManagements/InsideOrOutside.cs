@@ -9,7 +9,9 @@ public class InsideOrOutside : MonoBehaviour
     public bool playerIsInside;
 
     public AudioSource soundAmbiant;
-    public float initialVolume = 1f;
+    float outsideVolume = 0.8f;
+    float insideVolume = 0.3f;
+    public float initialVolume;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -38,21 +40,27 @@ public class InsideOrOutside : MonoBehaviour
     {
         if(playerIsInside)
         {
-            if (soundAmbiant.volume > 0.2f)
+            if (soundAmbiant.volume > insideVolume)
             {
                 soundAmbiant.volume -= 2 * Time.deltaTime;
             }
             else
             {
-                soundAmbiant.volume = 0.2f;
+                soundAmbiant.volume = insideVolume;
             }
+            initialVolume = insideVolume;
         }
         else
         {
-            if (soundAmbiant.volume != initialVolume)
+            if (soundAmbiant.volume < outsideVolume)
             {
                 soundAmbiant.volume += 2 * Time.deltaTime;
             }
+            else
+            {
+                soundAmbiant.volume = outsideVolume;
+            }
+            initialVolume = outsideVolume;
         }
     }
 }
