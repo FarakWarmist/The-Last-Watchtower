@@ -13,6 +13,8 @@ public class Door : MonoBehaviour, IInteractable
     public bool isLocked;
 
     public Animator animator;
+    [SerializeField] AudioSource audioSource;
+    public AudioClip[] clips;
 
     public CinemachineCamera doorCheckCam;
     public CinemachineCamera playerCam;
@@ -48,11 +50,14 @@ public class Door : MonoBehaviour, IInteractable
                 {
                     IsCheck(playerCam, doorCheckCam, CheckDoor(false));
                     isCheck = true;
+                    audioSource.clip = clips[2];
                 }
                 else
                 {
                     isOpen = true;
+                    audioSource.clip = clips[0];
                 }
+                audioSource.Play();
             }
             else
             {
@@ -62,6 +67,8 @@ public class Door : MonoBehaviour, IInteractable
         else
         {
             isOpen = false;
+            audioSource.clip = clips[1];
+            audioSource.Play();
         }        
     }
 
@@ -107,13 +114,15 @@ Maybe the letter can help me find them.";
         switch (key)
         {
             case KeyCode.E:
-                isOpen = true;
                 IsCheck(doorCheckCam, playerCam, UseDoor(true));
+                audioSource.clip = clips[0];
                 break;
             case KeyCode.S:
                 IsCheck(doorCheckCam, playerCam, UseDoor(false));
+                audioSource.clip = clips[3];
                 break;
         }
+        audioSource.Play();
         isCheck = false;
     }
 
