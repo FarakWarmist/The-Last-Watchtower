@@ -9,8 +9,15 @@ public class TheDoorman : MonoBehaviour
     AudioSource audioSource;
     public AudioClip[] knockings;
     [SerializeField] MeshRenderer bigShadowRenderer;
+    [SerializeField] TheDoormanText theDoormanText;
+    [SerializeField] Canvas doormanTextCanvas;
+    [SerializeField] AudioSource victimsWhispers;
+    [SerializeField] AudioSource laugh;
+    public GameObject face;
+    public Transform position1;
+    public Transform position2;
 
-    bool isKnocking = false;
+    public bool isKnocking = false;
     bool isStartShowing = false;
     bool gotYou = false;
     bool hideFace;
@@ -18,8 +25,11 @@ public class TheDoorman : MonoBehaviour
     public float timer = 0;
     public float delay;
     public float alpha = 0;
+    float volume;
 
     public float alphaSpeed = 0.001f;
+
+    public string message;
 
     void OnEnable()
     {
@@ -36,6 +46,16 @@ public class TheDoorman : MonoBehaviour
         color = doormanFaceMat.color;
         color.a = alpha;
         doormanFaceMat.color = color;
+
+        volume = 0;
+
+        message =
+@"Ceci
+est
+un
+test.";
+        face.transform.localPosition = position1.localPosition;
+        face.transform.localRotation = position1.localRotation;
     }
 
     // Update is called once per frame
@@ -48,6 +68,11 @@ public class TheDoorman : MonoBehaviour
             {
                 StartCoroutine(KnockAtTheDoor()); 
             }
+            doormanTextCanvas.enabled = true;
+        }
+        else
+        {
+            doormanTextCanvas.enabled = false;
         }
         
         if (door.isCheck)
@@ -76,6 +101,8 @@ public class TheDoorman : MonoBehaviour
 
     void ShowFace()
     {
+        face.transform.localPosition = position1.localPosition;
+        face.transform.localRotation = position1.localRotation;
         if(!isStartShowing && alpha <= 0)
         {
             isStartShowing = true;
@@ -88,18 +115,37 @@ public class TheDoorman : MonoBehaviour
             {
                 timer += Time.deltaTime;
             }
-            else if (alpha < 0.5f)
-            {
-                alpha += Time.deltaTime * alphaSpeed;
-                alphaSpeed += Time.deltaTime * 0.001f;
-                color.a = alpha;
-                doormanFaceMat.color = color;
-            }
             else
             {
-                alpha = 1f;
-                gotYou = true;
-            } 
+                if (!victimsWhispers.isPlaying)
+                {
+                    victimsWhispers.Play();
+                }
+
+                if (volume < 1)
+                {
+                    volume += Time.deltaTime * 0.02f;
+                    victimsWhispers.volume = volume;
+                }
+                else
+                {
+                    victimsWhispers.volume = 1;
+                }
+
+                if (alpha < 0.25f)
+                {
+                    alpha += Time.deltaTime * alphaSpeed;
+                    alphaSpeed += Time.deltaTime * 0.005f;
+                    color.a = alpha;
+                    doormanFaceMat.color = color;
+                    Debug.Log(color.a + " || " + doormanFaceMat.color.a);
+                }
+                else
+                {
+                    alpha = 1f;
+                    gotYou = true;
+                }
+            }
         }
     }
 
@@ -108,8 +154,9 @@ public class TheDoorman : MonoBehaviour
         if (hideFace || !door.isCheck)
         {
             timer = 0f;
-            isStartShowing = false;
             alphaSpeed = 0.001f;
+            isStartShowing = false;
+
             if (alpha > 0)
             {
                 alpha -= Time.deltaTime * 2f;
@@ -124,14 +171,27 @@ public class TheDoorman : MonoBehaviour
 
                 hideFace = false;
             }
+
+            if (volume > 0)
+            {
+                volume -= Time.deltaTime;
+                victimsWhispers.volume = volume;
+            }
+            else
+            {
+                victimsWhispers.Stop();
+                victimsWhispers.volume = 0;
+            }
         }
+        
     }
 
     public void CheckFlash()
     {
-        if (alpha > 0.26f && alpha < 1)
+        if (alpha > 0.1f && alpha < 1)
         {
             Debug.Log("Get Flash");
+            laugh.Play();
             gameObject.SetActive(false);
         }
         else
@@ -160,9 +220,8 @@ public class TheDoorman : MonoBehaviour
         audioSource.clip = knockings[index];
         audioSource.Play();
 
-        yield return new WaitForSeconds(8);
-
-        isKnocking = false;
+        StartCoroutine(theDoormanText.ShowText());
+        yield return null;
     }
 
     IEnumerator TheDoormanGotYou()
