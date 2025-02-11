@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.Cinemachine;
 using UnityEngine;
 
 public class Flashlight : MonoBehaviour
@@ -6,6 +7,8 @@ public class Flashlight : MonoBehaviour
     [SerializeField] GameObject lightObj;
     public AudioClip[] interactSounds;
     AudioSource audioSource;
+    [SerializeField] CinemachineCamera camTerminal;
+    [SerializeField] CinemachineCamera camDoor;
 
     LightSwitch lightSwitch;
     InsideOrOutside playerLocationState;
@@ -20,7 +23,7 @@ public class Flashlight : MonoBehaviour
 
     private void Update()
     {
-        if (!lightSwitch.switchOn || !playerLocationState.playerIsInside)
+        if (!lightSwitch.switchOn && (!camDoor.enabled && !camTerminal.enabled) || !playerLocationState.playerIsInside)
         {
             if (!isOn)
             {
