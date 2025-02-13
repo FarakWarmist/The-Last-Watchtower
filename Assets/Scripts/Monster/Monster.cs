@@ -128,14 +128,14 @@ public class Monster : MonoBehaviour
                 timeMax = 25;
                 break;
             case 3:
-                chanceBreackingWindow = 0.34f;
+                chanceBreackingWindow = 0.35f;
                 timeMin = 2;
-                timeMax = 12;
+                timeMax = 10;
                 break;
             default:
-                chanceBreackingWindow = 0.25f;
-                timeMin = 8;
-                timeMax = 18;
+                chanceBreackingWindow = 0.3f;
+                timeMin = 5;
+                timeMax = 12;
                 break;
         }
 
@@ -159,6 +159,8 @@ public class Monster : MonoBehaviour
             {
                 if (!isDissolved)
                 {
+                    monster.velocity = Vector3.zero;
+                    aimTarget.isStop = true;
                     StartCoroutine(GetFlash()); 
                 }
             }

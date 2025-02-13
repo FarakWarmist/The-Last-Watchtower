@@ -21,11 +21,7 @@ public class Icons : MonoBehaviour
         if (Physics.Raycast(camera.transform.position, camera.transform.forward, out hitInfo, player.InteractionDistance, ~ignoredLayers))
         {
             var hit = hitInfo.collider;
-            if (hit.GetComponent<IInteractable>() == null)
-            {
-                iconIndex = 0;
-            }
-            else
+            if (hit.GetComponent<IInteractable>() != null)
             {
                 if (hit.GetComponent<PickableItem>() != null || hit.GetComponent<PileOfPlanks>() != null || hit.GetComponent<DeskDrawer>() != null)
                 { iconIndex = 1; }
@@ -44,6 +40,13 @@ public class Icons : MonoBehaviour
 
                 else if (hit.GetComponent<PutPlank>() != null)
                 { iconIndex = 6; }
+
+                else
+                { iconIndex = 7; }
+            }
+            else
+            {
+                iconIndex = 0;
             }
         }
         else

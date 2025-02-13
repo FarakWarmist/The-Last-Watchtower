@@ -37,8 +37,7 @@ public class CameraBlendFollower : MonoBehaviour
             {
                 float blendProgress = activeBlend.TimeInBlend / activeBlend.Duration;
 
-                items.transform.position = Vector3.Lerp(startTransform.position, endTransform.position, blendProgress);
-                items.transform.rotation = Quaternion.Slerp(startTransform.rotation, endTransform.rotation, blendProgress);
+                items.transform.SetPositionAndRotation(Vector3.Lerp(startTransform.position, endTransform.position, blendProgress), Quaternion.Slerp(startTransform.rotation, endTransform.rotation, blendProgress));
             }
         }
         else
@@ -57,8 +56,7 @@ public class CameraBlendFollower : MonoBehaviour
                     {
                         items.transform.SetParent(currentCameraTransform.parent);
 
-                        items.transform.position = currentCameraTransform.position;
-                        items.transform.rotation = currentCameraTransform.rotation;
+                        items.transform.SetPositionAndRotation(currentCameraTransform.position, currentCameraTransform.rotation);
                     }
                 }
             }
@@ -68,8 +66,7 @@ public class CameraBlendFollower : MonoBehaviour
     private void CaptureStartPosition()
     {
         tempStartTransform.SetActive(true);
-        tempStartTransform.transform.position = items.transform.position;
-        tempStartTransform.transform.rotation = items.transform.rotation;
+        tempStartTransform.transform.SetPositionAndRotation(items.transform.position, items.transform.rotation);
         startTransform = tempStartTransform.transform;
     }
 

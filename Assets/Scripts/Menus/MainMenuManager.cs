@@ -38,6 +38,7 @@ public class MainMenuManager : MonoBehaviour
 
     public GameObject introText;
     public CheckCursor cursorState;
+    public MenuPause menuPause;
     public Canvas icons;
     Player player;
     Reset reset;
@@ -179,6 +180,7 @@ public class MainMenuManager : MonoBehaviour
         playerCam.enabled = true;
         difficultyChoice.enabled = false;
         languagesCanvas.enabled = false;
+        menuPause.enabled = true;
         yield return new WaitForSeconds(1f);
         animator.SetBool("Fade", false);
         introText.SetActive(true);

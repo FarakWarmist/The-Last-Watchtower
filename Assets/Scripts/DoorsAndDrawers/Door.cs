@@ -118,12 +118,17 @@ Maybe the letter can help me find them.";
                 audioSource.clip = clips[0];
                 break;
             case KeyCode.S:
-                IsCheck(doorCheckCam, playerCam, UseDoor(false));
+                GoBack();
                 audioSource.clip = clips[3];
                 break;
         }
         audioSource.Play();
         isCheck = false;
+    }
+
+    public void GoBack()
+    {
+        IsCheck(doorCheckCam, playerCam, UseDoor(false));
     }
 
     private void IsCheck(CinemachineCamera camExit, CinemachineCamera camGo, IEnumerator action)

@@ -87,8 +87,6 @@ public class RuneFlashing : MonoBehaviour
                         theDoorman.CheckFlash();
                         Debug.Log("Got the Face");
                     }
-
-                    Debug.Log(hit.collider.gameObject);
                 }
             }
         }

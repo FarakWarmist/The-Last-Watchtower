@@ -52,9 +52,8 @@ public class LightSwitch : MonoBehaviour, IInteractable
         {
             generator.energyLevel = 0;
             switchOn = false;
+            HaveNoEnergyMessage();
         }
-
-        HaveNoEnergyMessage();
     }
 
     private void Update()

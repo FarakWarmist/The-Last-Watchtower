@@ -84,7 +84,6 @@ public class Answers : MonoBehaviour
 
     public void ChooseAnswerNum1()
     {
-        Debug.Log("Amswer no1");
         if (radioMessage.messageNum == 1)//Start
         {
             switch (radioMessage.messagePart)
@@ -316,7 +315,6 @@ public class Answers : MonoBehaviour
 
     public void ChooseAnswerNum2()
     {
-        Debug.Log("Amswer no2");
         if (radioMessage.messageNum == 1)
         {
             switch (radioMessage.messagePart)
@@ -1017,7 +1015,6 @@ public class Answers : MonoBehaviour
 
     public void ResetAnswers()
     {
-        Debug.Log("Reset");
         radioMessage.time = 0;
         radio.timerOn = false;
         radioMessage.answer1 = "";

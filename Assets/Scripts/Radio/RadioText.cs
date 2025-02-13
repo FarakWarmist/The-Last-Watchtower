@@ -28,7 +28,7 @@ public class RadioText : MonoBehaviour
     {
         radioMessage = FindAnyObjectByType<MessageRadioManager>();
 
-        rtFrame = frameWhite.gameObject.GetComponent<RectTransform>();
+        rtFrame = frameWhite.GetComponent<RectTransform>();
         Radio radio = FindAnyObjectByType<Radio>();
         textFrame = radio.messageFrame;
         framePos = rtFrame.anchoredPosition;

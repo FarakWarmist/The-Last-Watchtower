@@ -31,6 +31,9 @@ public class UIHelper : MonoBehaviour
     public GameObject runeObject;
 
     public TMP_Text tipText;
+    public TMP_Text title;
+    public TMP_Text toDeactivated;
+    public TMP_Text keyToClose;
     public Canvas tipCanvas;
     string tipMessage;
 
@@ -172,6 +175,9 @@ public class UIHelper : MonoBehaviour
 
     private string FrenchTipsMessages()
     {
+        title.text = "Astuce";
+        toDeactivated.text = "(Vous pouvez désactiver les astuces dans le menu pause.)";
+        keyToClose.text = "[ENTRER] pour fermer";
         if (terminalOff.enabled)
         {
             tipMessage =
@@ -203,6 +209,9 @@ public class UIHelper : MonoBehaviour
 
     private string EnglishTipsMessages()
     {
+        title.text = "Tip";
+        toDeactivated.text = "(You can turn off tips in the pause menu.)";
+        keyToClose.text = "[ENTER] to close";
         if (terminalOff.enabled)
         {
             tipMessage =
