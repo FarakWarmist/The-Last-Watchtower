@@ -7,10 +7,13 @@ public class MonsterSpawner : MonoBehaviour
     float timeMonsterAppear;
     public float timeMin;
     public float timeMax;
+    public float divide;
     public GameObject[] monstersList;
     public bool isAppear;
     public bool startHunt = false;
     public bool doormanActif = false;
+    bool doormanIsAppear;
+    public bool lessTime;
     [SerializeField] MessageRadioManager radioMessage;
     [SerializeField] AudioSource audioSource;
     [SerializeField] AudioClip audioClip;
@@ -30,15 +33,15 @@ public class MonsterSpawner : MonoBehaviour
         {
             case 1:
                 timeMin = 45;
-                timeMax = 135;
+                timeMax = 120;
                 break;
             case 3:
-                timeMin = 30;
+                timeMin = 15;
                 timeMax = 60;
                 break;
             default:
                 timeMin = 30;
-                timeMax = 105;
+                timeMax = 90;
                 break;
         }
 
@@ -59,9 +62,12 @@ public class MonsterSpawner : MonoBehaviour
             }
         }
 
-        if (doormanActif && !theDoorman.activeSelf && insideOrOutside.playerIsInside)
+        if (doormanActif && !theDoorman.activeSelf)
         {
-            StartCoroutine(SpawnTheDoorman());
+            if (!doormanIsAppear)
+            {
+                StartCoroutine(SpawnTheDoorman()); 
+            }
         }
     }
 
@@ -78,8 +84,20 @@ public class MonsterSpawner : MonoBehaviour
     }
     IEnumerator SpawnTheDoorman()
     {
-        yield return new WaitForSeconds(doormanDelay);
+        doormanIsAppear = true;
+        doormanDelay = Random.Range(timeMin, timeMax);
+        Debug.Log(doormanDelay + " || " + CheckTimeToAppear(doormanDelay));
+        yield return new WaitForSeconds(CheckTimeToAppear(doormanDelay));
+        do
+        {
+            yield return new WaitForSeconds(2);
+        }
+        while (!insideOrOutside.playerIsInside);
+
+        yield return new WaitForSeconds(2);
+
         theDoorman.SetActive(true);
+        doormanIsAppear = false;
     }
     private void SpawnMonsterGroup()
     {
@@ -122,7 +140,8 @@ public class MonsterSpawner : MonoBehaviour
     {
         isAppear = true;
         timeMonsterAppear = Random.Range(timeMin, timeMax);
-        yield return new WaitForSeconds(timeMonsterAppear);
+        Debug.Log(timeMonsterAppear + " || " + CheckTimeToAppear(timeMonsterAppear));
+        yield return new WaitForSeconds(CheckTimeToAppear(timeMonsterAppear));
         monstersList[index].SetActive(true);
         isAppear = false;
     }
@@ -133,5 +152,14 @@ public class MonsterSpawner : MonoBehaviour
         audioSource.clip = audioClip;
         yield return new WaitForSeconds(0.8f);
         audioSource.Play();
+    }
+
+    float CheckTimeToAppear(float time)
+    {
+        if (lessTime)
+        {
+            time /= divide;
+        }
+        return time;
     }
 }

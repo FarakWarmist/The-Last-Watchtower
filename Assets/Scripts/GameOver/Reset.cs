@@ -14,7 +14,9 @@ public class Reset : MonoBehaviour
     public GameObject camRadioObjet;
     MessageRadioManager messageRadio;
     public MonsterSpawner monsterSpawner;
+    public TheDoorman theDoorman;
     public GameObject forestMadness;
+    [SerializeField] GameObject flashlight;
 
     Generator generator;
     LightSwitch lightSwitch;
@@ -34,6 +36,7 @@ public class Reset : MonoBehaviour
         windows = FindObjectsByType<ResetWindowState>(FindObjectsSortMode.None);
         door = FindAnyObjectByType<Door>();
         itemsManager = FindAnyObjectByType<ItemsManager>();
+        flashlight = FindAnyObjectByType<Flashlight>().gameObject;
     }
 
     private void Update()
@@ -70,6 +73,7 @@ public class Reset : MonoBehaviour
         pileOfPlanks.ResetPlanksInPile();
         messageRadio.ResetMessageRadio();
         monsterSpawner.ResetMonsters();
+        theDoorman.ResetTheDoorman();
         if (messageRadio.messageNum == 1)
         {
             monsterSpawner.startHunt = false;
@@ -79,6 +83,11 @@ public class Reset : MonoBehaviour
         if (!radio.GetComponent<BoxCollider>().enabled)
         {
             radio.GetComponent<BoxCollider>().enabled = true;
+        }
+        
+        if (!flashlight.activeSelf)
+        {
+            flashlight.SetActive(true);
         }
 
         forestMadness.SetActive(true);

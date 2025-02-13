@@ -2,6 +2,9 @@ using System;
 using System.Collections;
 using Unity.Cinemachine;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 
 public class GameOver : MonoBehaviour
@@ -20,6 +23,7 @@ public class GameOver : MonoBehaviour
     public CinemachineCamera camDoor;
     public CinemachineCamera camMenu;
     public CinemachineCamera currentDeathCam;
+    public CinemachineCamera theDoormanCam;
     public GameObject currentMonster;
     public GameObject cameraRadioObject;
     public GameObject cameraPlayerObject;
@@ -28,6 +32,8 @@ public class GameOver : MonoBehaviour
     public Vector3 initialCameraRadioPos;
 
     public Canvas blackScreen;
+    public Canvas canvasFace;
+    [SerializeField] RectTransform face;
     MainMenuManager mainMenuManager;
     MonsterGameOver monsterGameOver;
     Door door;
@@ -45,6 +51,7 @@ public class GameOver : MonoBehaviour
         initialCameraRadioPos = cameraRadioObject.transform.localPosition;
         initialCameraPlayerPos = cameraPlayerObject.transform.localPosition;
     }
+
     private void Update()
     {
         if(Input.GetKeyDown(KeyCode.P))
@@ -155,6 +162,93 @@ public class GameOver : MonoBehaviour
             } 
         }
     }
+    public IEnumerator TheDoormanGetYou()
+    {
+        MessageRadioManager messageRadio = FindAnyObjectByType<MessageRadioManager>();
+        messageRadio.canNotMove = true;
+        player.enabled = false;
+        mouseLook.enabled = false;
+        TheDoorman theDoorman = FindAnyObjectByType<TheDoorman>();
+        blackScreen.enabled = true;
+        canvasFace.enabled = true;
+
+        theDoorman.victimsWhispers.Stop();
+
+        yield return new WaitForSeconds(2f);
+
+        Vector3 initialScale = face.transform.localScale;
+        Vector3 currentScale = initialScale;
+        Vector3 zoomScale = new Vector3(12.6f, 12.6f, 12.6f);
+        theDoorman.laugh.Play();
+        while (currentScale.magnitude < zoomScale.magnitude)
+        {
+            currentScale += 20 * Time.deltaTime * initialScale;
+            face.transform.localScale = currentScale;
+            yield return null;
+        }
+        canvasFace.enabled = false;
+        StartCoroutine(DeathScreen());
+
+        yield return new WaitForSeconds(0.01f);
+
+        face.transform.localScale = initialScale;
+    }
+    public IEnumerator TheDoormanIfDoorOpen()
+    {
+        MessageRadioManager messageRadio = FindAnyObjectByType<MessageRadioManager>();
+        messageRadio.canNotMove = true;
+        float initialPOV = 40;
+        theDoormanCam.Lens.FieldOfView = initialPOV;
+        player.enabled = false;
+        mouseLook.enabled = false;
+        TheDoorman theDoorman = FindAnyObjectByType<TheDoorman>();
+        Color color = theDoorman.doormanFaceMat.color;
+        float alpha = 0;
+        SetDoormanFaceAlpha(theDoorman, color, alpha);
+
+        music.Stop();
+
+        yield return new WaitForSeconds(0.01f);
+        Flashlight flashlight = FindAnyObjectByType<Flashlight>();
+        flashlight.gameObject.SetActive(false);
+        forestMadness.SetActive(false);
+        Generator generator = FindAnyObjectByType<Generator>();
+        generator.energyLevel = 0;
+        camPlayer.enabled = false;
+        theDoormanCam.enabled = true;
+
+        yield return new WaitForSeconds(0.5f);
+
+        theDoorman.volume = 0;
+        while (alpha < 0.7f)
+        {
+            theDoorman.SetVictimsWhispersVolume(0.1f);
+            alpha += Time.deltaTime * 0.05f;
+            SetDoormanFaceAlpha(theDoorman, color, alpha);
+            theDoormanCam.Lens.FieldOfView -= Time.deltaTime * 1.2f;
+            yield return null;
+        }
+        theDoorman.victimsWhispers.Stop();
+        alpha = 0.5f;
+        SetDoormanFaceAlpha(theDoorman, color, alpha);
+        blackScreen.enabled = true;
+
+        yield return new WaitForSeconds(1f);
+
+        theDoorman.laugh.Play();
+
+        yield return new WaitForSeconds(1f);
+
+        StartCoroutine(DeathScreen());
+
+        yield return new WaitForSeconds(0.01f);
+    }
+
+    private static void SetDoormanFaceAlpha(TheDoorman theDoorman, Color color, float alpha)
+    {
+        color.a = alpha;
+        theDoorman.doormanFaceMat.color = color;
+    }
 
     IEnumerator MonsterWillGetYou()
     {
@@ -189,7 +283,7 @@ public class GameOver : MonoBehaviour
         animator.SetBool("Fade", true);
         DisableEveryCamera();
         camMenu.enabled = true;
-        music.volume = 0.75f;
+        music.volume = 0.5f;
         music.clip = gameOverMusic;
         music.loop = true;
         music.Play();
