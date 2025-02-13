@@ -29,12 +29,16 @@ public class MessageRadioManager : MonoBehaviour
     public float longTime = 90f;
     public float quickTime = 90f;
     public float bullets = 3;
+    int musicsIndex = 0;
 
     [SerializeField] GameObject monsters;
     [SerializeField] GameOver gameOver;
     [SerializeField] AudioSource audioSource;
     [SerializeField] LightSwitch lightSwitch;
+    [SerializeField] TheDoorman theDoorman;
+    MonsterSpawner monsterSpawner;
     public AudioClip[] stressMusics;
+    [SerializeField] AudioClip[] musics;
     public GameObject forestMadness;
     Languages language;
 
@@ -116,15 +120,35 @@ public class MessageRadioManager : MonoBehaviour
 
             if (messagePart == 22)
             {
+                theDoorman.gameObject.SetActive(true);
                 MonsterSpawner monsterSpawner;
                 monsterSpawner = FindAnyObjectByType<MonsterSpawner>();
                 monsterSpawner.doormanActif = true;
+                MonstersSpawnRate(true, 1.5f);
                 messagePart = 23;
                 StartCoroutine(NextPart(Random.Range(45, 75)));
             }
         }
         else if (messageNum == 3)
         {
+            if (messagePart == 0)
+            {
+                MonstersSpawnRate(false, 1);
+            }
+
+            if (messagePart > 16 && messagePart < 28)
+            {
+                MonstersSpawnRate(true, 1.5f);
+            }
+            else if ( messagePart > 50)
+            {
+                MonstersSpawnRate(true, 2);
+            }
+            else
+            {
+                MonstersSpawnRate(false, 1);
+            }
+
             if (messagePart == 15)
             {
                 if (!musicUp)
@@ -174,6 +198,24 @@ public class MessageRadioManager : MonoBehaviour
         }
         else if (messageNum == 4)
         {
+            if (messagePart == 0)
+            {
+                MonstersSpawnRate(false, 1);
+            }
+
+            if (messagePart > 16 && messagePart < 28)
+            {
+                MonstersSpawnRate(true, 1.5f);
+            }
+            else if (messagePart > 60)
+            {
+                MonstersSpawnRate(true, 2);
+            }
+            else
+            {
+                MonstersSpawnRate(false, 1);
+            }
+
             if (messagePart == 6)
             {
                 messagePart = 13;
@@ -243,6 +285,16 @@ public class MessageRadioManager : MonoBehaviour
         }
         else if (messageNum == 5)
         {
+            if (messagePart > 15 && messagePart < 6000)
+            {
+                MonstersSpawnRate(true, 2);
+                MusicsFinalRun();
+            }
+            else
+            {
+                MonstersSpawnRate(false, 1);
+            }
+
             if (messagePart == 3)
             {
                 map.pathMapActive = true;
@@ -417,7 +469,7 @@ public class MessageRadioManager : MonoBehaviour
                 messagePart = 8000;
             }
 
-            if ((messagePart > 5999 && messagePart < 6021) || messagePart >= 8000)
+            if ((messagePart > 5999 && messagePart < 6021) || (messagePart > 8000 && messagePart < 10000))
             {
                 canNotMove = true;
                 if (dayTime == null)
@@ -479,6 +531,34 @@ public class MessageRadioManager : MonoBehaviour
                 audioSource.clip = null;
                 messagePart = 7;
             }
+        }
+    }
+
+    private void MusicsFinalRun()
+    {
+        if (!audioSource.isPlaying)
+        {
+            audioSource.clip = musics[musicsIndex];
+            audioSource.Play();
+            musicsIndex++;
+        }
+
+        if (musicsIndex >= musics.Length)
+        {
+            musicsIndex = 0;
+        }
+    }
+
+    private void MonstersSpawnRate(bool state, float divideBy)
+    {
+        if (monsterSpawner != null)
+        {
+            monsterSpawner.divide = divideBy;
+            monsterSpawner.lessTime = state;
+        }
+        else
+        {
+            monsterSpawner = FindAnyObjectByType<MonsterSpawner>();
         }
     }
 
@@ -1430,7 +1510,7 @@ J'espère que tu connais le chemin, car ça va aller vite!";
                     break;
                 case 18:
                     message = @"...";
-                    time = 20;
+                    time = quickTime;
                     break;
                 case 18.1f:
                     BulletsLeft();
@@ -1446,7 +1526,7 @@ Quelle est la prochaine direction?";
                 // ----- CHEMIN A -----
                 case 10000:
                     message = @"...";
-                    time = 8;
+                    time = quickTime;
                     break;
                 case 10000.1f: // Shoot
                     BulletsLeft();
@@ -1462,7 +1542,7 @@ Quelle est la prochaine direction?";
                 // Chemin AA
                 case 11000:
                     message = @"...";
-                    time = 20;
+                    time = quickTime;
                     break;
                 case 11000.1f: // Shoot
                     BulletsLeft();
