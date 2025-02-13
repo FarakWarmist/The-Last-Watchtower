@@ -1,31 +1,38 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class TheDoorman : MonoBehaviour
 {
     Door door;
-    [SerializeField] Material doormanFaceMat;
+    GameOver gameOver;
+    DifficultyManager difficultyManager;
+    public Material doormanFaceMat;
     Color color;
     AudioSource audioSource;
     public AudioClip[] knockings;
     [SerializeField] MeshRenderer bigShadowRenderer;
     [SerializeField] TheDoormanText theDoormanText;
     [SerializeField] Canvas doormanTextCanvas;
-    [SerializeField] AudioSource victimsWhispers;
-    [SerializeField] AudioSource laugh;
+    public AudioSource victimsWhispers;
+    public AudioSource laugh;
     public GameObject face;
     public Transform position1;
     public Transform position2;
 
     public bool isKnocking = false;
     bool isStartShowing = false;
-    bool gotYou = false;
+    bool stopAction = false;
+    bool gotYou;
     bool hideFace;
 
     public float timer = 0;
     public float delay;
     public float alpha = 0;
-    float volume;
+    public float volume;
+
+    float timeMin;
+    float timeMax;
 
     public float alphaSpeed = 0.001f;
 
@@ -36,6 +43,16 @@ public class TheDoorman : MonoBehaviour
         if (door == null)
         {
             door = FindAnyObjectByType<Door>(); 
+        }
+
+        if (gameOver == null)
+        {
+            gameOver = FindAnyObjectByType<GameOver>();
+        }
+
+        if (difficultyManager == null)
+        {
+            difficultyManager = FindAnyObjectByType<DifficultyManager>();
         }
 
         if (audioSource == null)
@@ -54,19 +71,59 @@ public class TheDoorman : MonoBehaviour
 est
 un
 test.";
-        face.transform.localPosition = position1.localPosition;
-        face.transform.localRotation = position1.localRotation;
+        face.transform.SetLocalPositionAndRotation(position1.localPosition, position1.localRotation);
     }
 
     // Update is called once per frame
     void Update()
     {
+        switch (difficultyManager.lvlDifficulty)
+        {
+            case 1:
+                timeMin = 0;
+                timeMax = 1;
+                break;
+            case 3:
+                timeMin = 1;
+                timeMax = 10;
+                break;
+            default:
+                timeMin = 1;
+                timeMax = 6;
+                break;
+        }
 
+        if (!stopAction)
+        {
+            SetAction();
+
+            HideFace(); 
+        }
+
+        if (door.isOpen)
+        {
+            DoorWasOpen();
+        }
+    }
+
+    private void DoorWasOpen()
+    {
+        stopAction = true;
+        if (!gotYou)
+        {
+            gotYou = true;
+            face.transform.SetLocalPositionAndRotation(position2.localPosition, position2.localRotation);
+            StartCoroutine(gameOver.TheDoormanIfDoorOpen()); 
+        }
+    }
+
+    private void SetAction()
+    {
         if (!door.isOpen && !door.isDoorCheck)
         {
             if (!isKnocking)
             {
-                StartCoroutine(KnockAtTheDoor()); 
+                StartCoroutine(KnockAtTheDoor());
             }
             doormanTextCanvas.enabled = true;
         }
@@ -74,7 +131,7 @@ test.";
         {
             doormanTextCanvas.enabled = false;
         }
-        
+
         if (door.isCheck)
         {
             ShowFace();
@@ -84,32 +141,18 @@ test.";
         {
             bigShadowRenderer.enabled = false;
         }
-
-        HideFace();
-
-        if (door.isOpen)
-        {
-            gotYou = true;
-        }
-
-        if (gotYou)
-        {
-            StartCoroutine(TheDoormanGotYou());
-        }
-
     }
 
     void ShowFace()
     {
-        face.transform.localPosition = position1.localPosition;
-        face.transform.localRotation = position1.localRotation;
+        face.transform.SetLocalPositionAndRotation(position1.localPosition, position1.localRotation);
         if(!isStartShowing && alpha <= 0)
         {
             isStartShowing = true;
-            delay = Random.Range(1f, 4f);
+            delay = Random.Range(timeMin, timeMax);
         }
 
-        if (!gotYou || !hideFace)
+        if (!stopAction || !hideFace)
         {
             if (timer < delay)
             {
@@ -117,23 +160,9 @@ test.";
             }
             else
             {
-                if (!victimsWhispers.isPlaying)
+                if (alpha < 0.26f)
                 {
-                    victimsWhispers.Play();
-                }
-
-                if (volume < 1)
-                {
-                    volume += Time.deltaTime * 0.02f;
-                    victimsWhispers.volume = volume;
-                }
-                else
-                {
-                    victimsWhispers.volume = 1;
-                }
-
-                if (alpha < 0.25f)
-                {
+                    SetVictimsWhispersVolume(0.02f);
                     alpha += Time.deltaTime * alphaSpeed;
                     alphaSpeed += Time.deltaTime * 0.005f;
                     color.a = alpha;
@@ -142,10 +171,32 @@ test.";
                 }
                 else
                 {
-                    alpha = 1f;
-                    gotYou = true;
+                    victimsWhispers.Stop();
+                    StartCoroutine(gameOver.TheDoormanGetYou());
+                    Flashlight flashlight = FindAnyObjectByType<Flashlight>();
+                    flashlight.gameObject.SetActive(false);
+                    door.GoBack();
+                    stopAction = true;
                 }
             }
+        }
+    }
+
+    public void SetVictimsWhispersVolume(float speed)
+    {
+        if (volume < 1)
+        {
+            volume += Time.deltaTime * speed;
+            victimsWhispers.volume = volume;
+        }
+        else
+        {
+            victimsWhispers.volume = 1;
+        }
+
+        if (!victimsWhispers.isPlaying)
+        {
+            victimsWhispers.Play();
         }
     }
 
@@ -190,7 +241,6 @@ test.";
     {
         if (alpha > 0.1f && alpha < 1)
         {
-            Debug.Log("Get Flash");
             laugh.Play();
             gameObject.SetActive(false);
         }
@@ -204,13 +254,21 @@ test.";
 
     public void ResetTheDoorman()
     {
+
         isKnocking = false;
         isStartShowing = false;
+        stopAction = false;
         gotYou = false;
 
         timer = 0;
         alpha = 0;
-        gameObject.SetActive(false);
+        color.a = alpha;
+        doormanFaceMat.color = color;
+        if (gameObject.activeSelf)
+        {
+            face.transform.SetLocalPositionAndRotation(position1.localPosition, position1.localRotation);
+            gameObject.SetActive(false); 
+        }
     }
 
     IEnumerator KnockAtTheDoor()
@@ -221,12 +279,6 @@ test.";
         audioSource.Play();
 
         StartCoroutine(theDoormanText.ShowText());
-        yield return null;
-    }
-
-    IEnumerator TheDoormanGotYou()
-    {
-        Debug.Log("The Doorman got you.");
         yield return null;
     }
 }

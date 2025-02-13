@@ -31,7 +31,7 @@ public class TheDoormanText : MonoBehaviour
 
     private void Start()
     {
-        rtFrame = frameWhite.gameObject.GetComponent<RectTransform>();
+        rtFrame = frameWhite.GetComponent<RectTransform>();
         framePos = rtFrame.anchoredPosition;
         frameSize = rtFrame.sizeDelta;
 
