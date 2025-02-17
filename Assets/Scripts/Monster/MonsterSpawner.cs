@@ -152,6 +152,13 @@ public class MonsterSpawner : MonoBehaviour
         audioSource.clip = audioClip;
         yield return new WaitForSeconds(0.8f);
         audioSource.Play();
+        yield return new WaitForSeconds(16);
+        while (audioSource.volume > 0)
+        {
+            audioSource.volume -= Time.deltaTime * 0.8f;
+            yield return null;
+        }
+        audioSource.Stop();
     }
 
     float CheckTimeToAppear(float time)
