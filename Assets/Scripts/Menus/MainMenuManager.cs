@@ -25,6 +25,12 @@ public class MainMenuManager : MonoBehaviour
     public Button frenchButton;
     public Button englishButton;
 
+    public Button endQuitButton;
+    public Button youtubeButton;
+    public Button instagramButton;
+    public Button blueskyButton;
+    public Button itchioButton;
+
     public CinemachineCamera mainMenuCam;
     public CinemachineCamera playerCam;
 
@@ -48,6 +54,11 @@ public class MainMenuManager : MonoBehaviour
     public GameObject difficultyManagerObj;
 
     public string language = "French";
+
+    string youtubeUrl = "https://www.youtube.com/@FarakWarmist";
+    string instagramUrl = "https://www.instagram.com/farak_warmist/";
+    string blueskyUrl = "https://bsky.app/profile/farakwarmist.bsky.social";
+    string itchioUrl = "https://farakw.itch.io";
 
     [SerializeField] AudioClip musicMainMenu;
     [SerializeField] AudioSource music;
@@ -80,6 +91,12 @@ public class MainMenuManager : MonoBehaviour
 
         frenchButton.onClick.AddListener(OnFrenchButtonClicked);
         englishButton.onClick.AddListener(OnEnglishButtonClicked);
+
+        endQuitButton.onClick.AddListener(OnQuitButtonClicked);
+        youtubeButton.onClick.AddListener(OnYouTubeButtonClicked);
+        instagramButton.onClick.AddListener(OnInstagramButtonClicked);
+        blueskyButton.onClick.AddListener(OnBlueSkyButtonClicked);
+        itchioButton.onClick.AddListener(OnItchIoButtonClicked);
 
         ambient.volume = 0;
         musicVolume = music.volume;
@@ -153,6 +170,30 @@ public class MainMenuManager : MonoBehaviour
         mainMenu.enabled = true;
         settings.enabled = false;
         difficultyChoice.enabled = false;
+        EventSystem.current.SetSelectedGameObject(null);
+    }
+
+    private void OnYouTubeButtonClicked()
+    {
+        Application.OpenURL(youtubeUrl);
+        EventSystem.current.SetSelectedGameObject(null);
+    }
+
+    private void OnInstagramButtonClicked()
+    {
+        Application.OpenURL(instagramUrl);
+        EventSystem.current.SetSelectedGameObject(null);
+    }
+
+    private void OnBlueSkyButtonClicked()
+    {
+        Application.OpenURL(blueskyUrl);
+        EventSystem.current.SetSelectedGameObject(null);
+    }
+
+    private void OnItchIoButtonClicked()
+    {
+        Application.OpenURL(itchioUrl);
         EventSystem.current.SetSelectedGameObject(null);
     }
 

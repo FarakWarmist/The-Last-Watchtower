@@ -45,12 +45,17 @@ public class Languages : MonoBehaviour
     public TMP_Text noButtonText;
     public TMP_Text warningText;
 
+    public TMP_Text endQuitButtonText;
+    public TMP_Text thanksText;
+
     public TMP_Text easyDifficultyText;
     public TMP_Text normalDifficultyText;
     public TMP_Text hardDifficultyText;
+    
     string easyDifficultyDesc;
     string normalDifficultyDesc;
     string hardDifficultyDesc;
+    string thanksMessage;
 
     void Update()
     {
@@ -73,6 +78,8 @@ public class Languages : MonoBehaviour
         easyDifficultyText.text = easyDifficultyDesc;
         normalDifficultyText.text = normalDifficultyDesc;
         hardDifficultyText.text = hardDifficultyDesc;
+
+        thanksText.text = thanksMessage;
     }
 
     private void French()
@@ -112,6 +119,8 @@ Le jeu se fermera et votre progression sera perdue.";
 • Plusieurs monstres peuvent apparaître en même temps.
 • Le générateur a des chances de caler à tout moment.
 • Vous n'avez plus accès aux options pour activer les astuces et la localisation sur la carte.";
+
+        thanksMessage = "Merci d'avoir joué!";
     }
 
     private void English()
@@ -151,6 +160,8 @@ The game will close and your progress will be lost.";
 • Multiple monsters can appear at the same time.
 • The generator has a chance to stall at any time.
 • You no longer have access to the options to enable tips and map localization.";
+
+        thanksMessage = "Thanks for playing!";
     }
 
     void TextToChange(int i,
@@ -194,5 +205,7 @@ The game will close and your progress will be lost.";
         yesButtonText.text = yesButton;
         noButtonText.text = noButton;
         quitPauseButtonText.text = quitButton;
+
+        endQuitButtonText.text = quitButton;
     }
 }
