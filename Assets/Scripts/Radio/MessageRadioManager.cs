@@ -41,6 +41,9 @@ public class MessageRadioManager : MonoBehaviour
     [SerializeField] AudioClip[] musics;
     public GameObject forestMadness;
     Languages language;
+    public Canvas endMessageCanvas;
+
+    bool finalMessage;
 
     Sleep dayTime;
 
@@ -467,6 +470,11 @@ public class MessageRadioManager : MonoBehaviour
             if (messagePart == 6021)
             {
                 messagePart = 8000;
+                if (!finalMessage)
+                {
+                    finalMessage = true;
+                    StartCoroutine(FinalMessage());
+                }
             }
 
             if ((messagePart > 5999 && messagePart < 6021) || (messagePart > 8000 && messagePart < 10000))
@@ -536,6 +544,7 @@ public class MessageRadioManager : MonoBehaviour
 
     private void MusicsFinalRun()
     {
+        audioSource.volume = 0.6f;
         if (!audioSource.isPlaying)
         {
             audioSource.clip = musics[musicsIndex];
@@ -1995,7 +2004,6 @@ Ha ha ha...!!! ";
                     break;
                 case 5:
                     message = @"(Bip)...";
-                    time = shortTime;
                     break;
                 default:
                     message = "";
@@ -3494,5 +3502,24 @@ I repeat...";
         }
         audioSource.Stop();
         audioSource.clip = null;
+    }
+
+    IEnumerator FinalMessage()
+    {
+        yield return new WaitForSeconds(1);
+        MainMenuManager mainMenu = FindAnyObjectByType<MainMenuManager>();
+        Animator canvasAnimator = endMessageCanvas.GetComponent<Animator>();
+        endMessageCanvas.enabled = true;
+        canvasAnimator.SetBool("End", true);
+        yield return new WaitForSeconds(1);
+        while (canvasAnimator.GetCurrentAnimatorClipInfo(0)[0].clip.name != "FinalMessage")
+        {
+            yield return null;
+        }
+        mainMenu.endQuitButton.interactable = true;
+        mainMenu.youtubeButton.interactable = true;
+        mainMenu.instagramButton.interactable = true;
+        mainMenu.blueskyButton.interactable = true;
+        mainMenu.itchioButton.interactable = true;
     }
 }

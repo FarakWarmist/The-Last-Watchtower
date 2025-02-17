@@ -15,7 +15,7 @@ public class Sleep : MonoBehaviour, IInteractable
 
     Quaternion startRotation;
     public Quaternion endRotation;
-    float transitionProgress;
+    public float transitionProgress;
     public float sunshinTransitionProgress;
 
     public Animator transition;
@@ -74,10 +74,18 @@ public class Sleep : MonoBehaviour, IInteractable
 
     public void Sunrise()
     {
-        transitionProgress += Time.deltaTime * (rotationSpeed / 10f);
+        if (directionalLight.transform.rotation.x > -0.12)
+        {
+            transitionProgress += Time.deltaTime * rotationSpeed / 12;
+        }
+        else
+        {
+            transitionProgress += Time.deltaTime * rotationSpeed;
+        }
         transitionProgress = Mathf.Clamp01(transitionProgress);
 
         directionalLight.transform.rotation = Quaternion.Slerp(endRotation, startRotation, transitionProgress);
+
 
         Color currentColor = Color.Lerp(nightColor, dayColor, transitionProgress);
         directionalLight.color = currentColor;

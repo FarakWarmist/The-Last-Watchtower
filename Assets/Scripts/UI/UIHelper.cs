@@ -24,8 +24,11 @@ public class UIHelper : MonoBehaviour
     public CinemachineCamera playerCam;
     public Canvas rune;
 
+    public Canvas canvasUI;
+
     ComputerState computer;
     Radio _radio;
+    MessageRadioManager radioMessage;
     [SerializeField] MonsterSpawner monsterSpawner;
     RuneFlashing runeFlashing;
     public GameObject runeObject;
@@ -44,12 +47,22 @@ public class UIHelper : MonoBehaviour
         runeFlashing = FindAnyObjectByType<RuneFlashing>();
         computer = FindAnyObjectByType<ComputerState>();
         _radio = FindAnyObjectByType<Radio>();
+        radioMessage = FindAnyObjectByType<MessageRadioManager>();
 
         language = FindAnyObjectByType<Languages>();
     }
 
     private void Update()
     {
+        if (radioMessage.canNotMove)
+        {
+            canvasUI.enabled = false;
+        }
+        else
+        {
+            canvasUI.enabled = true;
+        }
+
         if (strangeLockCam.enabled)
         {
             strangeLock.enabled = true;

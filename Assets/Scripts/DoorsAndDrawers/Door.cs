@@ -129,6 +129,7 @@ Maybe the letter can help me find them.";
     public void GoBack()
     {
         IsCheck(doorCheckCam, playerCam, UseDoor(false));
+        isCheck = false;
     }
 
     private void IsCheck(CinemachineCamera camExit, CinemachineCamera camGo, IEnumerator action)

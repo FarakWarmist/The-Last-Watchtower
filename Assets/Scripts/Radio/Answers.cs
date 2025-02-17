@@ -30,7 +30,6 @@ public class Answers : MonoBehaviour
 
     MessageRadioManager radioMessage;
     Radio radio;
-    [SerializeField] TimeBar timeBar;
     LightSwitch lightSwitch;
 
     public bool answersAreEnable;
@@ -57,6 +56,11 @@ public class Answers : MonoBehaviour
 
     private void Update()
     {
+        if (radioMessage.canNotMove)
+        {
+            radioMessage.time = 0;
+            radio.timerOn = false;
+        }
         if (answerBotton2.enabled)
         {
             answersAreEnable = true;
@@ -993,18 +997,6 @@ public class Answers : MonoBehaviour
                     radioMessage.messagePart += 1;
                     break;
                 case 7103:
-                    radioMessage.messagePart += 1;
-                    break;
-            }
-        }
-        else if (radioMessage.messageNum == 666)
-        {
-            switch (radioMessage.messagePart)
-            {
-                case 0:
-                    radioMessage.messagePart += 1;
-                    break;
-                case 2:
                     radioMessage.messagePart += 1;
                     break;
             }

@@ -54,10 +54,6 @@ public class GameOver : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.P))
-        {
-            AlexIsDead();
-        }
         if (follow)
         {
             cameraRadioObject.transform.rotation = Quaternion.LookRotation(target.position - camRadio.transform.position);
