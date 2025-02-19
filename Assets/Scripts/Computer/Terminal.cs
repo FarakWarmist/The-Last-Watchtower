@@ -31,10 +31,6 @@ public class Terminal : MonoBehaviour
         MainTerminalText();
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            outputTerminal.text = "Exit command activated.";
-            text = mainText;
-            StartCoroutine(ShowText());
-            inputTerminal.text = "";
         }
     }
 
@@ -115,6 +111,7 @@ EXIT
 Liste des différentes créatures, anomalies et danger des alentours :
 
 CURSED TOOL
+CROOKED HARPY
 DEER SMILE
 FAIRY
 FALSE TREE
@@ -379,6 +376,61 @@ Les Fairies voient les humains comme une race inférieure qu'ils doivent aider et
 
 Les Runes sont de la magie féérique mise sous une forme que les humains peuvent utiliser pour se protéger, se soigner et générer de l'énergie. Ceux qui étudient cette science sont appelés ""Runistes"" et sont capables de graver, transcrire et recréer des Runes.";
 
+            case "crooked":
+            case "harpy":
+            case "harpies":
+            case "crooked harpy":
+            case "crooked harpies":
+                return text =
+@"|| CROOKED HARPY ||
+
+Les Crooked Harpies sont une étrange espèce d'oiseaux humanoïdes n'appartenant ni la race des Fairies, ni une création de The Root. Ces créatures font environ 1 mètre de haut, incluant des bras et dos plumeux, une excroissance osseuse qui recouvre leur tête, ressemblant à un gros crâne d'oiseau, et des cordes vocales pouvant reproduire presque n'importe quel son.
+
+Le jour, les Crooked Hapies vont dormir dans des grottes ou des troncs creux jusqu'au coucher du soleil. Une fois la nuit tombée, ils parcourent la forêt en groupe pouvant aller de 2 à 6 Harpies afin de trouver de la nourriture ou apprendre de nouveaux sons. Lorsqu'ils trouvent une proie, les Hapies se mettent à tordre leur corps pour que, dans le noir, ils aient la silhouette d'un gros hibou. Ils vont ensuite émettre différents sons afin d'éloigner leur proie de son groupe et l'isoler pour le dévorer.
+
+Un fait intéressant avec les Crooked Harpies est que leur développement mental et social se développe en fonction de ce qu'ils mangent. Par exemple, des Harpies ayant mangé principalement des loups auront une meilleure coordination pour chasser, tandis que ceux qui mangent plus de cerfs auront un sens du danger plus affûté.
+
+Les Crooked Harpies ayant principalement mangé de l'humain finiront par développer l'intérêt de socialiser avec d'autres humains, utilisant divers mots et sons qu'ils ont entendus pour créer des phrases. Des Explorers ont même rapporté des Crooked Harpies qui leur ont sauvé la vie lors de situations périlleuses. Ces Harpies ne doivent pas être traités comme une menace.
+
+- CONSEILS -
+* Même si les risques que vous soyez attaqué par des Crooked Harpies sont minces, soyez sûr d'être armé et accompagné.
+
+* Utiliser des sons puissants, comme un coup de feu ou des ultra-sons, semble être une tactique efficace pour faire peur aux Harpies.
+
+* Si vous voyez un Crooked Harpy avancé vers vous en riant, vous êtes perdu.
+
+* Si vous voyez un de vos compagnons signalé comme étant mort, vous êtes perdu.
+
+* Si vous voyez un Crooked Harpy avec un sourire, vous êtes perdu.
+
+* Si vous entendez le mot ""HAPPY BIRD"", vous êtes perdu.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+- !!! ATTENTION !!! -
+
+Des rapports nous ont signalé l'apparition d'une nouvelle variation de Crooked Harpy composée d'au moins un individu.
+
+L'entité en question semble avoir pris le surnom ""Happy Bird"" et commet des carnages dans nos troupes, avec au-dessus de 30 morts en une semaine.
+
+Si vous avez la moindre information sur le sujet, informez le superviseur du camp le plus proche.";
+
             case "map":
             case "maps":
                 return text =
@@ -592,8 +644,135 @@ J'ai prévenu les Elves de rester sur leur garde. Cette façon que ce culte corrom
 
 - J.W.";
 
+            case "happy bird":
+                return text =
+@"Dr.Loubelle : Mon nom est Monica Loubelle, docteure en psychologie et comportement des anomalies. La nuit dernière, un groupe d'Explorer a été victime de l'entité appelée  ""Happy Bird"". Comme présenté dans les cas précédents, Happy Bird a laissé qu'un seul survivant en vie. La différence cette fois-ci est qu'il a démontré un besoin de vouloir socialiser. Afin d'étudier cette nouvelle découverte, j'interviewe le survivant en question. Pour l'enregistrement, pouvez-vous vous présenter?
+
+R.Tolman : Hum... Oui, heu... Mon nom est Ray Tolman, Explorer de 5ème Grade.
+
+Dr.Loubelle : Bien. Pouvez-vous me raconter ce qui s'est passé cette nuit-là, Mr. Tolman?
+
+R.Tolman : On revenait d'une exploration d'une grande ruine pour y trouver des rations. Le temps qu'on en sorte, il faisait déjà nuit. Alors on a monté un campement à l'entrée de la ruine.
+
+Dr.Loubelle : Combien de temps vous a-t-il fallu avant de remarquer l'absence d'un de vos collègues?
+
+R.Tolman : Pas longtemps. Une fois le camp monté, on a vite remarqué l'absence de Rod. Puis, soudainement, il est sorti de la forêt, nous disant qu'il était allé chercher du bois... Mais ce n'était pas lui...
+
+Dr.Loubelle : Comment l'avez-vous su?
+
+R.Tolman : Ce gamin avait une peur bleue de la forêt. Il ne serait jamais allé chercher du bois tout seul en pleine nuit... Bon sang!... Il n'avait que 15 ans...
+
+Dr.Loubelle : Que s'est-il passé par la suite?
+
+R.Tolman : La chose a vite remarqué qu'on se doutait que quelque chose n'allait pas. Et il s'est mis à rire... Il sonnait comme si une dizaine de Deer Smiles nous entourait. Et il a... mon dieu...
+
+Dr.Loubelle : Prenez votre temps.
+
+R.Tolman : Le corps de Rod s'est mis à se tordre dans tous les sens et à se déchirer. Ce qui se cachait à l'intérieur était le plus terrifiant et cauchemardesque Crooked Harpy que j'ai jamais vu...
+
+Dr.Loubelle : C'était Happy Bird?
+
+R.Tolman : Par pitié, ne prononcez pas son nom... Il s'est mis à tuer, lentement, chacun des membres de mon groupe... Mes amis... Il était si rapide! Je pouvais à peine le suivre des yeux! C'était comme une ombre aux plumes noires qui tranchait, dévorait, déchirait tout sur son passage...
+
+Dr.Loubelle : Et il ne restait que vous?
+
+R.Tolman : Oui. Durant ce chaos, il m'a tranché la main lorsque j'ai essayé d'atteindre mon pistolet. Mais, après ce massacre, il a tranquillement, en chantonnant, ramassé des bandages et a commencé à soigner ma blessure.
+
+Dr.Loubelle : Intéressant... [Prend des notes]. Qu'a-t-il fait ensuite?
+
+R.Tolman : Il a sorti une de nos rations de nourriture et me l'a tendue de ses mains, dégoulinant encore du sang de mes compagnons. Mais j'étais loin d'avoir faim après tout ça.
+
+Dr.Loubelle : Vous m'avez informé que vous avez pu l'interroger.
+
+R.Tolman : Quand j'ai repris mon calme, j'ai en effet eu la force de lui poser des questions.
+
+Dr.Loubelle : Qu'avez-vous appris?
+
+R.Tolman : J'ai pu savoir comment cette chose a muté en ce qu'il est maintenant. Il m'a raconté qu'il avait l'habitude de manger tout ce qui existe dans cette forêt, y compris les Fairies et les créations de The Root.
+
+Dr.Loubelle : Si ce que vous dites est vrai, ne devrait-il pas être sous l'influence de The Root?
+
+R.Tolman : Il semble que les Crooked Harpies ont une immunité à la corruption de The Root. C'est ainsi qu'il a pu dévorer Ghouls, Priests et autres anomalies sans succomber à son contrôle.
+
+Dr.Loubelle : Fascinant! [Prend des notes]. Quoi d'autre avez-vous pu apprendre.
+
+R.Tolman : Happy B... L'entité a développé une intelligence que je jugerais au-dessus de l'humain moyen. Il est capable de lire, écrire et communiquer avec des sons qu'il n'a jamais entendus. Il peut tordre et manier son corps de manière à être capable de prendre la peau d'un animal et de bouger de façon naturelle... Comme il l'a fait avec Rod.
+
+Dr.Loubelle : [Prend des notes]. Et, par la suite, que s'est-il passé.
+
+R.Tolman : Il est resté à mes côtés. Je pouvais voir et entendre des Ghouls, des False Trees et des Deer Smiles tout autour du campement, à la limite de la lumière portée par le feu. Mais aucun n'osait approcher. Ça l'a duré jusqu'au lever du soleil où ils sont tous repartis dans l'ombre de la forêt.
+
+Dr.Loubelle : Très bien. Merci beaucoup, Mr. Tolman. Les informations que vous avez recueillies nous seront vraiment ut...
+
+R.Tolman : Il y a... autre chose.
+
+Dr.Loubelle : Pardon?
+
+R.Tolman : Il m'a demandé de vous poser une question.
+
+Dr.Loubelle : Personne ne m'en a informé.
+
+R.Tolman : C'est parce que je devais vous le demander à vous, et vous seulement.
+
+Dr.Loubelle : Très bien, je vous écoute.
+
+R.Tolman : Connaissez-vous l'identité du prétendu roi perdu des Fairies, [][][][][][]?
+
+Dr.Loubelle : ...
+
+R.Tolman : Alors c'est vrai. Vous savez qui ça peut être.
+
+Dr.Loubelle : Comment avez-vous eu connaissance de ces informations?
+
+R.Tolman : Il m'a appris des choses que peu de gens encore en vie connaissent.
+
+Dr.Loubelle : Imaginons que je sache qui c'est, vous proposez quoi? Qu'on le lui donne?
+
+R.Tolman : Non. J'ignore qui il est et, pour être franc, je me fous de savoir ce que vous savez sur lui, sur le centre ""Wonder Life"" ou l'incident. Ce que je sais, c'est que l'Harpy ne sait pas que vous l'avez trouvé. Et que cette personne est probablement notre seul espoir de vaincre The Root.
+
+Dr.Loubelle : A-t-il mentionné quelque chose en échange?
+
+R.Tolman : Il m'a promis de diminuer ses attaques sur nos groupes le temps qu'on le trouve. Et qu'il nous laisserait définitivement tranquille si on lui ramenait. Mais laissez-moi vous dire une chose Dr. Loubelle, si ce monstre arrive à mettre la main sur la seule entité connue jusqu'à maintenant capable de terrasser The Root et de nous sortir de cette forêt maudite, je pense que nous ferons face à un plus grand danger que tout ce qui existe dans la Lost Forest.
+
+[Moment de silence]
+
+Dr.Loubelle : Je dois en informer les Watchers. Cette information doit rester secrète et la sécurité du garçon doit devenir une priorité.
+
+R.Tolman : Bien compris. Me permettez-vous de vous poser une question un peu personnelle?
+
+Dr.Loubelle : Au point où on en est, allez-y.
+
+R.Tolman : Je sais que vous et les Watchers étiez là lors de l'incident et, j'ignore comment personne n'ait jamais remarqué ça avant, moi inclus, mais... Quel âge avez-vous vraiment?";
+
+            case "oberon":
+            case "obéron":
+            case "auberon":
+            case "aubéron":
+            case "alberon":
+            case "albéron":
+                return text =
+@"SUJET : 03-Éron
+RACE : Afro-Américain
+ÂGE : 8 ans
+SOURCE UTILISÉE : TARO IV
+DOMMAGES INITIAUX :
+- Dommage sévère à l'arrière du crâne.
+- L'hippocampe semble avoir été endommagé.
+- Nombreuses vertèbres brisées menant à une paralysie totale.
+SUITE AU TRAITEMENT :
+- Le sujet semble avoir repris la maniabilité de son corps.
+- Le sujet a encore un peu de mal à se déplacer correctement.
+- Des racines semblent avoir réparé et maintiennent les
+  vertèbres en place.
+- Le QI du sujet est beaucoup plus élevé que la moyenne.
+- Le sujet ne semble pas avoir retrouvé la mémoire.
+NOTES :
+Sujet 03- Éron montre une grande compassion avec les autres sujets, humains ou non, et les membres du centre. La source du TARO IV n'a montré aucun signe de mutation, comportement agressif ou d'incompatibilité chez le sujet. Il sera parfait pour le projet ""Dryade"".
+
+    - Professeur Morgan Leffaie";
+            
             default:
-                return text = "Commande [" + command.ToUpper() + "] non reconnue";
+                return text = "Commande [" + command.ToUpper() + "] non reconnue.";
         }
     }
 
@@ -876,12 +1055,68 @@ Fairies see humans as an inferior race that they must help and protect, like a p
 * All Elves living among humans are to be treated like any other person.
 
 * If a Fairy only wants to speak to a ""governor"", go find the leader of the group. If a higher figure is not present, apologize and explain that they are not currently there, but that you can serve as a messenger.";
+            
             case "runes":
                 return text =
 @"|| RUNES ||
 
 Runes are faerie magic put into a form that humans can use for protection, healing, and energy generation. Those who study this science are called ""Runists"" and are able to engrave, transcribe and recreate Runes.";
-            
+
+            case "crooked":
+            case "harpy":
+            case "harpies":
+            case "crooked harpy":
+            case "crooked harpies":
+                return text =
+@"|| CROOKED HARPY ||
+
+The Crooked Harpies are a strange species of humanoid birds that are neither Fairies nor a creation of The Root. These creatures are about 1 meter tall, including feathery arms and backs, a bony outgrowth covering their heads, resembling a large bird skull, and vocal cords that can reproduce almost any sound.
+
+During the day, Crooked Hapies will sleep in caves or hollow logs until sunset. Once night falls, they roam the forest in groups of 2 to 6 Harpies in order to find food or learn new sounds. When they find prey, the Hapies begin to twist their bodies so that, in the dark, they have the silhouette of a large owl. They will then emit different sounds in order to drive their prey away from its group and isolate it to devour it.
+
+An interesting fact about Crooked Harpies is that their mental and social development develops based on what they eat. For example, Harpies who ate primarily wolves will have better coordination for hunting, while those who ate more deer will have a sharper sense of danger.
+
+Crooked Harpies that have primarily eaten humans will eventually develop an interest in socializing with other humans, using various words and sounds they have heard to create sentences. Explorers have even reported Crooked Harpies that have saved their lives in perilous situations. These Harpies should not be treated as a threat.
+
+- CONSEILS -
+* Although the chances of you being attacked by Crooked Harpies are slim, be sure to be armed and accompanied.
+
+* Using loud sounds, such as gunshots or ultrasounds, appears to be an effective tactic to scare off Harpies.
+
+* If you see a Crooked Harpy coming towards you laughing, you're doomed.
+
+* If you see one of your companions reported as dead, you're doomed.
+
+* If you see a Crooked Harpy with a smile, you're doomed.
+
+* If you hear the word ""HAPPY BIRD"", you're doomed.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+- !!! WARNING !!! -
+
+There have been reports of a new Crooked Harpy variation consisting of at least one individual.
+
+The entity in question seems to have taken the nickname ""Happy Bird"" and is committing carnage among our troops, with over 30 deaths in one week.
+
+If you have any information on the subject, inform the nearest camp supervisor.";
+
             case "map":
             case "maps":
                 return text =
@@ -1094,8 +1329,135 @@ I warned the Elves to be on their guard. This way in which this cult corrupts ot
 
 - J.W.";
 
+            case "happy bird":
+                return text =
+@"Dr.Loubelle : My name is Monica Loubelle, a doctor in psychology and behavior of anomalies. Last night, a group of Explorers fell victim to the entity called """"Happy Bird"""". As presented in previous cases, Happy Bird left only one survivor alive. The difference this time is that it demonstrated a need to socialize. In order to investigate this new discovery, I am interviewing the survivor in question. For the record, can you introduce yourself?
+
+R.Tolman : Um... Yes, uh... My name is Ray Tolman, 5th Grade Explorer.
+
+Dr.Loubelle : Good. Can you tell me what happened that night, Mr. Tolman?
+
+R.Tolman : We were returning from exploring a large ruin to find rations. By the time we got out, it was already dark. So we set up camp at the entrance to the ruin.
+
+Dr.Loubelle : How long did it take you to notice that one of your colleagues was missing?
+
+R.Tolman : Not long. Once the camp was set up, we quickly noticed Rod was missing. Then, suddenly, he came out of the forest, telling us he had gone to get some wood... But it wasn't him...
+
+Dr.Loubelle : How did you know?
+
+R.Tolman : This kid was terrified of the forest. He would never have gone to get wood alone in the middle of the night... Damn it!... He was only 15...
+
+Dr.Loubelle : What happened next?
+
+R.Tolman : The thing quickly noticed that we suspected something was wrong. And it started laughing... It sounded like there were a dozen Deer Smiles surrounding us. And it... my god...
+
+Dr.Loubelle : Take your time.
+
+R.Tolman : Rod's body began to twist and tear. What lay inside was the most terrifying, nightmarish Crooked Harpy I had ever seen...
+
+Dr.Loubelle : It was Happy Bird?
+
+R.Tolman : Please, don't say its name... It started killing, slowly, each member of my group... My friends... It was so fast! I could barely follow it with my eyes! It was like a shadow with black feathers that sliced, devoured, tore everything in its path...
+
+Dr.Loubelle : And you were the only one left?
+
+R.Tolman : Yes. During this chaos, it cut off my hand when I tried to reach for my gun. But, after this massacre, it calmly, humming, picked up some bandages and began to treat my wound.
+
+Dr.Loubelle : Interesting... [Takes notes]. What did it do next?
+
+R.Tolman : it pulled out one of our food rations and handed it to me, its hands still dripping with the blood of my companions. But I was far from hungry after all that.
+
+Dr.Loubelle : You informed me that you were able to question the creature.
+
+R.Tolman : When I regained my composure, I did indeed have the strength to ask it questions.
+
+Dr.Loubelle : What did you learn?
+
+R.Tolman : I was able to learn how this thing mutated into what it is now. It told me that it used to eat everything in this forest, including Fairies and The Root's creations.
+
+Dr.Loubelle : If what you say is true, shouldn't it be under the influence of The Root?
+
+R.Tolman : It seems that the Crooked Harpies have an immunity to The Root's corruption. This is how it was able to devour Ghouls, Priests, and other anomalies without succumbing to its control.
+
+Dr.Loubelle : Fascinating! [Takes notes]. What else were you able to learn.
+
+R.Tolman : Happy B... The creature has developed an intelligence that I would judge above the average human. It is able to read, write, and communicate with sounds it has never heard. It can twist and manipulate its body in such a way that it is able to take on the skin of an animal and move naturally... Like it did with Rod.
+
+Dr.Loubelle : [Takes notes] And then what happened?
+
+R.Tolman : It stayed by my side. I could see and hear Ghouls, False Trees, and Deer Smiles all around the camp, at the edge of the light carried by the fire. But none of them dared to approach. This lasted until sunrise when they all went back into the shadow of the forest.
+
+Dr.Loubelle : Alright. Thank you so much, Mr. Tolman. The information you have gathered will be very use...
+
+R.Tolman : There is... something else.
+
+Dr.Loubelle : What?
+
+R.Tolman : It asked me to ask you a question.
+
+Dr.Loubelle : Nobody informed me about this.
+
+R.Tolman : It's because I had to ask you, and only you.
+
+Dr.Loubelle : Very well. I'm listening.
+
+R.Tolman : Do you know the identity of the supposed lost king of the Fairies, [][][][][][]?
+
+Dr.Loubelle : ...
+
+R.Tolman : So it's true. You know who it could be.
+
+Dr.Loubelle : How do you know about this?
+
+R.Tolman : It taught me things that few people still alive know.
+
+Dr.Loubelle : Let's pretend I know who it is, what do you suggest?  Do you want us to give him to it?
+
+R.Tolman : Absolutely not. I don't know who he is and, to be honest, I don't care what you know about him, the ""Wonder Life"" center or the incident. What I do know is that the Harpy doesn't know you found him. And that person is probably our only hope of defeating The Root.
+
+Dr.Loubelle : Did it mention anything in return?
+
+R.Tolman : It promised me that it would reduce his attacks on our troops until we found him. And that it would leave us alone for good if we brought him back to it. But let me tell you something Dr. Loubelle, if this monster manages to get his hands on the only entity known so far capable of defeating The Root and getting us out of this cursed forest, I think we will face a greater danger than anything that exists in the Lost Forest.
+
+[Moment of silence]
+
+Dr.Loubelle : I must inform the Watchers of this. This information must remain secret and the boy's safety must become a priority.
+
+R.Tolman : Understood. May I ask you a personal question?
+
+Dr.Loubelle : At this point, go for it.
+
+R.Tolman : I know you and the Watchers were there during the incident, and I don't know how no one noticed this before, including me, but... How old are you really?";
+
+            case "oberon":
+            case "obéron":
+            case "auberon":
+            case "aubéron":
+            case "alberon":
+            case "albéron":
+                return text =
+@"SUBJECT : 03-Éron
+RACE : Afro-American
+AGE : 8 years old
+SOURCE USED : TARO IV
+INITIAL DAMATIONS :
+- Severe damage to the back of the skull.
+- The hippocampus appears to have been damaged.
+- Multiple broken vertebrae leading to total paralysis.
+FOLLOWING TREATMENT :
+- The subject appears to have regained control of his body.
+- The subject still has some difficulty walking properly.
+- Roots appear to have repaired and are holding the vertebrae
+  in place.
+- The subject's IQ is much higher than average.
+- The subject does not appear to have recovered his memory.
+NOTES :
+Subject 03-Eron shows great compassion with other subjects, human or not, and the members of the center. The source of TARO IV has shown no signs of mutation, aggressive behavior or incompatibility with the subject. He will be perfect for the ""Dryad"" project.
+
+    - Professor Morgan Leffaie";
+
             default:
-                return text = "Commande [" + command.ToUpper() + "] non reconnue";
+                return text = "[" + command.ToUpper() + "] command not recognized.";
         }
     }
 
