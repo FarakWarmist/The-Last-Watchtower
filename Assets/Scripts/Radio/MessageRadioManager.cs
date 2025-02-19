@@ -612,7 +612,7 @@ public class MessageRadioManager : MonoBehaviour
                     break;
                 case 4f: // B
                     message = @"Hum, pardon. 
-Je suis Alex, Explorer de 2ème grade, et je me trouve dans une situation compliquée.";
+Je suis Alex, Explorer de 2ème Grade, et je me trouve dans une situation compliquée.";
                     answer1 = @"Je suis Éron... le nouveau Watcher.";
                     answer2 = @"Que s'est-il passé?";
                     break;
@@ -2035,7 +2035,7 @@ Ha ha ha...!!! ";
                     break;
                 case 4f: // B
                     message = @"Um, sorry.
-I'm Alex, a 2nd grade Explorer, and I’m in a complicated situation.";
+I'm Alex, a 2nd Grade Explorer, and I’m in a complicated situation.";
                     answer1 = @"I'm Éron... the new Watcher.";
                     answer2 = @"What happened?";
                     break;
