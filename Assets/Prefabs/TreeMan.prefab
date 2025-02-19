@@ -66,7 +66,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.6
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -2096,9 +2096,11 @@ MonoBehaviour:
   isDissolved: 0
   isInside: 0
   listLenght: 0
-  timeToMakeAction: 0
   windowIndex: 0
   direction: 0
+  timeMin: 8
+  timeMax: 18
+  chanceBreackingWindow: 0.25
   playerTransform: {fileID: 0}
   horizontalViewAngle: 90
   verticalViewAngle: 30
