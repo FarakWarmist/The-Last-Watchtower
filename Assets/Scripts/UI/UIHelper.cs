@@ -25,6 +25,8 @@ public class UIHelper : MonoBehaviour
     public Canvas rune;
 
     public Canvas canvasUI;
+    public Canvas note;
+    public Canvas noteUI;
 
     ComputerState computer;
     Radio _radio;
@@ -112,7 +114,16 @@ public class UIHelper : MonoBehaviour
         {
             DisableAllCanvas();
             ItemsManager itemsManager = FindAnyObjectByType<ItemsManager>();
-            rune.enabled = itemsManager.hasRune;
+            if (note.enabled)
+            {
+                noteUI.enabled = true;
+                rune.enabled = false;
+            }
+            else
+            {
+                noteUI.enabled = false;
+                rune.enabled = itemsManager.hasRune; 
+            }
         }
 
         if (language.index == 0)

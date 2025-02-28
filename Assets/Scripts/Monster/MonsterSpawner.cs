@@ -7,7 +7,8 @@ public class MonsterSpawner : MonoBehaviour
     float timeMonsterAppear;
     public float timeMin;
     public float timeMax;
-    public float divide;
+    public float divide = 1;
+    public float multiple = 1;
     public GameObject[] monstersList;
     public bool isAppear;
     public bool startHunt = false;
@@ -148,7 +149,7 @@ public class MonsterSpawner : MonoBehaviour
 
     IEnumerator HuntStarted()
     {
-        audioSource.volume = 0.7f;
+        audioSource.volume = 0.5f;
         audioSource.clip = audioClip;
         yield return new WaitForSeconds(0.8f);
         audioSource.Play();

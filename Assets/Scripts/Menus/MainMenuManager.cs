@@ -107,29 +107,34 @@ public class MainMenuManager : MonoBehaviour
     public void OnFrenchButtonClicked()
     {
         language = "French";
+        EventSystem.current.SetSelectedGameObject(null);
     }
 
     public void OnEnglishButtonClicked()
     {
         language = "English";
+        EventSystem.current.SetSelectedGameObject(null);
     }
 
     private void OnHardButtonClicked()
     {
         difficultyChosen = "hard";
         StartCoroutine(StartGame());
+        EventSystem.current.SetSelectedGameObject(null);
     }
 
     private void OnNormalButtonClicked()
     {
         difficultyChosen = "normal";
         StartCoroutine(StartGame());
+        EventSystem.current.SetSelectedGameObject(null);
     }
 
     private void OnEasyButtonClicked()
     {
         difficultyChosen = "easy";
         StartCoroutine(StartGame());
+        EventSystem.current.SetSelectedGameObject(null);
     }
 
     private void OnPlayButtonClicked()

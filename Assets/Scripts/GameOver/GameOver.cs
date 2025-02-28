@@ -94,13 +94,14 @@ public class GameOver : MonoBehaviour
         mouseLook.enabled = false;
         MessageRadioManager messageRadio = FindAnyObjectByType<MessageRadioManager>();
         messageRadio.canNotMove = true;
+        Generator generator = FindAnyObjectByType<Generator>();
+        generator.energyLevel = 0;
         StartCoroutine(ItIsInsideTheCabine());
     }
     
     IEnumerator ItIsInsideTheCabine()
     {
         yield return new WaitForSeconds(0.5f);
-
         Transform playerTransform = mouseLook.gameObject.transform;
         Vector3 positionBehindPlayer = playerTransform.position - playerTransform.forward * distanceBehindPlayer;
         positionBehindPlayer.y = currentMonster.transform.position.y;

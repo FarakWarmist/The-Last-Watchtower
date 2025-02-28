@@ -309,7 +309,9 @@ public class Monster : MonoBehaviour
     {
         isTakeAction = true;
         yield return new WaitForSeconds(delay);
-        bool breakTheWindow = Random.Range(0f, 1f) < chanceBreackingWindow;
+        float chance = Random.Range(0f, 1f);
+        float _break = chanceBreackingWindow * monsterSpawner.multiple;
+        bool breakTheWindow = chance < _break;
         if (breakTheWindow)
         {
             BreakTheWindow();
@@ -318,6 +320,7 @@ public class Monster : MonoBehaviour
         {
             MoveToNextWindow();
         }
+        Debug.Log(chance + " < " + _break);
         isTakeAction = false;
     }
 
