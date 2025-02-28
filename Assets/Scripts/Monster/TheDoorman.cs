@@ -233,6 +233,7 @@ public class TheDoorman : MonoBehaviour
             isStartShowing = false;
             hideFace = true;
             timer = 0;
+            victimsWhispers.volume = 0;
         }
     }
 
