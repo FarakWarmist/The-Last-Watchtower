@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Languages : MonoBehaviour
 {
@@ -51,6 +52,10 @@ public class Languages : MonoBehaviour
     public TMP_Text easyDifficultyText;
     public TMP_Text normalDifficultyText;
     public TMP_Text hardDifficultyText;
+
+    public Image note;
+    public Sprite enigmeEN;
+    public Sprite enigmeFR;
     
     string easyDifficultyDesc;
     string normalDifficultyDesc;
@@ -84,6 +89,8 @@ public class Languages : MonoBehaviour
 
     private void French()
     {
+        note.sprite = enigmeFR;
+
         warningText.text =
 @"Êtes-vous sûr de vouloir quitter?
 Le jeu se fermera et votre progression sera perdue.";
@@ -125,6 +132,8 @@ Le jeu se fermera et votre progression sera perdue.";
 
     private void English()
     {
+        note.sprite = enigmeEN;
+
         warningText.text =
 @"Are you sure you want to quit?
 The game will close and your progress will be lost.";

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Clue : MonoBehaviour
 {
@@ -9,6 +10,9 @@ public class Clue : MonoBehaviour
 
     public AudioSource fairySings;
     Enigme enigme;
+
+    public Image clueOnNote;
+    public Sprite clueSprite;
 
     float dissolveValue = 1f;
     public bool isActif = false;
@@ -53,6 +57,7 @@ public class Clue : MonoBehaviour
 
         if (isFound)
         {
+            clueOnNote.sprite = clueSprite;
             ClueAppeared();
             StopSing();
         }

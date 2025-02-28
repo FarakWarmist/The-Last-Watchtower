@@ -5,14 +5,14 @@ public class Enigme : MonoBehaviour, IInteractable
 {
     ItemsManager itemsManager;
     Player player;
-    MouseLook cam;
+    MouseLook camFollow;
     GameObject strangeLock;
     public AudioClip[] audioClips;
     AudioSource audioSource;
 
     public GameObject clues;
     public GameObject rune;
-    public GameObject viewNote;
+    public Canvas viewNote;
     public GameObject noteOnTheDoor;
 
     public bool hasNote = false;
@@ -25,7 +25,7 @@ public class Enigme : MonoBehaviour, IInteractable
         GameObject playerObj = FindAnyObjectByType<Player>().gameObject;
         player = playerObj.GetComponent<Player>();
         GameObject camPlayer = FindAnyObjectByType<MouseLook>().gameObject;
-        cam = camPlayer.GetComponent<MouseLook>();
+        camFollow = camPlayer.GetComponent<MouseLook>();
         strangeLock = FindAnyObjectByType<StrangeLock>().gameObject;
     }
 
@@ -39,13 +39,13 @@ public class Enigme : MonoBehaviour, IInteractable
             audioSource.Play();
             hasNote = true;
             player.enabled = false;
-            cam.enabled = false;
+            camFollow.enabled = false;
         }
     }
 
     private void Update()
     {
-        viewNote.SetActive(hasNote);
+        viewNote.enabled = hasNote;
         noteOnTheDoor.SetActive(!hasNote);
         
         if (hasNote)
@@ -56,7 +56,7 @@ public class Enigme : MonoBehaviour, IInteractable
                 audioSource.Play();
                 hasNote = false;
                 player.enabled = true;
-                cam.enabled = true;
+                camFollow.enabled = true;
             }
         }
 
