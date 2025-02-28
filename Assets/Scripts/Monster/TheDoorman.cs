@@ -4,9 +4,10 @@ using UnityEngine.Tilemaps;
 
 public class TheDoorman : MonoBehaviour
 {
-    Door door;
-    GameOver gameOver;
-    DifficultyManager difficultyManager;
+    [SerializeField] Door door;
+    [SerializeField] GameOver gameOver;
+    [SerializeField] DifficultyManager difficultyManager;
+    [SerializeField] Languages languages;
     public Material doormanFaceMat;
     Color color;
     AudioSource audioSource;
@@ -31,6 +32,8 @@ public class TheDoorman : MonoBehaviour
     public float alpha = 0;
     public float volume;
 
+    int indexMessage = 0;
+
     float timeMin;
     float timeMax;
 
@@ -40,25 +43,8 @@ public class TheDoorman : MonoBehaviour
 
     void OnEnable()
     {
-        if (door == null)
-        {
-            door = FindAnyObjectByType<Door>(); 
-        }
+        audioSource = GetComponent<AudioSource>();
 
-        if (gameOver == null)
-        {
-            gameOver = FindAnyObjectByType<GameOver>();
-        }
-
-        if (difficultyManager == null)
-        {
-            difficultyManager = FindAnyObjectByType<DifficultyManager>();
-        }
-
-        if (audioSource == null)
-        {
-            audioSource = GetComponent<AudioSource>(); 
-        }
         alpha = 0;
         color = doormanFaceMat.color;
         color.a = alpha;
@@ -66,11 +52,6 @@ public class TheDoorman : MonoBehaviour
 
         volume = 0;
 
-        message =
-@"Ceci
-est
-un
-test.";
         face.transform.SetLocalPositionAndRotation(position1.localPosition, position1.localRotation);
     }
 
@@ -104,6 +85,8 @@ test.";
         {
             DoorWasOpen();
         }
+
+        message = RandomMessage();
     }
 
     private void DoorWasOpen()
@@ -160,10 +143,10 @@ test.";
             }
             else
             {
-                if (alpha < 0.26f)
+                if (alpha < 0.006f)
                 {
                     SetVictimsWhispersVolume(0.02f);
-                    alpha += Time.deltaTime * alphaSpeed;
+                    alpha += (Time.deltaTime * alphaSpeed) / 150;
                     alphaSpeed += Time.deltaTime * 0.005f;
                     color.a = alpha;
                     doormanFaceMat.color = color;
@@ -239,10 +222,11 @@ test.";
 
     public void CheckFlash()
     {
-        if (alpha > 0.1f && alpha < 1)
+        if (alpha > 0.0025f && alpha < 1)
         {
             laugh.Play();
             gameObject.SetActive(false);
+            isKnocking = false;
         }
         else
         {
@@ -255,7 +239,6 @@ test.";
     public void ResetTheDoorman()
     {
 
-        isKnocking = false;
         isStartShowing = false;
         stopAction = false;
         gotYou = false;
@@ -263,6 +246,7 @@ test.";
         timer = 0;
         alpha = 0;
         color.a = alpha;
+        isKnocking = false;
         doormanFaceMat.color = color;
         if (gameObject.activeSelf)
         {
@@ -271,12 +255,153 @@ test.";
         }
     }
 
+    public string RandomMessage()
+    {
+        string text;
+        if (languages.language == "French")
+        {
+            text = FrenchText(indexMessage); 
+        }
+        else
+        {
+            text = EnglishText(indexMessage);
+        }
+
+        return text;
+    }
+
+    static string FrenchText(int index)
+    {
+        string text;
+        switch (index)
+        {
+            case 0:
+                text =
+@"Éron!
+Ils arrivent!
+Laisse-moi entrer, vite!";
+                break;
+
+            case 1:
+                text =
+@"C'est moi !
+Je sais que tu dois avoir plein de questions à me poser.
+J'y répondrais avec plaisir, mais c'est dangereux dehors.
+Laisse-moi entrer et on parlera.";
+                break;
+
+            case 2:
+                text =
+@"Ils ont voulu m'éliminer, mais j'ai survécu!
+Tu ne peux pas leur faire confiance. Ils veulent te donner à ces monstres.
+Allez, on doit y aller.";
+                break;
+
+            case 3:
+                text =
+@"C'est de ta faute s'ils sont tous morts.
+Mais il n'est pas trop tard pour arranger les choses.
+Je peux t'amener à eux, et à elle, si tu m'ouvres la porte.";
+                break;
+
+            case 4:
+                text =
+@"Ouvre cette porte, Éron!
+Comment peux-tu laisser ton grand-père à l'extérieur avec ces monstres?";
+                break;
+
+            case 5:
+                text =
+@"Ils vont tous te trahir comme tout le monde l'a toujours fait.
+Mais je suis là pour toi.
+Ouvre la porte et, ensemble, nous pourrons sortir de cette forêt.";
+                break;
+
+            case 6:
+                text =
+@"Comment une personne aussi pitoyable que toi peut intéresser les Fairies à ce point.
+Tu sais que tout ça ne sert à rien.
+Abandonne, sors de cette tour, et accepte ton sort.";
+                break;
+
+            default:
+                text = "...";
+                break;
+        }
+
+        return text;
+    }
+
+    static string EnglishText(int index)
+    {
+        string text;
+        switch (index)
+        {
+            case 0:
+                text =
+@"Éron!
+They’re coming!
+Let me in, quick!";
+                break;
+
+            case 1:
+                text =
+@"It's me!
+I know you must have a lot of questions for me.
+I'd be happy to answer them, but it's dangerous out there.
+Let me in and we'll talk.";
+                break;
+
+            case 2:
+                text =
+@"They wanted to eliminate me, but I survived!
+You can't trust them. They want to give you to those monsters.
+Come on, we have to go.";
+                break;
+
+            case 3:
+                text =
+@"It’s your fault they’re all dead.
+But it's not too late to make things right.
+I can bring you to them, and to her, if you open the door.";
+                break;
+
+            case 4:
+                text =
+@"Open this door, Éron!
+How can you leave your grandfather outside with these monsters?";
+                break;
+
+            case 5:
+                text =
+@"They're all going to betray you like everyone always has.
+But I'm here for you.
+Open the door and together we can get out of this forest.";
+                break;
+
+            case 6:
+                text =
+@"How can someone as pitiful as you interest the Fairies so much?
+You know that all this is useless.
+Give up, get out of this tower, and accept your fate.";
+                break;
+
+            default:
+                text = "...";
+                break;
+        }
+
+        return text;
+    }
+
     IEnumerator KnockAtTheDoor()
     {
         isKnocking = true;
         int index = Random.Range(0, knockings.Length);
         audioSource.clip = knockings[index];
         audioSource.Play();
+        int i = Random.Range(0, 7);
+        indexMessage = i;
 
         StartCoroutine(theDoormanText.ShowText());
         yield return null;

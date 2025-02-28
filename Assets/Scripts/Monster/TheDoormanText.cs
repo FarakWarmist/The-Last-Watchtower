@@ -16,6 +16,7 @@ public class TheDoormanText : MonoBehaviour
     Color textColor;
     Image panelWhite;
     Image panelBlack;
+    Door door;
 
     public float alpha;
     float volume;
@@ -49,6 +50,15 @@ public class TheDoormanText : MonoBehaviour
 
     private void Update()
     {
+        if (door == null)
+        {
+            door = FindAnyObjectByType<Door>();
+        }
+        else if (door.isDoorCheck || door.isOpen)
+        {
+            whispers.Stop();
+        }
+
         message = theDoorman.message;
 
         textLineCount = messageText.textInfo.lineCount;
@@ -59,6 +69,13 @@ public class TheDoormanText : MonoBehaviour
 
         rtFrame.anchoredPosition = new Vector2(framePos.x, framePos.y + (50 * textLineCount));
         rtFrame.sizeDelta = new Vector2(frameSize.x, frameSize.y + (100 * textLineCount));
+
+        if (!theDoorman.gameObject.activeSelf)
+        {
+            alpha = 0;
+            SetAlphaMaterial(alpha);
+            SetAlphaTextColor(alpha);
+        }
     }
 
     public IEnumerator ShowText()
