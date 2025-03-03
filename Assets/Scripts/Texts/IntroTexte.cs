@@ -7,165 +7,138 @@ using UnityEngine.UI;
 public class IntroTexte : MonoBehaviour
 {
     Player player;
-
-    public Image[] boxesPart1;
-    public Image[] boxesPart2;
+    MouseLook mouseLook;
+    AudioSource audioSource;
 
     public Image background;
 
-    [SerializeField] GameObject part1;
-    [SerializeField] GameObject part2;
-
-    [SerializeField] GameObject boxesPart1Obj;
-    [SerializeField] GameObject boxesPart2Obj;
-
-    [SerializeField] TMP_Text morganDialogue;
-    [SerializeField] TMP_Text eronDialogue;
-
+    [SerializeField] TMP_Text textToClose;
+    [SerializeField] TMP_Text letter;
+    [SerializeField] Canvas paperCanvas;
+    [SerializeField] Image paperImage;
     [SerializeField] CharacterText characterText;
+    [SerializeField] GameObject audioAmbient;
 
     Languages language;
 
     Color color = Color.black;
-    Color textColor = Color.white;
+    Color paperColor;
+    float alpha = 1;
     public float timeToFade = 1.3f;
 
     public bool isFading;
-
-    int indexBox;
-    int indexPart;
+    bool showHowToClose;
 
     private void OnEnable()
     {
         player = FindAnyObjectByType<Player>();
+        mouseLook = FindAnyObjectByType<MouseLook>();
         player.enabled = false;
+        mouseLook.enabled = false;
+
+        audioSource = GetComponent<AudioSource>();
 
         language = FindAnyObjectByType<Languages>();
 
         color.a = 1;
-        
-        foreach (Image image in boxesPart1)
-        {
-            image.color = color;
-        }
-
-        foreach (Image image in boxesPart2)
-        {
-            image.color = color;
-        }
-
-        textColor.a = 1;
-        morganDialogue.color = textColor;
-        eronDialogue.color = textColor;
+        paperColor = paperImage.color;
 
         background.color = color;
+        letter.color = color;
         
-        boxesPart1Obj.SetActive(true);
-        boxesPart2Obj.SetActive(true);
-
-        part1.SetActive(true); 
-        part2.SetActive(false);
-
-        indexBox = 0;
-        indexPart = 1;
-
         isFading = false;
+        paperCanvas.enabled = true;
+
+        audioSource.Play();
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        CheckLanguage();
+        
+        if (Input.GetKeyDown(KeyCode.E) && paperCanvas.enabled && !isFading)
         {
-            if (indexPart == 1)
-            {
-                StopAllCoroutines();
-                SkipBoxesFading(boxesPart1);
-            }
-            else if (indexPart == 2)
-            {
-                StopAllCoroutines();
-                SkipBoxesFading(boxesPart2);
-            }
+            isFading = true;
+            textToClose.enabled = false;
+            StartCoroutine(Fade());
         }
 
-        if (!isFading)
+        if (!showHowToClose)
         {
-            if (indexPart == 1)
-            {
-                if (indexBox < boxesPart1.Length)
-                {
-                    StartCoroutine(FadeBox(boxesPart1, timeToFade));
-                }
-                else
-                {
-                    if (!boxesPart1Obj.activeSelf)
-                    {
-                        if (Input.GetKeyDown(KeyCode.E))
-                        {
-                            part1.SetActive(false);
-                            part2.SetActive(true);
-                            indexBox = 0;
-                            indexPart++;
-                        } 
-                    }
-                    else
-                    {
-                        boxesPart1Obj.SetActive(false); 
-                    }
-                }
-            }
-            else
-            {
-                if (indexBox < boxesPart2.Length)
-                {
-                    StartCoroutine(FadeBox(boxesPart2, timeToFade + 0.3f));
-                }
-                else
-                {
-                    boxesPart2Obj.SetActive(false);
-                    StartCoroutine(FadeBackground());
-                }
-            }
+            StartCoroutine(HowToCloseLetter());
         }
     }
 
-    void SkipBoxesFading(Image[] blackBoxes)
+    void CheckLanguage()
     {
-        indexBox = blackBoxes.Length;
-        isFading = false;
+        if (language.index == 0)
+        {
+            letter.text =
+@"Mon cher Éron,
+
+Si tu lis ce message, c'est que je ne suis plus de ce monde. Il y a tant de choses que j'aurais aimé te dire, t'expliquer, te raconter. La vérité est que je n'ai pas eu la force de le faire. J'avais peur que tu te souviennes de l'homme, non, le monstre que j'étais avant tout ça.
+
+J'ignore si la vie m'a donné une seconde chance, ou veut punir pour ce que j'ai fait. Mais avoir la chance de te voir grandir et devenir la personne que tu es aujourd'hui est la plus belle chose que j'ai pu vivre de toute ma longue vie. C'est pourquoi je pense que tu mérites de connaître la vérité. Sur qui j'étais, qui tu es vraiment, et ce qui s'est passé.
+
+Je t'ai laissé une carte qui indique la localisation d'une Watchtower qui n'apparaît sur aucune autre carte, car toi seul peux y accéder. Si tu décides de t'y rendre, tu auras des réponses à tes questions, mais tu devras faire face à l'enfer dans lequel je nous ai apporté. Tu dois en informer personne, encore moins Loubelle. Elle pense te protéger en t'enfermant dans le Village, mais personne ne doit te restreindre de vivre ta vie. Plus jamais.
+
+Sache que, même si ta grand-mère et moi ne sommes plus là, une part de nous sera toujours dans ton cœur et te soutiendra dans les moments difficiles. Tu es le plus beau cadeau qui nous a été donné d'avoir, et nous t'aimons très fort.
+
+- Ton grand-père, Morgan.";
+
+            textToClose.text = "[E] pour fermer";
+        }
+        else
+        {
+            letter.text =
+@"My dear Éron,
+
+If you are reading this message, it is because I am no longer of this world. There are so many things I would have liked to tell you, explain to you. The truth is, I didn't have the strength to do it. I was afraid you'd remember the man, no, the monster I was before all this.
+
+I don't know if life gave me a second chance, or wants to punish me for what I did. But having the chance to watch you grow and become the person you are today is the most beautiful thing I have ever experienced in my entire long life. That's why I think you deserve to know the truth. About who I was, who you really are, and what happened.
+
+I left you a map that shows the location of a Watchtower that does not appear on any other map, because only you can access it. If you decide to go there, you will have answers to your questions, but you will have to face the hell I have brought us all to. You must tell no one, least of all Loubelle. She thinks she's protecting you by locking you in the Village, but no one must restrict you from living your life. Never again.
+
+Know that, even though your grandmother and I are no longer here, a part of us will always be in your heart and will support you in difficult times. You are the greatest gift we have ever had, and we love you so very much.
+
+- Your grandfather, Morgan.";
+
+            textToClose.text = "[E] to close";
+        }
     }
 
-    IEnumerator FadeBox(Image[] blackBoxes, float timeToWait)
+    IEnumerator HowToCloseLetter()
     {
-        isFading = true;
-        yield return new WaitForSeconds(timeToWait);
-        while (blackBoxes[indexBox].color.a > 0)
+        showHowToClose = true;
+        Color colorText = textToClose.color;
+        float alphaText = textToClose.color.a;
+        yield return new WaitForSeconds(3f);
+        while (alphaText < 1)
         {
-            color = blackBoxes[indexBox].color;
-            color.a -= Time.deltaTime * 2;
-            blackBoxes[indexBox].color = color;
+            alphaText += Time.deltaTime * 0.8f;
+            colorText.a = alphaText;
+            textToClose.color = colorText;
             yield return null;
         }
-        indexBox++;
-        isFading = false;
     }
 
-    IEnumerator FadeBackground()
+    IEnumerator Fade()
     {
-        isFading = true;
-        yield return new WaitForSeconds(0.5f);
+        mouseLook.enabled = true;
         player.enabled = true;
-        color.a = 1;
-        while (color.a > 0)
+        audioAmbient.SetActive(true);
+        alpha = 1;
+        yield return new WaitForSeconds(0.5f);
+        while (alpha > 0)
         {
-            color.a -= Time.deltaTime;
+            alpha -= Time.deltaTime * 0.5f;
+            color.a = alpha;
+            paperColor.a = alpha;
             background.color = color;
-            textColor.a -= Time.deltaTime * 5;
-            morganDialogue.color = textColor;
-            eronDialogue.color = textColor;
+            letter.color = color;
+            paperImage.color = paperColor;
             yield return null;
         }
-        part2.SetActive(false);
         yield return new WaitForSeconds(2f);
         characterText.StartNewText(IntroMessage());
         yield return new WaitForSeconds(0.1f);

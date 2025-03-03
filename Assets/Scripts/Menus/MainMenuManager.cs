@@ -227,7 +227,7 @@ public class MainMenuManager : MonoBehaviour
         difficultyChoice.enabled = false;
         languagesCanvas.enabled = false;
         menuPause.enabled = true;
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(3.2f);
         animator.SetBool("Fade", false);
         introText.SetActive(true);
         player.enabled = true;
