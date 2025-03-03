@@ -13,6 +13,12 @@ public class Sleep : MonoBehaviour, IInteractable
     float rotationSpeed = 0.2f;
     float volume;
 
+    public Light warmLightShadow;
+    public Light coldLightShadow;
+    float warmShadowInitialIntensity = 0.05f;
+    float coldShadowInitialIntensity = 0.07f;
+    float finalIntensity = 0;
+
     Quaternion startRotation;
     public Quaternion endRotation;
     public float transitionProgress;
@@ -61,9 +67,13 @@ public class Sleep : MonoBehaviour, IInteractable
             sunshinTransitionProgress = Mathf.Clamp01(sunshinTransitionProgress);
 
             directionalLight.transform.rotation = Quaternion.Slerp(startRotation, endRotation, sunshinTransitionProgress);
+            float warmShadowCurrentIntensity = Mathf.Lerp(warmShadowInitialIntensity, finalIntensity, sunshinTransitionProgress * 2);
+            float coldShadowCurrentIntensity = Mathf.Lerp(coldShadowInitialIntensity, finalIntensity, sunshinTransitionProgress * 2);
 
             Color currentColor = Color.Lerp(dayColor, nightColor, sunshinTransitionProgress);
             directionalLight.color = currentColor;
+            warmLightShadow.intensity = warmShadowCurrentIntensity;
+            coldLightShadow.intensity = coldShadowCurrentIntensity;
 
             if (sunshinTransitionProgress >= 1.0f)
             {
