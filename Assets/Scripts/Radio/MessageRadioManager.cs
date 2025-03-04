@@ -15,6 +15,7 @@ public class MessageRadioManager : MonoBehaviour
     public bool needAnswer;
     public bool canNotMove;
     bool musicUp;
+    bool enableButtons;
 
     public int answerChoosed;
     public int answerNum;
@@ -36,6 +37,7 @@ public class MessageRadioManager : MonoBehaviour
     [SerializeField] AudioSource audioSource;
     [SerializeField] LightSwitch lightSwitch;
     [SerializeField] TheDoorman theDoorman;
+    MainMenuManager mainMenu;
     MonsterSpawner monsterSpawner;
     public AudioClip[] stressMusics;
     [SerializeField] AudioClip[] musics;
@@ -288,15 +290,21 @@ public class MessageRadioManager : MonoBehaviour
         }
         else if (messageNum == 5)
         {
-            if (messagePart > 15 && messagePart < 6000)
+            if ((messagePart > 15 && messagePart < 6000) || (messagePart > 9999 && messagePart < 52001))
             {
                 MonstersSpawnRate(true, 2, 2f);
-                MusicsFinalRun();
+                audioSource.volume = 0.6f;
+                if (!audioSource.isPlaying && audioSource.time == 0)
+                {
+                    MusicsFinalRun();
+                }
             }
             else
             {
+                audioSource.clip = null;
                 MonstersSpawnRate(false, 1, 1.75f);
             }
+
 
             if (messagePart == 3)
             {
@@ -386,7 +394,7 @@ public class MessageRadioManager : MonoBehaviour
                 path2.SetPath(0, 18, 19);
                 pin.SetPosition(18);
                 pinPath1.SetPosition(29);
-                pinPath2.SetPosition(22);
+                pinPath2.SetPosition(20);
             }
             else if (messagePart == 50001)
             {
@@ -469,7 +477,7 @@ public class MessageRadioManager : MonoBehaviour
             
             if (messagePart == 6021)
             {
-                messagePart = 8000;
+                messagePart = 80000;
                 if (!finalMessage)
                 {
                     finalMessage = true;
@@ -477,15 +485,21 @@ public class MessageRadioManager : MonoBehaviour
                 }
             }
 
-            if ((messagePart > 5999 && messagePart < 6021) || (messagePart > 8000 && messagePart < 10000))
+            if ((messagePart > 6000 && messagePart < 6021) || messagePart > 79999)
             {
                 canNotMove = true;
-                if (dayTime == null)
-                {
-                    dayTime = FindAnyObjectByType<Sleep>();
-                }
 
-                dayTime.Sunrise();
+                if (messagePart > 6005)
+                {
+                    if (dayTime != null)
+                    {
+                        dayTime.Sunrise();
+                    }
+                    else
+                    {
+                        dayTime = FindAnyObjectByType<Sleep>();
+                    } 
+                }
             }
             // Dead End
             if (messagePart == 51111)
@@ -544,17 +558,12 @@ public class MessageRadioManager : MonoBehaviour
 
     private void MusicsFinalRun()
     {
-        audioSource.volume = 0.6f;
-        if (!audioSource.isPlaying)
+        if (musics.Length > 0)
         {
             audioSource.clip = musics[musicsIndex];
             audioSource.Play();
-            musicsIndex++;
-        }
 
-        if (musicsIndex >= musics.Length)
-        {
-            musicsIndex = 0;
+            musicsIndex = (musicsIndex + 1) % musics.Length;
         }
     }
 
@@ -3509,19 +3518,10 @@ I repeat...";
     IEnumerator FinalMessage()
     {
         yield return new WaitForSeconds(1);
-        MainMenuManager mainMenu = FindAnyObjectByType<MainMenuManager>();
         Animator canvasAnimator = endMessageCanvas.GetComponent<Animator>();
         endMessageCanvas.enabled = true;
         canvasAnimator.SetBool("End", true);
         yield return new WaitForSeconds(1);
-        while (canvasAnimator.GetCurrentAnimatorClipInfo(0)[0].clip.name != "FinalMessage")
-        {
-            yield return null;
-        }
-        mainMenu.endQuitButton.interactable = true;
-        mainMenu.youtubeButton.interactable = true;
-        mainMenu.instagramButton.interactable = true;
-        mainMenu.blueskyButton.interactable = true;
-        mainMenu.itchioButton.interactable = true;
+        enableButtons = true;
     }
 }
