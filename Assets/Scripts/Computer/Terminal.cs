@@ -10,6 +10,7 @@ public class Terminal : MonoBehaviour
     public TMP_Text outputTerminal;
     string text;
     string mainText;
+    string loadingText;
 
     public float loadingTime = 0.5f;
 
@@ -44,6 +45,15 @@ public class Terminal : MonoBehaviour
         if (string.IsNullOrEmpty(input))
         {
             return;
+        }
+
+        if (language.index == 0)
+        {
+            loadingText = "Chargement .";
+        }
+        else
+        {
+            loadingText = "Loading .";
         }
 
         string reponse = ProcessCommand(input);
@@ -1466,7 +1476,7 @@ Subject 03-Eron shows great compassion with other subjects, human or not, and th
         outputTerminal.text = "";
         inputCanvas.enabled = false;
         yield return new WaitForSeconds(0.001f);
-        outputTerminal.text = "Chargement .";
+        outputTerminal.text = loadingText;
         yield return new WaitForSeconds(0.5f);
         outputTerminal.text += " .";
         yield return new WaitForSeconds(0.5f);
