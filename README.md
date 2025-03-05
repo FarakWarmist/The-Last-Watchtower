@@ -79,6 +79,7 @@ ______________
 [E] => Interact.
 [F] => Flash with the Rune.
 [S] => Back when looking at something.
+[LeftShift] => Sprint.
 
 _____________
 -- CREDITS --
