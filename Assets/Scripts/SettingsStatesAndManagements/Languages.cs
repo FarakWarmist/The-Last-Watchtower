@@ -110,7 +110,9 @@ Le jeu se fermera et votre progression sera perdue.";
 • Les monstres se présentent moins souvent.";
 
         normalDifficultyDesc =
-@"Pour les joueurs qui veulent une expérience de jeu classique avec la bonne dose de stress.";
+@"Pour les joueurs qui veulent une expérience de jeu classique avec la bonne dose de stress.
+
+(Les Astuces seront désactivées par défaut, mais peuvent être activées dans le menu Pause.)";
 
         hardDifficultyDesc =
 @"Pour les joueurs qui ont déjà joués et cherche plus gros défi ou les accros au stress.
@@ -153,7 +155,9 @@ The game will close and your progress will be lost.";
 • Monsters appear less often.";
 
         normalDifficultyDesc =
-@"For players who want a classic gaming experience with the right amount of stress.";
+@"For players who want a classic gaming experience with the right amount of stress.
+
+(Tips will be disabled by default, but can be enabled in the Pause menu.)";
 
         hardDifficultyDesc =
 @"For players who have already played and are looking for a bigger challenge or stress addicts.

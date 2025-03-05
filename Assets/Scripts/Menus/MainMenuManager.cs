@@ -47,6 +47,7 @@ public class MainMenuManager : MonoBehaviour
     Player player;
     Reset reset;
     [SerializeField] InsideOrOutside detector;
+    [SerializeField] Toggle toggleTips;
 
     public string difficultyChosen;
     public GameObject difficultyManagerObj;
@@ -225,6 +226,10 @@ public class MainMenuManager : MonoBehaviour
         difficultyChoice.enabled = false;
         languagesCanvas.enabled = false;
         menuPause.enabled = true;
+        if (difficultyChosen == "normal")
+        {
+            toggleTips.isOn = false;
+        }
         yield return new WaitForSeconds(3.2f);
         animator.SetBool("Fade", false);
         introText.SetActive(true);
