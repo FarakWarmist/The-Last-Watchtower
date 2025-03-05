@@ -38,7 +38,7 @@ public class MenuPause : MonoBehaviour
     {
         menuPause.SetActive(isActif);
 
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && !warningCanvas.enabled)
         {
             if(isActif)
             {
