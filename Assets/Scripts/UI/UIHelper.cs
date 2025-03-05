@@ -33,6 +33,7 @@ public class UIHelper : MonoBehaviour
     [SerializeField] MonsterSpawner monsterSpawner;
     RuneFlashing runeFlashing;
     public GameObject runeObject;
+    [SerializeField] GameObject pauseMenu;
 
     public TMP_Text tipText;
     public TMP_Text title;
@@ -55,7 +56,7 @@ public class UIHelper : MonoBehaviour
 
     private void Update()
     {
-        if (radioMessage.canNotMove)
+        if (radioMessage.canNotMove || pauseMenu.activeSelf)
         {
             canvasUI.enabled = false;
         }

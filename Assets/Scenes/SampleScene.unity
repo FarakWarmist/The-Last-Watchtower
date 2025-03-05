@@ -3211,6 +3211,7 @@ MonoBehaviour:
   noteUI: {fileID: 42954448}
   monsterSpawner: {fileID: 78719070}
   runeObject: {fileID: 872894167}
+  pauseMenu: {fileID: 596759795}
   tipText: {fileID: 1966719339}
   title: {fileID: 545209774}
   toDeactivated: {fileID: 469446194}
