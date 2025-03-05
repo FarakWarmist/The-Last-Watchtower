@@ -80,6 +80,7 @@ ______________
 [F] => Flash with the Rune.
 [S] => Back when looking at something.
 [LeftShift] => Sprint.
+[Esc] => Pause Menu.
 
 _____________
 -- CREDITS --
