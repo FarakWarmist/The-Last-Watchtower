@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Generator : MonoBehaviour, IInteractable
 {
+    [SerializeField] MessageRadioManager messageRadio;
     [SerializeField] LightSwitch lightSwitch;
     public int energyLevel = 0;
 
@@ -53,7 +54,10 @@ public class Generator : MonoBehaviour, IInteractable
 
     public void Stalled()
     {
-        energyLevel = 0;
-        lightSwitch.HaveNoEnergyMessage();
+        if (!messageRadio.winState)
+        {
+            energyLevel = 0;
+            lightSwitch.HaveNoEnergyMessage(); 
+        }
     }
 }

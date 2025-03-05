@@ -1,9 +1,6 @@
 using System.Collections;
 using Unity.Cinemachine;
-using UnityEditor.VersionControl;
 using UnityEngine;
-using UnityEngine.Audio;
-using UnityEngine.UI;
 
 public class Radio : MonoBehaviour, IInteractable
 {

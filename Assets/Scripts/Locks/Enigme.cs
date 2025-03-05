@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Enigme : MonoBehaviour, IInteractable
@@ -14,6 +13,7 @@ public class Enigme : MonoBehaviour, IInteractable
     public GameObject rune;
     public Canvas viewNote;
     public GameObject noteOnTheDoor;
+    [SerializeField] Canvas icons;
 
     public bool hasNote = false;
 
@@ -47,9 +47,10 @@ public class Enigme : MonoBehaviour, IInteractable
     {
         viewNote.enabled = hasNote;
         noteOnTheDoor.SetActive(!hasNote);
-        
         if (hasNote)
         {
+            icons.enabled = false;
+
             if (Input.GetKeyDown(KeyCode.E))
             {
                 audioSource.clip = audioClips[1];
@@ -57,6 +58,7 @@ public class Enigme : MonoBehaviour, IInteractable
                 hasNote = false;
                 player.enabled = true;
                 camFollow.enabled = true;
+                icons.enabled = true;
             }
         }
 

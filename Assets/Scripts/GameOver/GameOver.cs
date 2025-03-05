@@ -1,11 +1,6 @@
-using System;
 using System.Collections;
 using Unity.Cinemachine;
 using UnityEngine;
-using UnityEngine.Rendering;
-using UnityEngine.UI;
-using UnityEngine.UIElements;
-
 
 public class GameOver : MonoBehaviour
 {

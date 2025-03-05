@@ -1,7 +1,5 @@
-using System;
 using System.Collections;
 using TMPro;
-using Unity.Cinemachine;
 using UnityEngine;
 
 public class Terminal : MonoBehaviour
@@ -808,6 +806,7 @@ EXIT
 List of different creatures, anomalies and dangers in the area:
 
 CURSED TOOL
+CROOKED HARPY
 DEER SMILE
 FAIRY
 FALSE TREE

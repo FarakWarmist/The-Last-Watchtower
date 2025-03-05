@@ -1,4 +1,3 @@
-using System;
 using TMPro;
 using Unity.Cinemachine;
 using UnityEngine;
@@ -183,6 +182,14 @@ public class UIHelper : MonoBehaviour
         {
             Tips(ref monsterSpawner.tipsBrokenWindows);
         }
+        else if (monsterSpawner.tipsMonster == 1)
+        {
+            Tips(ref monsterSpawner.tipsMonster);
+        }
+        else if (monsterSpawner.tipsTheDoorman == 1)
+        {
+            Tips(ref monsterSpawner.tipsTheDoorman);
+        }
         else if (runeObject.activeSelf)
         {
             if (runeFlashing.tips == 0)
@@ -222,6 +229,16 @@ public class UIHelper : MonoBehaviour
             tipMessage =
 @"L'une de vos fenêtres vient de se briser. Prenez le marteau et des planches afin de la barricader et éviter qu'un monstre rentre dans la Tour.";
         }
+        else if (monsterSpawner.tipsMonster == 1)
+        {
+            tipMessage =
+@"Si vous entendez ou suspectez qu'il y a un monstre à l'extérieur, utilisez la Rune pour les faire disparaître. Vous pouvez fermer les lumières pour mieux les voir et les empêcher d'agir quand vous les regardez, mais gare à ne pas faire sauter la Génératrice ou succomber à la Forest Madness.";
+        }
+        else if (monsterSpawner.tipsTheDoorman == 1)
+        {
+            tipMessage =
+@"Pour chasser le Doorman, vous devez vous munir de votre Rune et entrouvrir la porte. Attendez de bien voir son visage avant de le flasher. Trop tôt, il faudra recommencer, et trop tard, il vous attrapera. Le Doorman annonce son départ avec un rire menaçant. Assurez-vous que votre porte soit fermée, sinon le Doorman vous attaquera par surprise.";
+        }
         else if (runeObject.activeSelf)
         {
             tipMessage =
@@ -255,6 +272,16 @@ public class UIHelper : MonoBehaviour
         {
             tipMessage =
 @"One of your windows has just broken. Grab the hammer and some boards to barricade it and prevent a monster from entering the Tower.";
+        }
+        else if (monsterSpawner.tipsMonster == 1)
+        {
+            tipMessage =
+@"If you hear or suspect there is a monster outside, use the Rune to make them disappear. You can turn off the lights to see them better and stop them from acting when you look at them, but be careful not to overheat the Generator or succumb to the Forest Madness.";
+        }
+        else if (monsterSpawner.tipsTheDoorman == 1)
+        {
+            tipMessage =
+@"To chase away the Doorman, you must equip yourself with your Rune and open the door a crack. Wait until you have a good look at his face before flashing him. Too early and you'll have to start over, and too late and he'll catch you. The Doorman announces his departure with a threatening laugh. Make sure your door is closed, or the Doorman will attack you by surprise.";
         }
         else if (runeObject.activeSelf)
         {

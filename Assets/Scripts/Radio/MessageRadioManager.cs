@@ -1,8 +1,5 @@
 using System.Collections;
-using TMPro;
-using UnityEditor.VersionControl;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class MessageRadioManager : MonoBehaviour
 {
@@ -15,7 +12,8 @@ public class MessageRadioManager : MonoBehaviour
     public bool needAnswer;
     public bool canNotMove;
     bool musicUp;
-    bool enableButtons;
+    bool win;
+    public bool winState;
 
     public int answerChoosed;
     public int answerNum;
@@ -37,10 +35,11 @@ public class MessageRadioManager : MonoBehaviour
     [SerializeField] AudioSource audioSource;
     [SerializeField] LightSwitch lightSwitch;
     [SerializeField] TheDoorman theDoorman;
-    MainMenuManager mainMenu;
+    Generator generator;
     MonsterSpawner monsterSpawner;
     public AudioClip[] stressMusics;
     [SerializeField] AudioClip[] musics;
+    [SerializeField] AudioClip endingMusic;
     public GameObject forestMadness;
     Languages language;
     public Canvas endMessageCanvas;
@@ -58,6 +57,8 @@ public class MessageRadioManager : MonoBehaviour
 
     private void Update()
     {
+        winState = win;
+
         if (lightSwitch.switchOn)
         {
             StartMessage(); 
@@ -290,18 +291,62 @@ public class MessageRadioManager : MonoBehaviour
         }
         else if (messageNum == 5)
         {
-            if ((messagePart > 15 && messagePart < 6000) || (messagePart > 9999 && messagePart < 52001))
+            if (win)
+            {
+                if (generator != null)
+                {
+                    generator.energyLevel = 3;
+                    monsters.SetActive(false);
+                }
+                else
+                {
+                    generator = FindAnyObjectByType<Generator>();
+                }
+            }
+
+            if ((messagePart > 15 && messagePart < 6000) || (messagePart > 9999 && messagePart < 52001) || (messagePart > 6999 && messagePart < 8000))
             {
                 MonstersSpawnRate(true, 2, 2f);
-                audioSource.volume = 0.6f;
+                audioSource.volume = 0.55f;
                 if (!audioSource.isPlaying && audioSource.time == 0)
                 {
                     MusicsFinalRun();
                 }
+
+                if(canNotMove)
+                {
+                    if (musicUp)
+                    {
+                        StartCoroutine(MusicDown());
+                    }
+                }
+                else
+                {
+                    musicUp = true;
+                }
             }
             else
             {
-                audioSource.clip = null;
+                if (messagePart == 6000)
+                {
+                    if (musicUp)
+                    {
+                        StartCoroutine(MusicDown());
+                    }
+                }
+                else if (messagePart == 6005)
+                {
+                    audioSource.Stop();
+                }
+                else if (messagePart > 6005)
+                {
+                    audioSource.clip = endingMusic; 
+                    audioSource.volume = 0.55f;
+                    if (!audioSource.isPlaying && audioSource.time == 0)
+                    {
+                        audioSource.Play();
+                    }
+                }
                 MonstersSpawnRate(false, 1, 1.75f);
             }
 
@@ -358,7 +403,7 @@ public class MessageRadioManager : MonoBehaviour
                 path2.SetPath(0, 9, 10);
                 pin.SetPosition(13);
                 pinPath1.SetPosition(18);
-                pinPath2.SetPosition(13);
+                pinPath2.SetPosition(14);
             }
             else if (messagePart == 30001)
             {
@@ -471,6 +516,8 @@ public class MessageRadioManager : MonoBehaviour
             //Win
             if (messagePart == 51123)
             {
+                musicUp = true;
+                win = true;
                 time = 0;
                 messagePart = 6000;
             }
@@ -3522,6 +3569,5 @@ I repeat...";
         endMessageCanvas.enabled = true;
         canvasAnimator.SetBool("End", true);
         yield return new WaitForSeconds(1);
-        enableButtons = true;
     }
 }

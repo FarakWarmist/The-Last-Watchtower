@@ -24,14 +24,13 @@ public class LightSwitch : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        if (switchOn)
-        {
-            Overheated();
-        }
-
         if (generator.energyLevel == 3)
         {
             switchOn = !switchOn;
+            if (!switchOn)
+            {
+                Overheated();
+            }
         }
         else
         {

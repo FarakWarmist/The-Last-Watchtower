@@ -1,5 +1,4 @@
 using System.Collections;
-using UnityEditor;
 using UnityEngine;
 
 public class MonsterSpawner : MonoBehaviour
@@ -25,6 +24,7 @@ public class MonsterSpawner : MonoBehaviour
 
     public int tipsBrokenWindows = 0;
     public int tipsMonster = 0;
+    public int tipsTheDoorman = 0;
 
     public float doormanDelay;
 
@@ -48,6 +48,7 @@ public class MonsterSpawner : MonoBehaviour
 
         if (!startHunt)
         {
+            tipsMonster = helper.ActiveTips(tipsMonster);
             startHunt = true;
             monstersList[0].SetActive(true);
             monstersList[0].GetComponent<AudioSource>().Play();
@@ -68,6 +69,13 @@ public class MonsterSpawner : MonoBehaviour
             if (!doormanIsAppear)
             {
                 StartCoroutine(SpawnTheDoorman()); 
+            }
+        }
+        else if (theDoorman.activeSelf)
+        {
+            if (tipsTheDoorman == 0)
+            {
+                tipsTheDoorman = helper.ActiveTips(tipsTheDoorman);
             }
         }
     }
@@ -132,7 +140,7 @@ public class MonsterSpawner : MonoBehaviour
         }
     }
 
-    public void ShowTip()
+    public void ShowTipBrokenWindow()
     {
         tipsBrokenWindows = helper.ActiveTips(tipsBrokenWindows);
     }

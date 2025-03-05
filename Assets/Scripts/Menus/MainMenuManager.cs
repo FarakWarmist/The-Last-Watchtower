@@ -1,9 +1,7 @@
-using System;
 using System.Collections;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
 
 public class MainMenuManager : MonoBehaviour

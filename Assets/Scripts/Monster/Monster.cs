@@ -1,6 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Animations.Rigging;
@@ -289,7 +287,7 @@ public class Monster : MonoBehaviour
     {
         if (monster.remainingDistance <= monster.stoppingDistance && !isFlashed && !messageRadio.canNotMove)
         {
-            monsterSpawner.ShowTip();
+            monsterSpawner.ShowTipBrokenWindow();
             windowsTarget[windowIndex].GetComponent<WindowState>().BreakTheWindow(this);
         }
         else
@@ -320,7 +318,6 @@ public class Monster : MonoBehaviour
         {
             MoveToNextWindow();
         }
-        Debug.Log(chance + " < " + _break);
         isTakeAction = false;
     }
 

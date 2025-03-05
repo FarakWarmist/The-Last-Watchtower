@@ -1,6 +1,3 @@
-using NUnit.Framework;
-using System;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -100,7 +97,7 @@ Le jeu se fermera et votre progression sera perdue.";
                      "Facile", "Normale", "Difficile",
                      "Retour", "Réessayer",
                      "Musique", "Ambiant", "Effets Sonores", "Sensibilité",
-                     "Aide", "Carte Localisation", "Astuces",
+                     "Touches", "Carte Localisation", "Astuces",
                      "ESC pour fermer", "Oui", "Non");
 
         easyDifficultyDesc =
@@ -143,7 +140,7 @@ The game will close and your progress will be lost.";
                      "Easy", "Normal", "Hard",
                      "Back", "Retry",
                      "Music", "Ambient", "Sound Effects", "Sensitivity",
-                     "Help", "Map Location", "Tips",
+                     "Keys", "Map Location", "Tips",
                      "ESC to close", "Yes", "No");
 
         easyDifficultyDesc =

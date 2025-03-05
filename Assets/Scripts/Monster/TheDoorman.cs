@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 
 public class TheDoorman : MonoBehaviour
 {
@@ -150,7 +149,6 @@ public class TheDoorman : MonoBehaviour
                     alphaSpeed += Time.deltaTime * 0.005f;
                     color.a = alpha;
                     doormanFaceMat.color = color;
-                    Debug.Log(color.a + " || " + doormanFaceMat.color.a);
                 }
                 else
                 {

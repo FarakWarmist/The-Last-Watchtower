@@ -12,7 +12,8 @@ public class TimeBar : MonoBehaviour
     public bool isAppeared;
     public bool transition;
     public float alpha;
-    public Material materialBrightWhite;
+    public Image timebarImage;
+    Color timebarColor;
 
     [SerializeField] Radio radio;
     [SerializeField] MessageRadioManager messageRadio;
@@ -22,7 +23,9 @@ public class TimeBar : MonoBehaviour
     {
         transition = false;
         isAppeared = false;
+        timebarColor = timebarImage.color;
         alpha = 0;
+        UpdateAlpha(alpha);
         StartCoroutine(EnableTimeBar());
     }
 
@@ -32,6 +35,7 @@ public class TimeBar : MonoBehaviour
         isAppeared = false;
         canvas.enabled = false;
         alpha = 0;
+        UpdateAlpha(alpha);
         messageRadio.time = 0;
     }
 
@@ -62,10 +66,16 @@ public class TimeBar : MonoBehaviour
         } 
     }
 
+    void UpdateAlpha(float a)
+    {
+        timebarColor.a = a;
+        timebarImage.color = timebarColor;
+    }
+
     IEnumerator EnableTimeBar()
     {
         yield return new WaitForSeconds(0.01f);
-        materialBrightWhite.SetFloat("_Alpha", alpha);
+        UpdateAlpha(alpha);
         timeLimit = messageRadio.time;
         timeBarSlider.maxValue = timeLimit;
         timeBarSlider.value = timeLimit;
@@ -78,28 +88,31 @@ public class TimeBar : MonoBehaviour
         transition = true;
         yield return new WaitForSeconds(0.1f);
 
-        while (alpha < 0.8f)
+        while (alpha < 1f)
         {
             alpha += Time.deltaTime;
-            materialBrightWhite.SetFloat("_Alpha", alpha);
+            UpdateAlpha(alpha);
             yield return null;
         }
-        materialBrightWhite.SetFloat("_Alpha", alpha);
+        alpha = 1;
+        UpdateAlpha(alpha);
         isAppeared = true;
         transition = false;
     }
+
     public IEnumerator HideTimeBar()
     {
         transition = true;
         yield return new WaitForSeconds(0.1f);
 
-        while (alpha > -0.1f)
+        while (alpha > 0)
         {
             alpha -= Time.deltaTime;
-            materialBrightWhite.SetFloat("_Alpha", alpha);
+            UpdateAlpha(alpha);
             yield return null;
         }
-        materialBrightWhite.SetFloat("_Alpha", alpha);
+        alpha = 0;
+        UpdateAlpha(alpha);
         transition = false;
         radio.timerOn = false;
         yield return new WaitForSeconds(0.01f);

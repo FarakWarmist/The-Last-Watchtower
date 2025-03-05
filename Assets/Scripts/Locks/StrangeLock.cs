@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using Unity.Cinemachine;
-using UnityEditor.PackageManager;
 using UnityEngine;
 
 public class StrangeLock : MonoBehaviour, IInteractable

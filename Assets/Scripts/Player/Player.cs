@@ -1,10 +1,5 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using Unity.Cinemachine;
-using UnityEditor.PackageManager;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -33,7 +28,7 @@ public class Player : MonoBehaviour
     private void Start()
     {
         ignoredLayers = LayerMask.GetMask("Detector");
-        sprintSpeed = speed * 2;
+        sprintSpeed = speed * 1.75f;
         brain = FindAnyObjectByType<CinemachineBrain>();
     }
 
