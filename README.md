@@ -89,13 +89,20 @@ _____________
 Tree Monster - by Captain Galaxy
 https://free3d.com/3d-model/tree-monster-1963.html
 
-Others - by FarakWarmist with Blender 3D
+Others 3D models and Drawings - by FarakWarmist
+
 _______________
 
-==FONT ADDED==
+==FONTS==
 
 Hynings Handwriting - by Hyning Gan
 https://www.dafont.com/fr/hynings-handwriting.font?l[]=10&l[]=1
+
+VHS Gothic - by Spottie Leonard
+https://www.dafont.com/fr/vhs-gothic.font?l[]=10&l[]=1
+
+Kampung Zombie - by s3j
+https://www.dafont.com/fr/kampung-zombie.font?l[]=10&l[]=1
 
 _______________
 
@@ -112,6 +119,9 @@ https://www.fesliyanstudios.com/royalty-free-music/download/right-behind-you/286
 
 No Way Out - by David Robson
 https://www.fesliyanstudios.com/royalty-free-music/download/no-way-out/2872
+
+Our Hopes And Dreams - by Steve Oxen
+https://www.fesliyanstudios.com/royalty-free-music/download/our-hopes-and-dreams/2811
 
 Eerie Music Box with Dark Tones - by Universfield
 https://pixabay.com/music/mystery-eerie-music-box-with-dark-tones-289437/
