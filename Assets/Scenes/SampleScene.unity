@@ -1164,6 +1164,7 @@ MonoBehaviour:
   menuPause: {fileID: 467731298}
   icons: {fileID: 2078213467}
   detector: {fileID: 363398240}
+  toggleTips: {fileID: 976652562}
   difficultyChosen: 
   difficultyManagerObj: {fileID: 1252969155}
   language: French
@@ -12859,7 +12860,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -410.7041, y: 0}
-  m_SizeDelta: {x: -1121.8689, y: -941.4601}
+  m_SizeDelta: {x: -1121.8689, y: -791.1401}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &453225929
 MonoBehaviour:
@@ -22493,7 +22494,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "Pour les joueurs qui veulent une exp\xE9rience de jeu classique avec la
-    bonne dose de stress.\n"
+    bonne dose de stress.\n\n(Les Astuces seront d\xE9sactiv\xE9es par d\xE9faut,
+    mais peuvent \xEAtre r\xE9activ\xE9es dans le menu Pause.)\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
