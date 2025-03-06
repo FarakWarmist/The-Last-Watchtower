@@ -1166,6 +1166,7 @@ MonoBehaviour:
   icons: {fileID: 2078213467}
   detector: {fileID: 363398240}
   toggleTips: {fileID: 976652562}
+  toggleMapLocations: {fileID: 1402300826}
   difficultyChosen: 
   difficultyManagerObj: {fileID: 1252969155}
   language: English
@@ -2887,6 +2888,7 @@ MonoBehaviour:
   startHunt: 0
   doormanActif: 0
   lessTime: 0
+  moreTime: 0
   radioMessage: {fileID: 85973859}
   audioSource: {fileID: 939218235}
   audioClip: {fileID: 8300000, guid: bd578eff582d5c446a4d280f5f373650, type: 3}
@@ -3509,6 +3511,7 @@ MonoBehaviour:
   audioSource: {fileID: 939218235}
   lightSwitch: {fileID: 1116980537}
   theDoorman: {fileID: 1733948308}
+  difficulty: {fileID: 0}
   stressMusics:
   - {fileID: 8300000, guid: f1aaf0430cec23942ac320dc90d23032, type: 3}
   - {fileID: 8300000, guid: d232fdbada625ca47894958bd095f285, type: 3}
@@ -33178,7 +33181,7 @@ MonoBehaviour:
   currentMonster: {fileID: 1733948306}
   cameraRadioObject: {fileID: 186637599}
   cameraPlayerObject: {fileID: 405462398}
-  theDoormanObject: {fileID: 0}
+  theDoormanObject: {fileID: 1733948306}
   initialCameraPlayerPos: {x: 0, y: 0, z: 0}
   initialCameraRadioPos: {x: 0, y: 0, z: 0}
   blackScreen: {fileID: 955313019}
