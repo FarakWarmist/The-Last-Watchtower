@@ -27,6 +27,12 @@ public class UIHelper : MonoBehaviour
     public Canvas note;
     public Canvas noteUI;
 
+    Canvas interactableUI;
+    public Canvas interactable;
+    public Canvas interactableWithRune;
+
+    public bool canInteract;
+
     ComputerState computer;
     Radio _radio;
     MessageRadioManager radioMessage;
@@ -69,6 +75,7 @@ public class UIHelper : MonoBehaviour
         {
             strangeLock.enabled = true;
             rune.enabled = false;
+            canInteract = false;
         }
         else if (radioCam.enabled)
         {
@@ -83,6 +90,7 @@ public class UIHelper : MonoBehaviour
                 radio.enabled = false; 
             }
             rune.enabled = false;
+            canInteract = false;
         }
         else if (terminalCam.enabled)
         {
@@ -99,16 +107,19 @@ public class UIHelper : MonoBehaviour
             }
 
             rune.enabled = false;
+            canInteract = false;
         }
         else if (mapCam.enabled)
         {
             map.enabled = true;
             rune.enabled = false;
+            canInteract = false;
         }
         else if (doorCam.enabled)
         {
             door.enabled = true;
             rune.enabled = false;
+            canInteract = false;
         }
         else
         {
@@ -118,6 +129,7 @@ public class UIHelper : MonoBehaviour
             {
                 noteUI.enabled = true;
                 rune.enabled = false;
+                canInteract = false;
             }
             else
             {
@@ -125,6 +137,21 @@ public class UIHelper : MonoBehaviour
                 rune.enabled = itemsManager.hasRune; 
             }
         }
+
+
+        if (rune.enabled)
+        {
+            interactableUI = interactableWithRune;
+            interactable.enabled = false;
+        }
+        else
+        {
+            interactableUI = interactable;
+            interactableWithRune.enabled = false;
+        }
+
+        interactableUI.enabled = canInteract;
+
 
         if (language.index == 0)
         {

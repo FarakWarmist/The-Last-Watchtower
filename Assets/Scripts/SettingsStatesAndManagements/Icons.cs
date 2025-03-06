@@ -7,6 +7,7 @@ public class Icons : MonoBehaviour
 {
     [SerializeField] Player player;
     [SerializeField] Image icon;
+    [SerializeField] UIHelper helper;
     public List<Sprite> icons;
     int iconIndex;
     LayerMask ignoredLayers;
@@ -14,6 +15,10 @@ public class Icons : MonoBehaviour
     {
         ignoredLayers = LayerMask.GetMask("Detector");
         icon.sprite = icons[iconIndex];
+        if (iconIndex == 0)
+        {
+            helper.canInteract = false;
+        }
 
         var camera = Camera.main;
         RaycastHit hitInfo;
@@ -43,6 +48,8 @@ public class Icons : MonoBehaviour
 
                 else
                 { iconIndex = 7; }
+
+                helper.canInteract = true;
             }
             else
             {
