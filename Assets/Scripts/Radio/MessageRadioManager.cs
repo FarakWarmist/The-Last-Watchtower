@@ -35,6 +35,7 @@ public class MessageRadioManager : MonoBehaviour
     [SerializeField] AudioSource audioSource;
     [SerializeField] LightSwitch lightSwitch;
     [SerializeField] TheDoorman theDoorman;
+    [SerializeField] DifficultyManager difficulty;
     Generator generator;
     MonsterSpawner monsterSpawner;
     public AudioClip[] stressMusics;
@@ -124,35 +125,37 @@ public class MessageRadioManager : MonoBehaviour
                 map.pathMapActive = false;
             }
 
+            if (messagePart > 0 && messagePart < 22)
+            {
+                if (difficulty.lvlDifficulty != 3)
+                {
+                    MonstersSpawnRate(false, true, 1.2f);
+                }
+            }
+
             if (messagePart == 22)
             {
                 theDoorman.gameObject.SetActive(true);
                 MonsterSpawner monsterSpawner;
                 monsterSpawner = FindAnyObjectByType<MonsterSpawner>();
                 monsterSpawner.doormanActif = true;
-                MonstersSpawnRate(true, 1.2f);
+                MonstersSpawnRate(false, false, 1.2f);
                 messagePart = 23;
                 StartCoroutine(NextPart(Random.Range(45, 75)));
             }
         }
         else if (messageNum == 3)
         {
-            if (messagePart == 0)
+            if (messagePart > 0 && messagePart < 51)
             {
-                MonstersSpawnRate(false, 1.2f); ;
-            }
-
-            if (messagePart > 16 && messagePart < 28)
-            {
-                MonstersSpawnRate(true, 1.2f);
-            }
-            else if ( messagePart > 50)
-            {
-                MonstersSpawnRate(true, 1.4f);
+                if (difficulty.lvlDifficulty != 3)
+                {
+                    MonstersSpawnRate(false, true, 1.2f);
+                }
             }
             else
             {
-                MonstersSpawnRate(false, 1.2f);
+                MonstersSpawnRate(true, false, 1.4f);
             }
 
             if (messagePart == 15)
@@ -204,22 +207,16 @@ public class MessageRadioManager : MonoBehaviour
         }
         else if (messageNum == 4)
         {
-            if (messagePart == 0)
+            if (messagePart > 0 && messagePart < 61)
             {
-                MonstersSpawnRate(false, 1.2f);
-            }
-
-            if (messagePart > 16 && messagePart < 28)
-            {
-                MonstersSpawnRate(false, 1.2f);
-            }
-            else if (messagePart > 60)
-            {
-                MonstersSpawnRate(true, 1.4f);
+                if (difficulty.lvlDifficulty != 3)
+                {
+                    MonstersSpawnRate(false, true, 1.2f);
+                }
             }
             else
             {
-                MonstersSpawnRate(false, 1.2f);
+                MonstersSpawnRate(true, false, 1.4f);
             }
 
             if (messagePart == 6)
@@ -304,9 +301,16 @@ public class MessageRadioManager : MonoBehaviour
                 }
             }
 
-            if ((messagePart > 15 && messagePart < 6000) || (messagePart > 9999 && messagePart < 52001) || (messagePart > 6999 && messagePart < 8000))
+            if ((messagePart > 18 && messagePart < 6000) || (messagePart > 9999 && messagePart < 52001) || (messagePart > 6999 && messagePart < 8000))
             {
-                MonstersSpawnRate(true, 1.4f);
+                if (message != "" && message != "...")
+                {
+                    MonstersSpawnRate(true, false, 1.4f);
+                }
+                else
+                {
+                    MonstersSpawnRate(false, true, 1.4f);
+                }
                 audioSource.volume = 0.55f;
                 if (!audioSource.isPlaying && audioSource.time == 0)
                 {
@@ -347,7 +351,7 @@ public class MessageRadioManager : MonoBehaviour
                         audioSource.Play();
                     }
                 }
-                MonstersSpawnRate(false, 1.4f);
+                MonstersSpawnRate(false, true, 1.4f);
             }
 
 
@@ -615,12 +619,13 @@ public class MessageRadioManager : MonoBehaviour
         }
     }
 
-    private void MonstersSpawnRate(bool state, float multipleBy)
+    private void MonstersSpawnRate(bool less, bool more, float multipleBy)
     {
         if (monsterSpawner != null)
         {
             monsterSpawner.multiple = multipleBy;
-            monsterSpawner.lessTime = state;
+            monsterSpawner.lessTime = less;
+            monsterSpawner.moreTime = more;
         }
         else
         {

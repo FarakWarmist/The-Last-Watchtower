@@ -130,13 +130,13 @@ public class Monster : MonoBehaviour
                 timeMax = 25;
                 break;
             case 3:
-                chanceBreackingWindow = 0.35f;
+                chanceBreackingWindow = 0.34f;
                 timeMin = 2;
                 timeMax = 10;
                 break;
             case 2:
             default:
-                chanceBreackingWindow = 0.3f;
+                chanceBreackingWindow = 0.28f;
                 timeMin = 5;
                 timeMax = 15;
                 break;
