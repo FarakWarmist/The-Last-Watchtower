@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using Unity.Cinemachine;
 using UnityEngine;
@@ -75,6 +74,8 @@ public class MainMenuManager : MonoBehaviour
         player.enabled = false;
         icons.enabled = false;
 
+        Screen.SetResolution(Screen.currentResolution.width, Screen.currentResolution.height, true);
+
         StartCoroutine(StartMainMenu());
 
         playButton.onClick.AddListener(OnPlayButtonClicked);
@@ -117,13 +118,10 @@ public class MainMenuManager : MonoBehaviour
         {
             Screen.fullScreen = true;
             Screen.SetResolution(Screen.currentResolution.width, Screen.currentResolution.height, true);
-            Debug.Log("Is fullscreen");
         }
         else
         {
             Screen.fullScreen = false;
-            //Screen.SetResolution(1280, 720, false);
-            Debug.Log("Is NOT fullscreen");
         }
     }
 
