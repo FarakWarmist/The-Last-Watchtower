@@ -237,8 +237,15 @@ There must be a generator in the shed.";
 
     public void CanNotUseItem()
     {
-        newText =
-@"J'ai vraiment besoin de dormir maintenant.";
+        if (language.index == 0)
+        {
+            newText = @"J'ai vraiment besoin de dormir maintenant.";
+
+        }
+        else
+        {
+            newText = @"I really need to sleep right now.";
+        }
         characterText.StartNewText(newText);
     }
 }
