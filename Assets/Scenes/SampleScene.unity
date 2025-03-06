@@ -2791,7 +2791,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeMin: 0
   timeMax: 0
-  divide: 1
   multiple: 1
   monstersList:
   - {fileID: 1504233733}
@@ -2808,6 +2807,7 @@ MonoBehaviour:
   helper: {fileID: 84008400}
   theDoorman: {fileID: 1733948306}
   insideOrOutside: {fileID: 363398240}
+  gameOver: {fileID: 1121702400}
   tipsBrokenWindows: 0
   tipsMonster: 0
   tipsTheDoorman: 0
@@ -16681,7 +16681,7 @@ MonoBehaviour:
   isAppeared: 0
   transition: 0
   alpha: 0
-  timebarImage: {fileID: 0}
+  timebarImage: {fileID: 1305842364}
   radio: {fileID: 537229755}
   messageRadio: {fileID: 85973859}
   answers: {fileID: 1923327401}
@@ -32849,9 +32849,10 @@ MonoBehaviour:
   camMenu: {fileID: 591150321}
   currentDeathCam: {fileID: 0}
   theDoormanCam: {fileID: 1634374134}
-  currentMonster: {fileID: 0}
+  currentMonster: {fileID: 1733948306}
   cameraRadioObject: {fileID: 186637599}
   cameraPlayerObject: {fileID: 405462398}
+  theDoormanObject: {fileID: 0}
   initialCameraPlayerPos: {x: 0, y: 0, z: 0}
   initialCameraRadioPos: {x: 0, y: 0, z: 0}
   blackScreen: {fileID: 955313019}
@@ -32860,6 +32861,7 @@ MonoBehaviour:
   music: {fileID: 939218235}
   gameOverMusic: {fileID: 8300000, guid: 7109051f1f362764787d8fea68e36946, type: 3}
   follow: 0
+  noDoorman: 0
   distanceBehindPlayer: 0.75
 --- !u!4 &1121702401
 Transform:
@@ -35541,6 +35543,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lvlDifficulty: 0
   forestMadness: {fileID: 1071728012}
+  generator: {fileID: 1765247422}
   pileOfPlanksPrefab:
   - {fileID: 6114301316007128301, guid: daf625a6be637a441b91789c64b2b01c, type: 3}
   - {fileID: 8192053334420935284, guid: a134de6a936abf44891f4f2ab0d216ac, type: 3}
@@ -49485,7 +49488,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb04b3ec3a15caf4392e786efbe645ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  messageRadio: {fileID: 0}
+  messageRadio: {fileID: 85973859}
   lightSwitch: {fileID: 1116980537}
   energyLevel: 0
   startingGenerator: {fileID: 1765247424}
