@@ -50,6 +50,7 @@ public class MainMenuManager : MonoBehaviour
     Reset reset;
     [SerializeField] InsideOrOutside detector;
     [SerializeField] Toggle toggleTips;
+    [SerializeField] Toggle toggleMapLocations;
 
     public string difficultyChosen;
     public GameObject difficultyManagerObj;
@@ -252,6 +253,7 @@ public class MainMenuManager : MonoBehaviour
         if (difficultyChosen == "normal")
         {
             toggleTips.isOn = false;
+            toggleMapLocations.isOn = false;
         }
         yield return new WaitForSeconds(3.2f);
         animator.SetBool("Fade", false);
