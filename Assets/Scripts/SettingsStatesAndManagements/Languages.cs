@@ -6,7 +6,7 @@ public class Languages : MonoBehaviour
 {
     MainMenuManager mainMenu;
 
-    public string language = "French";
+    public string language = "English";
     public int index;
 
     public TMP_Text playButtonText;

@@ -1168,8 +1168,7 @@ MonoBehaviour:
   toggleTips: {fileID: 976652562}
   difficultyChosen: 
   difficultyManagerObj: {fileID: 1252969155}
-  language: French
-  isFullscreen: 1
+  language: English
   musicMainMenu: {fileID: 8300000, guid: 4e465d96ed33e6c428af6300f0ffab9c, type: 3}
   music: {fileID: 939218235}
   ambient: {fileID: 1490740279}
@@ -40031,7 +40030,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38aad401cbe01074482bbca6af3c9807, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  language: French
+  language: English
   index: 0
   playButtonText: {fileID: 392371647}
   settingButtonText: {fileID: 916535751}
@@ -58008,6 +58007,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isCkeckMap: 0
+  isNotConfined: 0
   needCursor: 0
   icon: {fileID: 183214915}
 --- !u!4 &2084485362

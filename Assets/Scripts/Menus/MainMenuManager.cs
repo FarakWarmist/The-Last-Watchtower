@@ -54,7 +54,7 @@ public class MainMenuManager : MonoBehaviour
     public string difficultyChosen;
     public GameObject difficultyManagerObj;
 
-    public string language = "French";
+    public string language = "English";
 
     string youtubeUrl = "https://www.youtube.com/@FarakWarmist";
     string instagramUrl = "https://www.instagram.com/farak_warmist/";
