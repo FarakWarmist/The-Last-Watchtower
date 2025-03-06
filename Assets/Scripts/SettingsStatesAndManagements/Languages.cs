@@ -50,6 +50,9 @@ public class Languages : MonoBehaviour
     public TMP_Text normalDifficultyText;
     public TMP_Text hardDifficultyText;
 
+    public TMP_Text fullscreenSettingText;
+    public TMP_Text fullscreenPauseText;
+
     public Image note;
     public Sprite enigmeEN;
     public Sprite enigmeFR;
@@ -98,7 +101,7 @@ Le jeu se fermera et votre progression sera perdue.";
                      "Retour", "Réessayer",
                      "Musique", "Ambiant", "Effets Sonores", "Sensibilité",
                      "Touches", "Carte Localisation", "Astuces",
-                     "ESC pour fermer", "Oui", "Non");
+                     "ESC pour fermer", "Oui", "Non", "Plein Écran");
 
         easyDifficultyDesc =
 @"Pour les joueurs qui veulent une expérience de jeu plus calme et moins stressante.
@@ -143,7 +146,7 @@ The game will close and your progress will be lost.";
                      "Back", "Retry",
                      "Music", "Ambient", "Sound Effects", "Sensitivity",
                      "Keys", "Map Location", "Tips",
-                     "ESC to close", "Yes", "No");
+                     "ESC to close", "Yes", "No", "Fullscreen");
 
         easyDifficultyDesc =
 @"For players who want a calmer and less stressful gaming experience.
@@ -180,7 +183,7 @@ The game will close and your progress will be lost.";
                       string backButton, string retryButton,
                       string musicSetting, string ambientSetting, string soundEffectsSetting, string sensitivitySetting,
                       string helpUI, string mapLocationUI, string tipsUI,
-                      string pauseClose, string yesButton, string noButton)
+                      string pauseClose, string yesButton, string noButton, string fullscreen)
     {
         index = i;
 
@@ -217,5 +220,8 @@ The game will close and your progress will be lost.";
         quitPauseButtonText.text = quitButton;
 
         endQuitButtonText.text = quitButton;
+
+        fullscreenSettingText.text = fullscreen;
+        fullscreenPauseText.text = fullscreen;
     }
 }

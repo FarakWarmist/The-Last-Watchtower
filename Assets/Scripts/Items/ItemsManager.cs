@@ -20,6 +20,8 @@ public class ItemsManager : MonoBehaviour
 
     public GameObject itemsHoldOffset;
 
+    public Canvas runeEnergieCanvas;
+
     [SerializeField] CinemachineCamera camPlayer;
     [SerializeField] CinemachineCamera camDoor;
 
@@ -33,6 +35,8 @@ public class ItemsManager : MonoBehaviour
         {
             itemsHoldOffset.SetActive(false);
         }
+
+        runeEnergieCanvas.enabled = hasRune;
     }
 
     internal void PickUpItem(ref bool hasItem, GameObject itemInHand)

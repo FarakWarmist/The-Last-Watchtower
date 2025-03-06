@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Unity.Cinemachine;
 using UnityEngine;
@@ -29,6 +30,8 @@ public class MainMenuManager : MonoBehaviour
     public Button blueskyButton;
     public Button itchioButton;
 
+    public Toggle fullscreenToggle;
+
     public CinemachineCamera mainMenuCam;
     public CinemachineCamera playerCam;
 
@@ -53,6 +56,7 @@ public class MainMenuManager : MonoBehaviour
     public GameObject difficultyManagerObj;
 
     public string language = "French";
+    public bool isFullscreen = true;
 
     string youtubeUrl = "https://www.youtube.com/@FarakWarmist";
     string instagramUrl = "https://www.instagram.com/farak_warmist/";
@@ -97,10 +101,31 @@ public class MainMenuManager : MonoBehaviour
         blueskyButton.onClick.AddListener(OnBlueSkyButtonClicked);
         itchioButton.onClick.AddListener(OnItchIoButtonClicked);
 
+        Screen.fullScreen = true;
+        Screen.SetResolution(Screen.currentResolution.width, Screen.currentResolution.height, true);
+        fullscreenToggle.isOn = Screen.fullScreen;
+        fullscreenToggle.onValueChanged.AddListener(OnFullscreenToggleChanged);
+
         ambient.volume = 0;
         musicVolume = music.volume;
         music.clip = musicMainMenu;
         music.Play();
+    }
+
+    public void OnFullscreenToggleChanged(bool isFullscreen)
+    {
+        if (isFullscreen)
+        {
+            Screen.fullScreen = true;
+            Screen.SetResolution(Screen.currentResolution.width, Screen.currentResolution.height, true);
+            Debug.Log("Is fullscreen");
+        }
+        else
+        {
+            Screen.fullScreen = false;
+            //Screen.SetResolution(1280, 720, false);
+            Debug.Log("Is NOT fullscreen");
+        }
     }
 
     public void OnFrenchButtonClicked()

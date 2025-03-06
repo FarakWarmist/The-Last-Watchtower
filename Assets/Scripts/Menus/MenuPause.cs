@@ -7,8 +7,10 @@ using UnityEngine.UI;
 public class MenuPause : MonoBehaviour
 {
     [SerializeField] GameObject menuPause;
+    [SerializeField] Toggle fullscreenToggle;
     [SerializeField] Toggle helperToggle;
     [SerializeField] Toggle tipsToggle;
+    [SerializeField] Canvas background;
     public Canvas helperCanvas;
     public Canvas tipsCanvas;
     public Canvas warningCanvas;
@@ -31,12 +33,16 @@ public class MenuPause : MonoBehaviour
         quitButton.onClick.AddListener(OnWarningButtonClicked);
         yesButton.onClick.AddListener(mainMenu.OnQuitButtonClicked);
         noButton.onClick.AddListener(OnReturnButtonClicked);
+
+        fullscreenToggle.isOn = mainMenu.fullscreenToggle.isOn;
+        fullscreenToggle.onValueChanged.AddListener(mainMenu.OnFullscreenToggleChanged);
     }
 
 
     private void Update()
     {
         menuPause.SetActive(isActif);
+        background.enabled = menuPause.activeSelf;
 
         if (Input.GetKeyDown(KeyCode.Escape) && !warningCanvas.enabled)
         {
