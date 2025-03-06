@@ -49,11 +49,13 @@ public class MenuPause : MonoBehaviour
             if(isActif)
             {
                 isActif = false;
+                cursorState.isNotConfined = false;
                 cursorState.needCursor--;
             }
             else
             {
                 isActif = true;
+                cursorState.isNotConfined = true;
                 cursorState.needCursor++;
             }
         }

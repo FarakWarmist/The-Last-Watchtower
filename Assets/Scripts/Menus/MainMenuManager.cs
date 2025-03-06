@@ -56,7 +56,6 @@ public class MainMenuManager : MonoBehaviour
     public GameObject difficultyManagerObj;
 
     public string language = "French";
-    public bool isFullscreen = true;
 
     string youtubeUrl = "https://www.youtube.com/@FarakWarmist";
     string instagramUrl = "https://www.instagram.com/farak_warmist/";
@@ -101,15 +100,15 @@ public class MainMenuManager : MonoBehaviour
         blueskyButton.onClick.AddListener(OnBlueSkyButtonClicked);
         itchioButton.onClick.AddListener(OnItchIoButtonClicked);
 
-        Screen.fullScreen = true;
-        Screen.SetResolution(Screen.currentResolution.width, Screen.currentResolution.height, true);
-        fullscreenToggle.isOn = Screen.fullScreen;
+        fullscreenToggle.isOn = true;
         fullscreenToggle.onValueChanged.AddListener(OnFullscreenToggleChanged);
 
         ambient.volume = 0;
         musicVolume = music.volume;
         music.clip = musicMainMenu;
         music.Play();
+
+        cursorState.isNotConfined = true;
     }
 
     public void OnFullscreenToggleChanged(bool isFullscreen)
@@ -241,6 +240,7 @@ public class MainMenuManager : MonoBehaviour
 
     IEnumerator StartGame()
     {
+        cursorState.isNotConfined = false;
         animator.SetBool("Fade", true);
         StartCoroutine(SetMusicVolume());
         yield return new WaitForSeconds(1f);

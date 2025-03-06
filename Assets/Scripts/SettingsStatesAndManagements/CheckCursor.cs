@@ -3,6 +3,7 @@ using UnityEngine;
 public class CheckCursor : MonoBehaviour
 {
     public bool isCkeckMap;
+    public bool isNotConfined;
     public int needCursor = 0;
     [SerializeField] GameObject icon;
 
@@ -11,7 +12,14 @@ public class CheckCursor : MonoBehaviour
         if (needCursor > 0)
         {
             Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.Confined;
+            if (!isNotConfined)
+            {
+                Cursor.lockState = CursorLockMode.Confined; 
+            }
+            else
+            {
+                Cursor.lockState = CursorLockMode.None;
+            }
         }
         else
         {
