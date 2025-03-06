@@ -12,7 +12,7 @@ public class DifficultyManager : MonoBehaviour
     MainMenuManager mainMenuManager;
     MessageRadioManager messageRadio;
     public ForestMadness forestMadness;
-    Generator generator;
+    [SerializeField] Generator generator;
     LightSwitch lightSwitch;
     Terminal terminal;
 
@@ -25,7 +25,6 @@ public class DifficultyManager : MonoBehaviour
     {
         terminal = FindAnyObjectByType<Terminal>();
         lightSwitch = FindAnyObjectByType<LightSwitch>();
-        generator = FindAnyObjectByType<Generator>();
         messageRadio = FindAnyObjectByType<MessageRadioManager>();
         mainMenuManager = FindAnyObjectByType<MainMenuManager>();
         difficulty = mainMenuManager.difficultyChosen;

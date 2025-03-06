@@ -53,6 +53,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 2500478ee79d70b4dad3c78c093b5409, type: 3}
   - {fileID: 8300000, guid: b925b686adf98a94fa8588242f74f466, type: 3}
   thisMonster: {fileID: 48195931268189758}
+  testVolume: 0.6
 --- !u!82 &3628974397580388077
 AudioSource:
   m_ObjectHideFlags: 0

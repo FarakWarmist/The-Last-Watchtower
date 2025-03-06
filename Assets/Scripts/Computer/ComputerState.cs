@@ -143,7 +143,7 @@ public class ComputerState : MonoBehaviour, IInteractable
         terminal.enabled = isOn;
     }
 
-    private void CamGoBack()
+    public void CamGoBack()
     {
         IsLooking(camTerminal, camPlayer, true);
         cursorState.needCursor--;

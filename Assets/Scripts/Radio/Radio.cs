@@ -110,10 +110,7 @@ public class Radio : MonoBehaviour, IInteractable
         {
             if (Input.GetKeyDown(KeyCode.S) && !radioMessage.canNotMove)
             {
-                boxCollider.enabled = true;
-                isLooking = false;
-                IsLooking(camRadio, camPlayer, true);
-                cursorState.needCursor--;
+                GoBack();
             }
             if (Input.GetKeyDown(KeyCode.E) && lightSwitch.switchOn)
             {
@@ -207,6 +204,14 @@ public class Radio : MonoBehaviour, IInteractable
         }
 
         
+    }
+
+    public void GoBack()
+    {
+        boxCollider.enabled = true;
+        isLooking = false;
+        IsLooking(camRadio, camPlayer, true);
+        cursorState.needCursor--;
     }
 
     private void IsLooking(CinemachineCamera camExit, CinemachineCamera camGo, bool state)

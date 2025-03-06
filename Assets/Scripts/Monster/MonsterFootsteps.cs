@@ -8,7 +8,7 @@ public class MonsterFootsteps : MonoBehaviour
     public AudioClip[] footstepsClips;
     public Monster thisMonster;
     bool startSound;
-    public float testVolume = 0.4f;
+    public float testVolume = 0.6f;
 
     private void Update()
     {

@@ -6,7 +6,6 @@ public class MonsterSpawner : MonoBehaviour
     float timeMonsterAppear;
     public float timeMin;
     public float timeMax;
-    public float divide = 1;
     public float multiple = 1;
     public GameObject[] monstersList;
     public bool isAppear;
@@ -21,6 +20,7 @@ public class MonsterSpawner : MonoBehaviour
     [SerializeField] UIHelper helper;
     [SerializeField] GameObject theDoorman;
     [SerializeField] InsideOrOutside insideOrOutside;
+    [SerializeField] GameOver gameOver;
 
     public int tipsBrokenWindows = 0;
     public int tipsMonster = 0;
@@ -37,11 +37,12 @@ public class MonsterSpawner : MonoBehaviour
                 timeMax = 120;
                 break;
             case 3:
-                timeMin = 15;
+                timeMin = 35;
                 timeMax = 60;
                 break;
+            case 2:
             default:
-                timeMin = 30;
+                timeMin = 40;
                 timeMax = 90;
                 break;
         }
@@ -66,7 +67,7 @@ public class MonsterSpawner : MonoBehaviour
 
         if (doormanActif && !theDoorman.activeSelf)
         {
-            if (!doormanIsAppear)
+            if (!doormanIsAppear && !gameOver.noDoorman)
             {
                 StartCoroutine(SpawnTheDoorman()); 
             }
@@ -174,7 +175,7 @@ public class MonsterSpawner : MonoBehaviour
     {
         if (lessTime)
         {
-            time /= divide;
+            time /= 1.2f;
         }
         return time;
     }

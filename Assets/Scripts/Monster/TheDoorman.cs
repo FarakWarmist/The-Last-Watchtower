@@ -45,7 +45,7 @@ public class TheDoorman : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
 
         alpha = 0;
-        color = doormanFaceMat.color;
+        color = Color.white;
         color.a = alpha;
         doormanFaceMat.color = color;
 
@@ -67,6 +67,7 @@ public class TheDoorman : MonoBehaviour
                 timeMin = 1;
                 timeMax = 10;
                 break;
+            case 2:
             default:
                 timeMin = 1;
                 timeMax = 6;

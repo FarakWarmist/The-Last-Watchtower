@@ -49,10 +49,7 @@ public class Map : MonoBehaviour, IInteractable
             var activeBlend = brain.ActiveBlend;
             if (Input.GetKeyDown(KeyCode.S) && activeBlend == null)
             {
-                isLooking = false;
-                IsLooking(camMap, camPlayer, true);
-                boxCollider.enabled = true;
-                icons.enabled = true;
+                GoBack();
             }
 
             if (toggle.isOn)
@@ -71,6 +68,14 @@ public class Map : MonoBehaviour, IInteractable
 
         zoomMap.enabled = isLooking;
 
+    }
+
+    public void GoBack()
+    {
+        isLooking = false;
+        IsLooking(camMap, camPlayer, true);
+        boxCollider.enabled = true;
+        icons.enabled = true;
     }
 
     private void IsLooking(CinemachineCamera camExit, CinemachineCamera camGo, bool state)

@@ -130,7 +130,7 @@ public class MessageRadioManager : MonoBehaviour
                 MonsterSpawner monsterSpawner;
                 monsterSpawner = FindAnyObjectByType<MonsterSpawner>();
                 monsterSpawner.doormanActif = true;
-                MonstersSpawnRate(true, 1.5f, 1.5f);
+                MonstersSpawnRate(true, 1.2f);
                 messagePart = 23;
                 StartCoroutine(NextPart(Random.Range(45, 75)));
             }
@@ -139,20 +139,20 @@ public class MessageRadioManager : MonoBehaviour
         {
             if (messagePart == 0)
             {
-                MonstersSpawnRate(false, 1, 1.5f);
+                MonstersSpawnRate(false, 1.2f); ;
             }
 
             if (messagePart > 16 && messagePart < 28)
             {
-                MonstersSpawnRate(true, 1.5f, 1.5f);
+                MonstersSpawnRate(true, 1.2f);
             }
             else if ( messagePart > 50)
             {
-                MonstersSpawnRate(true, 2, 1.75f);
+                MonstersSpawnRate(true, 1.4f);
             }
             else
             {
-                MonstersSpawnRate(false, 1, 1.5f);
+                MonstersSpawnRate(false, 1.2f);
             }
 
             if (messagePart == 15)
@@ -206,20 +206,20 @@ public class MessageRadioManager : MonoBehaviour
         {
             if (messagePart == 0)
             {
-                MonstersSpawnRate(false, 1, 1.5f);
+                MonstersSpawnRate(false, 1.2f);
             }
 
             if (messagePart > 16 && messagePart < 28)
             {
-                MonstersSpawnRate(true, 1.5f, 1.5f);
+                MonstersSpawnRate(false, 1.2f);
             }
             else if (messagePart > 60)
             {
-                MonstersSpawnRate(true, 2, 1.75f);
+                MonstersSpawnRate(true, 1.4f);
             }
             else
             {
-                MonstersSpawnRate(false, 1, 1.5f);
+                MonstersSpawnRate(false, 1.2f);
             }
 
             if (messagePart == 6)
@@ -306,7 +306,7 @@ public class MessageRadioManager : MonoBehaviour
 
             if ((messagePart > 15 && messagePart < 6000) || (messagePart > 9999 && messagePart < 52001) || (messagePart > 6999 && messagePart < 8000))
             {
-                MonstersSpawnRate(true, 2, 2f);
+                MonstersSpawnRate(true, 1.4f);
                 audioSource.volume = 0.55f;
                 if (!audioSource.isPlaying && audioSource.time == 0)
                 {
@@ -347,7 +347,7 @@ public class MessageRadioManager : MonoBehaviour
                         audioSource.Play();
                     }
                 }
-                MonstersSpawnRate(false, 1, 1.75f);
+                MonstersSpawnRate(false, 1.4f);
             }
 
 
@@ -584,6 +584,7 @@ public class MessageRadioManager : MonoBehaviour
         {
             if (messagePart == 2)
             {
+
                 if (!musicUp)
                 {
                     StartCoroutine(MusicUp(1, 1));
@@ -614,12 +615,11 @@ public class MessageRadioManager : MonoBehaviour
         }
     }
 
-    private void MonstersSpawnRate(bool state, float divideBy, float multipleBy)
+    private void MonstersSpawnRate(bool state, float multipleBy)
     {
         if (monsterSpawner != null)
         {
             monsterSpawner.multiple = multipleBy;
-            monsterSpawner.divide = divideBy;
             monsterSpawner.lessTime = state;
         }
         else
@@ -3505,6 +3505,8 @@ Ha ha ha...!!! ";
             answer1 = "";
             answer2 = "";
         }
+        Radio radio = FindAnyObjectByType<Radio>();
+        radio.isLooking = false;
         bullets = 3;
         canNotMove = false;
         messagePart = 0;

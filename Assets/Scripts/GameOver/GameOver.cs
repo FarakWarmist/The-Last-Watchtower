@@ -22,6 +22,7 @@ public class GameOver : MonoBehaviour
     public GameObject currentMonster;
     public GameObject cameraRadioObject;
     public GameObject cameraPlayerObject;
+    public GameObject theDoormanObject;
 
     public Vector3 initialCameraPlayerPos;
     public Vector3 initialCameraRadioPos;
@@ -32,12 +33,16 @@ public class GameOver : MonoBehaviour
     MainMenuManager mainMenuManager;
     MonsterGameOver monsterGameOver;
     Door door;
+    Radio radio;
+    Map map;
+    ComputerState computer;
     CheckCursor checkCursor;
 
     public AudioSource music;
     public AudioClip gameOverMusic;
 
     public bool follow;
+    public bool noDoorman;
 
     public float distanceBehindPlayer = 0.25f;
 
@@ -45,6 +50,10 @@ public class GameOver : MonoBehaviour
     {
         initialCameraRadioPos = cameraRadioObject.transform.localPosition;
         initialCameraPlayerPos = cameraPlayerObject.transform.localPosition;
+        door = FindAnyObjectByType<Door>();
+        radio = FindAnyObjectByType<Radio>();
+        map = FindAnyObjectByType<Map>();
+        computer = FindAnyObjectByType<ComputerState>();
     }
 
     private void Update()
@@ -53,17 +62,20 @@ public class GameOver : MonoBehaviour
         {
             cameraRadioObject.transform.rotation = Quaternion.LookRotation(target.position - camRadio.transform.position);
         }
+
+        if (noDoorman)
+        {
+            StopCoroutine(TheDoormanGetYou());
+            theDoormanObject.SetActive(false);
+        }
     }
 
     public void AlexIsDead()
     {
-        Debug.Log("Alex is F*cking Dead!");
         Generator generator = FindAnyObjectByType<Generator>();
         generator.energyLevel = 0;
-        door = FindAnyObjectByType<Door>();
         door.isOpen = true;
-
-        Radio radio = FindAnyObjectByType<Radio>();
+        noDoorman = true;
         radio.isLooking = false;
 
         player.enabled = false;
@@ -118,6 +130,7 @@ public class GameOver : MonoBehaviour
 
     IEnumerator Gotcha()
     {
+        StopLooking();
         float initialPOV = 40;
         float zoomedPOV = 25;
         currentDeathCam.Lens.FieldOfView = initialPOV;
@@ -128,6 +141,7 @@ public class GameOver : MonoBehaviour
 
         yield return new WaitForSeconds(0.01f);
 
+        noDoorman = true;
         camPlayer.enabled = false;
         currentDeathCam.enabled = true;
         Vector3 initialDeathCamPos = currentDeathCam.transform.localPosition;
@@ -234,6 +248,7 @@ public class GameOver : MonoBehaviour
         StartCoroutine(DeathScreen());
 
         yield return new WaitForSeconds(0.01f);
+        theDoormanCam.enabled = false;
     }
 
     private static void SetDoormanFaceAlpha(TheDoorman theDoorman, Color color, float alpha)
@@ -296,6 +311,26 @@ public class GameOver : MonoBehaviour
         if (forestMadness.activeSelf)
         {
             forestMadness.SetActive(false);
+        }
+    }
+
+    void StopLooking()
+    {
+        if (door.isCheck)
+        {
+            door.GoBack();
+        }
+        else if (radio.isLooking)
+        {
+            radio.GoBack();
+        }
+        else if (map.isLooking)
+        {
+            map.GoBack();
+        }
+        else if (computer.isLooking)
+        {
+            computer.CamGoBack();
         }
     }
 

@@ -72,12 +72,16 @@ public class Reset : MonoBehaviour
         pileOfPlanks.ResetPlanksInPile();
         messageRadio.ResetMessageRadio();
         monsterSpawner.ResetMonsters();
-        theDoorman.ResetTheDoorman();
         if (messageRadio.messageNum == 1)
         {
             monsterSpawner.startHunt = false;
             monsterSpawner.transform.parent.gameObject.SetActive(false);
         }
+        else if (messageRadio.messageNum == 2)
+        {
+            monsterSpawner.startHunt = false;
+        }
+        theDoorman.ResetTheDoorman();
 
         if (!radio.GetComponent<BoxCollider>().enabled)
         {
@@ -97,6 +101,8 @@ public class Reset : MonoBehaviour
 
         camRadioObjet.transform.rotation = Quaternion.LookRotation(camTarget.position - camRadioObjet.transform.position);
 
+        GameOver gameOver = FindAnyObjectByType<GameOver>();
+        gameOver.noDoorman = false;
         door.isOpen = false;
     }
 

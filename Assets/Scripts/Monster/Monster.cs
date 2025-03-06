@@ -54,10 +54,14 @@ public class Monster : MonoBehaviour
     public int sourceIndex;
     public float newWeight;
 
+    CapsuleCollider capsuleCollider;
+
     DifficultyManager difficultyManager;
 
     private void OnEnable()
     {
+        capsuleCollider = GetComponent<CapsuleCollider>();
+        capsuleCollider.enabled = true;
         if (monsterSpawner == null)
         {
             monsterSpawner = FindAnyObjectByType<MonsterSpawner>();
@@ -130,10 +134,11 @@ public class Monster : MonoBehaviour
                 timeMin = 2;
                 timeMax = 10;
                 break;
+            case 2:
             default:
                 chanceBreackingWindow = 0.3f;
                 timeMin = 5;
-                timeMax = 12;
+                timeMax = 15;
                 break;
         }
 
@@ -155,6 +160,7 @@ public class Monster : MonoBehaviour
             } 
             else
             {
+                dangerZoneCollider.enabled = false;
                 if (!isDissolved)
                 {
                     monster.velocity = Vector3.zero;
@@ -324,6 +330,7 @@ public class Monster : MonoBehaviour
     public IEnumerator GetFlash()
     {
         isDissolved = true;
+        capsuleCollider.enabled = false;
         StopCoroutine("TakeAction");
         StopChasing();
         animator.speed = 1;
