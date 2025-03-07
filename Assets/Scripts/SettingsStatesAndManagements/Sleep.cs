@@ -84,6 +84,8 @@ public class Sleep : MonoBehaviour, IInteractable
 
     public void Sunrise()
     {
+        directionalLight.enabled = true;
+
         if (directionalLight.transform.rotation.x > -0.12)
         {
             transitionProgress += Time.deltaTime * rotationSpeed / 12;
@@ -168,6 +170,7 @@ public class Sleep : MonoBehaviour, IInteractable
         isSleeping = false;
 
         yield return new WaitForSeconds(1f);
+        directionalLight.enabled = false;
         Message();
         characterText.StartNewText(newText);
     }
