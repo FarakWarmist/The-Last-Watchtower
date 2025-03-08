@@ -859,6 +859,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathCam: {fileID: 7192758973975668129}
+  monster: {fileID: 4741673435058504209}
 --- !u!82 &853934224616459955
 AudioSource:
   m_ObjectHideFlags: 0

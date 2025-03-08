@@ -164,14 +164,21 @@ public class GameOver : MonoBehaviour
         generator.energyLevel = 0;
 
         yield return new WaitForSeconds(0.01f);
-
-        if (currentMonster != null)
+        while (currentMonster == null)
         {
-            if (!currentMonster.GetComponent<Monster>().monster.enabled)
-            {
-                currentMonster.GetComponent<Monster>().monster.enabled = true;
-            } 
+            yield return null;
         }
+
+        while (currentMonster.GetComponent<Monster>() == null)
+        {
+            yield return null;
+        }
+
+        if (!currentMonster.GetComponent<Monster>().monster.enabled)
+        {
+            currentMonster.GetComponent<Monster>().monster.enabled = true;
+        } 
+
     }
     public IEnumerator TheDoormanGetYou()
     {
