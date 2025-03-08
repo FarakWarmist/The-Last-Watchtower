@@ -33604,7 +33604,7 @@ MonoBehaviour:
   camMenu: {fileID: 591150321}
   currentDeathCam: {fileID: 0}
   theDoormanCam: {fileID: 1634374134}
-  currentMonster: {fileID: 1733948306}
+  currentMonster: {fileID: 0}
   cameraRadioObject: {fileID: 186637599}
   cameraPlayerObject: {fileID: 405462398}
   theDoormanObject: {fileID: 1733948306}
