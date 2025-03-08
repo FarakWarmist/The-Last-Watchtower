@@ -9,6 +9,8 @@ public class GameOver : MonoBehaviour
     public GameObject monsterPrefab;
     public Transform target;
     public GameObject forestMadness;
+    public GameObject helperObject;
+    public GameObject runeEnergieLvlObj;
 
     public Animator animator;
 
@@ -43,6 +45,7 @@ public class GameOver : MonoBehaviour
 
     public bool follow;
     public bool noDoorman;
+    public bool disableUI;
 
     public float distanceBehindPlayer = 0.25f;
 
@@ -58,6 +61,8 @@ public class GameOver : MonoBehaviour
 
     private void Update()
     {
+        helperObject.SetActive(!disableUI);
+        runeEnergieLvlObj.SetActive(!disableUI);
         if (follow)
         {
             cameraRadioObject.transform.rotation = Quaternion.LookRotation(target.position - camRadio.transform.position);
@@ -87,7 +92,7 @@ public class GameOver : MonoBehaviour
 
     public void GetGot()
     {
-        Debug.Log("HA! Gotcha!");
+        disableUI = true;
         MessageRadioManager messageRadio = FindAnyObjectByType<MessageRadioManager>();
         messageRadio.canNotMove = true;
         StartCoroutine(Gotcha());
@@ -96,7 +101,7 @@ public class GameOver : MonoBehaviour
 
     public void AreInsideTheCabin()
     {
-        Debug.Log("Monster is inside");
+        disableUI = true;
         player.enabled = false;
         mouseLook.enabled = false;
         MessageRadioManager messageRadio = FindAnyObjectByType<MessageRadioManager>();
@@ -170,6 +175,7 @@ public class GameOver : MonoBehaviour
     }
     public IEnumerator TheDoormanGetYou()
     {
+        disableUI = true;
         MessageRadioManager messageRadio = FindAnyObjectByType<MessageRadioManager>();
         messageRadio.canNotMove = true;
         player.enabled = false;
@@ -201,6 +207,7 @@ public class GameOver : MonoBehaviour
     }
     public IEnumerator TheDoormanIfDoorOpen()
     {
+        disableUI = true;
         MessageRadioManager messageRadio = FindAnyObjectByType<MessageRadioManager>();
         messageRadio.canNotMove = true;
         float initialPOV = 40;

@@ -48,6 +48,7 @@ public class Reset : MonoBehaviour
 
     public void ResetTheGame()
     {
+        
         foreach (ResetWindowState window in windows)
         {
             window.ResetWindow();
@@ -102,8 +103,10 @@ public class Reset : MonoBehaviour
         camRadioObjet.transform.rotation = Quaternion.LookRotation(camTarget.position - camRadioObjet.transform.position);
 
         GameOver gameOver = FindAnyObjectByType<GameOver>();
+        gameOver.disableUI = false;
         gameOver.noDoorman = false;
         door.isOpen = false;
+        door.isCheck = false;
     }
 
     public IEnumerator DecreaseMusicVolume()
