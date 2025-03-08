@@ -96,7 +96,7 @@ If you are reading this message, it is because I am no longer of this world. The
 
 I don't know if life gave me a second chance, or wants to punish me for what I did. But having the chance to watch you grow and become the person you are today is the most beautiful thing I have ever experienced in my entire long life. That's why I think you deserve to know the truth. About who I was, who you really are, and what happened.
 
-I left you a map that shows the location of a Watchtower that does not appear on any other map, because only you can access it. If you decide to go there, you will have answers to your questions, but you will have to face the hell I have brought us all to. You must tell no one, least of all Loubelle. She thinks she's protecting you by locking you in the Village, but no one must restrict you from living your life. Never again.
+I left you a map that shows the location of a Watchtower that does not appear on any other map, because only you can access it. If you decide to go there, you will have answers to your questions, but you will have to face the hell I've brought us all into. You must tell no one, least of all Loubelle. She thinks she's protecting you by locking you in the Village, but no one must restrict you from living your life. Never again.
 
 Know that, even though your grandmother and I are no longer here, a part of us will always be in your heart and will support you in difficult times. You are the greatest gift we have ever had, and we love you so very much.
 
