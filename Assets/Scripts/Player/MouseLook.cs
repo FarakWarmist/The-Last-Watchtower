@@ -7,6 +7,7 @@ public class MouseLook : MonoBehaviour
     public Transform playerBody;
     public Player player;
     [SerializeField] MenuPause menuPause;
+    [SerializeField] UIHelper helper;
 
     float xRotation = 0f;
 
@@ -18,7 +19,7 @@ public class MouseLook : MonoBehaviour
             float mouseX = Input.GetAxis("Mouse X") * (mouseSensitivity / 100f);
             float mouseY = Input.GetAxis("Mouse Y") * (mouseSensitivity / 100f);
 
-            if (menuPause.isActif)
+            if (menuPause.isActif || (helper.tipUI.enabled && helper.tipsCanvas.enabled))
             {
                 mouseX *= Time.deltaTime;
                 mouseY *= Time.deltaTime;
