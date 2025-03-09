@@ -9,6 +9,8 @@ public class ComputerState : MonoBehaviour, IInteractable
     Terminal terminal;
     [SerializeField] AudioClip[] buttonSounds;
     AudioSource audioSource;
+    [SerializeField] Canvas terminalCanvas;
+    [SerializeField] Canvas monitorCanvas;
 
     [SerializeField] GameObject startButton;
     Animator animator;
@@ -23,6 +25,7 @@ public class ComputerState : MonoBehaviour, IInteractable
     [SerializeField] Collider buttonCollider;
 
     public bool isLooking;
+    public bool energieOn;
 
     public CinemachineCamera camTerminal;
     public CinemachineCamera camPlayer;
@@ -38,8 +41,7 @@ public class ComputerState : MonoBehaviour, IInteractable
     bool buttonPressed;
 
     UIHelper helper;
-    public int tipsOn = 0;
-    public int tipsOff = 0;
+    public int tips = 0;
 
     private void Start()
     {
@@ -73,11 +75,16 @@ public class ComputerState : MonoBehaviour, IInteractable
             isLooking = !isLooking;
             if (isLooking)
             {
-
                 IsLooking(camPlayer, camTerminal, false);
                 cursorState.needCursor++;
+                if (!isOn && energieOn)
+                {
+                    StopAllCoroutines();
+                    StartCoroutine(TurnOn());
+                    isOn = true;
+                }
+                tips = helper.ActiveTips(tips);
             }
-            tipsOff = helper.ActiveTips(tipsOff);
         }
         else
         {
@@ -87,19 +94,21 @@ public class ComputerState : MonoBehaviour, IInteractable
 
     private void Update()
     {
-        if (lightSwitch.switchOn == false)
+        terminalCanvas.enabled = energieOn;
+        monitorCanvas.enabled = energieOn;
+
+        if (!lightSwitch.switchOn)
         {
-            if (isOn)
+            if (isOn && energieOn)
             {
                 StopAllCoroutines();
-                StartCoroutine(TurnOff());
+                StartCoroutine(NoEnergie());
             }
-
-            isOn = false;
+            energieOn = false;
         }
         else
         {
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) && isLooking)
             {
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 RaycastHit hit;
@@ -109,16 +118,23 @@ public class ComputerState : MonoBehaviour, IInteractable
                     if (hitCollider == buttonCollider)
                     {
                         PressButton();
-                        tipsOn = helper.ActiveTips(tipsOn);
                     }
                 }
             }
+            
+            if (isOn && !energieOn)
+            {
+                StopAllCoroutines();
+                StartCoroutine(TurnOn());
+            }
+            energieOn = true;
         }
 
         if (isLooking)
         {
             var activeBlend = brain.ActiveBlend;
-            if (isOn)
+
+            if (isOn && lightSwitch.switchOn)
             {
                 terminal.inputTerminal.ActivateInputField();
                 menuPause.enabled = false;
@@ -139,8 +155,6 @@ public class ComputerState : MonoBehaviour, IInteractable
         {
             terminal.inputTerminal.DeactivateInputField();
         }
-
-        terminal.enabled = isOn;
     }
 
     public void CamGoBack()
@@ -176,18 +190,18 @@ public class ComputerState : MonoBehaviour, IInteractable
     {
         if (!buttonPressed)
         {
-            if (!isOn)
-            {
-                StopAllCoroutines();
-                StartCoroutine(TurnOn());
-                isOn = true;
-            }
-            else
+            if (isOn)
             {
                 StopAllCoroutines();
                 StartCoroutine(TurnOff());
                 isOn = false;
             }
+            else
+            {
+                StopAllCoroutines();
+                StartCoroutine(TurnOn());
+                isOn = true;
+            } 
         }
     }
 
@@ -228,6 +242,22 @@ public class ComputerState : MonoBehaviour, IInteractable
         computerSoundState.clip = currentComputerSounds[currentComputerIndex];
         computerSoundState.Play();
         buttonPressed = false;
+
+        computerSound.loop = false;
+        computerSound.Stop();
+    }
+
+    IEnumerator NoEnergie()
+    {
+        currentComputerIndex = 1;
+        buttonPressed = true;
+        audioSource.clip = buttonSounds[1];
+        animator.SetBool("IsOn", false);
+
+        yield return new WaitForSeconds(0.01f);
+
+        computerSoundState.clip = currentComputerSounds[currentComputerIndex];
+        computerSoundState.Play();
 
         computerSound.loop = false;
         computerSound.Stop();
