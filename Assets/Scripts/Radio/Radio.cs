@@ -112,7 +112,7 @@ public class Radio : MonoBehaviour, IInteractable
             {
                 GoBack();
             }
-            if (Input.GetKeyDown(KeyCode.E) && lightSwitch.switchOn)
+            if (Input.GetKeyDown(KeyCode.E) && lightSwitch.switchOn && Time.timeScale == 1)
             {
                 radioText.MessageState();
                 if (!radioMessage.newMessage)

@@ -31,6 +31,12 @@ public class Terminal : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
         }
+
+
+        if (Time.timeScale == 0)
+        {
+            inputTerminal.text = "";
+        }
     }
 
     private void OnValueChange(string text)
@@ -70,9 +76,9 @@ public class Terminal : MonoBehaviour
             mainText =
     @"Bienvenue sur le Terminal de la Watchtower No8.
 
-Vous y trouverez les informations collectï¿½es sur les diverses anomalies de la Lost Forest, ainsi que des conseils pour survivre en cas d'attaque pendant vos heures de travail.
+Vous y trouverez les informations collectées sur les diverses anomalies de la Lost Forest, ainsi que des conseils pour survivre en cas d'attaque pendant vos heures de travail.
 
-Pour connaï¿½tre les diffï¿½rentes options, tapez HELP.";
+Pour connaître les différentes options, tapez HELP.";
         }
         else
         {
@@ -116,7 +122,7 @@ EXIT
                 return text =
 @"|| BESTIARY ||
 
-Liste des diffï¿½rentes crï¿½atures, anomalies et danger des alentours :
+Liste des différentes créatures, anomalies et danger des alentours :
 
 CURSED TOOL
 CROOKED HARPY
@@ -139,207 +145,207 @@ THE DOORMAN
                 return text =
 @"|| DEER SMILE ||
 
-Le Deer Smile, ou Smiling Deer, est une espï¿½ce de cerf parasitï¿½e par The Root. Il tire son nom de sa large mï¿½choire exposï¿½e, ressemblant ï¿½ un sourire dï¿½formï¿½, ainsi que du bruit quï¿½il ï¿½met, semblable ï¿½ un rire ï¿½touffï¿½.
+Le Deer Smile, ou Smiling Deer, est une espèce de cerf parasitée par The Root. Il tire son nom de sa large mâchoire exposée, ressemblant à un sourire déformé, ainsi que du bruit qu’il émet, semblable à un rire étouffé.
 
-Le jour, les Deers Smiles ressemblent et se comportent comme des cerfs ordinaires, ï¿½ l'exception de leur impaviditï¿½ et du fait que les prï¿½dateurs les fuient instinctivement. Dans le cas oï¿½ il croiserait un humain, le Deer Smile s'approchera et se montrera curieux, se laissant flatter et cajoler pour amadouer l'humain. Le Deer Smile utilise cette tactique dans le but de laisser sa cible le conduire jusquï¿½ï¿½ son groupe.
+Le jour, les Deers Smiles ressemblent et se comportent comme des cerfs ordinaires, à l'exception de leur impavidité et du fait que les prédateurs les fuient instinctivement. Dans le cas où il croiserait un humain, le Deer Smile s'approchera et se montrera curieux, se laissant flatter et cajoler pour amadouer l'humain. Le Deer Smile utilise cette tactique dans le but de laisser sa cible le conduire jusqu’à son groupe.
 
-Lorsque la nuit tombe, ils subissent une mutation rapide les dï¿½formant, leur confï¿½rant des aptitudes surnaturelles et une intelligence inhabituelle. Sous cette forme, les Deer Smiles adoptent un comportement sadique et psychopathique. Sï¿½ils nï¿½ont pas trouvï¿½ de groupe humain pendant la journï¿½e, ils errent dans la forï¿½t ï¿½ la recherche dï¿½une victime potentielle. Une fois une cible repï¿½rï¿½e, le Deer Smile la torturera d'abord psychologiquement puis physiquement, rï¿½ussissant ï¿½ la garder en vie pendant des heures. La raison pour laquelle les Deer Smiles possï¿½dent une si grande connaissance de lï¿½anatomie humaine reste un mystï¿½re.
+Lorsque la nuit tombe, ils subissent une mutation rapide les déformant, leur conférant des aptitudes surnaturelles et une intelligence inhabituelle. Sous cette forme, les Deer Smiles adoptent un comportement sadique et psychopathique. S’ils n’ont pas trouvé de groupe humain pendant la journée, ils errent dans la forêt à la recherche d’une victime potentielle. Une fois une cible repérée, le Deer Smile la torturera d'abord psychologiquement puis physiquement, réussissant à la garder en vie pendant des heures. La raison pour laquelle les Deer Smiles possèdent une si grande connaissance de l’anatomie humaine reste un mystère.
 
 - CONSEILS -
-* Si un cerf ne montre aucune peur face ï¿½ lï¿½Homme, semble scruter les environs ou suit une personne de prï¿½s, ï¿½liminez-le immï¿½diatement sans hï¿½sitation et brï¿½lez sa carcasse.
+* Si un cerf ne montre aucune peur face à l’Homme, semble scruter les environs ou suit une personne de près, éliminez-le immédiatement sans hésitation et brûlez sa carcasse.
 
-* Si vous vous retrouvez face ï¿½ un Deer Smile durant la nuit, ne paniquez sous aucun prï¿½texte.
+* Si vous vous retrouvez face à un Deer Smile durant la nuit, ne paniquez sous aucun prétexte.
 Voici ce que vous devez faire :
-- Gardez votre calme et essayez de maintenir votre rythme respiratoire et cardiaque ï¿½ un niveau normal.
-- Ne courez pas ! Faites comprendre au Deer Smile que vous lï¿½avez vu en le regardant dans les yeux, puis marchez normalement vers votre destination en lï¿½ignorant.
-- ï¿½vitez d'appeler ï¿½ l'aide ou de crier.
-- Ne verbalisez pas avec un Deer Smile. Il pourrait interprï¿½ter vos paroles comme une tentative de vous rassurer, ce qui lui indiquerait que vous ï¿½tes en ï¿½tat de stress.
+- Gardez votre calme et essayez de maintenir votre rythme respiratoire et cardiaque à un niveau normal.
+- Ne courez pas ! Faites comprendre au Deer Smile que vous l’avez vu en le regardant dans les yeux, puis marchez normalement vers votre destination en l’ignorant.
+- Évitez d'appeler à l'aide ou de crier.
+- Ne verbalisez pas avec un Deer Smile. Il pourrait interpréter vos paroles comme une tentative de vous rassurer, ce qui lui indiquerait que vous êtes en état de stress.
 
-* Si vous entendez une personne appeler ï¿½ lï¿½aide, accompagnï¿½e de cris de douleur, ne tentez pas de la sauver. Profitez-en pour vous dï¿½placer aussi rapidement que possible. Personne ne vous en voudra.";
+* Si vous entendez une personne appeler à l’aide, accompagnée de cris de douleur, ne tentez pas de la sauver. Profitez-en pour vous déplacer aussi rapidement que possible. Personne ne vous en voudra.";
 
             case "priest":
             case "rooted priest":
                 return text =
 @"|| ROOTED PRIEST ||
 
-Les Rooted Priests sont des humanoï¿½des partisans et croyants, volontaires ou non, d'un culte vï¿½nï¿½rant The Root, et sont suspectï¿½s dï¿½ï¿½tre la principale cause des anomalies et de la propagation de lï¿½influence de The Root. Ils sont considï¿½rï¿½s comme les yeux, la bouche et les oreilles de The Root.
+Les Rooted Priests sont des humanoïdes partisans et croyants, volontaires ou non, d'un culte vénérant The Root, et sont suspectés d’être la principale cause des anomalies et de la propagation de l’influence de The Root. Ils sont considérés comme les yeux, la bouche et les oreilles de The Root.
 
-Les Rooted Priests sont vï¿½tus dï¿½une ï¿½trange tunique aux couleurs de la forï¿½t, recouverte de boue, de branches et de feuilles, leur permettant de mieux se dissimuler dans la vï¿½gï¿½tation. Ils sont souvent vus portant divers objets de priï¿½re, appelï¿½s ""Cursed Tool"", qui leur confï¿½rent une certaine influence sur les autres anomalies. 
+Les Rooted Priests sont vêtus d’une étrange tunique aux couleurs de la forêt, recouverte de boue, de branches et de feuilles, leur permettant de mieux se dissimuler dans la végétation. Ils sont souvent vus portant divers objets de prière, appelés ""Cursed Tool"", qui leur confèrent une certaine influence sur les autres anomalies. 
 
-Les Rooted Priests sont dans un ï¿½tat constant dï¿½euphorie et cherchent visiblement ï¿½ partager ce ""bonheur"" avec tout ï¿½tre humain. Pour ce faire, ils vont, seuls ou en groupe, trouver une ou plusieurs personnes et commencer ï¿½ rï¿½citer un chant religieux tout en interagissant avec lï¿½objet fï¿½tiche quï¿½ils dï¿½tiennent. Lors de ces rencontres, une variï¿½tï¿½ dï¿½ï¿½vï¿½nements peut survenir. Le chant brisï¿½ des Rooted Priests peut crï¿½er ou invoquer des anomalies qui blesseront ou tueront une partie des personnes ciblï¿½es. Lï¿½autre partie entrera dans un ï¿½tat de transe, envoï¿½tï¿½e par le chant, jusquï¿½ï¿½ disparaï¿½tre dans la forï¿½t avec le Priest. Le sort rï¿½servï¿½ ï¿½ ces personnes reste encore un mystï¿½re.
+Les Rooted Priests sont dans un état constant d’euphorie et cherchent visiblement à partager ce ""bonheur"" avec tout être humain. Pour ce faire, ils vont, seuls ou en groupe, trouver une ou plusieurs personnes et commencer à réciter un chant religieux tout en interagissant avec l’objet fétiche qu’ils détiennent. Lors de ces rencontres, une variété d’événements peut survenir. Le chant brisé des Rooted Priests peut créer ou invoquer des anomalies qui blesseront ou tueront une partie des personnes ciblées. L’autre partie entrera dans un état de transe, envoûtée par le chant, jusqu’à disparaître dans la forêt avec le Priest. Le sort réservé à ces personnes reste encore un mystère.
 
 - CONSEILS -
-* Si vous commencez ï¿½ entendre le chant dï¿½un Rooted Priest, vous devez le trouver et lï¿½ï¿½liminer le plus rapidement possible. Plus le chant continue, plus le nombre ou la dangerositï¿½ des anomalies augmentera.
+* Si vous commencez à entendre le chant d’un Rooted Priest, vous devez le trouver et l’éliminer le plus rapidement possible. Plus le chant continue, plus le nombre ou la dangerosité des anomalies augmentera.
 
-* Les Rooted Priests ne se dï¿½fendront jamais physiquement, ce qui les rend faciles ï¿½ ï¿½liminer lorsquï¿½ils sont ï¿½ portï¿½e. Cependant, leur grande intelligence fait dï¿½eux de redoutables stratï¿½ges, utilisant divers sorts ou autres moyens de diversion pour se dissimuler et rester ï¿½ distance.";
+* Les Rooted Priests ne se défendront jamais physiquement, ce qui les rend faciles à éliminer lorsqu’ils sont à portée. Cependant, leur grande intelligence fait d’eux de redoutables stratèges, utilisant divers sorts ou autres moyens de diversion pour se dissimuler et rester à distance.";
 
             case "rooted ghoul":
             case "ghoul":
                 return text =
 @"|| ROOTED GHOUL ||
 
-Les Rooted Ghouls sont des crï¿½atures crï¿½ï¿½es par les Rooted Priests ï¿½ partir de corps humains rï¿½parï¿½s avec du bois et des racines. Malgrï¿½ le fait qu'ils soient constamment maltraitï¿½s par les Priests, les Rooted Ghouls suivent leurs ordres au doigt et ï¿½ l'ï¿½il.
+Les Rooted Ghouls sont des créatures créées par les Rooted Priests à partir de corps humains réparés avec du bois et des racines. Malgré le fait qu'ils soient constamment maltraités par les Priests, les Rooted Ghouls suivent leurs ordres au doigt et à l'œil.
 
-Les Rooted Ghouls ont dï¿½montrï¿½ une certaine conscience de leur vie prï¿½cï¿½dente. Certains, ayant encore des cordes vocales, ont murmurï¿½ des appels ï¿½ l'aide, mais cela pourrait ï¿½galement ï¿½tre un leurre pour dï¿½sorienter leurs victimes. Ils ont montrï¿½ une force surhumaine, ainsi qu'une grande rï¿½sistance physique, et se comportent toujours de maniï¿½re ï¿½trange lorsqu'ils n'ont pas de Priest pour les commander.
+Les Rooted Ghouls ont démontré une certaine conscience de leur vie précédente. Certains, ayant encore des cordes vocales, ont murmuré des appels à l'aide, mais cela pourrait également être un leurre pour désorienter leurs victimes. Ils ont montré une force surhumaine, ainsi qu'une grande résistance physique, et se comportent toujours de manière étrange lorsqu'ils n'ont pas de Priest pour les commander.
 
-Comme beaucoup d'anomalies crï¿½ï¿½es par The Root, les Rooted Ghouls sont trï¿½s sensibles aux Runes, surtout celle de purification. Lorsqu'ils sont tuï¿½s, ils se dï¿½matï¿½rialisent et rï¿½apparaissent dans la forï¿½t. De ce fait, leur nombre est en constante augmentation.
+Comme beaucoup d'anomalies créées par The Root, les Rooted Ghouls sont très sensibles aux Runes, surtout celle de purification. Lorsqu'ils sont tués, ils se dématérialisent et réapparaissent dans la forêt. De ce fait, leur nombre est en constante augmentation.
 
 - CONSEILS -
-* Si un groupe de Rooted Ghouls attaque votre groupe, et que vous disposez de moyens de dï¿½fense, que vous les dï¿½passez en nombre et qu'il n'y a pas de Priest prï¿½sent, vous pouvez essayer de les dï¿½truire et partir une fois fait.
+* Si un groupe de Rooted Ghouls attaque votre groupe, et que vous disposez de moyens de défense, que vous les dépassez en nombre et qu'il n'y a pas de Priest présent, vous pouvez essayer de les détruire et partir une fois fait.
 
-* Si vous avez un Runiste avec vous, il peut crï¿½er une zone de purification pour empï¿½cher les Ghouls de s'approcher.
+* Si vous avez un Runiste avec vous, il peut créer une zone de purification pour empêcher les Ghouls de s'approcher.
 
-* Les Rooted Ghouls sans supervision ont dï¿½montrï¿½ un comportement ï¿½trange oï¿½ ils cessent toute activitï¿½ lorsqu'ils sont observï¿½s. Assurez-vous donc d'avoir une vue claire sur eux.
+* Les Rooted Ghouls sans supervision ont démontré un comportement étrange où ils cessent toute activité lorsqu'ils sont observés. Assurez-vous donc d'avoir une vue claire sur eux.
 
-* Si un Rooted Priest est prï¿½sent, fuir reste la meilleure solution.";
+* Si un Rooted Priest est présent, fuir reste la meilleure solution.";
 
             case "false tree":
                 return text =
 @"|| FALSE TREE ||
 
-Le False Tree est le nom donnï¿½ ï¿½ un groupe dï¿½entitï¿½s gï¿½antes et carnivores. Des thï¿½ories disent qu'ils auraient ï¿½tï¿½ crï¿½ï¿½s artificiellement, par les Rooted Priests ou une anomalie encore inconnue, due ï¿½ lï¿½augmentation de leur nombre sans signe de reproduction.
+Le False Tree est le nom donné à un groupe d’entités géantes et carnivores. Des théories disent qu'ils auraient été créés artificiellement, par les Rooted Priests ou une anomalie encore inconnue, due à l’augmentation de leur nombre sans signe de reproduction.
 
-ï¿½ premiï¿½re vue, les False Trees ressemblent ï¿½ de grands pins morts, avec une ï¿½corce blanchï¿½tre et une absence dï¿½aiguilles. Cependant, en y regardant de plus prï¿½s, on remarque leur camouflage phï¿½nomï¿½nal. Ce que lï¿½on perï¿½oit comme des branches sont en rï¿½alitï¿½ des mains dotï¿½es de plusieurs doigts crochus, recouverts de petits crochets, permettant une prise optimale sur leurs victimes. Ce qui semble ï¿½tre des nï¿½uds est en fait une sï¿½rie dï¿½yeux, dont le nombre varie de 15 ï¿½ 32, offrant une vision panoramique presque absolue. Malgrï¿½ cette excellente vue, les False Trees ont une vision trï¿½s limitï¿½e de ce qui se trouve ï¿½ leurs pieds. Cï¿½est pourquoi ils utilisent des appendices souples, semblables ï¿½ des racines, afin de gï¿½olocaliser leur alentour.
+À première vue, les False Trees ressemblent à de grands pins morts, avec une écorce blanchâtre et une absence d’aiguilles. Cependant, en y regardant de plus près, on remarque leur camouflage phénoménal. Ce que l’on perçoit comme des branches sont en réalité des mains dotées de plusieurs doigts crochus, recouverts de petits crochets, permettant une prise optimale sur leurs victimes. Ce qui semble être des nœuds est en fait une série d’yeux, dont le nombre varie de 15 à 32, offrant une vision panoramique presque absolue. Malgré cette excellente vue, les False Trees ont une vision très limitée de ce qui se trouve à leurs pieds. C’est pourquoi ils utilisent des appendices souples, semblables à des racines, afin de géolocaliser leur alentour.
 
-Les False Trees sont des crï¿½atures nocturnes qui dorment le jour et ne chassent que lorsqu'elles ont faim. Lorsqu'ils chassent, ils se dï¿½placent silencieusement jusqu'ï¿½ ce qu'ils repï¿½rent une proie qui les intï¿½resse. Une fois la proie localisï¿½e, ils sï¿½enracinent et attendent quï¿½elle sï¿½approche, avant de lï¿½agripper et de la dï¿½poser dans l'une de leurs bouches.
+Les False Trees sont des créatures nocturnes qui dorment le jour et ne chassent que lorsqu'elles ont faim. Lorsqu'ils chassent, ils se déplacent silencieusement jusqu'à ce qu'ils repèrent une proie qui les intéresse. Une fois la proie localisée, ils s’enracinent et attendent qu’elle s’approche, avant de l’agripper et de la déposer dans l'une de leurs bouches.
 
-Si un False Tree est particuliï¿½rement affamï¿½, il devient plus agressif et moins discret. Certains rapports mentionnent des groupes attaquï¿½s par un False Tree qui a simplement chargï¿½, ï¿½mettant un cri perturbant, avant de saisir une victime et de retourner dans la forï¿½t.
+Si un False Tree est particulièrement affamé, il devient plus agressif et moins discret. Certains rapports mentionnent des groupes attaqués par un False Tree qui a simplement chargé, émettant un cri perturbant, avant de saisir une victime et de retourner dans la forêt.
 
-Les False Trees ont ï¿½galement montrï¿½ qu'ils peuvent ressentir la peur, la tristesse, la joie et la colï¿½re, mais pas lï¿½amour ni la compassion. Toute tentative d'apprivoiser ou dï¿½ï¿½lever un False Tree se termine gï¿½nï¿½ralement par la mort de la crï¿½ature ou des personnes impliquï¿½es.
+Les False Trees ont également montré qu'ils peuvent ressentir la peur, la tristesse, la joie et la colère, mais pas l’amour ni la compassion. Toute tentative d'apprivoiser ou d’élever un False Tree se termine généralement par la mort de la créature ou des personnes impliquées.
 
 - CONSEILS -
-* Le feu reste le moyen le plus efficace pour les ï¿½loigner. Une simple flamme peut plonger un False Tree dans un ï¿½tat de panique extrï¿½me. Ce phï¿½nomï¿½ne est des plus ï¿½tranges, car il a ï¿½tï¿½ observï¿½ que la peau des False Trees comporte une couche dï¿½huile les rendant rï¿½sistants au feu.
+* Le feu reste le moyen le plus efficace pour les éloigner. Une simple flamme peut plonger un False Tree dans un état de panique extrême. Ce phénomène est des plus étranges, car il a été observé que la peau des False Trees comporte une couche d’huile les rendant résistants au feu.
 
-* Les False Trees ï¿½vitent gï¿½nï¿½ralement la confrontation. Leur lancer des objets ou des projectiles peut les dissuader de faire de vous leur prochain repas.
+* Les False Trees évitent généralement la confrontation. Leur lancer des objets ou des projectiles peut les dissuader de faire de vous leur prochain repas.
 
-* Il est ï¿½galement recommandï¿½ dï¿½ï¿½viter de rester ï¿½ dï¿½couvert lorsquï¿½un False Tree vous traque. Cherchez un abri, comme une cabane, une grotte ou tout autre refuge en attendant que le False Tree perde patience et passe ï¿½ autre chose.";
+* Il est également recommandé d’éviter de rester à découvert lorsqu’un False Tree vous traque. Cherchez un abri, comme une cabane, une grotte ou tout autre refuge en attendant que le False Tree perde patience et passe à autre chose.";
 
             case "the doorman":
             case "doorman":
                 return text =
 @"|| THE DOORMAN ||
 
-La chose qu'on surnomme ""The Doorman"" est une entitï¿½ dont l'objectif, l'apparence ou ce qui arrive ï¿½ ses victimes reste encore confus.
+La chose qu'on surnomme ""The Doorman"" est une entité dont l'objectif, l'apparence ou ce qui arrive à ses victimes reste encore confus.
 
-Chaque cas oï¿½ The Doorman s'est manifestï¿½ ont ces points en commun :
-- The Doorman frappe toujours ï¿½ la porte pour annoncer son arrivï¿½e.
-- La victime se trouvait dans un lieu intï¿½rieur, comme une tente, un abris ou une cabine.
-- La victime ï¿½tait dans un ï¿½tat de deuil ou de dï¿½pression.
-- La victime ï¿½tait seule.
+Chaque cas où The Doorman s'est manifesté ont ces points en commun :
+- The Doorman frappe toujours à la porte pour annoncer son arrivée.
+- La victime se trouvait dans un lieu intérieur, comme une tente, un abris ou une cabine.
+- La victime était dans un état de deuil ou de dépression.
+- La victime était seule.
 - La victime se trouvait dans une situation de stress.
-- Toute porte et fenï¿½tre deviennent impossibles ï¿½ ouvrir ou briser de l'extï¿½rieur.
-- La victime a perdu un proche ï¿½ qui elle tenait beaucoup.
+- Toute porte et fenêtre deviennent impossibles à ouvrir ou briser de l'extérieur.
+- La victime a perdu un proche à qui elle tenait beaucoup.
 
-Lorsque The Doorman se manifeste, il prendra la voix d'une personne dï¿½cï¿½dï¿½e qui ï¿½tait chï¿½re ï¿½ sa victime, prï¿½tendant ï¿½tre cette personne venue l'aider. Il leurra sa proie ï¿½ s'approcher de la porte entrouverte avant de l'agripper et de la traï¿½ner dans les tï¿½nï¿½bres.
+Lorsque The Doorman se manifeste, il prendra la voix d'une personne décédée qui était chère à sa victime, prétendant être cette personne venue l'aider. Il leurra sa proie à s'approcher de la porte entrouverte avant de l'agripper et de la traîner dans les ténèbres.
 
-Si la victime a dï¿½jï¿½ fait affaire au Doorman, l'entitï¿½ ne prï¿½tendra pas ï¿½tre la personne chï¿½re, mais utilisera ï¿½a voix pour rabaisser le moral de sa proie. La poussant ainsi ï¿½ penser qu'il est la seule solution ï¿½ leur problï¿½me.
+Si la victime a déjà fait affaire au Doorman, l'entité ne prétendra pas être la personne chère, mais utilisera ça voix pour rabaisser le moral de sa proie. La poussant ainsi à penser qu'il est la seule solution à leur problème.
 
-Ceux qui ont vu The Doorman, et sont toujours lï¿½ pour en parler, disent n'avoir vu que leur visage. Celui-ci, ï¿½tant une copie de la personne dï¿½cï¿½dï¿½e ï¿½ qui appartenait la voix, mais avec les yeux et la bouche creuses, souriant de maniï¿½re non-naturelle ï¿½ mesure qu'il s'approchait.
+Ceux qui ont vu The Doorman, et sont toujours là pour en parler, disent n'avoir vu que leur visage. Celui-ci, étant une copie de la personne décédée à qui appartenait la voix, mais avec les yeux et la bouche creuses, souriant de manière non-naturelle à mesure qu'il s'approchait.
 
 - CONSEILS -
-* ï¿½vitez de vous retrouver seul dans un lieu intï¿½rieur ou garder la porte ouverte si ï¿½a ne vous met pas en danger.
+* Évitez de vous retrouver seul dans un lieu intérieur ou garder la porte ouverte si ça ne vous met pas en danger.
 
-* Si The Doorman se prï¿½sente ï¿½ vous, garder la tï¿½te froide et ignorï¿½ toute promesse et mensonge qu'il vous raconte, aussi tentant qu'ils sont.
+* Si The Doorman se présente à vous, garder la tête froide et ignoré toute promesse et mensonge qu'il vous raconte, aussi tentant qu'ils sont.
 
-* Si vous ï¿½tes munie d'une rune de purification ou d'une puissante source de lumiï¿½re, approchez vous de la porte pour entrevoir The Doorman et utilisez-la lorsque vous voyez son visage souriant.
+* Si vous êtes munie d'une rune de purification ou d'une puissante source de lumière, approchez vous de la porte pour entrevoir The Doorman et utilisez-la lorsque vous voyez son visage souriant.
 
-* La derniï¿½re solution reste de rester loin de la porte jusqu'ï¿½ ce qu'il perde patience en vous tenant loin de la porte.";
+* La dernière solution reste de rester loin de la porte jusqu'à ce qu'il perde patience en vous tenant loin de la porte.";
 
             case "forest madness":
             case "madness":
                 return text =
 @"|| FOREST MADNESS ||
 
-La Forest Madness est un ï¿½vï¿½nement paranormal qui affecte toute personne se trouvant ï¿½ proximitï¿½ d'une anomalie liï¿½e ï¿½ The Root, lorsqu'elle se retrouve complï¿½tement seule et dans l'obscuritï¿½.
+La Forest Madness est un événement paranormal qui affecte toute personne se trouvant à proximité d'une anomalie liée à The Root, lorsqu'elle se retrouve complètement seule et dans l'obscurité.
 
-Les symptï¿½mes sont les suivants :
+Les symptômes sont les suivants :
 - Hallucinations visuelles et auditives.
-- Sensation extrï¿½me d'anxiï¿½tï¿½.
-- Entendre une voix fï¿½minine inconnue.
+- Sensation extrême d'anxiété.
+- Entendre une voix féminine inconnue.
 
-Si une personne succombe ï¿½ la Forest Madness, elle finira par devenir une Rooted Ghoul.
+Si une personne succombe à la Forest Madness, elle finira par devenir une Rooted Ghoul.
 
 - CONSEILS -
-* Gardez toujours une source de lumiï¿½re sur vous, ou l'ï¿½quipement nï¿½cessaire pour en gï¿½nï¿½rer une. Par exemple, des allumettes, un briquet ou un pistolet de dï¿½tresse.
+* Gardez toujours une source de lumière sur vous, ou l'équipement nécessaire pour en générer une. Par exemple, des allumettes, un briquet ou un pistolet de détresse.
 
 * Si possible, contactez un Watcher ou toute autre personne et informez-les de votre situation tout en maintenant une communication radio.
 
-* Si vous ne pouvez rien faire pour vous dï¿½barrasser de la Forest Madness dans les secondes qui suivent, la meilleure option reste de mettre fin ï¿½ vos jours. Dans le cas contraire, vous finirez par devenir un Rooted Ghoul.";
+* Si vous ne pouvez rien faire pour vous débarrasser de la Forest Madness dans les secondes qui suivent, la meilleure option reste de mettre fin à vos jours. Dans le cas contraire, vous finirez par devenir un Rooted Ghoul.";
 
             case "totem":
             case "root totem":
                 return text =
 @"|| ROOT TOTEM ||
 
-Les Root Totems sont d'ï¿½tranges effigies, crï¿½ï¿½es par les Rooted Priests ï¿½ partir de bois, de roches, de boue et de divers matï¿½riaux organiques. Elles mesurent environ 1 mï¿½tre de hauteur sur ï¿½ mï¿½tre de large. Il existe actuellement que trois types de Totems, chacun ayant ses propres caractï¿½ristiques.
+Les Root Totems sont d'étranges effigies, créées par les Rooted Priests à partir de bois, de roches, de boue et de divers matériaux organiques. Elles mesurent environ 1 mètre de hauteur sur ½ mètre de large. Il existe actuellement que trois types de Totems, chacun ayant ses propres caractéristiques.
 
-Le Screaming Totem ï¿½met un enchaï¿½nement de plusieurs cris d'agonies ï¿½ travers les ï¿½quipements de communication dans les environs. Cela empï¿½che toute communication radio et permet aux anomalies de localiser les Watchers et que les Explorers.
+Le Screaming Totem émet un enchaînement de plusieurs cris d'agonies à travers les équipements de communication dans les environs. Cela empêche toute communication radio et permet aux anomalies de localiser les Watchers et que les Explorers.
 
-Le Target Totem attire les crï¿½atures vers sa position. S'il n'est pas dï¿½truit rapidement, le regroupement de monstres finira par devenir incontrï¿½lable.
+Le Target Totem attire les créatures vers sa position. S'il n'est pas détruit rapidement, le regroupement de monstres finira par devenir incontrôlable.
 
-Le Blind Totem absorbe toute forme de lumiï¿½re et d'ï¿½nergie dans ses environs, rendant inutilisables toutes communications, runes et sources de lumiï¿½re.
+Le Blind Totem absorbe toute forme de lumière et d'énergie dans ses environs, rendant inutilisables toutes communications, runes et sources de lumière.
 
 - CONSEILS -
-* Au moindre signe qu'un Totem a ï¿½tï¿½ plantï¿½ ï¿½ proximitï¿½, trouvez-le et brï¿½lez-le.
+* Au moindre signe qu'un Totem a été planté à proximité, trouvez-le et brûlez-le.
 
-* Si des indices montrent qu'un Rooted Priest ï¿½tait dans les environs, fouillez la zone ï¿½ la recherche d'un potentiel Totem.";
+* Si des indices montrent qu'un Rooted Priest était dans les environs, fouillez la zone à la recherche d'un potentiel Totem.";
 
             case "cursed tool":
                 return text =
 @"|| CURSED TOOL ||
 
-Les Cursed Tools sont les principaux instruments surnaturels utilisï¿½s par les Rooted Priests. Il existe une grande variï¿½tï¿½ de Cursed Tools, et chacun d'entre eux ressemble ï¿½ un objet de culte ou ï¿½ un artefact religieux.
+Les Cursed Tools sont les principaux instruments surnaturels utilisés par les Rooted Priests. Il existe une grande variété de Cursed Tools, et chacun d'entre eux ressemble à un objet de culte ou à un artefact religieux.
 
-En raison de leur dangerositï¿½ lorsqu'ils sont utilisï¿½s par un ï¿½tre humain, il n'est pas encore possible de dï¿½terminer une relation claire entre les diffï¿½rents Cursed Tools et les effets qu'ils peuvent gï¿½nï¿½rer.
+En raison de leur dangerosité lorsqu'ils sont utilisés par un être humain, il n'est pas encore possible de déterminer une relation claire entre les différents Cursed Tools et les effets qu'ils peuvent générer.
 
-Les effets des Cursed Tools lorsque utilisï¿½s par un Priest sont les suivant :
-- Invoque une armï¿½e de Rooted Ghouls.
-- ï¿½met un champ qui annule les effets des runes.
-- Gï¿½nï¿½re des racines gï¿½antes qui dï¿½truisent et tuent tout ce qui est ï¿½ proximitï¿½.
-- Crï¿½e des illusions et vagues psychiques provoquant de violentes migraines.
+Les effets des Cursed Tools lorsque utilisés par un Priest sont les suivant :
+- Invoque une armée de Rooted Ghouls.
+- Émet un champ qui annule les effets des runes.
+- Génère des racines géantes qui détruisent et tuent tout ce qui est à proximité.
+- Crée des illusions et vagues psychiques provoquant de violentes migraines.
 - Manipule une ou plusieurs personnes.
-- Invoque un ï¿½pais brouillard.
+- Invoque un épais brouillard.
 
 - CONSEILS -
-* Si vous tombez sur un Cursed Tool, vous devez immï¿½diatement l'enterrer sans le toucher de vos mains et rï¿½citer une priï¿½re, quelle que soit la religion. Dans le cas contraire, le Cursed Tool finira par gï¿½nï¿½rer une Red Zone.";
+* Si vous tombez sur un Cursed Tool, vous devez immédiatement l'enterrer sans le toucher de vos mains et réciter une prière, quelle que soit la religion. Dans le cas contraire, le Cursed Tool finira par générer une Red Zone.";
 
             case "red zone":
             case "zone red":
                 return text =
 @"|| RED ZONE ||
 
-L'anomalie que l'on appelle ""Red Zone"" est ï¿½ la fois la plus facile ï¿½ ï¿½viter et la plus dangereuse.
+L'anomalie que l'on appelle ""Red Zone"" est à la fois la plus facile à éviter et la plus dangereuse.
 
-Une Red Zone apparaï¿½t lorsqu'un Cursed Tool n'a pas ï¿½tï¿½ correctement disposï¿½. Un phï¿½nomï¿½ne se dï¿½clenche alors, oï¿½ tout ce qui se trouve dans un rayon pouvant aller de 5 ï¿½ 200 mï¿½tres finit par ï¿½tre fusionnï¿½, dï¿½mantelï¿½, tordu et dï¿½formï¿½.
+Une Red Zone apparaît lorsqu'un Cursed Tool n'a pas été correctement disposé. Un phénomène se déclenche alors, où tout ce qui se trouve dans un rayon pouvant aller de 5 à 200 mètres finit par être fusionné, démantelé, tordu et déformé.
 
-Lorsqu'un ï¿½tre vivant entre dans une Red Zone, un brouillard luminescent rouge ï¿½mergera. C'est ce qui a valu le nom ï¿½ l'anomalie. Tout ce qui entre dans une Red Zone finit par rejoindre le paysage chaotique, emprisonnï¿½ dans un ï¿½tat constant entre la vie et la mort, et doit ï¿½tre considï¿½rï¿½ comme perdu.
+Lorsqu'un être vivant entre dans une Red Zone, un brouillard luminescent rouge émergera. C'est ce qui a valu le nom à l'anomalie. Tout ce qui entre dans une Red Zone finit par rejoindre le paysage chaotique, emprisonné dans un état constant entre la vie et la mort, et doit être considéré comme perdu.
 
-Il n'existe encore aucune faï¿½on d'inverser les effets d'une Red Zone. C'est pourquoi il est du devoir de chacun de prï¿½venir la formation de nouvelles Red Zones.
+Il n'existe encore aucune façon d'inverser les effets d'une Red Zone. C'est pourquoi il est du devoir de chacun de prévenir la formation de nouvelles Red Zones.
 
 - CONSEILS -
-* Suivez les ï¿½tapes ï¿½ faire lorsque vous trouvez une Cursed Tool.
+* Suivez les étapes à faire lorsque vous trouvez une Cursed Tool.
 
-* Mettez rï¿½guliï¿½rement ï¿½ jour votre carte pour localiser la formation de nouvelles Red Zones.
+* Mettez régulièrement à jour votre carte pour localiser la formation de nouvelles Red Zones.
 
-* Ne cherchez pas ï¿½ sauver ce qui est entrï¿½ dans une Red Zone.";
+* Ne cherchez pas à sauver ce qui est entré dans une Red Zone.";
 
             case "hungry":
             case "hungry cabin":
                 return text =
 @"|| HUNGRY CABIN ||
 
-Les Hungry Cabins sont des anomalies qui imitent un abri de secours afin de dï¿½vorer toute personne ayant la malchance d'y entrer, d'oï¿½ leur nom.
+Les Hungry Cabins sont des anomalies qui imitent un abri de secours afin de dévorer toute personne ayant la malchance d'y entrer, d'où leur nom.
 
-ï¿½ l'exception de l'ï¿½vï¿½nement qui se produit lorsqu'un ï¿½tre vivant entre ï¿½ l'intï¿½rieur, il est impossible de distinguer visuellement un abri rï¿½gulier d'une Hungry Cabin.
+À l'exception de l'événement qui se produit lorsqu'un être vivant entre à l'intérieur, il est impossible de distinguer visuellement un abri régulier d'une Hungry Cabin.
 
-Lorsqu'une personne entre dans une Hungry Cabin, la porte de celle-ci se fermera violemment, y compris les fenï¿½tres si prï¿½sentes et ouvertes. ï¿½ ce moment, l'Hungry Cabin commencera sa phase de digestion, sï¿½crï¿½tant un acide gastrique puissant depuis le sol et le plafond. Ce processus peut durer entre 15 et 30 minutes. Si aucune personne n'est ï¿½ proximitï¿½, l'entitï¿½ disparaï¿½tra sans laisser de traces.
+Lorsqu'une personne entre dans une Hungry Cabin, la porte de celle-ci se fermera violemment, y compris les fenêtres si présentes et ouvertes. À ce moment, l'Hungry Cabin commencera sa phase de digestion, sécrétant un acide gastrique puissant depuis le sol et le plafond. Ce processus peut durer entre 15 et 30 minutes. Si aucune personne n'est à proximité, l'entité disparaîtra sans laisser de traces.
 
-La mï¿½thode qu'utilisent les Hungry Cabins pour se matï¿½rialiser et se dï¿½matï¿½rialiser reste encore un mystï¿½re. Il n'est pas encore certain si elles sont des crï¿½atures vivantes ou une simple anomalie.
+La méthode qu'utilisent les Hungry Cabins pour se matérialiser et se dématérialiser reste encore un mystère. Il n'est pas encore certain si elles sont des créatures vivantes ou une simple anomalie.
 
 - CONSEILS -
-* Avant d'entrer dans un abri, vï¿½rifiez toujours si celui-ci figure sur votre carte. Si ce n'est pas le cas, il y a de fortes chances que vous soyez face ï¿½ une Hungry Cabin. Si vous n'avez pas de carte, contactez le Watcher en charge.
+* Avant d'entrer dans un abri, vérifiez toujours si celui-ci figure sur votre carte. Si ce n'est pas le cas, il y a de fortes chances que vous soyez face à une Hungry Cabin. Si vous n'avez pas de carte, contactez le Watcher en charge.
 
-* Si vous, ou l'un de vos compagnons, vous retrouvez pris ï¿½ l'intï¿½rieur d'une Hungry Cabin, utilisez un objet tel qu'une hache, une masse ou un rocher pour tenter de briser la porte.";
+* Si vous, ou l'un de vos compagnons, vous retrouvez pris à l'intérieur d'une Hungry Cabin, utilisez un objet tel qu'une hache, une masse ou un rocher pour tenter de briser la porte.";
 
             case "path to nowhere":
             case "nowhere":
@@ -347,42 +353,42 @@ La mï¿½thode qu'utilisent les Hungry Cabins pour se matï¿½rialiser et se dï¿½mat
                 return text =
 @"|| PATH TO NOWHERE ||
 
-L'anomalie surnommï¿½e ""Path to Nowhere"" dï¿½crit un chemin qui ne devrait pas exister d'oï¿½ ï¿½mane une sensation de rï¿½confort et de bien-ï¿½tre, incitant ainsi ces victimes ï¿½ l'emprunter.
+L'anomalie surnommée ""Path to Nowhere"" décrit un chemin qui ne devrait pas exister d'où émane une sensation de réconfort et de bien-être, incitant ainsi ces victimes à l'emprunter.
 
-Lorsqu'une personne aperï¿½oit le Path to Nowhere, elle entre dans un ï¿½tat de transe, ne cessant de dï¿½crire la beautï¿½ du chemin, rempli de merveilles naturelles, avec les rayons du soleil perï¿½ant ï¿½ travers les feuilles des arbres, et ce, mï¿½me si c'est la nuit. Si la personne n'est pas ramenï¿½e ï¿½ la raison, elle s'enfoncera dans la forï¿½t et disparaï¿½tra dï¿½s qu'elle sera hors de vue. Ceux qui ont ï¿½tï¿½ ramenï¿½s ï¿½ la raison n'ont aucun souvenir d'avoir vu un tel chemin, mais se souviennent seulement d'une douce voix les appeler.
+Lorsqu'une personne aperçoit le Path to Nowhere, elle entre dans un état de transe, ne cessant de décrire la beauté du chemin, rempli de merveilles naturelles, avec les rayons du soleil perçant à travers les feuilles des arbres, et ce, même si c'est la nuit. Si la personne n'est pas ramenée à la raison, elle s'enfoncera dans la forêt et disparaîtra dès qu'elle sera hors de vue. Ceux qui ont été ramenés à la raison n'ont aucun souvenir d'avoir vu un tel chemin, mais se souviennent seulement d'une douce voix les appeler.
 
-Il n'est pas encore certain de savoir si le Path to Nowhere est la crï¿½ation de The Root ou des Fairies, ni si cette anomalie est une sortie ou un leurre. Cependant, en raison de tï¿½moignages faisant ï¿½tat d'apparitions furtives de personnes disparues aprï¿½s avoir empruntï¿½ le chemin en train de les observer depuis des zones d'ombre dans la forï¿½t, il est prï¿½fï¿½rable de considï¿½rer le Path to Nowhere comme une anomalie dangereuse ï¿½ ï¿½viter.
+Il n'est pas encore certain de savoir si le Path to Nowhere est la création de The Root ou des Fairies, ni si cette anomalie est une sortie ou un leurre. Cependant, en raison de témoignages faisant état d'apparitions furtives de personnes disparues après avoir emprunté le chemin en train de les observer depuis des zones d'ombre dans la forêt, il est préférable de considérer le Path to Nowhere comme une anomalie dangereuse à éviter.
 
 - CONSEILS -
-* Si vous voyez un chemin trop beau pour ï¿½tre vrai, fermez immï¿½diatement les yeux et bouchez-vous les oreilles. Patientez quelques minutes ou demandez ï¿½ quelqu'un de vous emmener plus loin.
+* Si vous voyez un chemin trop beau pour être vrai, fermez immédiatement les yeux et bouchez-vous les oreilles. Patientez quelques minutes ou demandez à quelqu'un de vous emmener plus loin.
 
-* Si l'un de vos compagnons mentionne un chemin inexistant, mettez-vous face ï¿½ lui et bouchez-lui les oreilles. En quelques secondes, il devrait revenir ï¿½ lui.
+* Si l'un de vos compagnons mentionne un chemin inexistant, mettez-vous face à lui et bouchez-lui les oreilles. En quelques secondes, il devrait revenir à lui.
 
-* Si une victime de l'anomalie est trop enfoncï¿½e dans la forï¿½t, elle doit ï¿½tre considï¿½rï¿½e comme perdue. Tenter de la retrouver vous mettrait en danger.";
+* Si une victime de l'anomalie est trop enfoncée dans la forêt, elle doit être considérée comme perdue. Tenter de la retrouver vous mettrait en danger.";
 
             case "fairy":
             case "fairies":
                 return text =
 @"|| FAIRY ||
 
-Les crï¿½atures que l'on nomme ""Fairies"" sont une variï¿½tï¿½ de crï¿½atures non-hostiles qui habitaient la Lost Forest bien avant l'arrivï¿½e de l'homme. Certaines ressemblent ï¿½ des animaux ou des insectes, parfois avec une forme plus humanoï¿½de, mais avec toujours des traits qui rappellent la nature, comme des fleurs, des feuilles et du bois. Ceux qui se font appeler ""Elf"" sont des mï¿½tamorphes qui, pour certains, aiment prendre une apparence humaine et vivre parmi les hommes.
+Les créatures que l'on nomme ""Fairies"" sont une variété de créatures non-hostiles qui habitaient la Lost Forest bien avant l'arrivée de l'homme. Certaines ressemblent à des animaux ou des insectes, parfois avec une forme plus humanoïde, mais avec toujours des traits qui rappellent la nature, comme des fleurs, des feuilles et du bois. Ceux qui se font appeler ""Elf"" sont des métamorphes qui, pour certains, aiment prendre une apparence humaine et vivre parmi les hommes.
 
-Lors de l'arrivï¿½e des humains, certains d'entre eux ont partagï¿½ leurs connaissances sur la magie des runes, permettant ï¿½ l'homme de se protï¿½ger face ï¿½ The Root. D'autres Fairies les considï¿½rent comme la cause de l'apparition de The Root dans la Lost Forest, dï¿½testant les humains au plus haut point.
+Lors de l'arrivée des humains, certains d'entre eux ont partagé leurs connaissances sur la magie des runes, permettant à l'homme de se protéger face à The Root. D'autres Fairies les considèrent comme la cause de l'apparition de The Root dans la Lost Forest, détestant les humains au plus haut point.
 
-Les Fairies voient les humains comme une race infï¿½rieure qu'ils doivent aider et protï¿½ger, comme un parent et son enfant, ou dï¿½truire et exterminer. Certains ont un orgueil plus grand que d'autres qui peut facilement ï¿½tre blessï¿½s. Mais, malgrï¿½ leur grand ego, les Fairies ont un grand sens de l'honneur, du respect et de la hiï¿½rarchie.
+Les Fairies voient les humains comme une race inférieure qu'ils doivent aider et protéger, comme un parent et son enfant, ou détruire et exterminer. Certains ont un orgueil plus grand que d'autres qui peut facilement être blessés. Mais, malgré leur grand ego, les Fairies ont un grand sens de l'honneur, du respect et de la hiérarchie.
 
 - CONSEILS -
-* Si vous et votre groupe rencontrez une ou plusieurs Fairies, restez toujours polis, reconnaissants et sur vos gardes. ï¿½vitez ï¿½ tout prix de vous les mettre ï¿½ dos.
+* Si vous et votre groupe rencontrez une ou plusieurs Fairies, restez toujours polis, reconnaissants et sur vos gardes. Évitez à tout prix de vous les mettre à dos.
 
-* Tous les Elves vivant parmi les humains doivent ï¿½tre traitï¿½s comme toute autre personne.
+* Tous les Elves vivant parmi les humains doivent être traités comme toute autre personne.
 
-* Si une Fairy souhaite parler uniquement ï¿½ un ""dirigeant"", allez chercher le chef du groupe. Si une figure plus haute n'est pas prï¿½sente, excusez-vous et expliquez que celui-ci n'est pas actuellement lï¿½, mais que vous pouvez servir de messager.";
+* Si une Fairy souhaite parler uniquement à un ""dirigeant"", allez chercher le chef du groupe. Si une figure plus haute n'est pas présente, excusez-vous et expliquez que celui-ci n'est pas actuellement là, mais que vous pouvez servir de messager.";
 
             case "runes":
                 return text =
 @"|| RUNES ||
 
-Les Runes sont de la magie fï¿½ï¿½rique mise sous une forme que les humains peuvent utiliser pour se protï¿½ger, se soigner et gï¿½nï¿½rer de l'ï¿½nergie. Ceux qui ï¿½tudient cette science sont appelï¿½s ""Runistes"" et sont capables de graver, transcrire et recrï¿½er des Runes.";
+Les Runes sont de la magie féérique mise sous une forme que les humains peuvent utiliser pour se protéger, se soigner et générer de l'énergie. Ceux qui étudient cette science sont appelés ""Runistes"" et sont capables de graver, transcrire et recréer des Runes.";
 
             case "crooked":
             case "harpy":
@@ -392,26 +398,26 @@ Les Runes sont de la magie fï¿½ï¿½rique mise sous une forme que les humains peuv
                 return text =
 @"|| CROOKED HARPY ||
 
-Les Crooked Harpies sont une ï¿½trange espï¿½ce d'oiseaux humanoï¿½des n'appartenant ni la race des Fairies, ni une crï¿½ation de The Root. Ces crï¿½atures font environ 1 mï¿½tre de haut, incluant des bras et dos plumeux, une excroissance osseuse qui recouvre leur tï¿½te, ressemblant ï¿½ un gros crï¿½ne d'oiseau, et des cordes vocales pouvant reproduire presque n'importe quel son.
+Les Crooked Harpies sont une étrange espèce d'oiseaux humanoïdes n'appartenant ni la race des Fairies, ni une création de The Root. Ces créatures font environ 1 mètre de haut, incluant des bras et dos plumeux, une excroissance osseuse qui recouvre leur tête, ressemblant à un gros crâne d'oiseau, et des cordes vocales pouvant reproduire presque n'importe quel son.
 
-Le jour, les Crooked Hapies vont dormir dans des grottes ou des troncs creux jusqu'au coucher du soleil. Une fois la nuit tombï¿½e, ils parcourent la forï¿½t en groupe pouvant aller de 2 ï¿½ 6 Harpies afin de trouver de la nourriture ou apprendre de nouveaux sons. Lorsqu'ils trouvent une proie, les Hapies se mettent ï¿½ tordre leur corps pour que, dans le noir, ils aient la silhouette d'un gros hibou. Ils vont ensuite ï¿½mettre diffï¿½rents sons afin d'ï¿½loigner leur proie de son groupe et l'isoler pour le dï¿½vorer.
+Le jour, les Crooked Hapies vont dormir dans des grottes ou des troncs creux jusqu'au coucher du soleil. Une fois la nuit tombée, ils parcourent la forêt en groupe pouvant aller de 2 à 6 Harpies afin de trouver de la nourriture ou apprendre de nouveaux sons. Lorsqu'ils trouvent une proie, les Hapies se mettent à tordre leur corps pour que, dans le noir, ils aient la silhouette d'un gros hibou. Ils vont ensuite émettre différents sons afin d'éloigner leur proie de son groupe et l'isoler pour le dévorer.
 
-Un fait intï¿½ressant avec les Crooked Harpies est que leur dï¿½veloppement mental et social se dï¿½veloppe en fonction de ce qu'ils mangent. Par exemple, des Harpies ayant mangï¿½ principalement des loups auront une meilleure coordination pour chasser, tandis que ceux qui mangent plus de cerfs auront un sens du danger plus affï¿½tï¿½.
+Un fait intéressant avec les Crooked Harpies est que leur développement mental et social se développe en fonction de ce qu'ils mangent. Par exemple, des Harpies ayant mangé principalement des loups auront une meilleure coordination pour chasser, tandis que ceux qui mangent plus de cerfs auront un sens du danger plus affûté.
 
-Les Crooked Harpies ayant principalement mangï¿½ de l'humain finiront par dï¿½velopper l'intï¿½rï¿½t de socialiser avec d'autres humains, utilisant divers mots et sons qu'ils ont entendus pour crï¿½er des phrases. Des Explorers ont mï¿½me rapportï¿½ des Crooked Harpies qui leur ont sauvï¿½ la vie lors de situations pï¿½rilleuses. Ces Harpies ne doivent pas ï¿½tre traitï¿½s comme une menace.
+Les Crooked Harpies ayant principalement mangé de l'humain finiront par développer l'intérêt de socialiser avec d'autres humains, utilisant divers mots et sons qu'ils ont entendus pour créer des phrases. Des Explorers ont même rapporté des Crooked Harpies qui leur ont sauvé la vie lors de situations périlleuses. Ces Harpies ne doivent pas être traités comme une menace.
 
 - CONSEILS -
-* Mï¿½me si les risques que vous soyez attaquï¿½ par des Crooked Harpies sont minces, soyez sï¿½r d'ï¿½tre armï¿½ et accompagnï¿½.
+* Même si les risques que vous soyez attaqué par des Crooked Harpies sont minces, soyez sûr d'être armé et accompagné.
 
-* Utiliser des sons puissants, comme un coup de feu ou des ultra-sons, semble ï¿½tre une tactique efficace pour faire peur aux Harpies.
+* Utiliser des sons puissants, comme un coup de feu ou des ultra-sons, semble être une tactique efficace pour faire peur aux Harpies.
 
-* Si vous voyez un Crooked Harpy avancï¿½ vers vous en riant, vous ï¿½tes perdu.
+* Si vous voyez un Crooked Harpy avancé vers vous en riant, vous êtes perdu.
 
-* Si vous voyez un de vos compagnons signalï¿½ comme ï¿½tant mort, vous ï¿½tes perdu.
+* Si vous voyez un de vos compagnons signalé comme étant mort, vous êtes perdu.
 
-* Si vous voyez un Crooked Harpy avec un sourire, vous ï¿½tes perdu.
+* Si vous voyez un Crooked Harpy avec un sourire, vous êtes perdu.
 
-* Si vous entendez le mot ""HAPPY BIRD"", vous ï¿½tes perdu.
+* Si vous entendez le mot ""HAPPY BIRD"", vous êtes perdu.
 
 
 
@@ -433,9 +439,9 @@ Les Crooked Harpies ayant principalement mangï¿½ de l'humain finiront par dï¿½ve
 
 - !!! ATTENTION !!! -
 
-Des rapports nous ont signalï¿½ l'apparition d'une nouvelle variation de Crooked Harpy composï¿½e d'au moins un individu.
+Des rapports nous ont signalé l'apparition d'une nouvelle variation de Crooked Harpy composée d'au moins un individu.
 
-L'entitï¿½ en question semble avoir pris le surnom ""Happy Bird"" et commet des carnages dans nos troupes, avec au-dessus de 30 morts en une semaine.
+L'entité en question semble avoir pris le surnom ""Happy Bird"" et commet des carnages dans nos troupes, avec au-dessus de 30 morts en une semaine.
 
 Si vous avez la moindre information sur le sujet, informez le superviseur du camp le plus proche.";
 
@@ -444,7 +450,7 @@ Si vous avez la moindre information sur le sujet, informez le superviseur du cam
                 return text =
 @"|| MAP ||
 
-La Map vous aidera ï¿½ guider ceux qui n'ont pas trouver refuge avant la tomber de la nuit.
+La Map vous aidera à guider ceux qui n'ont pas trouver refuge avant la tomber de la nuit.
 
 CAMP
 RED ZONE
@@ -458,39 +464,39 @@ VILLAGE";
                 return text =
 @"|| CAMP ||
 
-Les Camps sont des zones de sï¿½retï¿½ oï¿½ les sbires de The Root et les anomalies ne peuvent y entrer. Les Explorers y passent la nuit ou y font un rapport de leurs trouvailles.";
+Les Camps sont des zones de sûreté où les sbires de The Root et les anomalies ne peuvent y entrer. Les Explorers y passent la nuit ou y font un rapport de leurs trouvailles.";
 
             case "rock":
             case "rocks":
                 return text =
 @"|| ROCK ||
 
-Plusieurs rochers avec des symboles gravï¿½s dessus sont rependus dans la Lost Forest. Ils servent de repï¿½re pour les Explorers.";
+Plusieurs rochers avec des symboles gravés dessus sont rependus dans la Lost Forest. Ils servent de repère pour les Explorers.";
 
             case "ruins":
             case "ruin":
                 return text =
 @"|| RUIN ||
 
-Les Ruins sont des bï¿½timents faits par l'homme qui ont fini dans la Lost Forest. Les Exploreurs y vont souvent ï¿½ la recherche d'informations et de matï¿½riaux.";
+Les Ruins sont des bâtiments faits par l'homme qui ont fini dans la Lost Forest. Les Exploreurs y vont souvent à la recherche d'informations et de matériaux.";
 
             case "shelter":
                 return text =
 @"|| SHELTER ||
 
-Les Shelters servent de lieu sï¿½curisï¿½ temporaire pour les Explorers durant la nuit. Cependant, soyez vigilant aux Hungry Cabins! N'oubliez pas de consulter votre carte pour repï¿½rer la position des Shelters.";
+Les Shelters servent de lieu sécurisé temporaire pour les Explorers durant la nuit. Cependant, soyez vigilant aux Hungry Cabins! N'oubliez pas de consulter votre carte pour repérer la position des Shelters.";
 
             case "tree":
                 return text =
 @"|| TREE ||
 
-Les Trees marquï¿½s sur votre carte sont des arbres particuliï¿½rement grands qui servent de repï¿½re aux Explorers. Certains Trees peuvent possï¿½der de 1 ï¿½ 3 troncs et, par moments, comporter une rune gravï¿½e.";
+Les Trees marqués sur votre carte sont des arbres particulièrement grands qui servent de repère aux Explorers. Certains Trees peuvent posséder de 1 à 3 troncs et, par moments, comporter une rune gravée.";
 
             case "village":
                 return text =
 @"|| VILLAGE ||
 
-Le Village est le lieu oï¿½ vivent les survivants de l'incident qui a amenï¿½ les humains dans la Lost Forest. Pour ï¿½viter l'influence de The Root, le Village est construit sur une surface aride et stï¿½rile, ce qui empï¿½che les habitants de cultiver quoi que ce soit ou de faire de l'ï¿½levage. C'est pour cette raison que les Explorers existent.
+Le Village est le lieu où vivent les survivants de l'incident qui a amené les humains dans la Lost Forest. Pour éviter l'influence de The Root, le Village est construit sur une surface aride et stérile, ce qui empêche les habitants de cultiver quoi que ce soit ou de faire de l'élevage. C'est pour cette raison que les Explorers existent.
 
 
 
@@ -561,14 +567,14 @@ Le Village est le lieu oï¿½ vivent les survivants de l'incident qui a amenï¿½ le
 
 
 
-Il est bï¿½ti sur vos pï¿½chï¿½s.";
+Il est bâti sur vos péchés.";
 
             case "tool":
             case "tools":
                 return text =
 @"|| TOOLS ||
 
-Afin de garantir votre sï¿½curitï¿½, votre Watchtower comporte de nombreux outils pour vous aider, vous et les Explorers en aide.
+Afin de garantir votre sécurité, votre Watchtower comporte de nombreux outils pour vous aider, vous et les Explorers en aide.
 
 RADIO
 PLANKS AND HAMMER
@@ -581,9 +587,9 @@ MAP";
                 return text =
 @"|| RADIO ||
 
-La Radio est votre seul moyen de communication avec les Explorers, les Camps et le Village. Lorsque quelqu'un tente de vous rejoindre, une petite lumiï¿½re rouge, accompagnï¿½e du son, clignotera pour vous le signaler.
+La Radio est votre seul moyen de communication avec les Explorers, les Camps et le Village. Lorsque quelqu'un tente de vous rejoindre, une petite lumière rouge, accompagnée du son, clignotera pour vous le signaler.
 
-Gardez ï¿½ l'esprit que la Radio est reliï¿½e ï¿½ l'ï¿½nergie de la Watchtower, et qu'elle ne fonctionnera pas sans ï¿½nergie.";
+Gardez à l'esprit que la Radio est reliée à l'énergie de la Watchtower, et qu'elle ne fonctionnera pas sans énergie.";
 
             case "plank":
             case "planks":
@@ -595,34 +601,34 @@ Gardez ï¿½ l'esprit que la Radio est reliï¿½e ï¿½ l'ï¿½nergie de la Watchtower, 
                 return text =
 @"|| PLANKS AND HAMMER ||
 
-Dans la circonstance oï¿½ l'une de vos fenï¿½tres venait ï¿½ ï¿½tre brisï¿½e, un marteau et des planches vous ont ï¿½tï¿½ fournis. Il vous est donc possible de barricader les fenï¿½tres brisï¿½es et d'empï¿½cher les anomalies de s'introduire.
+Dans la circonstance où l'une de vos fenêtres venait à être brisée, un marteau et des planches vous ont été fournis. Il vous est donc possible de barricader les fenêtres brisées et d'empêcher les anomalies de s'introduire.
 
-Rappelez-vous que vous ï¿½tes limitï¿½ en quantitï¿½ de planches, il est donc prï¿½fï¿½rable de surveiller les fenï¿½tres.";
+Rappelez-vous que vous êtes limité en quantité de planches, il est donc préférable de surveiller les fenêtres.";
 
             case "rune":
                 return text =
 @"|| RUNE ||
 
-Afin de vous protï¿½ger des anomalies qui viendraient ï¿½ votre rencontre, une Rune de purification se trouve ï¿½ votre disposition.
+Afin de vous protéger des anomalies qui viendraient à votre rencontre, une Rune de purification se trouve à votre disposition.
 
-Si vous rencontrez une anomalie, il suffit d'utiliser la Rune sur elle pour la faire fuir. Mais attention ! La Rune prend un petit moment avant d'ï¿½tre de nouveau active.";
+Si vous rencontrez une anomalie, il suffit d'utiliser la Rune sur elle pour la faire fuir. Mais attention ! La Rune prend un petit moment avant d'être de nouveau active.";
 
             case "terminal":
             case "computer":
                 return text =
 @"|| TERMINAL ||
 
-Le Terminal est la banque de donnï¿½es disponible dans tous les Watchtowers. Il est une source d'informations cruciale afin de fournir et renseigner les Watchers et les Explorers des dangers que comporte la Lost Forest et comment y faire face.
+Le Terminal est la banque de données disponible dans tous les Watchtowers. Il est une source d'informations cruciale afin de fournir et renseigner les Watchers et les Explorers des dangers que comporte la Lost Forest et comment y faire face.
 
-Gardez ï¿½ l'esprit que le Terminal est reliï¿½ ï¿½ l'ï¿½nergie de la Watchtower, et qu'il ne fonctionnera pas sans ï¿½nergie.";
+Gardez à l'esprit que le Terminal est relié à l'énergie de la Watchtower, et qu'il ne fonctionnera pas sans énergie.";
 
             case "generator":
                 return text =
 @"|| GENERATOR ||
 
-Chaque Watchtower comporte une gï¿½nï¿½ratrice servant ï¿½ alimenter les runes qui fournissent l'ï¿½nergie ï¿½ la tour.
+Chaque Watchtower comporte une génératrice servant à alimenter les runes qui fournissent l'énergie à la tour.
 
-Gardez ï¿½ l'esprit que la gï¿½nï¿½ratrice peut parfois sauter. Et sans ï¿½nergie, vous ne pouvez pas utiliser votre Radio, ni votre Terminal. Vous serez aussi plongï¿½ dans le noir, vous risquant ï¿½ la Forest Madness.";
+Gardez à l'esprit que la génératrice peut parfois sauter. Et sans énergie, vous ne pouvez pas utiliser votre Radio, ni votre Terminal. Vous serez aussi plongé dans le noir, vous risquant à la Forest Madness.";
 
             case "exit":
                 return text = mainText;
@@ -631,11 +637,11 @@ Gardez ï¿½ l'esprit que la gï¿½nï¿½ratrice peut parfois sauter. Et sans ï¿½nergi
             case "the lost forest":
             case "lost forest":
                 return text =
-@"Des Elves m'ont demandï¿½ de l'aide pour trouver la source d'une corruption apparue rï¿½cemment dans la Lost Forest. Puisque la corruption semble toucher la forï¿½t et ce qui y vit, les Elves ont ï¿½tï¿½ obligï¿½s de ravaler leur fiertï¿½ et demander ï¿½ la seule personne extï¿½rieure capable de les aider. C'ï¿½tait satisfaisant de voir ces ï¿½tres pleins d'ï¿½go se rabaisser ï¿½ ce point, mais je savais que s'ils en venaient ï¿½ se remettre ï¿½ moi, c'est que ï¿½a s'annonce plus critique que ce que je pensais. De plus, je prï¿½fï¿½re ne pas me les mettre ï¿½ dos, ils peuvent s'avï¿½rer utiles.
+@"Des Elves m'ont demandé de l'aide pour trouver la source d'une corruption apparue récemment dans la Lost Forest. Puisque la corruption semble toucher la forêt et ce qui y vit, les Elves ont été obligés de ravaler leur fierté et demander à la seule personne extérieure capable de les aider. C'était satisfaisant de voir ces êtres pleins d'égo se rabaisser à ce point, mais je savais que s'ils en venaient à se remettre à moi, c'est que ça s'annonce plus critique que ce que je pensais. De plus, je préfère ne pas me les mettre à dos, ils peuvent s'avérer utiles.
 
-Une fois arrivï¿½ sur place, c'ï¿½tait bien pire que tout ce que je m'imaginais. Les plantes et crï¿½atures corrompues cherchaient ï¿½ tuer ou corrompre tout ce qui ne l'ï¿½tait pas. Heureusement que les Elves ont su trouver un moyen de la contenir, mais la corruption semble avoir une puissante capacitï¿½ d'adaptation.
+Une fois arrivé sur place, c'était bien pire que tout ce que je m'imaginais. Les plantes et créatures corrompues cherchaient à tuer ou corrompre tout ce qui ne l'était pas. Heureusement que les Elves ont su trouver un moyen de la contenir, mais la corruption semble avoir une puissante capacité d'adaptation.
 
-Durant mes recherches dans la zone corrompue, j'ai vite rï¿½alisï¿½ que de dangereuses entitï¿½s ont ï¿½lu domicile dans cet endroit. J'ai rï¿½ussi ï¿½ interroger l'une d'entre elles qui avait l'intelligence de communiquer. Il m'a racontï¿½ que la cause proviendrait de l'arrivï¿½e d'un regroupement religieux vï¿½nï¿½rant une entitï¿½ supï¿½rieure inconnue.
+Durant mes recherches dans la zone corrompue, j'ai vite réalisé que de dangereuses entités ont élu domicile dans cet endroit. J'ai réussi à interroger l'une d'entre elles qui avait l'intelligence de communiquer. Il m'a raconté que la cause proviendrait de l'arrivée d'un regroupement religieux vénérant une entité supérieure inconnue.
 
 
 - J.W.";
@@ -643,92 +649,92 @@ Durant mes recherches dans la zone corrompue, j'ai vite rï¿½alisï¿½ que de dange
             case "the root":
             case "root":
                 return text =
-@"J'ai rencontrer ce culte vï¿½nï¿½rant une entitï¿½ invisible qu'ils appellent ""The Root"". J'ignore s'ils sont la cause de cette entitï¿½ ou si l'entitï¿½ est la cause du culte. Du peu que je sais, l'entitï¿½ n'a jamais physiquement existï¿½, mais ses cultistes utilisaient des hï¿½tes pour lui offrir une possibilitï¿½ d'interagir avec le monde physique. Alors pourquoi ces hï¿½tes semblent-elles tant en peine et en souffrance?
+@"J'ai rencontrer ce culte vénérant une entité invisible qu'ils appellent ""The Root"". J'ignore s'ils sont la cause de cette entité ou si l'entité est la cause du culte. Du peu que je sais, l'entité n'a jamais physiquement existé, mais ses cultistes utilisaient des hôtes pour lui offrir une possibilité d'interagir avec le monde physique. Alors pourquoi ces hôtes semblent-elles tant en peine et en souffrance?
 
-J'ai pris la dï¿½cision de libï¿½rer ces hï¿½tes de leur tourment, me mettant ï¿½ dos les cultistes. J'ai eu beau essayer de leur soutirer des informations sur l'origine de leur pouvoir, mais ils m'ont juste ri au visage.
+J'ai pris la décision de libérer ces hôtes de leur tourment, me mettant à dos les cultistes. J'ai eu beau essayer de leur soutirer des informations sur l'origine de leur pouvoir, mais ils m'ont juste ri au visage.
 
-J'ai prï¿½venu les Elves de rester sur leur garde. Cette faï¿½on que ce culte corrompe d'autres entitï¿½s ressemble beaucoup trop ï¿½ la mï¿½thode utilisï¿½e par l' QXJicmUgYXV4IFBlbmR1cw==. ï¿½a ne peut pas ï¿½tre une coï¿½ncidence.
+J'ai prévenu les Elves de rester sur leur garde. Cette façon que ce culte corrompe d'autres entités ressemble beaucoup trop à la méthode utilisée par l' QXJicmUgYXV4IFBlbmR1cw==. Ça ne peut pas être une coïncidence.
 
 
 - J.W.";
 
             case "happy bird":
                 return text =
-@"Dr.Loubelle : Mon nom est Monica Loubelle, docteure en psychologie et comportement des anomalies. La nuit derniï¿½re, un groupe d'Explorer a ï¿½tï¿½ victime de l'entitï¿½ appelï¿½e  ""Happy Bird"". Comme prï¿½sentï¿½ dans les cas prï¿½cï¿½dents, Happy Bird a laissï¿½ qu'un seul survivant en vie. La diffï¿½rence cette fois-ci est qu'il a dï¿½montrï¿½ un besoin de vouloir socialiser. Afin d'ï¿½tudier cette nouvelle dï¿½couverte, j'interviewe le survivant en question. Pour l'enregistrement, pouvez-vous vous prï¿½senter?
+@"Dr.Loubelle : Mon nom est Monica Loubelle, docteure en psychologie et comportement des anomalies. La nuit dernière, un groupe d'Explorer a été victime de l'entité appelée  ""Happy Bird"". Comme présenté dans les cas précédents, Happy Bird a laissé qu'un seul survivant en vie. La différence cette fois-ci est qu'il a démontré un besoin de vouloir socialiser. Afin d'étudier cette nouvelle découverte, j'interviewe le survivant en question. Pour l'enregistrement, pouvez-vous vous présenter?
 
-R.Tolman : Hum... Oui, heu... Mon nom est Ray Tolman, Explorer de 5ï¿½me Grade.
+R.Tolman : Hum... Oui, heu... Mon nom est Ray Tolman, Explorer de 5ème Grade.
 
-Dr.Loubelle : Bien. Pouvez-vous me raconter ce qui s'est passï¿½ cette nuit-lï¿½, Mr. Tolman?
+Dr.Loubelle : Bien. Pouvez-vous me raconter ce qui s'est passé cette nuit-là, Mr. Tolman?
 
-R.Tolman : On revenait d'une exploration d'une grande ruine pour y trouver des rations. Le temps qu'on en sorte, il faisait dï¿½jï¿½ nuit. Alors on a montï¿½ un campement ï¿½ l'entrï¿½e de la ruine.
+R.Tolman : On revenait d'une exploration d'une grande ruine pour y trouver des rations. Le temps qu'on en sorte, il faisait déjà nuit. Alors on a monté un campement à l'entrée de la ruine.
 
-Dr.Loubelle : Combien de temps vous a-t-il fallu avant de remarquer l'absence d'un de vos collï¿½gues?
+Dr.Loubelle : Combien de temps vous a-t-il fallu avant de remarquer l'absence d'un de vos collègues?
 
-R.Tolman : Pas longtemps. Une fois le camp montï¿½, on a vite remarquï¿½ l'absence de Rod. Puis, soudainement, il est sorti de la forï¿½t, nous disant qu'il ï¿½tait allï¿½ chercher du bois... Mais ce n'ï¿½tait pas lui...
+R.Tolman : Pas longtemps. Une fois le camp monté, on a vite remarqué l'absence de Rod. Puis, soudainement, il est sorti de la forêt, nous disant qu'il était allé chercher du bois... Mais ce n'était pas lui...
 
 Dr.Loubelle : Comment l'avez-vous su?
 
-R.Tolman : Ce gamin avait une peur bleue de la forï¿½t. Il ne serait jamais allï¿½ chercher du bois tout seul en pleine nuit... Bon sang!... Il n'avait que 15 ans...
+R.Tolman : Ce gamin avait une peur bleue de la forêt. Il ne serait jamais allé chercher du bois tout seul en pleine nuit... Bon sang!... Il n'avait que 15 ans...
 
-Dr.Loubelle : Que s'est-il passï¿½ par la suite?
+Dr.Loubelle : Que s'est-il passé par la suite?
 
-R.Tolman : La chose a vite remarquï¿½ qu'on se doutait que quelque chose n'allait pas. Et il s'est mis ï¿½ rire... Il sonnait comme si une dizaine de Deer Smiles nous entourait. Et il a... mon dieu...
+R.Tolman : La chose a vite remarqué qu'on se doutait que quelque chose n'allait pas. Et il s'est mis à rire... Il sonnait comme si une dizaine de Deer Smiles nous entourait. Et il a... mon dieu...
 
 Dr.Loubelle : Prenez votre temps.
 
-R.Tolman : Le corps de Rod s'est mis ï¿½ se tordre dans tous les sens et ï¿½ se dï¿½chirer. Ce qui se cachait ï¿½ l'intï¿½rieur ï¿½tait le plus terrifiant et cauchemardesque Crooked Harpy que j'ai jamais vu...
+R.Tolman : Le corps de Rod s'est mis à se tordre dans tous les sens et à se déchirer. Ce qui se cachait à l'intérieur était le plus terrifiant et cauchemardesque Crooked Harpy que j'ai jamais vu...
 
-Dr.Loubelle : C'ï¿½tait Happy Bird?
+Dr.Loubelle : C'était Happy Bird?
 
-R.Tolman : Par pitiï¿½, ne prononcez pas son nom... Il s'est mis ï¿½ tuer, lentement, chacun des membres de mon groupe... Mes amis... Il ï¿½tait si rapide! Je pouvais ï¿½ peine le suivre des yeux! C'ï¿½tait comme une ombre aux plumes noires qui tranchait, dï¿½vorait, dï¿½chirait tout sur son passage...
+R.Tolman : Par pitié, ne prononcez pas son nom... Il s'est mis à tuer, lentement, chacun des membres de mon groupe... Mes amis... Il était si rapide! Je pouvais à peine le suivre des yeux! C'était comme une ombre aux plumes noires qui tranchait, dévorait, déchirait tout sur son passage...
 
 Dr.Loubelle : Et il ne restait que vous?
 
-R.Tolman : Oui. Durant ce chaos, il m'a tranchï¿½ la main lorsque j'ai essayï¿½ d'atteindre mon pistolet. Mais, aprï¿½s ce massacre, il a tranquillement, en chantonnant, ramassï¿½ des bandages et a commencï¿½ ï¿½ soigner ma blessure.
+R.Tolman : Oui. Durant ce chaos, il m'a tranché la main lorsque j'ai essayé d'atteindre mon pistolet. Mais, après ce massacre, il a tranquillement, en chantonnant, ramassé des bandages et a commencé à soigner ma blessure.
 
-Dr.Loubelle : Intï¿½ressant... [Prend des notes]. Qu'a-t-il fait ensuite?
+Dr.Loubelle : Intéressant... [Prend des notes]. Qu'a-t-il fait ensuite?
 
-R.Tolman : Il a sorti une de nos rations de nourriture et me l'a tendue de ses mains, dï¿½goulinant encore du sang de mes compagnons. Mais j'ï¿½tais loin d'avoir faim aprï¿½s tout ï¿½a.
+R.Tolman : Il a sorti une de nos rations de nourriture et me l'a tendue de ses mains, dégoulinant encore du sang de mes compagnons. Mais j'étais loin d'avoir faim après tout ça.
 
-Dr.Loubelle : Vous m'avez informï¿½ que vous avez pu l'interroger.
+Dr.Loubelle : Vous m'avez informé que vous avez pu l'interroger.
 
 R.Tolman : Quand j'ai repris mon calme, j'ai en effet eu la force de lui poser des questions.
 
 Dr.Loubelle : Qu'avez-vous appris?
 
-R.Tolman : J'ai pu savoir comment cette chose a mutï¿½ en ce qu'il est maintenant. Il m'a racontï¿½ qu'il avait l'habitude de manger tout ce qui existe dans cette forï¿½t, y compris les Fairies et les crï¿½ations de The Root.
+R.Tolman : J'ai pu savoir comment cette chose a muté en ce qu'il est maintenant. Il m'a raconté qu'il avait l'habitude de manger tout ce qui existe dans cette forêt, y compris les Fairies et les créations de The Root.
 
-Dr.Loubelle : Si ce que vous dites est vrai, ne devrait-il pas ï¿½tre sous l'influence de The Root?
+Dr.Loubelle : Si ce que vous dites est vrai, ne devrait-il pas être sous l'influence de The Root?
 
-R.Tolman : Il semble que les Crooked Harpies ont une immunitï¿½ ï¿½ la corruption de The Root. C'est ainsi qu'il a pu dï¿½vorer Ghouls, Priests et autres anomalies sans succomber ï¿½ son contrï¿½le.
+R.Tolman : Il semble que les Crooked Harpies ont une immunité à la corruption de The Root. C'est ainsi qu'il a pu dévorer Ghouls, Priests et autres anomalies sans succomber à son contrôle.
 
 Dr.Loubelle : Fascinant! [Prend des notes]. Quoi d'autre avez-vous pu apprendre.
 
-R.Tolman : Happy B... L'entitï¿½ a dï¿½veloppï¿½ une intelligence que je jugerais au-dessus de l'humain moyen. Il est capable de lire, ï¿½crire et communiquer avec des sons qu'il n'a jamais entendus. Il peut tordre et manier son corps de maniï¿½re ï¿½ ï¿½tre capable de prendre la peau d'un animal et de bouger de faï¿½on naturelle... Comme il l'a fait avec Rod.
+R.Tolman : Happy B... L'entité a développé une intelligence que je jugerais au-dessus de l'humain moyen. Il est capable de lire, écrire et communiquer avec des sons qu'il n'a jamais entendus. Il peut tordre et manier son corps de manière à être capable de prendre la peau d'un animal et de bouger de façon naturelle... Comme il l'a fait avec Rod.
 
-Dr.Loubelle : [Prend des notes]. Et, par la suite, que s'est-il passï¿½.
+Dr.Loubelle : [Prend des notes]. Et, par la suite, que s'est-il passé.
 
-R.Tolman : Il est restï¿½ ï¿½ mes cï¿½tï¿½s. Je pouvais voir et entendre des Ghouls, des False Trees et des Deer Smiles tout autour du campement, ï¿½ la limite de la lumiï¿½re portï¿½e par le feu. Mais aucun n'osait approcher. ï¿½a l'a durï¿½ jusqu'au lever du soleil oï¿½ ils sont tous repartis dans l'ombre de la forï¿½t.
+R.Tolman : Il est resté à mes côtés. Je pouvais voir et entendre des Ghouls, des False Trees et des Deer Smiles tout autour du campement, à la limite de la lumière portée par le feu. Mais aucun n'osait approcher. Ça l'a duré jusqu'au lever du soleil où ils sont tous repartis dans l'ombre de la forêt.
 
-Dr.Loubelle : Trï¿½s bien. Merci beaucoup, Mr. Tolman. Les informations que vous avez recueillies nous seront vraiment ut...
+Dr.Loubelle : Très bien. Merci beaucoup, Mr. Tolman. Les informations que vous avez recueillies nous seront vraiment ut...
 
 R.Tolman : Il y a... autre chose.
 
 Dr.Loubelle : Pardon?
 
-R.Tolman : Il m'a demandï¿½ de vous poser une question.
+R.Tolman : Il m'a demandé de vous poser une question.
 
-Dr.Loubelle : Personne ne m'en a informï¿½.
+Dr.Loubelle : Personne ne m'en a informé.
 
-R.Tolman : C'est parce que je devais vous le demander ï¿½ vous, et vous seulement.
+R.Tolman : C'est parce que je devais vous le demander à vous, et vous seulement.
 
-Dr.Loubelle : Trï¿½s bien, je vous ï¿½coute.
+Dr.Loubelle : Très bien, je vous écoute.
 
-R.Tolman : Connaissez-vous l'identitï¿½ du prï¿½tendu roi perdu des Fairies, [][][][][][]?
+R.Tolman : Connaissez-vous l'identité du prétendu roi perdu des Fairies, [][][][][][]?
 
 Dr.Loubelle : ...
 
-R.Tolman : Alors c'est vrai. Vous savez qui ï¿½a peut ï¿½tre.
+R.Tolman : Alors c'est vrai. Vous savez qui ça peut être.
 
 Dr.Loubelle : Comment avez-vous eu connaissance de ces informations?
 
@@ -736,46 +742,46 @@ R.Tolman : Il m'a appris des choses que peu de gens encore en vie connaissent.
 
 Dr.Loubelle : Imaginons que je sache qui c'est, vous proposez quoi? Qu'on le lui donne?
 
-R.Tolman : Non. J'ignore qui il est et, pour ï¿½tre franc, je me fous de savoir ce que vous savez sur lui, sur le centre ""Wonder Life"" ou l'incident. Ce que je sais, c'est que l'Harpy ne sait pas que vous l'avez trouvï¿½. Et que cette personne est probablement notre seul espoir de vaincre The Root.
+R.Tolman : Non. J'ignore qui il est et, pour être franc, je me fous de savoir ce que vous savez sur lui, sur le centre ""Wonder Life"" ou l'incident. Ce que je sais, c'est que l'Harpy ne sait pas que vous l'avez trouvé. Et que cette personne est probablement notre seul espoir de vaincre The Root.
 
-Dr.Loubelle : A-t-il mentionnï¿½ quelque chose en ï¿½change?
+Dr.Loubelle : A-t-il mentionné quelque chose en échange?
 
-R.Tolman : Il m'a promis de diminuer ses attaques sur nos groupes le temps qu'on le trouve. Et qu'il nous laisserait dï¿½finitivement tranquille si on lui ramenait. Mais laissez-moi vous dire une chose Dr. Loubelle, si ce monstre arrive ï¿½ mettre la main sur la seule entitï¿½ connue jusqu'ï¿½ maintenant capable de terrasser The Root et de nous sortir de cette forï¿½t maudite, je pense que nous ferons face ï¿½ un plus grand danger que tout ce qui existe dans la Lost Forest.
+R.Tolman : Il m'a promis de diminuer ses attaques sur nos groupes le temps qu'on le trouve. Et qu'il nous laisserait définitivement tranquille si on lui ramenait. Mais laissez-moi vous dire une chose Dr. Loubelle, si ce monstre arrive à mettre la main sur la seule entité connue jusqu'à maintenant capable de terrasser The Root et de nous sortir de cette forêt maudite, je pense que nous ferons face à un plus grand danger que tout ce qui existe dans la Lost Forest.
 
 [Moment de silence]
 
-Dr.Loubelle : Je dois en informer les Watchers. Cette information doit rester secrï¿½te et la sï¿½curitï¿½ du garï¿½on doit devenir une prioritï¿½.
+Dr.Loubelle : Je dois en informer les Watchers. Cette information doit rester secrète et la sécurité du garçon doit devenir une priorité.
 
 R.Tolman : Bien compris. Me permettez-vous de vous poser une question un peu personnelle?
 
-Dr.Loubelle : Au point oï¿½ on en est, allez-y.
+Dr.Loubelle : Au point où on en est, allez-y.
 
-R.Tolman : Je sais que vous et les Watchers ï¿½tiez lï¿½ lors de l'incident et, j'ignore comment personne n'ait jamais remarquï¿½ ï¿½a avant, moi inclus, mais... Quel ï¿½ge avez-vous vraiment?";
+R.Tolman : Je sais que vous et les Watchers étiez là lors de l'incident et, j'ignore comment personne n'ait jamais remarqué ça avant, moi inclus, mais... Quel âge avez-vous vraiment?";
 
             case "oberon":
-            case "obï¿½ron":
+            case "obéron":
             case "auberon":
-            case "aubï¿½ron":
+            case "aubéron":
             case "alberon":
-            case "albï¿½ron":
+            case "albéron":
                 return text =
-@"SUJET : 03-ï¿½ron
-RACE : Afro-Amï¿½ricain
-ï¿½GE : 8 ans
-SOURCE UTILISï¿½E : TARO IV
+@"SUJET : 03-Éron
+RACE : Afro-Américain
+ÂGE : 8 ans
+SOURCE UTILISÉE : TARO IV
 DOMMAGES INITIAUX :
-- Dommage sï¿½vï¿½re ï¿½ l'arriï¿½re du crï¿½ne.
-- L'hippocampe semble avoir ï¿½tï¿½ endommagï¿½.
-- Nombreuses vertï¿½bres brisï¿½es menant ï¿½ une paralysie totale.
+- Dommage sévère à l'arrière du crâne.
+- L'hippocampe semble avoir été endommagé.
+- Nombreuses vertèbres brisées menant à une paralysie totale.
 SUITE AU TRAITEMENT :
-- Le sujet semble avoir repris la maniabilitï¿½ de son corps.
-- Le sujet a encore un peu de mal ï¿½ se dï¿½placer correctement.
-- Des racines semblent avoir rï¿½parï¿½ et maintiennent les
-  vertï¿½bres en place.
-- Le QI du sujet est beaucoup plus ï¿½levï¿½ que la moyenne.
-- Le sujet ne semble pas avoir retrouvï¿½ la mï¿½moire.
+- Le sujet semble avoir repris la maniabilité de son corps.
+- Le sujet a encore un peu de mal à se déplacer correctement.
+- Des racines semblent avoir réparé et maintiennent les
+  vertèbres en place.
+- Le QI du sujet est beaucoup plus élevé que la moyenne.
+- Le sujet ne semble pas avoir retrouvé la mémoire.
 NOTES :
-Sujet 03- ï¿½ron montre une grande compassion avec les autres sujets, humains ou non, et les membres du centre. La source du TARO IV n'a montrï¿½ aucun signe de mutation, comportement agressif ou d'incompatibilitï¿½ chez le sujet. Il sera parfait pour le projet ""Dryade"".
+Sujet 03- Éron montre une grande compassion avec les autres sujets, humains ou non, et les membres du centre. La source du TARO IV n'a montré aucun signe de mutation, comportement agressif ou d'incompatibilité chez le sujet. Il sera parfait pour le projet ""Dryade"".
 
     - Professeur Morgan Leffaie";
             
@@ -958,7 +964,7 @@ If a person succumbs to Forest Madness, they will eventually become a Rooted Gho
                 return text =
 @"|| ROOT TOTEM ||
 
-Root Totems are strange effigies, created by the Rooted Priests from wood, rock, mud, and various organic materials. They measure approximately 1 meter in height and ï¿½ meter in width. There are currently only three types of Totems, each with their own effects.
+Root Totems are strange effigies, created by the Rooted Priests from wood, rock, mud, and various organic materials. They measure approximately 1 meter in height and ½ meter in width. There are currently only three types of Totems, each with their own effects.
 
 The Screaming Totem emits a sequence of several agonizing screams through the communications equipment in the surrounding area. This prevents all radio communication and allows the anomalies to locate the Watchers and the Explorers.
 
@@ -1036,7 +1042,7 @@ The method the Hungry Cabins use to materialize and dematerialize remains a myst
 
 The anomaly ""Path to Nowhere"" describes a path that should not exist from which a sense of comfort and well-being emanates, thus inciting these victims to take it.
 
-When a person sees the Path to Nowhere, they enter a trance-like state, constantly describing the beauty of the path, filled with natural wonders, with the sun's rays piercing through the leaves of the trees, even if itï¿½s night. If the person is not brought to their senses, they will move deeper into the forest and disappear as soon as they are out of sight. Those who have been brought back to their senses have no memory of seeing such a path, but only remember a gentle voice calling them.
+When a person sees the Path to Nowhere, they enter a trance-like state, constantly describing the beauty of the path, filled with natural wonders, with the sun's rays piercing through the leaves of the trees, even if it’s night. If the person is not brought to their senses, they will move deeper into the forest and disappear as soon as they are out of sight. Those who have been brought back to their senses have no memory of seeing such a path, but only remember a gentle voice calling them.
 
 It is not yet clear whether the Path to Nowhere is the creation of The Root or the Fairies, nor whether this anomaly is an exit or a decoy. However, due to reports of furtive appearances of missing people after taking the path observing them from shadowy areas in the forest, it's best to think of the Path to Nowhere as a dangerous anomaly to be avoided.
 
@@ -1439,13 +1445,13 @@ Dr.Loubelle : At this point, go for it.
 R.Tolman : I know you and the Watchers were there during the incident, and I don't know how no one noticed this before, including me, but... How old are you really?";
 
             case "oberon":
-            case "obï¿½ron":
+            case "obéron":
             case "auberon":
-            case "aubï¿½ron":
+            case "aubéron":
             case "alberon":
-            case "albï¿½ron":
+            case "albéron":
                 return text =
-@"SUBJECT : 03-ï¿½ron
+@"SUBJECT : 03-Éron
 RACE : Afro-American
 AGE : 8 years old
 SOURCE USED : TARO IV

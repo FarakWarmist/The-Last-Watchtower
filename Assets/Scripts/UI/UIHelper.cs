@@ -45,7 +45,9 @@ public class UIHelper : MonoBehaviour
     public TMP_Text title;
     public TMP_Text toDeactivated;
     public TMP_Text keyToClose;
-    public Canvas tipCanvas;
+    public Canvas tipsCanvas;
+    public Canvas tipUI;
+
     string tipMessage;
 
     Languages language;
@@ -179,28 +181,24 @@ public class UIHelper : MonoBehaviour
     {
         if (indexTip == 1)
         {
-            tipCanvas.enabled = true;
+            tipUI.enabled = true;
             tipText.text = tipMessage;
             if (Input.GetKeyDown(KeyCode.Return))
             {
-                indexTip++; ;
+                indexTip++;
             }
         }
         else
         {
-            tipCanvas.enabled = false;
+            tipUI.enabled = false;
         }
     }
 
     private void ListOfTips()
     {
-        if (terminalOff.enabled)
+        if (terminalOn.enabled)
         {
-            Tips(ref computer.tipsOff);
-        }
-        else if (terminalOn.enabled)
-        {
-            Tips(ref computer.tipsOn);
+            Tips(ref computer.tips);
         }
         else if (radio.enabled)
         {
@@ -228,7 +226,7 @@ public class UIHelper : MonoBehaviour
         }
         else
         {
-            tipCanvas.enabled = false;
+            tipUI.enabled = false;
         }
     }
 
@@ -237,12 +235,7 @@ public class UIHelper : MonoBehaviour
         title.text = "Astuce";
         toDeactivated.text = "(Vous pouvez désactiver les astuces dans le menu pause.)";
         keyToClose.text = "[ENTRER] pour fermer";
-        if (terminalOff.enabled)
-        {
-            tipMessage =
-@"Pour allumer le Terminal, cliquez sur le bouton en bas à droite.";
-        }
-        else if (terminalOn.enabled)
+        if (terminalOn.enabled)
         {
             tipMessage =
 @"Pour naviguer dans le Terminal, il vous suffit de taper des mots-clés. Vous pouvez quitter le terminal avec la touche [Esc] et l'éteindre en cliquant sur le bouton en bas à droite.";
@@ -281,12 +274,7 @@ public class UIHelper : MonoBehaviour
         title.text = "Tip";
         toDeactivated.text = "(You can turn off tips in the pause menu.)";
         keyToClose.text = "[ENTER] to close";
-        if (terminalOff.enabled)
-        {
-            tipMessage =
-@"To turn on the Terminal, click the button at the bottom right.";
-        }
-        else if (terminalOn.enabled)
+        if (terminalOn.enabled)
         {
             tipMessage =
 @"To navigate in the Terminal, you just need to type keywords. You can exit the terminal with the [Esc] key and turn it off by clicking the button at the bottom right.";
