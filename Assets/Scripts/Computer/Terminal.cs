@@ -9,6 +9,9 @@ public class Terminal : MonoBehaviour
     string text;
     string mainText;
     string loadingText;
+    bool isLoading;
+    string input;
+    float indexLog = 0;
 
     public float loadingTime = 0.5f;
 
@@ -18,7 +21,6 @@ public class Terminal : MonoBehaviour
 
     private void OnEnable()
     {
-        MainTerminalText();
         text = mainText;
         StartCoroutine(ShowText());
         inputTerminal.onEndEdit.AddListener(HandleInput);
@@ -27,11 +29,22 @@ public class Terminal : MonoBehaviour
 
     private void Update()
     {
-        MainTerminalText();
         if (Input.GetKeyDown(KeyCode.Escape))
         {
         }
 
+        if (!isLoading)
+        {
+            if (language.index == 0)
+            {
+                outputTerminal.text = FrenchTerminal(indexLog);
+            }
+            else
+            {
+                outputTerminal.text = EnglishTerminal(indexLog);
+            }
+
+        }
 
         if (Time.timeScale == 0)
         {
@@ -59,55 +72,178 @@ public class Terminal : MonoBehaviour
         {
             loadingText = "Loading .";
         }
-
-        string reponse = ProcessCommand(input);
-
         outputTerminal.text = "";
         StartCoroutine(ShowText());
-
+        ProcessCommand(input);
         inputTerminal.text = ""; 
-        
     }
 
-    private void MainTerminalText()
+    private float ProcessCommand(string command)
     {
-        if (language.index == 0)
+        input = command;
+        return CurrentIndexLog(command);
+    }
+
+    private float CurrentIndexLog(string command)
+    {
+        switch (command.ToLower())
         {
-            mainText =
-    @"Bienvenue sur le Terminal de la Watchtower No8.
+            case "exit":
+                return indexLog = 0;
+
+            case "help":
+                return indexLog = 1;
+
+            case "bestiary":
+                return indexLog = 2;
+
+            case "deer":
+            case "smiling deer":
+            case "deer smile":
+                return indexLog = 2.01f;
+
+            case "priest":
+            case "rooted priest":
+                return indexLog = 2.02f;
+
+            case "rooted ghoul":
+            case "ghoul":
+                return indexLog = 2.03f;
+
+            case "false tree":
+                return indexLog = 2.04f;
+
+            case "the doorman":
+            case "doorman":
+                return indexLog = 2.05f;
+
+            case "forest madness":
+            case "madness":
+                return indexLog = 2.06f;
+
+            case "totem":
+            case "root totem":
+                return indexLog = 2.07f;
+
+            case "cursed tool":
+                return indexLog = 2.08f;
+            case "red zone":
+            case "zone red":
+                return indexLog = 2.09f;
+
+            case "hungry":
+            case "hungry cabin":
+                return indexLog = 2.1f;
+
+            case "path to nowhere":
+            case "nowhere":
+            case "path to":
+                return indexLog = 2.11f;
+
+            case "fairy":
+            case "fairies":
+                return indexLog = 2.12f;
+
+            case "runes":
+                return indexLog = 2.13f;
+
+            case "crooked":
+            case "harpy":
+            case "harpies":
+            case "crooked harpy":
+            case "crooked harpies":
+                return indexLog = 2.14f;
+
+            case "map":
+            case "maps":
+                return indexLog = 3;
+
+            case "camp":
+            case "camps":
+                return indexLog = 3.01f;
+
+            case "rock":
+            case "rocks":
+                return indexLog = 3.02f;
+
+            case "ruins":
+            case "ruin":
+                return indexLog = 3.03f;
+
+            case "shelter":
+                return indexLog = 3.04f;
+
+            case "tree":
+                return indexLog = 3.05f;
+
+            case "village":
+                return indexLog = 3.06f;
+
+            case "tool":
+            case "tools":
+                return indexLog = 4;
+
+            case "radio":
+                return indexLog = 4.01f;
+
+            case "plank":
+            case "planks":
+            case "hammer":
+            case "plank and hammer":
+            case "planks and hammer":
+            case "hammer and planks":
+            case "hammer and plank":
+                return indexLog = 4.02f;
+
+            case "rune":
+                return indexLog = 4.03f;
+
+            case "terminal":
+            case "computer":
+                return indexLog = 4.04f;
+
+            case "generator":
+                return indexLog = 4.05f;
+
+            
+            // Special & EasterEgg
+            case "the lost forest":
+            case "lost forest":
+                return indexLog = 0.01f;
+
+            case "the root":
+            case "root":
+                return indexLog = 0.02f;
+
+            case "happy bird":
+                return indexLog = 0.03f;
+
+            case "oberon":
+            case "obéron":
+            case "auberon":
+            case "aubéron":
+            case "alberon":
+            case "albéron":
+                return indexLog = 0.04f;
+
+            default:
+                return indexLog = 404;
+        }
+    }
+
+    private string FrenchTerminal(float index)
+    {
+        switch (index)
+        {
+            case 0:
+                return text =
+@"Bienvenue sur le Terminal de la Watchtower No8.
 
 Vous y trouverez les informations collectées sur les diverses anomalies de la Lost Forest, ainsi que des conseils pour survivre en cas d'attaque pendant vos heures de travail.
 
 Pour connaître les différentes options, tapez HELP.";
-        }
-        else
-        {
-            mainText =
-@"Welcome to Watchtower Terminal No8.
 
-There you will find information collected on the various anomalies of the Lost Forest, as well as tips for surviving in the event of an attack during your working hours.
-
-To see the different options, type HELP.";
-        }
-    }
-
-    private string ProcessCommand(string command)
-    {
-        if (language.index == 0)
-        {
-            return FrenchTerminal(command); 
-        }
-        else
-        {
-            return EnglishTerminal(command);
-        }
-    }
-
-    private string FrenchTerminal(string command)
-    {
-        switch (command.ToLower())
-        {
-            case "help":
+            case 1:
                 return text =
 @"|| HELP ||
 
@@ -118,7 +254,8 @@ MAP
 TOOLS
 EXIT
 ";
-            case "bestiary":
+
+            case 2:
                 return text =
 @"|| BESTIARY ||
 
@@ -139,9 +276,8 @@ ROOTED PRIEST
 RUNES
 THE DOORMAN
 ";
-            case "deer":
-            case "smiling deer":
-            case "deer smile":
+
+            case 2.01f:
                 return text =
 @"|| DEER SMILE ||
 
@@ -163,8 +299,7 @@ Voici ce que vous devez faire :
 
 * Si vous entendez une personne appeler à l’aide, accompagnée de cris de douleur, ne tentez pas de la sauver. Profitez-en pour vous déplacer aussi rapidement que possible. Personne ne vous en voudra.";
 
-            case "priest":
-            case "rooted priest":
+            case 2.02f:
                 return text =
 @"|| ROOTED PRIEST ||
 
@@ -179,8 +314,7 @@ Les Rooted Priests sont dans un état constant d’euphorie et cherchent visiblemen
 
 * Les Rooted Priests ne se défendront jamais physiquement, ce qui les rend faciles à éliminer lorsqu’ils sont à portée. Cependant, leur grande intelligence fait d’eux de redoutables stratèges, utilisant divers sorts ou autres moyens de diversion pour se dissimuler et rester à distance.";
 
-            case "rooted ghoul":
-            case "ghoul":
+            case 2.03f:
                 return text =
 @"|| ROOTED GHOUL ||
 
@@ -199,7 +333,7 @@ Comme beaucoup d'anomalies créées par The Root, les Rooted Ghouls sont très sens
 
 * Si un Rooted Priest est présent, fuir reste la meilleure solution.";
 
-            case "false tree":
+            case 2.04f:
                 return text =
 @"|| FALSE TREE ||
 
@@ -220,8 +354,7 @@ Les False Trees ont également montré qu'ils peuvent ressentir la peur, la triste
 
 * Il est également recommandé d’éviter de rester à découvert lorsqu’un False Tree vous traque. Cherchez un abri, comme une cabane, une grotte ou tout autre refuge en attendant que le False Tree perde patience et passe à autre chose.";
 
-            case "the doorman":
-            case "doorman":
+            case 2.05f:
                 return text =
 @"|| THE DOORMAN ||
 
@@ -251,8 +384,7 @@ Ceux qui ont vu The Doorman, et sont toujours là pour en parler, disent n'avoir 
 
 * La dernière solution reste de rester loin de la porte jusqu'à ce qu'il perde patience en vous tenant loin de la porte.";
 
-            case "forest madness":
-            case "madness":
+            case 2.06f:
                 return text =
 @"|| FOREST MADNESS ||
 
@@ -272,8 +404,7 @@ Si une personne succombe à la Forest Madness, elle finira par devenir une Rooted
 
 * Si vous ne pouvez rien faire pour vous débarrasser de la Forest Madness dans les secondes qui suivent, la meilleure option reste de mettre fin à vos jours. Dans le cas contraire, vous finirez par devenir un Rooted Ghoul.";
 
-            case "totem":
-            case "root totem":
+            case 2.07f:
                 return text =
 @"|| ROOT TOTEM ||
 
@@ -290,7 +421,7 @@ Le Blind Totem absorbe toute forme de lumière et d'énergie dans ses environs, re
 
 * Si des indices montrent qu'un Rooted Priest était dans les environs, fouillez la zone à la recherche d'un potentiel Totem.";
 
-            case "cursed tool":
+            case 2.08f:
                 return text =
 @"|| CURSED TOOL ||
 
@@ -309,8 +440,7 @@ Les effets des Cursed Tools lorsque utilisés par un Priest sont les suivant :
 - CONSEILS -
 * Si vous tombez sur un Cursed Tool, vous devez immédiatement l'enterrer sans le toucher de vos mains et réciter une prière, quelle que soit la religion. Dans le cas contraire, le Cursed Tool finira par générer une Red Zone.";
 
-            case "red zone":
-            case "zone red":
+            case 2.09f:
                 return text =
 @"|| RED ZONE ||
 
@@ -329,8 +459,7 @@ Il n'existe encore aucune façon d'inverser les effets d'une Red Zone. C'est pour
 
 * Ne cherchez pas à sauver ce qui est entré dans une Red Zone.";
 
-            case "hungry":
-            case "hungry cabin":
+            case 2.1f:
                 return text =
 @"|| HUNGRY CABIN ||
 
@@ -347,9 +476,7 @@ La méthode qu'utilisent les Hungry Cabins pour se matérialiser et se dématériali
 
 * Si vous, ou l'un de vos compagnons, vous retrouvez pris à l'intérieur d'une Hungry Cabin, utilisez un objet tel qu'une hache, une masse ou un rocher pour tenter de briser la porte.";
 
-            case "path to nowhere":
-            case "nowhere":
-            case "path to":
+            case 2.11f:
                 return text =
 @"|| PATH TO NOWHERE ||
 
@@ -366,8 +493,7 @@ Il n'est pas encore certain de savoir si le Path to Nowhere est la création de T
 
 * Si une victime de l'anomalie est trop enfoncée dans la forêt, elle doit être considérée comme perdue. Tenter de la retrouver vous mettrait en danger.";
 
-            case "fairy":
-            case "fairies":
+            case 2.12f:
                 return text =
 @"|| FAIRY ||
 
@@ -384,17 +510,13 @@ Les Fairies voient les humains comme une race inférieure qu'ils doivent aider et
 
 * Si une Fairy souhaite parler uniquement à un ""dirigeant"", allez chercher le chef du groupe. Si une figure plus haute n'est pas présente, excusez-vous et expliquez que celui-ci n'est pas actuellement là, mais que vous pouvez servir de messager.";
 
-            case "runes":
+            case 2.13f:
                 return text =
 @"|| RUNES ||
 
 Les Runes sont de la magie féérique mise sous une forme que les humains peuvent utiliser pour se protéger, se soigner et générer de l'énergie. Ceux qui étudient cette science sont appelés ""Runistes"" et sont capables de graver, transcrire et recréer des Runes.";
 
-            case "crooked":
-            case "harpy":
-            case "harpies":
-            case "crooked harpy":
-            case "crooked harpies":
+            case 2.14f:
                 return text =
 @"|| CROOKED HARPY ||
 
@@ -445,8 +567,8 @@ L'entité en question semble avoir pris le surnom ""Happy Bird"" et commet des ca
 
 Si vous avez la moindre information sur le sujet, informez le superviseur du camp le plus proche.";
 
-            case "map":
-            case "maps":
+
+            case 3:
                 return text =
 @"|| MAP ||
 
@@ -459,40 +581,38 @@ RUIN
 SHELTER
 TREE
 VILLAGE";
-            case "camp":
-            case "camps":
+
+            case 3.01f:
                 return text =
 @"|| CAMP ||
 
 Les Camps sont des zones de sûreté où les sbires de The Root et les anomalies ne peuvent y entrer. Les Explorers y passent la nuit ou y font un rapport de leurs trouvailles.";
 
-            case "rock":
-            case "rocks":
+            case 3.02f:
                 return text =
 @"|| ROCK ||
 
 Plusieurs rochers avec des symboles gravés dessus sont rependus dans la Lost Forest. Ils servent de repère pour les Explorers.";
 
-            case "ruins":
-            case "ruin":
+            case 3.03f:
                 return text =
 @"|| RUIN ||
 
 Les Ruins sont des bâtiments faits par l'homme qui ont fini dans la Lost Forest. Les Exploreurs y vont souvent à la recherche d'informations et de matériaux.";
 
-            case "shelter":
+            case 3.04f:
                 return text =
 @"|| SHELTER ||
 
 Les Shelters servent de lieu sécurisé temporaire pour les Explorers durant la nuit. Cependant, soyez vigilant aux Hungry Cabins! N'oubliez pas de consulter votre carte pour repérer la position des Shelters.";
 
-            case "tree":
+            case 3.05f:
                 return text =
 @"|| TREE ||
 
 Les Trees marqués sur votre carte sont des arbres particulièrement grands qui servent de repère aux Explorers. Certains Trees peuvent posséder de 1 à 3 troncs et, par moments, comporter une rune gravée.";
 
-            case "village":
+            case 3.06f:
                 return text =
 @"|| VILLAGE ||
 
@@ -569,8 +689,8 @@ Le Village est le lieu où vivent les survivants de l'incident qui a amené les hu
 
 Il est bâti sur vos péchés.";
 
-            case "tool":
-            case "tools":
+
+            case 4:
                 return text =
 @"|| TOOLS ||
 
@@ -583,7 +703,7 @@ TERMINAL
 GENERATOR
 MAP";
 
-            case "radio":
+            case 4.01f:
                 return text =
 @"|| RADIO ||
 
@@ -591,13 +711,7 @@ La Radio est votre seul moyen de communication avec les Explorers, les Camps et 
 
 Gardez à l'esprit que la Radio est reliée à l'énergie de la Watchtower, et qu'elle ne fonctionnera pas sans énergie.";
 
-            case "plank":
-            case "planks":
-            case "hammer":
-            case "plank and hammer":
-            case "planks and hammer":
-            case "hammer and planks":
-            case "hammer and plank":
+            case 4.02f:
                 return text =
 @"|| PLANKS AND HAMMER ||
 
@@ -605,7 +719,7 @@ Dans la circonstance où l'une de vos fenêtres venait à être brisée, un marteau e
 
 Rappelez-vous que vous êtes limité en quantité de planches, il est donc préférable de surveiller les fenêtres.";
 
-            case "rune":
+            case 4.03f:
                 return text =
 @"|| RUNE ||
 
@@ -613,8 +727,7 @@ Afin de vous protéger des anomalies qui viendraient à votre rencontre, une Rune 
 
 Si vous rencontrez une anomalie, il suffit d'utiliser la Rune sur elle pour la faire fuir. Mais attention ! La Rune prend un petit moment avant d'être de nouveau active.";
 
-            case "terminal":
-            case "computer":
+            case 4.04f:
                 return text =
 @"|| TERMINAL ||
 
@@ -622,7 +735,7 @@ Le Terminal est la banque de données disponible dans tous les Watchtowers. Il es
 
 Gardez à l'esprit que le Terminal est relié à l'énergie de la Watchtower, et qu'il ne fonctionnera pas sans énergie.";
 
-            case "generator":
+            case 4.05f:
                 return text =
 @"|| GENERATOR ||
 
@@ -630,12 +743,9 @@ Chaque Watchtower comporte une génératrice servant à alimenter les runes qui fou
 
 Gardez à l'esprit que la génératrice peut parfois sauter. Et sans énergie, vous ne pouvez pas utiliser votre Radio, ni votre Terminal. Vous serez aussi plongé dans le noir, vous risquant à la Forest Madness.";
 
-            case "exit":
-                return text = mainText;
 
             // Special & EasterEgg
-            case "the lost forest":
-            case "lost forest":
+            case 0.01f:
                 return text =
 @"Des Elves m'ont demandé de l'aide pour trouver la source d'une corruption apparue récemment dans la Lost Forest. Puisque la corruption semble toucher la forêt et ce qui y vit, les Elves ont été obligés de ravaler leur fierté et demander à la seule personne extérieure capable de les aider. C'était satisfaisant de voir ces êtres pleins d'égo se rabaisser à ce point, mais je savais que s'ils en venaient à se remettre à moi, c'est que ça s'annonce plus critique que ce que je pensais. De plus, je préfère ne pas me les mettre à dos, ils peuvent s'avérer utiles.
 
@@ -646,8 +756,7 @@ Durant mes recherches dans la zone corrompue, j'ai vite réalisé que de dangereus
 
 - J.W.";
 
-            case "the root":
-            case "root":
+            case 0.02f:
                 return text =
 @"J'ai rencontrer ce culte vénérant une entité invisible qu'ils appellent ""The Root"". J'ignore s'ils sont la cause de cette entité ou si l'entité est la cause du culte. Du peu que je sais, l'entité n'a jamais physiquement existé, mais ses cultistes utilisaient des hôtes pour lui offrir une possibilité d'interagir avec le monde physique. Alors pourquoi ces hôtes semblent-elles tant en peine et en souffrance?
 
@@ -658,7 +767,7 @@ J'ai prévenu les Elves de rester sur leur garde. Cette façon que ce culte corrom
 
 - J.W.";
 
-            case "happy bird":
+            case 0.03f:
                 return text =
 @"Dr.Loubelle : Mon nom est Monica Loubelle, docteure en psychologie et comportement des anomalies. La nuit dernière, un groupe d'Explorer a été victime de l'entité appelée  ""Happy Bird"". Comme présenté dans les cas précédents, Happy Bird a laissé qu'un seul survivant en vie. La différence cette fois-ci est qu'il a démontré un besoin de vouloir socialiser. Afin d'étudier cette nouvelle découverte, j'interviewe le survivant en question. Pour l'enregistrement, pouvez-vous vous présenter?
 
@@ -758,12 +867,7 @@ Dr.Loubelle : Au point où on en est, allez-y.
 
 R.Tolman : Je sais que vous et les Watchers étiez là lors de l'incident et, j'ignore comment personne n'ait jamais remarqué ça avant, moi inclus, mais... Quel âge avez-vous vraiment?";
 
-            case "oberon":
-            case "obéron":
-            case "auberon":
-            case "aubéron":
-            case "alberon":
-            case "albéron":
+            case 0.04f:
                 return text =
 @"SUJET : 03-Éron
 RACE : Afro-Américain
@@ -786,15 +890,23 @@ Sujet 03- Éron montre une grande compassion avec les autres sujets, humains ou n
     - Professeur Morgan Leffaie";
             
             default:
-                return text = "Commande [" + command.ToUpper() + "] non reconnue.";
+                return text = "Commande [" + input.ToUpper() + "] non reconnue.";
         }
     }
 
-    private string EnglishTerminal(string command)
+    private string EnglishTerminal(float index)
     {
-        switch (command.ToLower())
+        switch (index)
         {
-            case "help":
+            case 0:
+                return text =
+@"Welcome to Watchtower Terminal No8.
+
+There you will find information collected on the various anomalies of the Lost Forest, as well as tips for surviving in the event of an attack during your working hours.
+
+To see the different options, type HELP.";
+
+            case 1:
                 return text =
 @"|| HELP ||
 
@@ -805,7 +917,8 @@ MAP
 TOOLS
 EXIT
 ";
-            case "bestiary":
+
+            case 2:
                 return text =
 @"|| BESTIARY ||
 
@@ -826,9 +939,8 @@ ROOTED PRIEST
 RUNES
 THE DOORMAN
 ";
-            case "deer":
-            case "smiling deer":
-            case "deer smile":
+
+            case 2.01f:
                 return text =
 @"|| DEER SMILE ||
 
@@ -850,8 +962,7 @@ Here's what you need to do:
 
 * If you hear someone calling for help, accompanied by cries of pain, do not try to save them. Take advantage of this to move as quickly as possible. No one will blame you.";
 
-            case "priest":
-            case "rooted priest":
+            case 2.02f:
                 return text =
 @"|| ROOTED PRIEST ||
 
@@ -866,8 +977,7 @@ The Rooted Priests are in a constant state of euphoria and seek to share this ""
 
 * Rooted Priests will never defend themselves physically, making them easy to eliminate when in range. However, their great intelligence makes them formidable strategists, using various spells or other means of diversion to conceal themselves and stay at a distance.";
 
-            case "rooted ghoul":
-            case "ghoul":
+            case 2.03f:
                 return text =
 @"|| ROOTED GHOUL ||
 
@@ -886,7 +996,7 @@ Like many anomalies created by The Root, Rooted Ghouls are very sensitive to Run
 
 * If a Rooted Priest is present, fleeing is still the best option.";
 
-            case "false tree":
+            case 2.04f:
                 return text =
 @"|| FALSE TREE ||
 
@@ -907,8 +1017,7 @@ False Trees have also been shown to feel fear, sadness, joy, and anger, but not 
 
 * It is also recommended to avoid staying out in the open when a False Tree is stalking you. Seek shelter, such as a cabin, cave, or other refuge until the False Tree loses its patience and moves on.";
 
-            case "the doorman":
-            case "doorman":
+            case 2.05f:
                 return text =
 @"|| THE DOORMAN ||
 
@@ -938,8 +1047,7 @@ Those who have seen The Doorman, and are still here to talk about it, say they o
 
 * The last resort is to stay away from the door until he loses his patience with you staying away from the door.";
 
-            case "forest madness":
-            case "madness":
+            case 2.06f:
                 return text =
 @"|| FOREST MADNESS ||
 
@@ -959,8 +1067,7 @@ If a person succumbs to Forest Madness, they will eventually become a Rooted Gho
 
 * If you can't do anything to get rid of Forest Madness in the next few seconds, your best option is to end your life. Otherwise, you'll end up becoming a Rooted Ghoul.";
 
-            case "totem":
-            case "root totem":
+            case 2.07f:
                 return text =
 @"|| ROOT TOTEM ||
 
@@ -977,7 +1084,7 @@ The Blind Totem absorbs all forms of light and energy in its surroundings, rende
 
 * If there are any clues that a Rooted Priest was in the vicinity, search the area for a potential Totem.";
 
-            case "cursed tool":
+            case 2.08f:
                 return text =
 @"|| CURSED TOOL ||
 
@@ -996,8 +1103,7 @@ The effects of Cursed Tools when used by a Priest are as follows:
 - ADVICE -
 * If you come across a Cursed Tool, you must immediately bury it without touching it with your hands and recite a prayer, regardless of religion. Otherwise, the Cursed Tool will eventually generate a Red Zone.";
             
-            case "red zone":
-            case "zone red":
+            case 2.09f:
                 return text =
 @"|| RED ZONE ||
 
@@ -1016,8 +1122,7 @@ There is still no way to reverse the effects of a Red Zone. That is why it is ev
 
 * Don't try to save what has entered a Red Zone.";
 
-            case "hungry":
-            case "hungry cabin":
+            case 2.1f:
                 return text =
 @"|| HUNGRY CABIN ||
 
@@ -1034,9 +1139,7 @@ The method the Hungry Cabins use to materialize and dematerialize remains a myst
 
 * If you or one of your companions finds yourselves trapped inside a Hungry Cabin, use an object such as an axe, mace, or rock to attempt to break down the door.";
 
-            case "path to nowhere":
-            case "nowhere":
-            case "path to":
+            case 2.11f:
                 return text =
 @"|| PATH TO NOWHERE ||
 
@@ -1053,8 +1156,7 @@ It is not yet clear whether the Path to Nowhere is the creation of The Root or t
 
 * If a victim of the anomaly is too deep into the forest, they should be considered lost. Trying to find them would put you in danger.";
 
-            case "fairy":
-            case "fairies":
+            case 2.12f:
                 return text =
 @"|| FAIRY ||
 
@@ -1071,17 +1173,13 @@ Fairies see humans as an inferior race that they must help and protect, like a p
 
 * If a Fairy only wants to speak to a ""governor"", go find the leader of the group. If a higher figure is not present, apologize and explain that they are not currently there, but that you can serve as a messenger.";
             
-            case "runes":
+            case 2.13f:
                 return text =
 @"|| RUNES ||
 
 Runes are faerie magic put into a form that humans can use for protection, healing, and energy generation. Those who study this science are called ""Runists"" and are able to engrave, transcribe and recreate Runes.";
 
-            case "crooked":
-            case "harpy":
-            case "harpies":
-            case "crooked harpy":
-            case "crooked harpies":
+            case 2.14f:
                 return text =
 @"|| CROOKED HARPY ||
 
@@ -1132,8 +1230,8 @@ The entity in question seems to have taken the nickname ""Happy Bird"" and is co
 
 If you have any information on the subject, inform the nearest camp supervisor.";
 
-            case "map":
-            case "maps":
+
+            case 3:
                 return text =
 @"|| MAP ||
 
@@ -1146,40 +1244,38 @@ RUIN
 SHELTER
 TREE
 VILLAGE";
-            case "camp":
-            case "camps":
+
+            case 3.01f:
                 return text =
 @"|| CAMP ||
 
 Camps are safe zones where The Root's minions and anomalies cannot enter. Explorers spend the night there or report their findings.";
             
-            case "rock":
-            case "rocks":
+            case 3.02f:
                 return text =
 @"|| ROCK ||
 
 Several rocks with symbols carved into them are scattered throughout the Lost Forest. They serve as landmarks for Explorers.";
 
-            case "ruins":
-            case "ruin":
+            case 3.03f:
                 return text =
 @"|| RUIN ||
 
 Ruins are man-made buildings that ended up in the Lost Forest. Explorers often go there in search of information and materials.";
 
-            case "shelter":
+            case 3.04f:
                 return text =
 @"|| SHELTER ||
 
 Shelters serve as a temporary secure location for Explorers during the night. However, be aware of the Hungry Cabins! Don't forget to check your map for the location of the Shelters.";
 
-            case "tree":
+            case 3.05f:
                 return text =
 @"|| TREE ||
 
 The Trees marked on your map are particularly large trees that serve as landmarks for Explorers. Some Trees may have 1 to 3 trunks and, at times, may have a rune engraved on them.";
 
-            case "village":
+            case 3.06f:
                 return text =
 @"|| VILLAGE ||
 
@@ -1256,8 +1352,8 @@ The Village is where the survivors of the incident that brought humans to the Lo
 
 It is built on your sins.";
 
-            case "tool":
-            case "tools":
+
+            case 4:
                 return text =
 @"|| TOOLS ||
 
@@ -1270,7 +1366,7 @@ TERMINAL
 GENERATOR
 MAP";
 
-            case "radio":
+            case 4.01f:
                 return text =
 @"|| RADIO ||
 
@@ -1278,13 +1374,7 @@ The Radio is your only means of communication with the Explorers, Camps and the 
 
 Keep in mind that the Radio is connected to the Watchtower's power, and will not function without it.";
 
-            case "plank":
-            case "planks":
-            case "hammer":
-            case "plank and hammer":
-            case "planks and hammer":
-            case "hammer and planks":
-            case "hammer and plank":
+            case 4.02f:
                 return text =
 @"|| PLANKS AND HAMMER ||
 
@@ -1292,7 +1382,7 @@ In the event that one of your windows were to be broken, a hammer and planks hav
 
 Remember that you are limited in the amount of boards, so it is best to keep an eye on the windows.";
 
-            case "rune":
+            case 4.03f:
                 return text =
 @"|| RUNE ||
 
@@ -1300,15 +1390,15 @@ In order to protect yourself from anomalies that may come your way, a Rune of pu
 
 If you encounter an anomaly, simply use the Rune on it to scare it away. But be careful! The Rune takes a little while before it becomes active again.";
 
-            case "terminal":
-            case "computer":
+            case 4.04f:
                 return text =
 @"|| TERMINAL ||
 
 The Terminal is the data bank available in all Watchtowers. It is a crucial source of information to provide and educate Watchers and Explorers about the dangers the Lost Forest presents and how to deal with them.
 
 Keep in mind that the Terminal is connected to the Watchtower's power, and will not function without it.";
-            case "generator":
+
+            case 4.05f:
                 return text =
 @"|| GENERATOR ||
 
@@ -1316,12 +1406,9 @@ Each Watchtower has a generator that powers the runes that supply energy to the 
 
 Keep in mind that the generator can sometimes go out. And without power, you can't use your Radio, or your Terminal. You'll also be plunged into darkness, risking Forest Madness.";
 
-            case "exit":
-                return text = mainText;
 
             // Special & EasterEgg
-            case "the lost forest":
-            case "lost forest":
+            case 0.01f:
                 return text =
 @"Some Elves have asked me for help in finding the source of a corruption that has recently appeared in the Lost Forest. As corruption seems to be affecting the forest and what lives within it, the Elves have been forced to swallow their pride and ask the only outsider who can help them. It was satisfying to see these egotistical beings stoop so low, but I knew that if they were going to turn to me, it was going to be more serious than I thought. Besides, I prefer not to get on their bad side, they can be useful.
 
@@ -1332,8 +1419,7 @@ During my research in the corrupted zone, I quickly realized that dangerous enti
 
 - J.W.";
 
-            case "the root":
-            case "root":
+            case 0.02f:
                 return text =
 @"I met this cult worshiping an invisible entity they call ""The Root"". I don't know if they are the cause of this entity or if the entity is the cause of the cult. From what I know, the entity never physically existed, but its cultists used hosts to offer it a possibility of interacting with the physical world. So why do these hosts seem so in pain and suffering?
 
@@ -1344,7 +1430,7 @@ I warned the Elves to be on their guard. This way in which this cult corrupts ot
 
 - J.W.";
 
-            case "happy bird":
+            case 0.03f:
                 return text =
 @"Dr.Loubelle : My name is Monica Loubelle, a doctor in psychology and behavior of anomalies. Last night, a group of Explorers fell victim to the entity called """"Happy Bird"""". As presented in previous cases, Happy Bird left only one survivor alive. The difference this time is that it demonstrated a need to socialize. In order to investigate this new discovery, I am interviewing the survivor in question. For the record, can you introduce yourself?
 
@@ -1444,12 +1530,7 @@ Dr.Loubelle : At this point, go for it.
 
 R.Tolman : I know you and the Watchers were there during the incident, and I don't know how no one noticed this before, including me, but... How old are you really?";
 
-            case "oberon":
-            case "obéron":
-            case "auberon":
-            case "aubéron":
-            case "alberon":
-            case "albéron":
+            case 0.04f:
                 return text =
 @"SUBJECT : 03-Éron
 RACE : Afro-American
@@ -1472,12 +1553,13 @@ Subject 03-Eron shows great compassion with other subjects, human or not, and th
     - Professor Morgan Leffaie";
 
             default:
-                return text = "[" + command.ToUpper() + "] command not recognized.";
+                return text = "[" + input.ToUpper() + "] command not recognized.";
         }
     }
 
     IEnumerator ShowText()
     {
+        isLoading = true;
         outputTerminal.text = "";
         inputCanvas.enabled = false;
         yield return new WaitForSeconds(0.001f);
@@ -1487,7 +1569,7 @@ Subject 03-Eron shows great compassion with other subjects, human or not, and th
         yield return new WaitForSeconds(0.5f);
         outputTerminal.text += " .";
         yield return new WaitForSeconds(0.5f);
-        outputTerminal.text = text;
         inputCanvas.enabled = true;
+        isLoading = false;
     }
 }
