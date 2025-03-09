@@ -48,13 +48,13 @@ public class MonsterSpawner : MonoBehaviour
                 break;
         }
 
-        if (!startHunt)
+        if (startHunt)
         {
             tipsMonster = helper.ActiveTips(tipsMonster);
-            startHunt = true;
-            monstersList[0].SetActive(true);
-            monstersList[0].GetComponent<AudioSource>().Play();
-            StartCoroutine(HuntStarted());
+            //startHunt = true;
+            //monstersList[0].SetActive(true);
+            //monstersList[0].GetComponent<AudioSource>().Play();
+            //StartCoroutine(HuntStarted());
         }
 
         if (!isAppear)
