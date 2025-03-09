@@ -35,7 +35,7 @@ RenderSettings:
   m_DefaultReflectionMode: 0
   m_DefaultReflectionResolution: 128
   m_ReflectionBounces: 1
-  m_ReflectionIntensity: 0.03
+  m_ReflectionIntensity: 0.34
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
   m_UseRadianceAmbientProbe: 0
@@ -3308,7 +3308,8 @@ MonoBehaviour:
   title: {fileID: 545209774}
   toDeactivated: {fileID: 469446194}
   keyToClose: {fileID: 1542002197}
-  tipCanvas: {fileID: 1044722845}
+  tipsCanvas: {fileID: 24208043}
+  tipUI: {fileID: 1044722845}
 --- !u!1001 &85377389
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3514,7 +3515,7 @@ MonoBehaviour:
   audioSource: {fileID: 939218235}
   lightSwitch: {fileID: 1116980537}
   theDoorman: {fileID: 1733948308}
-  difficulty: {fileID: 0}
+  difficulty: {fileID: 1252969156}
   stressMusics:
   - {fileID: 8300000, guid: f1aaf0430cec23942ac320dc90d23032, type: 3}
   - {fileID: 8300000, guid: d232fdbada625ca47894958bd095f285, type: 3}
@@ -26126,6 +26127,53 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 931792430}
   m_CullTransparentMesh: 1
+--- !u!1 &932871228
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 932871230}
+  - component: {fileID: 932871229}
+  m_Layer: 0
+  m_Name: StopTime
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &932871229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 932871228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2313ba784360f4a4586a1f6b26270ac0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pauseMenu: {fileID: 467731298}
+  helper: {fileID: 84008400}
+  brain: {fileID: 963194230}
+--- !u!4 &932871230
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 932871228}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.1664727, y: 25.377598, z: -11.871547}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &936161388
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -31607,7 +31655,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1071728011
 Transform:
   m_ObjectHideFlags: 0
@@ -31632,7 +31680,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1071728010}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c00b7ad57acb2024c8aae77853c04487, type: 3}
   m_Name: 
@@ -51059,6 +51107,8 @@ MonoBehaviour:
   buttonSounds:
   - {fileID: 8300000, guid: 5bf926bf36c90e24891db4cd4f6ed3e2, type: 3}
   - {fileID: 8300000, guid: 586d83fcea2da0a4eaa8b6636f20feb1, type: 3}
+  terminalCanvas: {fileID: 494439655}
+  monitorCanvas: {fileID: 336997796}
   startButton: {fileID: 1752097402}
   computerSound: {fileID: 1590757841}
   computerSoundState: {fileID: 1805371750}
@@ -51068,12 +51118,12 @@ MonoBehaviour:
   screen: {fileID: 501288471}
   buttonCollider: {fileID: 1128112388}
   isLooking: 0
+  energieOn: 0
   camTerminal: {fileID: 663702633}
   camPlayer: {fileID: 405462400}
   cursorState: {fileID: 0}
   isOn: 0
-  tipsOn: 0
-  tipsOff: 0
+  tips: 0
 --- !u!1001 &1752263004
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -52145,6 +52195,7 @@ MonoBehaviour:
   playerBody: {fileID: 1541090787}
   player: {fileID: 1541090788}
   menuPause: {fileID: 467731298}
+  helper: {fileID: 84008400}
 --- !u!1 &1805371748
 GameObject:
   m_ObjectHideFlags: 0
@@ -63299,6 +63350,7 @@ SceneRoots:
   - {fileID: 705507995}
   - {fileID: 1633642716}
   - {fileID: 173671493}
+  - {fileID: 932871230}
   - {fileID: 1252969157}
   - {fileID: 1396982849}
   - {fileID: 84008399}
