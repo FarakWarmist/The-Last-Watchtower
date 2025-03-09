@@ -316,6 +316,11 @@ public class Monster : MonoBehaviour
         float chance = Random.Range(0f, 1f);
         float _break = chanceBreackingWindow * monsterSpawner.multiple;
         bool breakTheWindow = chance < _break;
+        while (IsPlayerLookingAtMonster())
+        {
+            yield return null;
+        }
+
         if (breakTheWindow)
         {
             BreakTheWindow();
@@ -324,6 +329,7 @@ public class Monster : MonoBehaviour
         {
             MoveToNextWindow();
         }
+
         isTakeAction = false;
     }
 
