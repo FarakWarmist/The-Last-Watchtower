@@ -142,6 +142,7 @@ public class MainMenuManager : MonoBehaviour
     {
         difficultyChosen = "hard";
         StartCoroutine(StartGame());
+        DifficultyButtonsDisabled();
         EventSystem.current.SetSelectedGameObject(null);
     }
 
@@ -149,6 +150,7 @@ public class MainMenuManager : MonoBehaviour
     {
         difficultyChosen = "normal";
         StartCoroutine(StartGame());
+        DifficultyButtonsDisabled();
         EventSystem.current.SetSelectedGameObject(null);
     }
 
@@ -156,6 +158,7 @@ public class MainMenuManager : MonoBehaviour
     {
         difficultyChosen = "easy";
         StartCoroutine(StartGame());
+        DifficultyButtonsDisabled();
         EventSystem.current.SetSelectedGameObject(null);
     }
 
@@ -224,6 +227,12 @@ public class MainMenuManager : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(null);
     }
 
+    private void DifficultyButtonsDisabled()
+    {
+        easyButton.interactable = false;
+        normalButton.interactable = false;
+        hardButton.interactable = false;
+    }
     IEnumerator StartMainMenu()
     {
         mainMenuCam.enabled = true;
