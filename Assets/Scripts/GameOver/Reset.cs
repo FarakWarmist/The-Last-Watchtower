@@ -48,7 +48,6 @@ public class Reset : MonoBehaviour
 
     public void ResetTheGame()
     {
-        
         foreach (ResetWindowState window in windows)
         {
             window.ResetWindow();

@@ -3510,6 +3510,10 @@ Ha ha ha...!!! ";
             answer1 = "";
             answer2 = "";
         }
+        if(!hasListen)
+        {
+            messageNum = lastPath;
+        }
         Radio radio = FindAnyObjectByType<Radio>();
         radio.isLooking = false;
         bullets = 3;
