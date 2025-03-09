@@ -23,7 +23,7 @@ public class Flashlight : MonoBehaviour
 
     private void Update()
     {
-        if (!lightSwitch.switchOn || !playerLocationState.playerIsInside)
+        if (!lightSwitch.switchOn && !camDoor.enabled || !playerLocationState.playerIsInside)
         {
             if (!isOn)
             {
