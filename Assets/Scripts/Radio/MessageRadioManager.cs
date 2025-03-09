@@ -3510,7 +3510,7 @@ Ha ha ha...!!! ";
             answer1 = "";
             answer2 = "";
         }
-        if(!hasListen)
+        if(!hasListen && messageNum > 1)
         {
             messageNum = lastPath;
         }
