@@ -31,8 +31,6 @@ public class MenuPause : MonoBehaviour
         englishButton.onClick.AddListener(mainMenu.OnEnglishButtonClicked);
 
         quitButton.onClick.AddListener(OnWarningButtonClicked);
-        yesButton.onClick.AddListener(mainMenu.OnQuitButtonClicked);
-        noButton.onClick.AddListener(OnReturnButtonClicked);
 
         fullscreenToggle.isOn = mainMenu.fullscreenToggle.isOn;
         fullscreenToggle.onValueChanged.AddListener(mainMenu.OnFullscreenToggleChanged);
@@ -68,11 +66,5 @@ public class MenuPause : MonoBehaviour
     {
         warningCanvas.enabled = true;
         EventSystem.current.SetSelectedGameObject(null); ;
-    }
-
-    private void OnReturnButtonClicked()
-    {
-        warningCanvas.enabled = false;
-        EventSystem.current.SetSelectedGameObject(null);
     }
 }

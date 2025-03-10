@@ -138,7 +138,7 @@ Know that, even though your grandmother and I are no longer here, a part of us w
             paperImage.color = paperColor;
             yield return null;
         }
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
         characterText.StartNewText(IntroMessage());
         yield return new WaitForSeconds(0.1f);
         gameObject.SetActive(false);

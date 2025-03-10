@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class MonsterSpawner : MonoBehaviour
 {
-    float timeMonsterAppear;
+    public float timeMonsterAppear = 25;
     public float timeMin;
     public float timeMax;
     public float multiple = 1;
@@ -163,7 +163,10 @@ public class MonsterSpawner : MonoBehaviour
     IEnumerator WaitForTheNextMonster(int index)
     {
         isAppear = true;
-        timeMonsterAppear = Random.Range(timeMin, timeMax);
+        if (timeMonsterAppear == 0)
+        {
+            timeMonsterAppear = Random.Range(timeMin, timeMax);
+        }
         float timer = 0f;
         Debug.Log(timeMonsterAppear + " || " + CheckTimeToAppear(timeMonsterAppear));
         //yield return new WaitForSeconds(CheckTimeToAppear(timeMonsterAppear));
@@ -173,6 +176,7 @@ public class MonsterSpawner : MonoBehaviour
             yield return null;
         }
         monstersList[index].SetActive(true);
+        timeMonsterAppear = 0;
         isAppear = false;
     }
 

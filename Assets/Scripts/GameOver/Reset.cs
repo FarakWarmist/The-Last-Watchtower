@@ -17,6 +17,9 @@ public class Reset : MonoBehaviour
     public GameObject forestMadness;
     [SerializeField] GameObject flashlight;
 
+    [SerializeField] GameObject playerObj;
+    [SerializeField] Transform playerRespawn;
+
     Generator generator;
     LightSwitch lightSwitch;
 
@@ -35,7 +38,6 @@ public class Reset : MonoBehaviour
         windows = FindObjectsByType<ResetWindowState>(FindObjectsSortMode.None);
         door = FindAnyObjectByType<Door>();
         itemsManager = FindAnyObjectByType<ItemsManager>();
-        flashlight = FindAnyObjectByType<Flashlight>().gameObject;
     }
 
     private void Update()
@@ -69,11 +71,13 @@ public class Reset : MonoBehaviour
             }
         }
 
+        playerObj.transform.position = playerRespawn.position;
         pileOfPlanks.ResetPlanksInPile();
         messageRadio.ResetMessageRadio();
         monsterSpawner.ResetMonsters();
         if (messageRadio.messageNum == 1)
         {
+            monsterSpawner.timeMonsterAppear = 25;
             monsterSpawner.startHunt = false;
             monsterSpawner.transform.parent.gameObject.SetActive(false);
         }
@@ -97,7 +101,6 @@ public class Reset : MonoBehaviour
 
         generator.energyLevel = 3;
         lightSwitch.switchOn = true;
-        player.transform.position = transform.position;
 
         camRadioObjet.transform.rotation = Quaternion.LookRotation(camTarget.position - camRadioObjet.transform.position);
 

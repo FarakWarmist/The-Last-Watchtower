@@ -37,7 +37,7 @@ public class MessageRadioManager : MonoBehaviour
     [SerializeField] TheDoorman theDoorman;
     [SerializeField] DifficultyManager difficulty;
     Generator generator;
-    MonsterSpawner monsterSpawner;
+    [SerializeField] MonsterSpawner monsterSpawner;
     public AudioClip[] stressMusics;
     [SerializeField] AudioClip[] musics;
     [SerializeField] AudioClip endingMusic;
@@ -621,16 +621,9 @@ public class MessageRadioManager : MonoBehaviour
 
     private void MonstersSpawnRate(bool less, bool more, float multipleBy)
     {
-        if (monsterSpawner != null)
-        {
-            monsterSpawner.multiple = multipleBy;
-            monsterSpawner.lessTime = less;
-            monsterSpawner.moreTime = more;
-        }
-        else
-        {
-            monsterSpawner = FindAnyObjectByType<MonsterSpawner>();
-        }
+        monsterSpawner.multiple = multipleBy;
+        monsterSpawner.lessTime = less;
+        monsterSpawner.moreTime = more;
     }
 
     private void StartMessage()
@@ -2081,7 +2074,7 @@ Ha ha ha...!!! ";
             switch (messagePart)
             {
                 case 0:
-                    message = @"Is anyone hear me?";
+                    message = @"Can anyone hear me?";
                     break;
                 case 1:
                     message = @"I lost my group and could use some help.";
@@ -2097,7 +2090,7 @@ Ha ha ha...!!! ";
                     break;
                 case 4f: // B
                     message = @"Um, sorry.
-I'm Alex, a 2nd Grade Explorer, and I’m in a complicated situation.";
+I'm Alex, a Second Rank Explorer, and I’m in a complicated situation.";
                     answer1 = @"I'm Éron... the new Watcher.";
                     answer2 = @"What happened?";
                     break;
@@ -3541,6 +3534,15 @@ I repeat...";
     IEnumerator NextPart(float time)
     {
         lastPath = messageNum;
+        if (messageNum == 1)
+        {
+            yield return new WaitForSeconds(3);
+            if (time < monsterSpawner.timeMonsterAppear)
+            {
+                time = monsterSpawner.timeMonsterAppear + 5;
+            }
+            yield return null;
+        }
         yield return new WaitForSeconds(time);
         messageNum = nextPath;
         messagePart = 0;
