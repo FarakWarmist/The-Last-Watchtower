@@ -1,9 +1,7 @@
 using System.Collections;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEngine.Rendering.DebugUI;
 
 public class CharacterText : MonoBehaviour
 {
@@ -72,5 +70,13 @@ public class CharacterText : MonoBehaviour
         }
         canvas.enabled = false;
         showText = false;
+        if (newText != message.text)
+        {
+            StartNewText(newText);
+        }
+        else
+        {
+            newText = null;
+        }
     }
 }
