@@ -44,18 +44,12 @@ public class DifficultyManager : MonoBehaviour
             if (timer >= 1f)
             {
                 timer = timer % 1f;
-                NoEnergy(2.5f);
+                NoEnergy(5f);
             }
         }
         else
         {
             NormalMode();
-            timer += Time.deltaTime;
-            if (timer >= 1f)
-            {
-                timer = timer % 1f;
-                NoEnergy(5f);
-            }
         }
 
         if (!instantiatePlanks)
