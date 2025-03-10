@@ -1,4 +1,6 @@
+using System;
 using System.Collections;
+using TMPro;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -41,6 +43,7 @@ public class MainMenuManager : MonoBehaviour
     public Canvas difficultyChoice;
     public Canvas deathMenu;
     public Canvas languagesCanvas;
+    public Canvas warningCanvas;
 
     public GameObject introText;
     public CheckCursor cursorState;
@@ -48,14 +51,15 @@ public class MainMenuManager : MonoBehaviour
     public Canvas icons;
     Player player;
     Reset reset;
+    [SerializeField] Languages language;
     [SerializeField] InsideOrOutside detector;
-    [SerializeField] Toggle toggleTips;
-    [SerializeField] Toggle toggleMapLocations;
+    public Toggle toggleTips;
+    public Toggle toggleMapLocations;
 
     public string difficultyChosen;
     public GameObject difficultyManagerObj;
 
-    public string language = "English";
+    public string currentLanguage = "English";
 
     string youtubeUrl = "https://www.youtube.com/@FarakWarmist";
     string instagramUrl = "https://www.instagram.com/farak_warmist/";
@@ -113,6 +117,11 @@ public class MainMenuManager : MonoBehaviour
         cursorState.isNotConfined = true;
     }
 
+    void WarningTips()
+    {
+        warningCanvas.enabled = true;
+    }
+
     public void OnFullscreenToggleChanged(bool isFullscreen)
     {
         if (isFullscreen)
@@ -128,13 +137,13 @@ public class MainMenuManager : MonoBehaviour
 
     public void OnFrenchButtonClicked()
     {
-        language = "French";
+        currentLanguage = "French";
         EventSystem.current.SetSelectedGameObject(null);
     }
 
     public void OnEnglishButtonClicked()
     {
-        language = "English";
+        currentLanguage = "English";
         EventSystem.current.SetSelectedGameObject(null);
     }
 
@@ -149,7 +158,7 @@ public class MainMenuManager : MonoBehaviour
     private void OnNormalButtonClicked()
     {
         difficultyChosen = "normal";
-        StartCoroutine(StartGame());
+        WarningTips();
         DifficultyButtonsDisabled();
         EventSystem.current.SetSelectedGameObject(null);
     }
@@ -157,7 +166,7 @@ public class MainMenuManager : MonoBehaviour
     private void OnEasyButtonClicked()
     {
         difficultyChosen = "easy";
-        StartCoroutine(StartGame());
+        WarningTips();
         DifficultyButtonsDisabled();
         EventSystem.current.SetSelectedGameObject(null);
     }
@@ -246,7 +255,7 @@ public class MainMenuManager : MonoBehaviour
         cursorState.needCursor++;
     }
 
-    IEnumerator StartGame()
+    public IEnumerator StartGame()
     {
         cursorState.isNotConfined = false;
         animator.SetBool("Fade", true);
@@ -259,11 +268,6 @@ public class MainMenuManager : MonoBehaviour
         difficultyChoice.enabled = false;
         languagesCanvas.enabled = false;
         menuPause.enabled = true;
-        if (difficultyChosen == "normal")
-        {
-            toggleTips.isOn = false;
-            toggleMapLocations.isOn = false;
-        }
         yield return new WaitForSeconds(3.2f);
         animator.SetBool("Fade", false);
         introText.SetActive(true);

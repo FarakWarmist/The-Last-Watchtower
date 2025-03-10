@@ -6,10 +6,11 @@ public class CheckCursor : MonoBehaviour
     public bool isNotConfined;
     public int needCursor = 0;
     [SerializeField] GameObject icon;
+    [SerializeField] Canvas warningCanvas;
 
     private void Update()
     {
-        if (needCursor > 0)
+        if (needCursor > 0 || warningCanvas.enabled)
         {
             Cursor.visible = true;
             if (!isNotConfined)

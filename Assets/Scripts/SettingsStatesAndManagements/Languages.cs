@@ -69,7 +69,7 @@ public class Languages : MonoBehaviour
             mainMenu = FindAnyObjectByType<MainMenuManager>();
         }
 
-        language = mainMenu.language;
+        language = mainMenu.currentLanguage;
 
         if (language == "French")
         {
@@ -91,10 +91,6 @@ public class Languages : MonoBehaviour
     {
         note.sprite = enigmeFR;
 
-        warningText.text =
-@"Êtes-vous sûr de vouloir quitter?
-Le jeu se fermera et votre progression sera perdue.";
-
         TextToChange(0,
                      "Jouer", "Options", "Quitter",
                      "Facile", "Normale", "Difficile",
@@ -113,9 +109,7 @@ Le jeu se fermera et votre progression sera perdue.";
 • Les monstres se présentent moins souvent.";
 
         normalDifficultyDesc =
-@"Pour les joueurs qui veulent une expérience de jeu classique avec la bonne dose de stress.
-
-(Par défaut, les Astuces et la Carte Localisation seront désactivées, mais pourront être activées dans le Menu Pause.)";
+@"Pour les joueurs qui veulent une expérience de jeu classique avec la bonne dose de stress.";
 
         hardDifficultyDesc =
 @"Pour les joueurs qui ont déjà joués et cherche plus gros défi ou les accros au stress.
@@ -136,10 +130,6 @@ Le jeu se fermera et votre progression sera perdue.";
     {
         note.sprite = enigmeEN;
 
-        warningText.text =
-@"Are you sure you want to quit?
-The game will close and your progress will be lost.";
-
         TextToChange(1,
                      "Play", "Settings", "Quit",
                      "Easy", "Normal", "Hard",
@@ -158,9 +148,7 @@ The game will close and your progress will be lost.";
 • Monsters appear less often.";
 
         normalDifficultyDesc =
-@"For players who want a classic gaming experience with the right amount of stress.
-
-(By default, Tips and Map Location will be disabled, but can be enabled in the Pause Menu.)";
+@"For players who want a classic gaming experience with the right amount of stress.";
 
         hardDifficultyDesc =
 @"For players who have already played and are looking for a bigger challenge or stress addicts.

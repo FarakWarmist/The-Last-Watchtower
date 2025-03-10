@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using TMPro;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,15 +13,19 @@ public class Map : MonoBehaviour, IInteractable
     public Canvas icons;
     public Toggle toggle;
 
+    public Canvas warningCanvas;
+
     CinemachineBrain brain;
     ZoomMap zoomMap;
     Player player;
     MouseLook camLook;
+    [SerializeField] DifficultyManager difficulty;
 
     public bool isLooking;
 
     public GameObject pathMap;
     public bool pathMapActive;
+    public int index = 0;
 
     public void Interact()
     {
@@ -60,6 +65,11 @@ public class Map : MonoBehaviour, IInteractable
             {
                 pathMap.SetActive(false);
             }
+
+            if (WarningMapHasBeenTriggered(index))
+            {
+                warningCanvas.enabled = true;
+            }
         }
         else
         {
@@ -68,6 +78,18 @@ public class Map : MonoBehaviour, IInteractable
 
         zoomMap.enabled = isLooking;
 
+    }
+
+    public bool WarningMapHasBeenTriggered(int i)
+    {
+        if (difficulty.lvlDifficulty == 3)
+        {
+            return false;
+        }
+        else
+        {
+            return i < 1;
+        }
     }
 
     public void GoBack()
