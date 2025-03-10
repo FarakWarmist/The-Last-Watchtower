@@ -21,6 +21,11 @@ public class Door : MonoBehaviour, IInteractable
     MouseLook camLook;
     Player player;
     CharacterText characterText;
+    Sleep sleep;
+    Padlock padlock;
+    [SerializeField] GameObject theDoorman;
+    [SerializeField] Languages language;
+    ItemsManager itemsManager;
 
     public KeyCode key;
 
@@ -31,6 +36,9 @@ public class Door : MonoBehaviour, IInteractable
         isInside = false;
         isOpen = false;
 
+        itemsManager = FindAnyObjectByType<ItemsManager>();
+        padlock = FindAnyObjectByType<Padlock>();
+        sleep = FindAnyObjectByType<Sleep>();
         brain = FindAnyObjectByType<CinemachineBrain>();
         camLook = FindAnyObjectByType<MouseLook>();
         GameObject playerObj = FindAnyObjectByType<Player>().gameObject;
@@ -44,18 +52,23 @@ public class Door : MonoBehaviour, IInteractable
         {
             if (!isLocked)
             {
-                if (isInside)
+                if (isInside && theDoorman.activeSelf)
                 {
                     IsCheck(playerCam, doorCheckCam, CheckDoor(false));
                     isCheck = true;
                     audioSource.clip = clips[2];
+                    audioSource.Play();
+                }
+                else if (isInside && !sleep.isDay && padlock.isLocked && !itemsManager.hasShedKey)
+                {
+                    NeedTheKey();
                 }
                 else
                 {
                     isOpen = true;
                     audioSource.clip = clips[0];
+                    audioSource.Play();
                 }
-                audioSource.Play();
             }
             else
             {
@@ -72,7 +85,6 @@ public class Door : MonoBehaviour, IInteractable
 
     private void ShowMessage()
     {
-        Languages language = FindAnyObjectByType<Languages>();
         string newText;
         if (language.index == 0) // French
         {
@@ -88,6 +100,23 @@ Maybe the letter can help me find them.";
         }
         characterText.StartNewText(newText);
     }
+
+    private void NeedTheKey()
+    {
+        string newText;
+        if (language.index == 0) // French
+        {
+            newText =
+@"Je vais avoir besoin de la clé du cabanon pour déverrouiller le cadenas.";
+        }
+        else // English
+        {
+            newText =
+@"I'm gonna need the key to the shed to unlock the padlock.";
+        }
+        characterText.StartNewText(newText);
+    }
+
 
     private void Update()
     {
