@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2310331934972083282}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Planks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,7 +55,7 @@ GameObject:
   - component: {fileID: 351242406164634246}
   - component: {fileID: 3850064565759533203}
   - component: {fileID: 1019867407666502760}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: PileOfPlanksNormal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -297,9 +297,21 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 7c5b1ac93beb09e4f9f0c15ca7f2a2a4, type: 2}
+    - target: {fileID: -7955790086967878477, guid: 5c78ff1f9c9166149a53586ec0cd3b47, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -7532225036555389413, guid: 5c78ff1f9c9166149a53586ec0cd3b47, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 5c78ff1f9c9166149a53586ec0cd3b47, type: 3}
       propertyPath: m_Name
       value: Crate
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5c78ff1f9c9166149a53586ec0cd3b47, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -348,6 +360,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2310331934972083282}
     m_Modifications:
+    - target: {fileID: 969407669497890551, guid: cded4a023f8b4ce49ad1f9f62659e0c2, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6581347388394711402, guid: cded4a023f8b4ce49ad1f9f62659e0c2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.977
@@ -392,6 +408,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plank (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 7978992333262982770, guid: cded4a023f8b4ce49ad1f9f62659e0c2, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 485923189609128254, guid: cded4a023f8b4ce49ad1f9f62659e0c2, type: 3}
     m_RemovedGameObjects: []
@@ -416,6 +436,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2310331934972083282}
     m_Modifications:
+    - target: {fileID: 969407669497890551, guid: cded4a023f8b4ce49ad1f9f62659e0c2, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6581347388394711402, guid: cded4a023f8b4ce49ad1f9f62659e0c2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.977
@@ -460,6 +484,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plank (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 7978992333262982770, guid: cded4a023f8b4ce49ad1f9f62659e0c2, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 485923189609128254, guid: cded4a023f8b4ce49ad1f9f62659e0c2, type: 3}
     m_RemovedGameObjects: []
@@ -484,6 +512,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2310331934972083282}
     m_Modifications:
+    - target: {fileID: 969407669497890551, guid: cded4a023f8b4ce49ad1f9f62659e0c2, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6581347388394711402, guid: cded4a023f8b4ce49ad1f9f62659e0c2, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.30000004
@@ -536,6 +568,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plank (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 7978992333262982770, guid: cded4a023f8b4ce49ad1f9f62659e0c2, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 485923189609128254, guid: cded4a023f8b4ce49ad1f9f62659e0c2, type: 3}
     m_RemovedGameObjects: []
@@ -560,6 +596,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2310331934972083282}
     m_Modifications:
+    - target: {fileID: 969407669497890551, guid: cded4a023f8b4ce49ad1f9f62659e0c2, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6581347388394711402, guid: cded4a023f8b4ce49ad1f9f62659e0c2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.006
@@ -604,6 +644,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plank (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 7978992333262982770, guid: cded4a023f8b4ce49ad1f9f62659e0c2, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 485923189609128254, guid: cded4a023f8b4ce49ad1f9f62659e0c2, type: 3}
     m_RemovedGameObjects: []
@@ -628,6 +672,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2310331934972083282}
     m_Modifications:
+    - target: {fileID: 969407669497890551, guid: cded4a023f8b4ce49ad1f9f62659e0c2, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6581347388394711402, guid: cded4a023f8b4ce49ad1f9f62659e0c2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.97
@@ -672,6 +720,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plank (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 7978992333262982770, guid: cded4a023f8b4ce49ad1f9f62659e0c2, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 485923189609128254, guid: cded4a023f8b4ce49ad1f9f62659e0c2, type: 3}
     m_RemovedGameObjects: []
@@ -696,6 +748,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2310331934972083282}
     m_Modifications:
+    - target: {fileID: 969407669497890551, guid: cded4a023f8b4ce49ad1f9f62659e0c2, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6581347388394711402, guid: cded4a023f8b4ce49ad1f9f62659e0c2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.977
@@ -740,6 +796,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plank
       objectReference: {fileID: 0}
+    - target: {fileID: 7978992333262982770, guid: cded4a023f8b4ce49ad1f9f62659e0c2, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 485923189609128254, guid: cded4a023f8b4ce49ad1f9f62659e0c2, type: 3}
     m_RemovedGameObjects: []
@@ -764,6 +824,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2310331934972083282}
     m_Modifications:
+    - target: {fileID: 969407669497890551, guid: cded4a023f8b4ce49ad1f9f62659e0c2, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6581347388394711402, guid: cded4a023f8b4ce49ad1f9f62659e0c2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.979
@@ -808,6 +872,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plank (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 7978992333262982770, guid: cded4a023f8b4ce49ad1f9f62659e0c2, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 485923189609128254, guid: cded4a023f8b4ce49ad1f9f62659e0c2, type: 3}
     m_RemovedGameObjects: []
@@ -832,6 +900,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2310331934972083282}
     m_Modifications:
+    - target: {fileID: 969407669497890551, guid: cded4a023f8b4ce49ad1f9f62659e0c2, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6581347388394711402, guid: cded4a023f8b4ce49ad1f9f62659e0c2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.977
@@ -876,6 +948,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plank (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7978992333262982770, guid: cded4a023f8b4ce49ad1f9f62659e0c2, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 485923189609128254, guid: cded4a023f8b4ce49ad1f9f62659e0c2, type: 3}
     m_RemovedGameObjects: []
@@ -900,6 +976,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2310331934972083282}
     m_Modifications:
+    - target: {fileID: 969407669497890551, guid: cded4a023f8b4ce49ad1f9f62659e0c2, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6581347388394711402, guid: cded4a023f8b4ce49ad1f9f62659e0c2, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.30000004
@@ -948,6 +1028,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plank (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 7978992333262982770, guid: cded4a023f8b4ce49ad1f9f62659e0c2, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 485923189609128254, guid: cded4a023f8b4ce49ad1f9f62659e0c2, type: 3}
     m_RemovedGameObjects: []
@@ -972,6 +1056,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2310331934972083282}
     m_Modifications:
+    - target: {fileID: 969407669497890551, guid: cded4a023f8b4ce49ad1f9f62659e0c2, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6581347388394711402, guid: cded4a023f8b4ce49ad1f9f62659e0c2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.01
@@ -1016,6 +1104,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plank (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 7978992333262982770, guid: cded4a023f8b4ce49ad1f9f62659e0c2, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 485923189609128254, guid: cded4a023f8b4ce49ad1f9f62659e0c2, type: 3}
     m_RemovedGameObjects: []
@@ -1040,6 +1132,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2310331934972083282}
     m_Modifications:
+    - target: {fileID: 969407669497890551, guid: cded4a023f8b4ce49ad1f9f62659e0c2, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6581347388394711402, guid: cded4a023f8b4ce49ad1f9f62659e0c2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.997
@@ -1084,6 +1180,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plank (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 7978992333262982770, guid: cded4a023f8b4ce49ad1f9f62659e0c2, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 485923189609128254, guid: cded4a023f8b4ce49ad1f9f62659e0c2, type: 3}
     m_RemovedGameObjects: []
@@ -1108,6 +1208,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2310331934972083282}
     m_Modifications:
+    - target: {fileID: 969407669497890551, guid: cded4a023f8b4ce49ad1f9f62659e0c2, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6581347388394711402, guid: cded4a023f8b4ce49ad1f9f62659e0c2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1
@@ -1151,6 +1255,10 @@ PrefabInstance:
     - target: {fileID: 7978992333262982770, guid: cded4a023f8b4ce49ad1f9f62659e0c2, type: 3}
       propertyPath: m_Name
       value: Plank (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7978992333262982770, guid: cded4a023f8b4ce49ad1f9f62659e0c2, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 485923189609128254, guid: cded4a023f8b4ce49ad1f9f62659e0c2, type: 3}
